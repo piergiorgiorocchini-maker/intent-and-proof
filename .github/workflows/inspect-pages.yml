@@ -1,0 +1,36 @@
+name: Inspect Pages runs
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report recent Pages workflow runs
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const { data } = await github.rest.actions.listWorkflowRunsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 30
+            });
+            const runs = data.workflow_runs
+              .filter((run) => run.name === 'Deploy to GitHub Pages')
+              .slice(0, 8);
+            const lines = runs.length
+              ? runs.map((run) => `- Run ${run.id}: **${run.status}** / **${run.conclusion || 'none'}** · event ${run.event} · commit \`${run.head_sha}\` · ${run.html_url}`)
+              : ['- No Deploy to GitHub Pages runs found.'];
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `<!-- pages-runs-inspection -->\n## Recent Pages runs\n\n${lines.join('\n')}`
+            });
