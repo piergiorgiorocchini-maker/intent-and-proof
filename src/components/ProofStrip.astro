@@ -1,0 +1,48 @@
+---
+const {
+	eyebrow = "Intent & Proof",
+	title = "Built for measurable growth systems, not decorative websites.",
+	text = "A compact proof section for highlighting business impact, technical strengths and strategic positioning across Intent & Proof pages.",
+	items = [
+		{
+			value: "40+",
+			label: "service pages shipped",
+			text: "Local, sector and offer pages designed around search intent and conversion."
+		},
+		{
+			value: "100",
+			label: "PageSpeed-ready architecture",
+			text: "Static-first builds designed for speed, clean HTML and crawler access."
+		},
+		{
+			value: "3x",
+			label: "conversion paths",
+			text: "Phone, form and WhatsApp actions structured for measurable enquiries."
+		}
+	],
+	variant = "default"
+} = Astro.props;
+
+const stripClass = [
+	"proof-strip",
+	`proof-strip--${variant}`
+].filter(Boolean).join(" ");
+---
+
+<section class={stripClass}>
+	<div class="proof-strip__intro">
+		{eyebrow && <p class="proof-strip__eyebrow">{eyebrow}</p>}
+		<h2>{title}</h2>
+		{text && <p class="proof-strip__text">{text}</p>}
+	</div>
+
+	<div class="proof-strip__grid">
+		{items.map((item) => (
+			<div class="proof-strip__item">
+				<strong>{item.value}</strong>
+				<span>{item.label}</span>
+				{item.text && <p>{item.text}</p>}
+			</div>
+		))}
+	</div>
+</section>

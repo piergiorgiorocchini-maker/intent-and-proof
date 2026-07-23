@@ -1,0 +1,33 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const {
+	title = "Intent & Proof",
+	description = "Performance marketing systems for service businesses.",
+eyebrow = "Intent & Proof",
+	pageTitle = title,
+	intro = "",
+	ctaLabel = "Check My Site",
+	ctaHref = "/",
+	showCta = true
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+	<section class="page-hero">
+		<div class="page-hero-inner">
+			<p class="page-eyebrow">{eyebrow}</p>
+			<h1>{pageTitle}</h1>
+			{intro && <p class="page-intro">{intro}</p>}
+			{showCta && (
+				<a class="page-hero-cta" href={ctaHref}>{ctaLabel}</a>
+			)}
+		</div>
+	</section>
+
+	<section class="page-shell">
+		<div class="page-main">
+			<slot />
+		</div>
+	</section>
+</BaseLayout>

@@ -1,0 +1,97 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import ResourceCard from "../../components/ResourceCard.astro";
+import ProofStrip from "../../components/ProofStrip.astro";
+
+const proofItems = [
+	{
+		value: "40+",
+		label: "service pages",
+		text: "A potential page system for local, sector and offer-based search intent."
+	},
+	{
+		value: "100",
+		label: "speed-first target",
+		text: "Static architecture designed around fast loading, clean HTML and crawler access."
+	},
+	{
+		value: "3x",
+		label: "tracked actions",
+		text: "Phone, form and WhatsApp paths prepared as measurable conversion actions."
+	}
+];
+---
+
+<PageLayout
+	title="About Intent & Proof"
+	description="Intent & Proof builds performance marketing systems for service businesses: SEO, landing pages, tracking and measurable lead generation."
+	eyebrow="About Intent & Proof"
+	pageTitle="Marketing systems for service businesses that need measurable leads."
+	intro="Intent & Proof helps local and specialized service businesses turn search intent, landing pages and tracking into a cleaner path from visitor to enquiry."
+	ctaLabel="Check My Site"
+	ctaHref="/"
+>
+	<section class="page-section">
+		<p class="page-section-kicker">What we build</p>
+		<h2 class="page-section-title">Not just websites. Lead generation systems with pages, tracking and intent.</h2>
+		<p class="page-section-copy">
+			Most service businesses do not need another decorative website first. They need a clear offer, strong local search structure, fast landing pages, conversion tracking and a way to understand which enquiries actually came from marketing.
+		</p>
+	</section>
+
+	<ProofStrip
+		eyebrow="System proof"
+		title="A static-first structure built to scale across pages, sectors and campaigns."
+		text="These are demo/potential proof points for visual testing. Before publication, they can be replaced with verified results, softer claims or client-specific metrics."
+		items={proofItems}
+		variant="dark"
+	/>
+
+	<section class="page-section">
+		<p class="page-section-kicker">Start here</p>
+		<h2 class="page-section-title">The Intent &amp; Proof operating areas.</h2>
+
+		<div class="resource-grid">
+			<ResourceCard
+				eyebrow="Local SEO"
+				title="Build pages around real local search intent."
+				text="City, sector and service pages designed to support both organic discovery and qualified enquiries."
+				href="/"
+				label="Explore local SEO"
+				meta="SEO structure"
+				icon="01"
+				variant="default"
+			/>
+
+			<ResourceCard
+				eyebrow="Landing Pages"
+				title="Turn paid and organic traffic into clear actions."
+				text="Focused pages that explain the service, build trust and move qualified visitors toward contact."
+				href="/"
+				label="Explore landing pages"
+				meta="Conversion pages"
+				icon="02"
+				variant="orange"
+			/>
+
+			<ResourceCard
+				eyebrow="Tracking & Ads"
+				title="Measure the enquiries before scaling the budget."
+				text="Analytics, conversion events and campaign foundations so ads are not launched blind."
+				href="/"
+				label="Explore tracking"
+				meta="Measurement"
+				icon="03"
+				variant="dark"
+			/>
+		</div>
+	</section>
+
+	<section class="page-section">
+		<p class="page-section-kicker">Why it exists</p>
+		<h2 class="page-section-title">Many businesses are paying for traffic before fixing the path.</h2>
+		<p class="page-section-copy">
+			Intent &amp; Proof is built around a simple idea: before increasing traffic, a business should understand whether its site can convert that traffic, whether its tracking can measure it, and whether its pages clearly match the questions buyers are already asking.
+		</p>
+	</section>
+</PageLayout>

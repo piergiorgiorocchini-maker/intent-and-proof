@@ -1,0 +1,78 @@
+---
+const {
+	eyebrow = "Free Growth Audit",
+	title = "Find the leaks in your website before buying more traffic.",
+	text = "Get a practical Intent & Proof check covering SEO structure, landing page clarity, tracking, calls to action and AI-search visibility.",
+	placeholder = "Email address",
+	buttonLabel = "Check My Site",
+	note = "No spam. Just a practical next step.",
+	variant = "default",
+	action = "#",
+	method = "post",
+	formName = "intent-and-proof-email-capture",
+	showName = false,
+	includeWebsite = false,
+	namePlaceholder = "Your name",
+	websitePlaceholder = "Website URL",
+	compact = false
+} = Astro.props;
+
+const captureClass = [
+	"email-capture",
+	`email-capture--${variant}`,
+	compact ? "email-capture--compact" : ""
+].filter(Boolean).join(" ");
+
+const titleId = `${formName}-title`;
+---
+
+<section class={captureClass} aria-labelledby={titleId}>
+	<div class="email-capture__copy">
+		{eyebrow && <p class="email-capture__eyebrow">{eyebrow}</p>}
+		<h2 id={titleId}>{title}</h2>
+		{text && <p class="email-capture__text">{text}</p>}
+	</div>
+
+	<form class="email-capture__form" action={action} method={method}>
+		<input type="hidden" name="form-name" value={formName} />
+
+		{showName && (
+			<label class="email-capture__field">
+				<span>Name</span>
+				<input
+					type="text"
+					name="name"
+					placeholder={namePlaceholder}
+					autocomplete="name"
+				/>
+			</label>
+		)}
+
+		<label class="email-capture__field">
+			<span>Email</span>
+			<input
+				type="email"
+				name="email"
+				placeholder={placeholder}
+				autocomplete="email"
+				required
+			/>
+		</label>
+
+		{includeWebsite && (
+			<label class="email-capture__field">
+				<span>Website</span>
+				<input
+					type="url"
+					name="website"
+					placeholder={websitePlaceholder}
+					autocomplete="url"
+				/>
+			</label>
+		)}
+
+		<button class="email-capture__button" type="submit">{buttonLabel}</button>
+
+		{note && <p class="email-capture__note">{note}</p>}
+	</form>
+</section>

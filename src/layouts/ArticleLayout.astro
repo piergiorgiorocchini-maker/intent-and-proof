@@ -1,0 +1,104 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const {
+	title = "Intent & Proof Growth Guide",
+	description = "Practical growth systems for service businesses.",
+	eyebrow = "Growth Guide",
+	author = "Intent & Proof",
+	publishedDate = "2026-07-01",
+	updatedDate = "2026-07-01",
+	readTime = "8 min read",
+	imageSrc = "",
+	imageAlt = "Intent & Proof editorial guide visual",
+	videoUrl = "",
+	ctaTitle = "Want to find the weak points in your website?",
+	ctaText = "Get a practical audit of your SEO, landing page, tracking and lead path before spending more on traffic.",
+	ctaLabel = "Check My Site",
+	ctaHref = "/",
+	toc = [
+		{ href: "#overview", label: "Overview" },
+		{ href: "#system", label: "The system" },
+		{ href: "#checklist", label: "Checklist" },
+		{ href: "#faq", label: "FAQ" }
+	]
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+	<article class="article-shell">
+		<header class="article-hero">
+			<div class="article-hero-inner">
+				<p class="article-eyebrow">{eyebrow}</p>
+				<h1>{title}</h1>
+				<p class="article-description">{description}</p>
+
+				<div class="article-meta" aria-label="Article information">
+					<span>By {author}</span>
+					<span>Published <time datetime={publishedDate}>{publishedDate}</time></span>
+					<span>Updated <time datetime={updatedDate}>{updatedDate}</time></span>
+					<span>{readTime}</span>
+				</div>
+
+				{
+					videoUrl ? (
+						<div class="article-media article-video">
+							<iframe
+								src={videoUrl}
+								title={title}
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								allowfullscreen
+							></iframe>
+						</div>
+					) : imageSrc ? (
+						<div class="article-media">
+							<img src={imageSrc} alt={imageAlt} loading="eager" />
+						</div>
+					) : (
+						<div class="article-media article-placeholder" aria-hidden="true">
+							<div>
+								<span>Intent &amp; Proof</span>
+								<strong>Growth System Guide</strong>
+							</div>
+						</div>
+					)
+				}
+			</div>
+		</header>
+
+		<div class="article-body-wrap">
+			<aside class="article-toc" aria-label="Table of contents">
+				<div class="article-side-card">
+					<p>On this page</p>
+					<nav>
+						{toc.map((item) => <a href={item.href}>{item.label}</a>)}
+					</nav>
+				</div>
+			</aside>
+
+			<div class="article-content">
+				<slot />
+			</div>
+
+			<aside class="article-share" aria-label="Article actions">
+				<div class="article-side-card">
+					<p>Share</p>
+					<div class="article-share-links">
+						<a href="/" aria-label="Share on LinkedIn">in</a>
+						<a href="/" aria-label="Share on X">x</a>
+						<a href="/" aria-label="Copy article link">↗</a>
+					</div>
+				</div>
+			</aside>
+		</div>
+
+		<section class="article-bottom-cta">
+			<div>
+				<p>Intent &amp; Proof Audit</p>
+				<h2>{ctaTitle}</h2>
+				<span>{ctaText}</span>
+			</div>
+			<a href={ctaHref}>{ctaLabel}</a>
+		</section>
+	</article>
+</BaseLayout>

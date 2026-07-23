@@ -1,0 +1,54 @@
+---
+const {
+	eyebrow = "Case Study",
+	title = "Intent & Proof Case Study",
+	text = "A practical example of how strategy, structure, tracking and execution turned a website into a clearer lead generation system.",
+	href = "/",
+	label = "Read case study",
+	result = "",
+	sector = "",
+	image = "",
+	imageAlt = "",
+	variant = "default"
+} = Astro.props;
+
+const cardClass = [
+	"case-study-card",
+	`case-study-card--${variant}`
+].filter(Boolean).join(" ");
+---
+
+<a class={cardClass} href={href}>
+	{image ? (
+		<div class="case-study-card__media">
+			<img src={image} alt={imageAlt || title} loading="lazy" />
+		</div>
+	) : (
+		<div class="case-study-card__media case-study-card__media--placeholder" aria-hidden="true">
+			<span>{sector || "Intent & Proof"}</span>
+		</div>
+	)}
+
+	<div class="case-study-card__content">
+		<div class="case-study-card__topline">
+			{eyebrow && <p>{eyebrow}</p>}
+			{sector && <span>{sector}</span>}
+		</div>
+
+		<h3>{title}</h3>
+
+		{text && <p class="case-study-card__text">{text}</p>}
+
+		{result && (
+			<div class="case-study-card__result">
+				<span>Result</span>
+				<strong>{result}</strong>
+			</div>
+		)}
+
+		<div class="case-study-card__footer">
+			<strong>{label}</strong>
+			<span aria-hidden="true">→</span>
+		</div>
+	</div>
+</a>
