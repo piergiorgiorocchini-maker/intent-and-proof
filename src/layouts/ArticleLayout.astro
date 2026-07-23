@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import "../styles/article-editorial.css";
+import "../styles/article-hero-split.css";
 
 const {
 	title = "Intent & Proof Growth Guide",
@@ -13,11 +14,21 @@ const {
 	authorImageAlt = "",
 	authorRole = "Founder, analyst and acquisition-system operator",
 	authorBio = "Piergiorgio Rocchini combines financial analysis, market research and hands-on customer acquisition systems built in live service markets.",
+	editor = "",
+	editorHref = "",
+	editorImageSrc = "",
+	editorImageAlt = "",
 	publishedDate = "2026-07-01",
 	updatedDate = "2026-07-01",
 	readTime = "8 min read",
 	imageSrc = "",
 	imageAlt = "Intent & Proof editorial guide visual",
+	heroImageSrc = imageSrc,
+	heroImageAlt = imageAlt,
+	heroImagePosition = "center",
+	heroLayout = "split",
+	heroTone = "aurora",
+	showDescription = true,
 	videoUrl = "",
 	ctaTitle = "Want to find the weak points in your website?",
 	ctaText = "Get a practical audit of your SEO, landing page, tracking and lead path before spending more on traffic.",
@@ -45,13 +56,18 @@ const {
 	]
 } = Astro.props;
 
-const resolvedAuthorImageAlt = authorImageAlt || `${author} portrait`;
-const authorInitials = author
+const initialsFor = (name) => name
 	.split(" ")
+	.filter(Boolean)
 	.map((part) => part.charAt(0))
 	.join("")
 	.slice(0, 2)
 	.toUpperCase();
+
+const resolvedAuthorImageAlt = authorImageAlt || `${author} portrait`;
+const resolvedEditorImageAlt = editorImageAlt || `${editor} portrait`;
+const authorInitials = initialsFor(author);
+const editorInitials = editor ? initialsFor(editor) : "";
 
 const formatDate = (value) => {
 	if (!value) return "";
@@ -64,7 +80,7 @@ const formatDate = (value) => {
 
 const siteURL = Astro.site ?? new URL("https://www.intentandproof.com");
 const articleURL = new URL(Astro.url.pathname, siteURL);
-const articleImage = imageSrc ? new URL(imageSrc, siteURL).toString() : undefined;
+const articleImage = heroImageSrc ? new URL(heroImageSrc, siteURL).toString() : undefined;
 
 const articleSchema = {
 	"@type": "Article",
@@ -78,6 +94,13 @@ const articleSchema = {
 		name: author,
 		url: new URL(authorHref, siteURL).toString()
 	},
+	...(editor ? {
+		editor: {
+			"@type": "Person",
+			name: editor,
+			...(editorHref ? { url: new URL(editorHref, siteURL).toString() } : {})
+		}
+	} : {}),
 	publisher: {
 		"@type": "Organization",
 		name: "Intent & Proof",
@@ -111,12 +134,17 @@ const structuredData = {
 
 const linkedInShare = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleURL.toString())}`;
 const xShare = `https://x.com/intent/post?url=${encodeURIComponent(articleURL.toString())}&text=${encodeURIComponent(title)}`;
+const heroStyle = [
+	`--article-hero-image-position: ${heroImagePosition}`,
+	heroLayout === "background" && heroImageSrc ? `--article-hero-background-image: url('${heroImageSrc}')` : ""
+].filter(Boolean).join("; ");
+const showHeroVisual = heroLayout === "split" && Boolean(videoUrl || heroImageSrc);
 ---
 
 <BaseLayout
 	title={title}
 	description={description}
-	image={imageSrc}
+	image={heroImageSrc}
 	ogType="article"
 	publishedDate={publishedDate}
 	updatedDate={updatedDate}
@@ -124,7 +152,7 @@ const xShare = `https://x.com/intent/post?url=${encodeURIComponent(articleURL.to
 	structuredData={structuredData}
 >
 	<article class={`article-shell article-shell--${layoutVariant}`}>
-		<header class="article-hero">
+		<header class={`article-hero article-hero--${heroLayout} article-hero--${heroTone}`} style={heroStyle}>
 			<div class="article-hero-inner">
 				<nav class="article-breadcrumbs" aria-label="Breadcrumb">
 					{
@@ -139,77 +167,83 @@ const xShare = `https://x.com/intent/post?url=${encodeURIComponent(articleURL.to
 					<span aria-current="page">{title}</span>
 				</nav>
 
-				<div class="article-hero-copy">
-					<a class="article-eyebrow" href={categoryHref}>{eyebrow}</a>
-					<h1>{title}</h1>
-					<p class="article-description">{description}</p>
-
-					<div class="article-byline-row">
-						<div class="article-author">
-							<a class="article-author-image-link" href={authorHref} aria-label={`View ${author} profile`}>
-								{
-									authorImageSrc ? (
-										<img
-											class="article-author-avatar"
-											src={authorImageSrc}
-											alt={resolvedAuthorImageAlt}
-											width="56"
-											height="56"
-											loading="eager"
-											decoding="async"
-										/>
-									) : (
-										<span class="article-author-avatar" aria-hidden="true">{authorInitials}</span>
-									)
-								}
-							</a>
-							<div class="article-author-copy">
-								<a href={authorHref}>{author}</a>
-								<span>{authorRole}</span>
-							</div>
+				<div class="article-hero-grid">
+					<div class="article-hero-copy">
+						<div class="article-hero-taxonomy" aria-label="Article topics">
+							<a class="article-eyebrow" href={categoryHref}>{eyebrow}</a>
+							{tags.slice(0, 3).map((tag) => <a href={tag.href}>{tag.label}</a>)}
 						</div>
 
+						<h1>{title}</h1>
+						{showDescription && description && <p class="article-description">{description}</p>}
+
 						<div class="article-meta" aria-label="Publication information">
-							<span>Published <time datetime={publishedDate}>{formatDate(publishedDate)}</time></span>
+							<span><time datetime={publishedDate}>{formatDate(publishedDate)}</time></span>
 							{updatedDate !== publishedDate && <span>Updated <time datetime={updatedDate}>{formatDate(updatedDate)}</time></span>}
 							<span>{readTime}</span>
+						</div>
+
+						<div class="article-contributors">
+							<div class="article-contributor">
+								<a class="article-author-image-link" href={authorHref} aria-label={`View ${author} profile`}>
+									{
+										authorImageSrc ? (
+											<img class="article-author-avatar" src={authorImageSrc} alt={resolvedAuthorImageAlt} width="56" height="56" loading="eager" decoding="async" />
+										) : (
+											<span class="article-author-avatar" aria-hidden="true">{authorInitials}</span>
+										)
+									}
+								</a>
+								<div class="article-contributor-copy">
+									<span>Written by</span>
+									<a href={authorHref}>{author}</a>
+									<small>{authorRole}</small>
+								</div>
+							</div>
+
+							{
+								editor && (
+									<div class="article-contributor article-contributor--editor">
+										{
+											editorHref ? (
+												<a class="article-author-image-link" href={editorHref} aria-label={`View ${editor} profile`}>
+													{editorImageSrc ? <img class="article-author-avatar" src={editorImageSrc} alt={resolvedEditorImageAlt} width="48" height="48" loading="eager" decoding="async" /> : <span class="article-author-avatar" aria-hidden="true">{editorInitials}</span>}
+												</a>
+											) : (
+												<span class="article-author-avatar" aria-hidden="true">{editorInitials}</span>
+											)
+										}
+										<div class="article-contributor-copy">
+											<span>Edited by</span>
+											{editorHref ? <a href={editorHref}>{editor}</a> : <strong>{editor}</strong>}
+										</div>
+									</div>
+								)
+							}
 						</div>
 					</div>
 
 					{
-						tags.length > 0 && (
-							<ul class="article-tags" aria-label="Article topics">
-								{tags.map((tag) => (
-									<li><a href={tag.href}>{tag.label}</a></li>
-								))}
-							</ul>
+						showHeroVisual && (
+							<div class="article-hero-visual">
+								{
+									videoUrl ? (
+										<div class="article-hero-video">
+											<iframe
+												src={videoUrl}
+												title={title}
+												allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+												allowfullscreen
+											></iframe>
+										</div>
+									) : (
+										<img src={heroImageSrc} alt={heroImageAlt} loading="eager" decoding="async" />
+									)
+								}
+							</div>
 						)
 					}
 				</div>
-
-				{
-					videoUrl ? (
-						<div class="article-media article-video">
-							<iframe
-								src={videoUrl}
-								title={title}
-								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-								allowfullscreen
-							></iframe>
-						</div>
-					) : imageSrc ? (
-						<div class="article-media">
-							<img src={imageSrc} alt={imageAlt} loading="eager" decoding="async" />
-						</div>
-					) : (
-						<div class="article-media article-placeholder" aria-hidden="true">
-							<div>
-								<span>Intent &amp; Proof</span>
-								<strong>Growth System Guide</strong>
-							</div>
-						</div>
-					)
-				}
 			</div>
 		</header>
 
@@ -219,9 +253,7 @@ const xShare = `https://x.com/intent/post?url=${encodeURIComponent(articleURL.to
 					showToc && toc.length > 0 && (
 						<div class="article-side-card article-toc">
 							<p>On this page</p>
-							<nav>
-								{toc.map((item) => <a href={item.href}>{item.label}</a>)}
-							</nav>
+							<nav>{toc.map((item) => <a href={item.href}>{item.label}</a>)}</nav>
 						</div>
 					)
 				}
@@ -240,9 +272,7 @@ const xShare = `https://x.com/intent/post?url=${encodeURIComponent(articleURL.to
 				}
 			</aside>
 
-			<div class="article-content">
-				<slot />
-			</div>
+			<div class="article-content"><slot /></div>
 
 			{
 				showSidebarCta && (
@@ -260,13 +290,7 @@ const xShare = `https://x.com/intent/post?url=${encodeURIComponent(articleURL.to
 
 		<div class="article-after-content">
 			<section class="article-author-card" aria-label={`About ${author}`}>
-				{
-					authorImageSrc ? (
-						<img class="article-author-card__avatar" src={authorImageSrc} alt={resolvedAuthorImageAlt} width="82" height="82" loading="lazy" decoding="async" />
-					) : (
-						<span class="article-author-card__avatar" aria-hidden="true">{authorInitials}</span>
-					)
-				}
+				{authorImageSrc ? <img class="article-author-card__avatar" src={authorImageSrc} alt={resolvedAuthorImageAlt} width="82" height="82" loading="lazy" decoding="async" /> : <span class="article-author-card__avatar" aria-hidden="true">{authorInitials}</span>}
 				<div class="article-author-card__copy">
 					<small>About the author</small>
 					<h2>{author}</h2>
