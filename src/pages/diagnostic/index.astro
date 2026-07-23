@@ -1,0 +1,68 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+
+const diagnosticEmail =
+	"mailto:piergiorgio.rocchini@gmail.com?subject=Intent%20%26%20Proof%20Diagnostic%20Request&body=Website%3A%0AService%3A%0AArea%3A%0APriority%20objective%3A";
+---
+
+<PageLayout
+	title="Free Acquisition Diagnostic | Intent & Proof"
+	description="Request an Intent & Proof first-pass acquisition diagnostic covering intent, proof, conversion, search and measurement."
+	eyebrow="Acquisition Diagnostic"
+	pageTitle="Find where your business is losing demand."
+	intro="A focused first-pass review of the path from customer intent to measurable enquiry — designed to identify what deserves attention before more traffic or budget."
+	ctaLabel="Request My Diagnostic"
+	ctaHref={diagnosticEmail}
+>
+	<section class="page-section">
+		<p class="page-section-kicker">What we examine</p>
+		<h2 class="page-section-title">Five checks. One commercial question: where is the system leaking value?</h2>
+
+		<div class="page-grid">
+			<article class="page-card">
+				<h3>Intent Capture</h3>
+				<p>Whether the site and its priority pages meet real commercial demand with the right message and structure.</p>
+			</article>
+
+			<article class="page-card">
+				<h3>Proof Strength</h3>
+				<p>Whether cases, reviews, positioning and trust signals give a qualified buyer enough reason to believe.</p>
+			</article>
+
+			<article class="page-card">
+				<h3>Conversion Path</h3>
+				<p>Whether calls to action, forms, phone and messaging routes make the next step clear and low-friction.</p>
+			</article>
+
+			<article class="page-card">
+				<h3>Search &amp; Ads Readiness</h3>
+				<p>Whether the technical and landing-page foundation is ready to capture demand through organic or paid search.</p>
+			</article>
+
+			<article class="page-card">
+				<h3>Measurement Integrity</h3>
+				<p>Whether useful actions and enquiries can be traced, qualified and used to improve future decisions.</p>
+			</article>
+		</div>
+	</section>
+
+	<section class="page-section">
+		<p class="page-section-kicker">What to send</p>
+		<h2 class="page-section-title">Enough context to make the review specific.</h2>
+		<p class="page-section-copy">
+			Include your website, priority service or product, target area and the commercial outcome you want to improve. The email request is pre-structured so the first review begins with the right information.
+		</p>
+	</section>
+
+	<section class="page-section">
+		<p class="page-section-kicker">What you receive</p>
+		<h2 class="page-section-title">A first diagnosis, not a generic automated score.</h2>
+		<p class="page-section-copy">
+			We identify the most important visible weakness, one concrete opportunity and the next action that deserves investigation. Detailed keyword plans, competitor intelligence and implementation roadmaps belong to the advanced diagnostic or project scope.
+		</p>
+		<a class="page-hero-cta" href={diagnosticEmail}>Request My Diagnostic</a>
+		<p class="page-section-copy">
+			Limited manual reviews during the first release. One request per business. Diagnostic requests are not automatically enrolled in Research Notes.
+		</p>
+	</section>
+</PageLayout>
