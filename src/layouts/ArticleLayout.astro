@@ -1,15 +1,18 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import "../styles/article-editorial.css";
 
 const {
 	title = "Intent & Proof Growth Guide",
 	description = "Practical growth systems for service businesses.",
 	eyebrow = "Growth Guide",
 	categoryHref = "/blog/",
-	author = "Intent & Proof",
-	authorHref = "/authors/intent-and-proof/",
+	author = "Piergiorgio Rocchini",
+	authorHref = "/authors/piergiorgio-rocchini/",
 	authorImageSrc = "",
 	authorImageAlt = "",
+	authorRole = "Founder, analyst and acquisition-system operator",
+	authorBio = "Piergiorgio Rocchini combines financial analysis, market research and hands-on customer acquisition systems built in live service markets.",
 	publishedDate = "2026-07-01",
 	updatedDate = "2026-07-01",
 	readTime = "8 min read",
@@ -19,11 +22,12 @@ const {
 	ctaTitle = "Want to find the weak points in your website?",
 	ctaText = "Get a practical audit of your SEO, landing page, tracking and lead path before spending more on traffic.",
 	ctaLabel = "Check My Site",
-	ctaHref = "/",
+	ctaHref = "/diagnostic/",
 	breadcrumbs = [
 		{ href: "/", label: "Home" },
 		{ href: "/blog/", label: "Research" }
 	],
+	tags = [],
 	toc = [
 		{ href: "#overview", label: "Overview" },
 		{ href: "#system", label: "The system" },
@@ -33,9 +37,74 @@ const {
 } = Astro.props;
 
 const resolvedAuthorImageAlt = authorImageAlt || `${author} portrait`;
+const authorInitials = author
+	.split(" ")
+	.map((part) => part.charAt(0))
+	.join("")
+	.slice(0, 2)
+	.toUpperCase();
+
+const siteURL = Astro.site ?? new URL("https://www.intentandproof.com");
+const articleURL = new URL(Astro.url.pathname, siteURL);
+const articleImage = imageSrc ? new URL(imageSrc, siteURL).toString() : undefined;
+
+const articleSchema = {
+	"@type": "Article",
+	headline: title,
+	description,
+	mainEntityOfPage: articleURL.toString(),
+	datePublished: publishedDate,
+	dateModified: updatedDate,
+	author: {
+		"@type": "Person",
+		name: author,
+		url: new URL(authorHref, siteURL).toString()
+	},
+	publisher: {
+		"@type": "Organization",
+		name: "Intent & Proof",
+		url: siteURL.toString()
+	},
+	...(articleImage ? { image: articleImage } : {})
+};
+
+const breadcrumbSchema = {
+	"@type": "BreadcrumbList",
+	itemListElement: [
+		...breadcrumbs.map((item, index) => ({
+			"@type": "ListItem",
+			position: index + 1,
+			name: item.label,
+			item: new URL(item.href, siteURL).toString()
+		})),
+		{
+			"@type": "ListItem",
+			position: breadcrumbs.length + 1,
+			name: title,
+			item: articleURL.toString()
+		}
+	]
+};
+
+const structuredData = {
+	"@context": "https://schema.org",
+	"@graph": [articleSchema, breadcrumbSchema]
+};
+
+const linkedInShare = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleURL.toString())}`;
+const xShare = `https://x.com/intent/post?url=${encodeURIComponent(articleURL.toString())}&text=${encodeURIComponent(title)}`;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+	title={title}
+	description={description}
+	image={imageSrc}
+	ogType="article"
+	publishedDate={publishedDate}
+	updatedDate={updatedDate}
+	author={author}
+	structuredData={structuredData}
+>
 	<article class="article-shell">
 		<header class="article-hero">
 			<div class="article-hero-inner">
@@ -57,9 +126,9 @@ const resolvedAuthorImageAlt = authorImageAlt || `${author} portrait`;
 				<p class="article-description">{description}</p>
 
 				<div class="article-author">
-					{
-						authorImageSrc && (
-							<a class="article-author-image-link" href={authorHref} aria-label={`View ${author} profile`}>
+					<a class="article-author-image-link" href={authorHref} aria-label={`View ${author} profile`}>
+						{
+							authorImageSrc ? (
 								<img
 									class="article-author-avatar"
 									src={authorImageSrc}
@@ -69,11 +138,13 @@ const resolvedAuthorImageAlt = authorImageAlt || `${author} portrait`;
 									loading="eager"
 									decoding="async"
 								/>
-							</a>
-						)
-					}
+							) : (
+								<span class="article-author-avatar" aria-hidden="true">{authorInitials}</span>
+							)
+						}
+					</a>
 					<div class="article-author-copy">
-						<span>Written by</span>
+						<span>{authorRole}</span>
 						<a href={authorHref}>{author}</a>
 					</div>
 				</div>
@@ -83,6 +154,16 @@ const resolvedAuthorImageAlt = authorImageAlt || `${author} portrait`;
 					<span>Updated <time datetime={updatedDate}>{updatedDate}</time></span>
 					<span>{readTime}</span>
 				</div>
+
+				{
+					tags.length > 0 && (
+						<ul class="article-tags" aria-label="Article topics">
+							{tags.map((tag) => (
+								<li><a href={tag.href}>{tag.label}</a></li>
+							))}
+						</ul>
+					)
+				}
 
 				{
 					videoUrl ? (
@@ -96,7 +177,7 @@ const resolvedAuthorImageAlt = authorImageAlt || `${author} portrait`;
 						</div>
 					) : imageSrc ? (
 						<div class="article-media">
-							<img src={imageSrc} alt={imageAlt} loading="eager" />
+							<img src={imageSrc} alt={imageAlt} loading="eager" decoding="async" />
 						</div>
 					) : (
 						<div class="article-media article-placeholder" aria-hidden="true">
@@ -128,13 +209,29 @@ const resolvedAuthorImageAlt = authorImageAlt || `${author} portrait`;
 				<div class="article-side-card">
 					<p>Share</p>
 					<div class="article-share-links">
-						<a href="/" aria-label="Share on LinkedIn">in</a>
-						<a href="/" aria-label="Share on X">x</a>
-						<a href="/" aria-label="Copy article link">↗</a>
+						<a href={linkedInShare} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
+						<a href={xShare} target="_blank" rel="noopener noreferrer" aria-label="Share on X">x</a>
+						<a href={articleURL.toString()} aria-label="Open canonical article link">↗</a>
 					</div>
 				</div>
 			</aside>
 		</div>
+
+		<section class="article-author-card" aria-label={`About ${author}`}>
+			{
+				authorImageSrc ? (
+					<img class="article-author-card__avatar" src={authorImageSrc} alt={resolvedAuthorImageAlt} width="82" height="82" loading="lazy" decoding="async" />
+				) : (
+					<span class="article-author-card__avatar" aria-hidden="true">{authorInitials}</span>
+				)
+			}
+			<div class="article-author-card__copy">
+				<small>About the author</small>
+				<h2>{author}</h2>
+				<p>{authorBio}</p>
+			</div>
+			<a class="article-author-card__link" href={authorHref}>View author profile</a>
+		</section>
 
 		<section class="article-bottom-cta">
 			<div>
