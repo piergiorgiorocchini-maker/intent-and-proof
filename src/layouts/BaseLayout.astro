@@ -5,7 +5,7 @@ import "../styles/global.css";
 
 const {
 	title = "Intent & Proof",
-	description = "Performance marketing systems for service businesses."
+	description = "Measurable customer acquisition systems for service businesses."
 } = Astro.props;
 
 const siteURL = Astro.site ?? new URL("https://www.intentandproof.com");
@@ -19,6 +19,12 @@ const canonicalURL = new URL(Astro.url.pathname, siteURL);
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content={description} />
+		<meta property="og:site_name" content="Intent & Proof" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta name="twitter:card" content="summary" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="canonical" href={canonicalURL} />
 		<title>{title}</title>

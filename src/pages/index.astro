@@ -1,62 +1,199 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const diagnosticEmail =
+	"mailto:piergiorgio.rocchini@gmail.com?subject=Intent%20%26%20Proof%20Diagnostic%20Request&body=Website%3A%0AService%3A%0AArea%3A%0APriority%20objective%3A";
+
+const researchEmail =
+	"mailto:piergiorgio.rocchini@gmail.com?subject=Intent%20%26%20Proof%20Research%20Notes&body=Please%20add%20me%20to%20Intent%20%26%20Proof%20Research%20Notes.%0A%0AEmail%3A";
 ---
 
 <BaseLayout
 	title="Intent & Proof | Measurable Customer Acquisition Systems"
-	description="Intent & Proof builds SEO, landing page and lead generation systems for service businesses."
+	description="Intent & Proof builds measurable customer acquisition systems for service businesses by connecting search, websites, proof, conversion and tracking."
 >
-	<section class="hero">
-		<div class="hero-inner">
-			<div class="eyebrow">WELCOME TO INTENT &amp; PROOF</div>
+	<section class="home-hero">
+		<div class="home-hero__inner">
+			<p class="home-eyebrow">Customer acquisition systems for service businesses</p>
 
-			<h1>Learn how to turn search intent into qualified leads.</h1>
+			<h1>Turn real customer intent into qualified enquiries.</h1>
 
-			<p class="hero-subtitle">
-				Practical guides, templates and systems for service businesses that want cleaner SEO, better landing pages and campaigns that can actually be measured.
+			<p class="home-hero__subtitle">
+				We connect search, conversion-focused websites, credible proof and tracking into one measurable acquisition system — built around your business.
 			</p>
 
-			<div class="proof-box">
-				<div class="proof-avatar">IP</div>
-				<div>
-					<p class="proof-quote">“Most local businesses do not need more traffic first. They need a cleaner path from search intent to tracked enquiries.”</p>
-					<p class="proof-name">Intent &amp; Proof</p>
-				</div>
+			<div class="home-hero__actions">
+				<a class="home-button home-button--primary" href="#diagnostic">Request a Diagnostic</a>
+				<a class="home-button home-button--secondary" href="/case-studies/">View Case Studies</a>
 			</div>
 
-			<form class="audit-box">
-				<input type="email" placeholder="Email Address" aria-label="Email Address" />
-				<button type="submit">Try It</button>
-			</form>
+			<p class="home-hero__note">Start with a focused review of where your current system may be losing demand.</p>
+
+			<div class="home-path" aria-label="Intent and Proof acquisition path">
+				<div class="home-path__step">
+					<span>01</span>
+					<strong>Intent</strong>
+					<small>Find real demand</small>
+				</div>
+				<div class="home-path__arrow" aria-hidden="true">→</div>
+				<div class="home-path__step">
+					<span>02</span>
+					<strong>Proof</strong>
+					<small>Make trust visible</small>
+				</div>
+				<div class="home-path__arrow" aria-hidden="true">→</div>
+				<div class="home-path__step">
+					<span>03</span>
+					<strong>Action</strong>
+					<small>Create the enquiry</small>
+				</div>
+				<div class="home-path__arrow" aria-hidden="true">→</div>
+				<div class="home-path__step">
+					<span>04</span>
+					<strong>Measurement</strong>
+					<small>Improve what works</small>
+				</div>
+			</div>
 		</div>
 	</section>
 
-	<section class="section">
-		<div class="section-head">
+	<section class="home-thesis">
+		<div class="home-thesis__inner">
+			<p class="home-section-label">The operating thesis</p>
+			<h2>Your business may not need more traffic. It may need fewer leaks between search and enquiry.</h2>
+			<p>
+				A page can rank, an ad can win a click and a website can still fail to produce a useful lead. We examine the entire path — the demand, the message, the evidence, the action and the measurement — before recommending more spend.
+			</p>
+		</div>
+	</section>
+
+	<section id="system" class="home-system">
+		<div class="home-section-head">
 			<div>
-				<h2>Latest Growth Guides</h2>
-				<p>Practical articles on SEO, landing pages, tracking and lead generation.</p>
+				<p class="home-section-label">The Intent &amp; Proof system</p>
+				<h2>One acquisition system. Four connected disciplines.</h2>
+			</div>
+			<p>Each discipline can solve a specific weakness. Together, they create a system that can be measured and improved.</p>
+		</div>
+
+		<div class="home-system__grid">
+			<article id="diagnose" class="home-system-card">
+				<span class="home-system-card__number">01</span>
+				<p class="home-system-card__verb">Diagnose</p>
+				<h3>Acquisition Diagnostic</h3>
+				<p>Find the commercial gaps across demand, positioning, pages, proof, SEO, campaigns and tracking.</p>
+			</article>
+
+			<article id="build" class="home-system-card">
+				<span class="home-system-card__number">02</span>
+				<p class="home-system-card__verb">Build</p>
+				<h3>Conversion Foundation</h3>
+				<p>Create fast websites, focused landing pages, clear offers, credible evidence and direct contact paths.</p>
+			</article>
+
+			<article id="capture" class="home-system-card">
+				<span class="home-system-card__number">03</span>
+				<p class="home-system-card__verb">Capture</p>
+				<h3>Demand Capture</h3>
+				<p>Reach high-intent buyers through search, local SEO, durable content, geographic pages and Google Ads.</p>
+			</article>
+
+			<article id="measure" class="home-system-card">
+				<span class="home-system-card__number">04</span>
+				<p class="home-system-card__verb">Measure</p>
+				<h3>Measurement &amp; Growth</h3>
+				<p>Track actions, assess lead quality and improve the pages, campaigns and decisions that produce revenue.</p>
+			</article>
+		</div>
+	</section>
+
+	<section class="home-proof">
+		<div class="home-proof__inner">
+			<div class="home-section-head home-section-head--light">
+				<div>
+					<p class="home-section-label">Proof before promises</p>
+					<h2>Built in real markets, not only presented in slides.</h2>
+				</div>
+				<p>Our methods are developed through operating systems we build, measure and use ourselves.</p>
+			</div>
+
+			<div class="home-proof__grid">
+				<article class="home-proof-card">
+					<p class="home-proof-card__sector">Local service acquisition</p>
+					<h3>LavaggioDivani</h3>
+					<p>A speed-first local SEO system combining territorial pages, high-intent content, WhatsApp conversion and event tracking.</p>
+					<p class="home-proof-card__result">Recent Search Console data placed a priority Cagliari query near the top of the results.</p>
+				</article>
+
+				<article class="home-proof-card">
+					<p class="home-proof-card__sector">Premium niche positioning</p>
+					<h3>Yacht Upholstery Sardinia</h3>
+					<p>An English-language acquisition system designed around a narrow specialist service and high-value buyers in Sardinia.</p>
+					<p class="home-proof-card__result">The first two recent enquiries both became completed, high-value assignments.</p>
+				</article>
+			</div>
+
+			<a class="home-text-link home-text-link--light" href="/case-studies/">Explore the systems and case studies <span aria-hidden="true">→</span></a>
+		</div>
+	</section>
+
+	<section id="diagnostic" class="home-diagnostic">
+		<div class="home-diagnostic__copy">
+			<p class="home-section-label">Start with evidence</p>
+			<h2>Find where your acquisition system is losing demand.</h2>
+			<p>
+				Our first-pass diagnostic reviews the path from customer intent to measurable enquiry and identifies what deserves attention first.
+			</p>
+			<a class="home-button home-button--orange" href={diagnosticEmail}>Request My Diagnostic</a>
+			<small>Limited manual reviews during the first release. One request per business.</small>
+		</div>
+
+		<div class="home-diagnostic__scope" aria-label="Diagnostic scope">
+			<div>
+				<span>01</span>
+				<p><strong>Intent Capture</strong> — Do the right pages meet commercial demand?</p>
+			</div>
+			<div>
+				<span>02</span>
+				<p><strong>Proof Strength</strong> — Is there enough evidence to justify trust?</p>
+			</div>
+			<div>
+				<span>03</span>
+				<p><strong>Conversion Path</strong> — Can a qualified visitor act without friction?</p>
+			</div>
+			<div>
+				<span>04</span>
+				<p><strong>Search &amp; Ads Readiness</strong> — Is the foundation ready for demand capture?</p>
+			</div>
+			<div>
+				<span>05</span>
+				<p><strong>Measurement Integrity</strong> — Can useful enquiries be traced and improved?</p>
 			</div>
 		</div>
+	</section>
 
-		<div class="card-grid">
-			<article class="card">
-				<div class="card-kicker">Local SEO</div>
-				<h3>How service businesses can build city pages that actually convert.</h3>
-				<p>Not decorative SEO pages. Real landing assets with search intent, proof, CTAs and internal links.</p>
-			</article>
-
-			<article class="card">
-				<div class="card-kicker">Landing Pages</div>
-				<h3>The anatomy of a high-converting service landing page.</h3>
-				<p>Hero, proof, offer, objections, local trust signals and conversion tracking. Wildly enough, structure matters.</p>
-			</article>
-
-			<article class="card">
-				<div class="card-kicker">Tracking</div>
-				<h3>Why most small business campaigns fail before the first click.</h3>
-				<p>No clean events, no attribution, no decision system. Just budget being released into the atmosphere.</p>
-			</article>
+	<section class="home-research">
+		<div class="home-research__intro">
+			<p class="home-section-label">Research &amp; field guides</p>
+			<h2>Research designed to be used, tested and improved.</h2>
+			<p>
+				Long-form analysis, field evidence and practical frameworks across search intent, conversion, paid demand, measurement and AI-assisted acquisition.
+			</p>
+			<a class="home-text-link" href="/blog/">Read the research <span aria-hidden="true">→</span></a>
 		</div>
+
+		<article class="home-featured-guide">
+			<p class="home-featured-guide__kicker">Featured field guide</p>
+			<h3>Local Service Lead Generation: A Practical System</h3>
+			<p>How intent, local pages, proof, direct-response paths and measurement work together for a service business.</p>
+			<a href="/blog/local-service-lead-generation/">Read the guide <span aria-hidden="true">→</span></a>
+		</article>
+
+		<aside class="home-research-notes">
+			<p class="home-research-notes__kicker">Intent &amp; Proof Research Notes</p>
+			<h3>Get the useful work, not a weekly obligation.</h3>
+			<p>Occasional field notes, new case studies and specialist tools. Newsletter consent stays separate from diagnostic requests.</p>
+			<a class="home-button home-button--dark" href={researchEmail}>Join Research Notes</a>
+		</aside>
 	</section>
 </BaseLayout>
