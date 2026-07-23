@@ -1,0 +1,72 @@
+name: Validate Astro build
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Astro site
+        id: astro-build
+        shell: bash
+        run: |
+          set +e
+          npm run build 2>&1 | tee build.log
+          build_status=${PIPESTATUS[0]}
+          echo "status=${build_status}" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Publish build result on pull request
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const fs = require('fs');
+            const output = fs.readFileSync('build.log', 'utf8');
+            const tail = output.split('\n').slice(-140).join('\n');
+            const status = '${{ steps.astro-build.outputs.status }}';
+            const marker = '<!-- astro-build-report -->';
+            const body = `${marker}\n## Astro build ${status === '0' ? 'passed' : 'failed'}\n\n\`\`\`text\n${tail}\n\`\`\``;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              per_page: 100
+            });
+            const existing = comments.find((comment) => comment.body?.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body
+              });
+            }
+
+      - name: Fail when Astro build fails
+        if: steps.astro-build.outputs.status != '0'
+        run: exit 1
