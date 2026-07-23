@@ -9,20 +9,39 @@ const toc = [
 	{ href: "#checklist", label: "Checklist" },
 	{ href: "#faq", label: "FAQ" }
 ];
+
+const tags = [
+	{ href: "/blog/", label: "Local SEO" },
+	{ href: "/blog/", label: "Lead generation" },
+	{ href: "/blog/", label: "Conversion" },
+	{ href: "/blog/", label: "Measurement" }
+];
 ---
 
 <ArticleLayout
 	title="How to Turn a Local Service Website Into a Lead Generation System"
 	description="A practical framework for turning search intent, landing pages, tracking and follow-up into a measurable lead generation system for local service businesses."
 	eyebrow="Local SEO & Lead Generation"
-	author="Intent & Proof"
+	categoryHref="/blog/"
+	author="Piergiorgio Rocchini"
+	authorHref="/authors/piergiorgio-rocchini/"
+	authorRole="Founder, analyst and acquisition-system operator"
+	authorBio="Piergiorgio Rocchini combines financial analysis, market research and hands-on customer acquisition systems built in live local and specialist service markets."
 	publishedDate="2026-07-05"
-	updatedDate="2026-07-05"
+	updatedDate="2026-07-23"
 	readTime="9 min read"
+	imageSrc="/images/article-local-service-system.svg"
+	imageAlt="Intent, proof, action and measurement connected inside a local service acquisition dashboard"
 	ctaTitle="Want to know where your website is losing enquiries?"
 	ctaText="Get a practical Intent & Proof audit covering SEO structure, landing page clarity, tracking, calls to action and AI-search visibility."
 	ctaLabel="Check My Site"
-	ctaHref="/"
+	ctaHref="/diagnostic/"
+	breadcrumbs={[
+		{ href: "/", label: "Home" },
+		{ href: "/blog/", label: "Research" },
+		{ href: "/blog/", label: "Local SEO" }
+	]}
+	tags={tags}
 	toc={toc}
 >
 	<section id="overview">

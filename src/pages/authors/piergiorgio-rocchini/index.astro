@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import "../../../styles/author-profile.css";
+
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: "Piergiorgio Rocchini",
+	url: "https://www.intentandproof.com/authors/piergiorgio-rocchini/",
+	jobTitle: "Founder, analyst and acquisition-system operator",
+	worksFor: {
+		"@type": "Organization",
+		name: "Intent & Proof",
+		url: "https://www.intentandproof.com/"
+	},
+	knowsAbout: [
+		"Customer acquisition systems",
+		"Financial analysis",
+		"Local SEO",
+		"Conversion strategy",
+		"Measurement and tracking"
+	]
+};
+---
+
+<BaseLayout
+	title="Piergiorgio Rocchini | Author at Intent & Proof"
+	description="Piergiorgio Rocchini is the founder of Intent & Proof, combining financial analysis, market research and hands-on customer acquisition systems."
+	structuredData={structuredData}
+>
+	<article class="author-profile">
+		<header class="author-profile__hero">
+			<div class="author-profile__hero-inner">
+				<div class="author-profile__avatar" aria-label="Piergiorgio Rocchini initials">PR</div>
+				<div>
+					<p class="author-profile__eyebrow">Author · Founder · Analyst</p>
+					<h1>Piergiorgio Rocchini</h1>
+					<p class="author-profile__role">Founder of Intent &amp; Proof. Financial analyst, market researcher and hands-on operator of customer acquisition systems built in live service markets.</p>
+				</div>
+			</div>
+		</header>
+
+		<div class="author-profile__body">
+			<section class="author-profile__copy">
+				<h2>Evidence before theory.</h2>
+				<p>Piergiorgio Rocchini works at the intersection of finance, marketing and commercial systems. His approach combines analytical discipline with direct operating experience: building websites, measuring search demand, developing specialist positioning and converting real enquiries into completed assignments.</p>
+				<p>Intent &amp; Proof formalises that process into a repeatable acquisition discipline. The objective is not more marketing activity for its own sake. It is a clearer connection between market intent, credible proof, action and measurable commercial outcomes.</p>
+				<p>His background includes economics, financial modelling and investment analysis, alongside practical work in local SEO, premium niche acquisition, conversion architecture and performance measurement.</p>
+			</section>
+
+		<aside class="author-profile__sidebar" aria-label="Author expertise">
+			<h2>Focus areas</h2>
+			<div class="author-profile__facts">
+				<div class="author-profile__fact"><span>Acquisition</span><strong>Search intent, landing pages and qualified enquiry systems</strong></div>
+				<div class="author-profile__fact"><span>Evidence</span><strong>Case studies, field data and commercially useful proof</strong></div>
+				<div class="author-profile__fact"><span>Measurement</span><strong>Tracking, lead quality and decision feedback loops</strong></div>
+				<div class="author-profile__fact"><span>Analysis</span><strong>Financial modelling, market structure and investment research</strong></div>
+			</div>
+		</aside>
+
+		<section class="author-profile__articles">
+			<div class="author-profile__articles-head">
+				<h2>Research by Piergiorgio</h2>
+				<a href="/blog/">View all research →</a>
+			</div>
+
+			<a class="author-profile__article-card" href="/blog/local-service-lead-generation/">
+				<img src="/images/article-local-service-system.svg" alt="Local service acquisition system dashboard" loading="lazy" decoding="async" />
+				<div>
+					<small>Local SEO &amp; Lead Generation</small>
+					<h3>How to Turn a Local Service Website Into a Lead Generation System</h3>
+					<p>A practical framework connecting search intent, proof, conversion actions, tracking and follow-up.</p>
+				</div>
+			</a>
+		</section>
+	</article>
+</BaseLayout>
