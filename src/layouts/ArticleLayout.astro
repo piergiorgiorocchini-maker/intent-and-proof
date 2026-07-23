@@ -23,6 +23,15 @@ const {
 	ctaText = "Get a practical audit of your SEO, landing page, tracking and lead path before spending more on traffic.",
 	ctaLabel = "Check My Site",
 	ctaHref = "/diagnostic/",
+	sidebarEyebrow = "Free diagnostic",
+	sidebarTitle = "Find the first commercial leak worth fixing.",
+	sidebarText = "A focused review of intent, proof, conversion and measurement before more budget is committed.",
+	sidebarLabel = "Request diagnostic",
+	sidebarHref = "/diagnostic/",
+	showToc = true,
+	showShare = true,
+	showSidebarCta = true,
+	layoutVariant = "wide",
 	breadcrumbs = [
 		{ href: "/", label: "Home" },
 		{ href: "/blog/", label: "Research" }
@@ -43,6 +52,15 @@ const authorInitials = author
 	.join("")
 	.slice(0, 2)
 	.toUpperCase();
+
+const formatDate = (value) => {
+	if (!value) return "";
+	return new Intl.DateTimeFormat("en-GB", {
+		day: "numeric",
+		month: "long",
+		year: "numeric"
+	}).format(new Date(`${value}T00:00:00`));
+};
 
 const siteURL = Astro.site ?? new URL("https://www.intentandproof.com");
 const articleURL = new URL(Astro.url.pathname, siteURL);
@@ -105,7 +123,7 @@ const xShare = `https://x.com/intent/post?url=${encodeURIComponent(articleURL.to
 	author={author}
 	structuredData={structuredData}
 >
-	<article class="article-shell">
+	<article class={`article-shell article-shell--${layoutVariant}`}>
 		<header class="article-hero">
 			<div class="article-hero-inner">
 				<nav class="article-breadcrumbs" aria-label="Breadcrumb">
@@ -121,49 +139,53 @@ const xShare = `https://x.com/intent/post?url=${encodeURIComponent(articleURL.to
 					<span aria-current="page">{title}</span>
 				</nav>
 
-				<a class="article-eyebrow" href={categoryHref}>{eyebrow}</a>
-				<h1>{title}</h1>
-				<p class="article-description">{description}</p>
+				<div class="article-hero-copy">
+					<a class="article-eyebrow" href={categoryHref}>{eyebrow}</a>
+					<h1>{title}</h1>
+					<p class="article-description">{description}</p>
 
-				<div class="article-author">
-					<a class="article-author-image-link" href={authorHref} aria-label={`View ${author} profile`}>
-						{
-							authorImageSrc ? (
-								<img
-									class="article-author-avatar"
-									src={authorImageSrc}
-									alt={resolvedAuthorImageAlt}
-									width="56"
-									height="56"
-									loading="eager"
-									decoding="async"
-								/>
-							) : (
-								<span class="article-author-avatar" aria-hidden="true">{authorInitials}</span>
-							)
-						}
-					</a>
-					<div class="article-author-copy">
-						<span>{authorRole}</span>
-						<a href={authorHref}>{author}</a>
+					<div class="article-byline-row">
+						<div class="article-author">
+							<a class="article-author-image-link" href={authorHref} aria-label={`View ${author} profile`}>
+								{
+									authorImageSrc ? (
+										<img
+											class="article-author-avatar"
+											src={authorImageSrc}
+											alt={resolvedAuthorImageAlt}
+											width="56"
+											height="56"
+											loading="eager"
+											decoding="async"
+										/>
+									) : (
+										<span class="article-author-avatar" aria-hidden="true">{authorInitials}</span>
+									)
+								}
+							</a>
+							<div class="article-author-copy">
+								<a href={authorHref}>{author}</a>
+								<span>{authorRole}</span>
+							</div>
+						</div>
+
+						<div class="article-meta" aria-label="Publication information">
+							<span>Published <time datetime={publishedDate}>{formatDate(publishedDate)}</time></span>
+							{updatedDate !== publishedDate && <span>Updated <time datetime={updatedDate}>{formatDate(updatedDate)}</time></span>}
+							<span>{readTime}</span>
+						</div>
 					</div>
-				</div>
 
-				<div class="article-meta" aria-label="Publication information">
-					<span>Published <time datetime={publishedDate}>{publishedDate}</time></span>
-					<span>Updated <time datetime={updatedDate}>{updatedDate}</time></span>
-					<span>{readTime}</span>
+					{
+						tags.length > 0 && (
+							<ul class="article-tags" aria-label="Article topics">
+								{tags.map((tag) => (
+									<li><a href={tag.href}>{tag.label}</a></li>
+								))}
+							</ul>
+						)
+					}
 				</div>
-
-				{
-					tags.length > 0 && (
-						<ul class="article-tags" aria-label="Article topics">
-							{tags.map((tag) => (
-								<li><a href={tag.href}>{tag.label}</a></li>
-							))}
-						</ul>
-					)
-				}
 
 				{
 					videoUrl ? (
@@ -191,55 +213,76 @@ const xShare = `https://x.com/intent/post?url=${encodeURIComponent(articleURL.to
 			</div>
 		</header>
 
-		<div class="article-body-wrap">
-			<aside class="article-toc" aria-label="Table of contents">
-				<div class="article-side-card">
-					<p>On this page</p>
-					<nav>
-						{toc.map((item) => <a href={item.href}>{item.label}</a>)}
-					</nav>
-				</div>
+		<div class="article-editorial-frame">
+			<aside class="article-left-rail" aria-label="Article navigation and sharing">
+				{
+					showToc && toc.length > 0 && (
+						<div class="article-side-card article-toc">
+							<p>On this page</p>
+							<nav>
+								{toc.map((item) => <a href={item.href}>{item.label}</a>)}
+							</nav>
+						</div>
+					)
+				}
+
+				{
+					showShare && (
+						<div class="article-side-card article-share">
+							<p>Share</p>
+							<div class="article-share-links">
+								<a href={linkedInShare} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
+								<a href={xShare} target="_blank" rel="noopener noreferrer" aria-label="Share on X">x</a>
+								<a href={articleURL.toString()} aria-label="Open canonical article link">↗</a>
+							</div>
+						</div>
+					)
+				}
 			</aside>
 
 			<div class="article-content">
 				<slot />
 			</div>
 
-			<aside class="article-share" aria-label="Article actions">
-				<div class="article-side-card">
-					<p>Share</p>
-					<div class="article-share-links">
-						<a href={linkedInShare} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
-						<a href={xShare} target="_blank" rel="noopener noreferrer" aria-label="Share on X">x</a>
-						<a href={articleURL.toString()} aria-label="Open canonical article link">↗</a>
-					</div>
-				</div>
-			</aside>
-		</div>
-
-		<section class="article-author-card" aria-label={`About ${author}`}>
 			{
-				authorImageSrc ? (
-					<img class="article-author-card__avatar" src={authorImageSrc} alt={resolvedAuthorImageAlt} width="82" height="82" loading="lazy" decoding="async" />
-				) : (
-					<span class="article-author-card__avatar" aria-hidden="true">{authorInitials}</span>
+				showSidebarCta && (
+					<aside class="article-right-rail" aria-label="Recommended next action">
+						<div class="article-sidebar-cta">
+							<p>{sidebarEyebrow}</p>
+							<h2>{sidebarTitle}</h2>
+							<span>{sidebarText}</span>
+							<a href={sidebarHref}>{sidebarLabel}<i aria-hidden="true">↗</i></a>
+						</div>
+					</aside>
 				)
 			}
-			<div class="article-author-card__copy">
-				<small>About the author</small>
-				<h2>{author}</h2>
-				<p>{authorBio}</p>
-			</div>
-			<a class="article-author-card__link" href={authorHref}>View author profile</a>
-		</section>
+		</div>
 
-		<section class="article-bottom-cta">
-			<div>
-				<p>Intent &amp; Proof Audit</p>
-				<h2>{ctaTitle}</h2>
-				<span>{ctaText}</span>
-			</div>
-			<a href={ctaHref}>{ctaLabel}</a>
-		</section>
+		<div class="article-after-content">
+			<section class="article-author-card" aria-label={`About ${author}`}>
+				{
+					authorImageSrc ? (
+						<img class="article-author-card__avatar" src={authorImageSrc} alt={resolvedAuthorImageAlt} width="82" height="82" loading="lazy" decoding="async" />
+					) : (
+						<span class="article-author-card__avatar" aria-hidden="true">{authorInitials}</span>
+					)
+				}
+				<div class="article-author-card__copy">
+					<small>About the author</small>
+					<h2>{author}</h2>
+					<p>{authorBio}</p>
+				</div>
+				<a class="article-author-card__link" href={authorHref}>View author profile</a>
+			</section>
+
+			<section class="article-bottom-cta">
+				<div>
+					<p>Intent &amp; Proof Audit</p>
+					<h2>{ctaTitle}</h2>
+					<span>{ctaText}</span>
+				</div>
+				<a href={ctaHref}>{ctaLabel}</a>
+			</section>
+		</div>
 	</article>
 </BaseLayout>
