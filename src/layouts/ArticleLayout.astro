@@ -5,7 +5,11 @@ const {
 	title = "Intent & Proof Growth Guide",
 	description = "Practical growth systems for service businesses.",
 	eyebrow = "Growth Guide",
+	categoryHref = "/blog/",
 	author = "Intent & Proof",
+	authorHref = "/authors/intent-and-proof/",
+	authorImageSrc = "",
+	authorImageAlt = "",
 	publishedDate = "2026-07-01",
 	updatedDate = "2026-07-01",
 	readTime = "8 min read",
@@ -16,6 +20,10 @@ const {
 	ctaText = "Get a practical audit of your SEO, landing page, tracking and lead path before spending more on traffic.",
 	ctaLabel = "Check My Site",
 	ctaHref = "/",
+	breadcrumbs = [
+		{ href: "/", label: "Home" },
+		{ href: "/blog/", label: "Research" }
+	],
 	toc = [
 		{ href: "#overview", label: "Overview" },
 		{ href: "#system", label: "The system" },
@@ -23,18 +31,54 @@ const {
 		{ href: "#faq", label: "FAQ" }
 	]
 } = Astro.props;
+
+const resolvedAuthorImageAlt = authorImageAlt || `${author} portrait`;
 ---
 
 <BaseLayout title={title} description={description}>
 	<article class="article-shell">
 		<header class="article-hero">
 			<div class="article-hero-inner">
-				<p class="article-eyebrow">{eyebrow}</p>
+				<nav class="article-breadcrumbs" aria-label="Breadcrumb">
+					{
+						breadcrumbs.map((item, index) => (
+							<>
+								{index > 0 && <span aria-hidden="true">/</span>}
+								<a href={item.href}>{item.label}</a>
+							</>
+						))
+					}
+					<span aria-hidden="true">/</span>
+					<span aria-current="page">{title}</span>
+				</nav>
+
+				<a class="article-eyebrow" href={categoryHref}>{eyebrow}</a>
 				<h1>{title}</h1>
 				<p class="article-description">{description}</p>
 
-				<div class="article-meta" aria-label="Article information">
-					<span>By {author}</span>
+				<div class="article-author">
+					{
+						authorImageSrc && (
+							<a class="article-author-image-link" href={authorHref} aria-label={`View ${author} profile`}>
+								<img
+									class="article-author-avatar"
+									src={authorImageSrc}
+									alt={resolvedAuthorImageAlt}
+									width="56"
+									height="56"
+									loading="eager"
+									decoding="async"
+								/>
+							</a>
+						)
+					}
+					<div class="article-author-copy">
+						<span>Written by</span>
+						<a href={authorHref}>{author}</a>
+					</div>
+				</div>
+
+				<div class="article-meta" aria-label="Publication information">
 					<span>Published <time datetime={publishedDate}>{publishedDate}</time></span>
 					<span>Updated <time datetime={updatedDate}>{updatedDate}</time></span>
 					<span>{readTime}</span>
