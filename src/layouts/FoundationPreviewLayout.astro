@@ -1,0 +1,28 @@
+---
+import "@fontsource-variable/inter";
+import "@fontsource-variable/manrope";
+import "../styles/foundations.css";
+
+const {
+	title = "Foundation System Preview | Intent & Proof",
+	description = "A private visual-system preview for the next stage of Intent & Proof."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<meta name="robots" content="noindex, nofollow" />
+		<meta name="theme-color" content="#071c2c" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<title>{title}</title>
+	</head>
+	<body class="fd-body">
+		<a class="fd-skip-link" href="#main-content">Skip to content</a>
+		<slot />
+	</body>
+</html>
