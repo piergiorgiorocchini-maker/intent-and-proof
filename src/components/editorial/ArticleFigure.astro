@@ -1,0 +1,62 @@
+---
+interface Props {
+	src?: string;
+	alt?: string;
+	videoUrl?: string;
+	caption?: string;
+	credit?: string;
+	creditHref?: string;
+	loading?: "eager" | "lazy";
+	aspectRatio?: string;
+	variant?: "wide" | "standard" | "full";
+}
+
+const {
+	src = "",
+	alt = "",
+	videoUrl = "",
+	caption = "",
+	credit = "",
+	creditHref = "",
+	loading = "lazy",
+	aspectRatio = "",
+	variant = "wide"
+} = Astro.props;
+
+const figureClass = `editorial-figure editorial-figure--${variant}`;
+const mediaStyle = aspectRatio ? `aspect-ratio: ${aspectRatio};` : undefined;
+---
+
+<figure class={figureClass}>
+	<div class="editorial-figure__media" style={mediaStyle}>
+		{
+			videoUrl ? (
+				<iframe
+					src={videoUrl}
+					title={caption || alt || "Embedded editorial video"}
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					allowfullscreen
+					loading="lazy"
+				></iframe>
+			) : src ? (
+				<img src={src} alt={alt} loading={loading} decoding="async" />
+			) : (
+				<slot />
+			)
+		}
+	</div>
+	{
+		(caption || credit) && (
+			<figcaption>
+				{caption && <span>{caption}</span>}
+				{
+					credit && (
+						<small>
+							{creditHref ? <a href={creditHref} rel="nofollow noopener noreferrer">{credit}</a> : credit}
+						</small>
+					)
+				}
+			</figcaption>
+		)
+	}
+</figure>
