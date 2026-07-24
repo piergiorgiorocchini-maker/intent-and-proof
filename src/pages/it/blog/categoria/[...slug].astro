@@ -1,0 +1,61 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import ArchiveHero from "../../../../components/content/ArchiveHero.astro";
+import ArticleGrid from "../../../../components/content/ArticleGrid.astro";
+import CategoryNav from "../../../../components/content/CategoryNav.astro";
+import { getPublishedArticleIndex } from "../../../../lib/content/interlinking";
+import "../../../../styles/content-archives.css";
+
+export async function getStaticPaths() {
+	const categories = (await getCollection("categories"))
+		.filter((entry) => entry.data.locale === "it");
+
+	return categories.map((category) => ({
+		params: { slug: category.data.slug },
+		props: { category }
+	}));
+}
+
+const { category } = Astro.props;
+const articleIndex = await getPublishedArticleIndex("it");
+const articles = articleIndex.filter((article) => article.categoryId === category.id);
+const categoryEntries = (await getCollection("categories"))
+	.filter((entry) => entry.data.locale === "it")
+	.sort((a, b) => a.data.order - b.data.order);
+const categories = categoryEntries.map((entry) => ({
+	name: entry.data.name,
+	slug: entry.data.slug,
+	description: entry.data.description,
+	locale: "it" as const
+}));
+const canonicalPath = `/it/blog/categoria/${category.data.slug}/`;
+---
+
+<BaseLayout
+	title={category.data.seo?.title || `${category.data.name} | Intent & Proof`}
+	description={category.data.seo?.description || category.data.description}
+	lang="it"
+	canonicalPath={canonicalPath}
+	noindex={category.data.seo?.noIndex || false}
+	nofollow={category.data.seo?.noFollow || false}
+	showRelatedContent={false}
+>
+	<ArchiveHero
+		eyebrow={category.data.eyebrow}
+		title={category.data.name}
+		description={category.data.description}
+		meta={`${articles.length} ${articles.length === 1 ? "articolo pubblicato" : "articoli pubblicati"}`}
+		tone={category.data.tone}
+		breadcrumbs={[
+			{ label: "Home", href: "/it/" },
+			{ label: "Ricerca", href: "/it/blog/" }
+		]}
+	/>
+	<CategoryNav categories={categories} locale="it" activeSlug={category.data.slug} />
+	<ArticleGrid
+		articles={articles}
+		title={`Ultimi articoli su ${category.data.name}`}
+		emptyText="La categoria è pronta. Gli articoli pubblicati compariranno automaticamente."
+	/>
+</BaseLayout>
