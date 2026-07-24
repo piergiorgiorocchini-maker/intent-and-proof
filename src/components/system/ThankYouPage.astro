@@ -1,0 +1,55 @@
+---
+import type { GlobalSettings } from "../../content/schemas/settings";
+
+interface Props {
+	settings: GlobalSettings;
+	lang?: "en" | "it";
+}
+
+const { settings, lang = "en" } = Astro.props;
+const locale = lang === "it" ? "it" : "en";
+const copy = settings.thankYou[locale];
+const events = settings.tracking.events;
+---
+
+<section class="thank-you-page" data-thank-you-page data-locale={locale}>
+	<div class="thank-you-page__card">
+		<p class="thank-you-page__eyebrow">{copy.eyebrow}</p>
+		<h1>{copy.title}</h1>
+		<p class="thank-you-page__intro">{copy.text}</p>
+
+		<div class="thank-you-page__next">
+			<h2>{copy.nextStepsTitle}</h2>
+			<ol>
+				{copy.nextSteps.map((step) => <li>{step}</li>)}
+			</ol>
+		</div>
+
+		<div class="thank-you-page__actions">
+			<a href={copy.primaryHref} data-cta data-tracking-id="thank-you-primary">{copy.primaryLabel}</a>
+			<a href={copy.secondaryHref} data-cta data-tracking-id="thank-you-secondary">{copy.secondaryLabel}</a>
+		</div>
+	</div>
+</section>
+
+<script is:inline define:vars={{ events }}>
+	const sendThankYouEvents = () => {
+		const parameters = new URLSearchParams(window.location.search);
+		const type = parameters.get("type") || "lead";
+		const source = parameters.get("source") || type;
+		const tracker = window.IntentProofTracking;
+		if (!tracker || typeof tracker.track !== "function") return;
+
+		tracker.track(events.thankYouView, { lead_type: type, lead_source: source });
+		tracker.track(type === "newsletter" ? events.emailSignup : events.generateLead, {
+			lead_type: type,
+			lead_source: source
+		});
+	};
+
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", sendThankYouEvents, { once: true });
+	} else {
+		sendThankYouEvents();
+	}
+</script>
