@@ -48,6 +48,23 @@ const heroSchema = z.object({
 	videoUrl: z.url().optional()
 });
 
+const commentsSchema = z.object({
+	enabled: z.boolean().default(false),
+	provider: z.literal("giscus").default("giscus"),
+	repo: z.string().optional(),
+	repoId: z.string().optional(),
+	category: z.string().default("General"),
+	categoryId: z.string().optional(),
+	mapping: z.enum(["pathname", "url", "title", "og:title", "specific", "number"]).default("pathname"),
+	theme: z.string().default("preferred_color_scheme"),
+	lang: z.string().default("en")
+});
+
+const faqSchema = z.object({
+	question: z.string().min(1),
+	answer: z.string().min(1)
+});
+
 const authors = defineCollection({
 	loader: glob({ base: "./src/content/authors", pattern: "**/*.md" }),
 	schema: z.object({
@@ -94,6 +111,9 @@ const articles = defineCollection({
 		editor: reference("authors").optional(),
 		category: reference("categories"),
 		tags: z.array(z.string()).default([]),
+		keyTakeaways: z.array(z.string()).default([]),
+		faqs: z.array(faqSchema).default([]),
+		relatedArticles: z.array(slugSchema).default([]),
 		layout: z.enum(["editorial-wide", "editorial-standard"]).default("editorial-wide"),
 		hero: heroSchema.default({
 			layout: "split",
@@ -106,6 +126,7 @@ const articles = defineCollection({
 		showSidebarCta: z.boolean().default(true),
 		sidebarCta: ctaSchema.optional(),
 		footerCta: ctaSchema.optional(),
+		comments: commentsSchema.optional(),
 		seo: seoSchema.optional()
 	})
 });
