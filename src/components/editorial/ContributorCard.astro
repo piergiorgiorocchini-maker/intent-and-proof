@@ -33,19 +33,25 @@ const contributorClass = [
 	"article-contributor",
 	variant === "editor" ? "article-contributor--editor" : ""
 ].filter(Boolean).join(" ");
-
-const avatar = imageSrc
-	? <img class="article-author-avatar" src={imageSrc} alt={imageAlt} width={size} height={size} loading="eager" decoding="async" />
-	: <span class="article-author-avatar" aria-hidden="true">{initials}</span>;
 ---
 
 <div class={contributorClass}>
 	{
 		href ? (
 			<a class="article-author-image-link" href={href} aria-label={`View ${name} profile`}>
-				{avatar}
+				{
+					imageSrc ? (
+						<img class="article-author-avatar" src={imageSrc} alt={imageAlt} width={size} height={size} loading="eager" decoding="async" />
+					) : (
+						<span class="article-author-avatar" aria-hidden="true">{initials}</span>
+					)
+				}
 			</a>
-		) : avatar
+		) : imageSrc ? (
+			<img class="article-author-avatar" src={imageSrc} alt={imageAlt} width={size} height={size} loading="eager" decoding="async" />
+		) : (
+			<span class="article-author-avatar" aria-hidden="true">{initials}</span>
+		)
 	}
 	<div class="article-contributor-copy">
 		<span>{label}</span>
