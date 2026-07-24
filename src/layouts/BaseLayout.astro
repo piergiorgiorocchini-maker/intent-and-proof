@@ -3,13 +3,31 @@ import "@fontsource-variable/inter";
 import "@fontsource-variable/manrope";
 import FoundationHeader from "../components/FoundationHeader.astro";
 import Footer from "../components/Footer.astro";
+import LatestArticles from "../components/content/LatestArticles.astro";
 import "../styles/global.css";
 import "../styles/foundations.css";
+import "../styles/content-discovery.css";
 
 interface AlternateLocale {
 	locale: string;
 	href: string;
 	isDefault?: boolean;
+}
+
+interface RelatedContentOptions {
+	eyebrow?: string;
+	title?: string;
+	text?: string;
+	currentId?: string;
+	currentHref?: string;
+	categoryIds?: string[];
+	tags?: string[];
+	manualArticleIds?: string[];
+	limit?: number;
+	fallbackToLatest?: boolean;
+	allHref?: string;
+	allLabel?: string;
+	compact?: boolean;
 }
 
 const {
@@ -27,13 +45,16 @@ const {
 	noindex = false,
 	nofollow = false,
 	skipLinkLabel = lang === "it" ? "Vai al contenuto" : "Skip to content",
-	structuredData = null
+	structuredData = null,
+	showRelatedContent = true,
+	relatedContent = {} as RelatedContentOptions
 } = Astro.props;
 
 const siteURL = Astro.site ?? new URL("https://www.intentandproof.com");
 const canonicalURL = new URL(canonicalPath || Astro.url.pathname, siteURL);
 const socialImage = image ? new URL(image, siteURL) : null;
 const robotsDirectives = [noindex ? "noindex" : "index", nofollow ? "nofollow" : "follow"].join(", ");
+const contentLocale = lang === "it" ? "it" : "en";
 ---
 
 <!doctype html>
@@ -85,6 +106,26 @@ const robotsDirectives = [noindex ? "noindex" : "index", nofollow ? "nofollow" :
 		<FoundationHeader />
 		<main id="main-content">
 			<slot />
+			{
+				showRelatedContent && (
+					<LatestArticles
+						locale={contentLocale}
+						eyebrow={relatedContent.eyebrow}
+						title={relatedContent.title}
+						text={relatedContent.text}
+						currentId={relatedContent.currentId}
+						currentHref={relatedContent.currentHref || Astro.url.pathname}
+						categoryIds={relatedContent.categoryIds}
+						tags={relatedContent.tags}
+						manualArticleIds={relatedContent.manualArticleIds}
+						limit={relatedContent.limit}
+						fallbackToLatest={relatedContent.fallbackToLatest}
+						allHref={relatedContent.allHref}
+						allLabel={relatedContent.allLabel}
+						compact={relatedContent.compact}
+					/>
+				)
+			}
 		</main>
 		<Footer />
 	</body>
