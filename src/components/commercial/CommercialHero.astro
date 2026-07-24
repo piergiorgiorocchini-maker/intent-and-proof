@@ -1,0 +1,49 @@
+---
+import CommercialButton from "./CommercialButton.astro";
+
+const { hero, productName = "" } = Astro.props;
+const heroClass = [
+	"commercial-hero",
+	`commercial-hero--${hero.layout || "split"}`,
+	`commercial-section--${hero.tone || "navy"}`
+].join(" ");
+---
+
+<header class={heroClass}>
+	<div class="commercial-shell commercial-hero__grid">
+		<div class="commercial-hero__copy">
+			{hero.badge && <span class="commercial-badge">{hero.badge}</span>}
+			{hero.eyebrow && <p class="commercial-eyebrow">{hero.eyebrow}</p>}
+			<h1>{hero.title}</h1>
+			<p class="commercial-hero__text">{hero.text}</p>
+			<div class="commercial-actions">
+				<CommercialButton action={hero.primaryAction} />
+				{hero.secondaryAction && <CommercialButton action={hero.secondaryAction} />}
+			</div>
+			{hero.microcopy?.length > 0 && (
+				<ul class="commercial-microcopy" aria-label={`${productName} assurances`}>
+					{hero.microcopy.map((item: string) => <li>{item}</li>)}
+				</ul>
+			)}
+		</div>
+
+		{hero.media && (
+			<figure class={`commercial-hero__media commercial-hero__media--${hero.media.type}`}>
+				{hero.media.type === "video" ? (
+					<video controls playsinline poster={hero.media.poster || undefined}>
+						<source src={hero.media.src} />
+					</video>
+				) : (
+					<img
+						src={hero.media.src}
+						alt={hero.media.alt}
+						loading="eager"
+						decoding="async"
+						style={`object-position:${hero.media.position || "center"}`}
+					/>
+				)}
+				{hero.media.caption && <figcaption>{hero.media.caption}</figcaption>}
+			</figure>
+		)}
+	</div>
+</header>
