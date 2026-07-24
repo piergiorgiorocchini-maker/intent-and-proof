@@ -90,10 +90,27 @@ for (const handlerId of ["newsletter", "diagnostic", "contact"]) {
 	}
 }
 
-for (const page of ["src/pages/thank-you/index.astro", "src/pages/it/grazie/index.astro"]) {
-	await readFile(new URL(page, root), "utf8");
+const requiredRoutes = [
+	"src/pages/blog/[...slug].astro",
+	"src/pages/it/blog/[...slug].astro",
+	"src/pages/[...slug].astro",
+	"src/pages/it/[...slug].astro",
+	"src/pages/products/[...slug].astro",
+	"src/pages/it/prodotti/[...slug].astro",
+	"src/pages/authors/[...slug].astro",
+	"src/pages/it/autori/[...slug].astro",
+	"src/pages/blog/category/[...slug].astro",
+	"src/pages/it/blog/categoria/[...slug].astro",
+	"src/pages/thank-you/index.astro",
+	"src/pages/it/grazie/index.astro",
+];
+
+for (const route of requiredRoutes) {
+	await readFile(new URL(route, root), "utf8");
 }
 
+await readFile(new URL("src/layouts/ContentPageLayout.astro", root), "utf8");
+
 console.log(
-	`Sveltia admin validated: ${collections.length} collections, ${sections.types.length} commercial blocks, centralized tracking and forms, main branch target.`
+	`Sveltia admin validated: ${collections.length} collections, ${sections.types.length} commercial blocks, ${requiredRoutes.length} content routes, centralized tracking and forms, main branch target.`
 );
