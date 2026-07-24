@@ -40,6 +40,10 @@ const events = settings.tracking.events;
 		const tracker = window.IntentProofTracking;
 		if (!tracker || typeof tracker.track !== "function") return;
 
+		const dedupeKey = `intent-proof-conversion:${window.location.pathname}:${type}:${source}`;
+		if (sessionStorage.getItem(dedupeKey)) return;
+		sessionStorage.setItem(dedupeKey, String(Date.now()));
+
 		tracker.track(events.thankYouView, { lead_type: type, lead_source: source });
 		tracker.track(type === "newsletter" ? events.emailSignup : events.generateLead, {
 			lead_type: type,
