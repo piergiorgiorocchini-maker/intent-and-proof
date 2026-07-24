@@ -14,6 +14,8 @@ import "../styles/editorial-components.css";
 const {
 	title = "Intent & Proof Growth Guide",
 	description = "Practical growth systems for service businesses.",
+	seoTitle = title,
+	seoDescription = description,
 	eyebrow = "Growth Guide",
 	categoryHref = "/blog/",
 	author = "Piergiorgio Rocchini",
@@ -61,6 +63,9 @@ const {
 	commentsLang = "en",
 	layoutVariant = "wide",
 	locale = "en",
+	canonicalPath = "",
+	noindex = false,
+	nofollow = false,
 	articleId = "",
 	showRelatedContent = true,
 	relatedCategoryIds = [],
@@ -145,14 +150,17 @@ const structuredData = {
 ---
 
 <BaseLayout
-	title={title}
-	description={description}
+	title={seoTitle}
+	description={seoDescription}
 	image={heroImageSrc}
 	ogType="article"
 	publishedDate={publishedDate}
 	updatedDate={updatedDate}
 	author={author}
 	lang={contentLocale}
+	canonicalPath={canonicalPath}
+	noindex={noindex}
+	nofollow={nofollow}
 	structuredData={structuredData}
 	showRelatedContent={showRelatedContent}
 	relatedContent={{
