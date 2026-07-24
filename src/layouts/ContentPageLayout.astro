@@ -1,0 +1,95 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import "../styles/content-page.css";
+
+const { page } = Astro.props;
+const {
+	locale = "en",
+	title,
+	description,
+	template = "standard",
+	hero = {},
+	cta,
+	relatedContent = {},
+	seo = {}
+} = page;
+
+const contentLocale = locale === "it" ? "it" : "en";
+const homeLabel = contentLocale === "it" ? "Home" : "Home";
+const heroTitle = hero?.title || title;
+const heroText = hero?.text || description;
+const canonicalPath = seo.canonicalUrl || Astro.url.pathname;
+---
+
+<BaseLayout
+	title={seo.title || title}
+	description={seo.description || description}
+	image={seo.image?.src || hero?.image?.src || ""}
+	lang={contentLocale}
+	canonicalPath={canonicalPath}
+	noindex={seo.noIndex || false}
+	nofollow={seo.noFollow || false}
+	showRelatedContent={relatedContent.enabled !== false}
+	relatedContent={{
+		eyebrow: relatedContent.eyebrow,
+		title: relatedContent.title,
+		text: relatedContent.text,
+		categoryIds: relatedContent.categoryIds || [],
+		tags: relatedContent.tags || [],
+		manualArticleIds: relatedContent.manualArticleIds || [],
+		limit: relatedContent.limit || 4,
+		fallbackToLatest: relatedContent.fallbackToLatest !== false,
+		allHref: contentLocale === "it" ? "/it/blog/" : "/blog/",
+		allLabel: contentLocale === "it" ? "Vedi tutti gli articoli" : "View all research"
+	}}
+>
+	<article class={`content-page content-page--${template}`}>
+		<header class="content-page__hero">
+			<div class="content-page__shell">
+				<nav class="content-page__breadcrumbs" aria-label={contentLocale === "it" ? "Percorso" : "Breadcrumb"}>
+					<a href={contentLocale === "it" ? "/it/" : "/"}>{homeLabel}</a>
+					<span aria-hidden="true">/</span>
+					<span aria-current="page">{title}</span>
+				</nav>
+
+				<div class="content-page__hero-grid">
+					<div class="content-page__hero-copy">
+						{hero?.eyebrow && <p class="content-page__eyebrow">{hero.eyebrow}</p>}
+						<h1>{heroTitle}</h1>
+						{heroText && <p class="content-page__lede">{heroText}</p>}
+
+						{(hero?.primaryAction || hero?.secondaryAction) && (
+							<div class="content-page__actions">
+								{hero?.primaryAction && <a class="content-page__button content-page__button--primary" href={hero.primaryAction.href}>{hero.primaryAction.label}</a>}
+								{hero?.secondaryAction && <a class="content-page__button content-page__button--secondary" href={hero.secondaryAction.href}>{hero.secondaryAction.label}</a>}
+							</div>
+						)}
+					</div>
+
+					{hero?.image?.src && (
+						<figure class="content-page__hero-media">
+							<img src={hero.image.src} alt={hero.image.alt} loading={hero.image.loading || "eager"} width={hero.image.width} height={hero.image.height} />
+						</figure>
+					)}
+				</div>
+			</div>
+		</header>
+
+		<div class="content-page__shell content-page__body">
+			<slot />
+		</div>
+
+		{cta && (
+			<section class={`content-page__cta content-page__cta--${cta.style || "primary"}`}>
+				<div class="content-page__shell content-page__cta-inner">
+					<div>
+						{cta.eyebrow && <p class="content-page__eyebrow">{cta.eyebrow}</p>}
+						<h2>{cta.title}</h2>
+						<p>{cta.text}</p>
+					</div>
+					<a class="content-page__button content-page__button--primary" href={cta.href}>{cta.label}</a>
+				</div>
+			</section>
+		)}
+	</article>
+</BaseLayout>
