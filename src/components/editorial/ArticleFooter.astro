@@ -1,0 +1,51 @@
+---
+import AuthorCard from "./AuthorCard.astro";
+import InlineCTA from "./InlineCTA.astro";
+
+interface Props {
+	author: string;
+	authorHref: string;
+	authorBio: string;
+	authorImageSrc?: string;
+	authorImageAlt?: string;
+	ctaEyebrow?: string;
+	ctaTitle: string;
+	ctaText: string;
+	ctaLabel: string;
+	ctaHref: string;
+}
+
+const {
+	author,
+	authorHref,
+	authorBio,
+	authorImageSrc = "",
+	authorImageAlt = `${author} portrait`,
+	ctaEyebrow = "Intent & Proof Audit",
+	ctaTitle,
+	ctaText,
+	ctaLabel,
+	ctaHref
+} = Astro.props;
+---
+
+<div class="article-after-content">
+	<AuthorCard
+		name={author}
+		href={authorHref}
+		bio={authorBio}
+		imageSrc={authorImageSrc}
+		imageAlt={authorImageAlt}
+	/>
+
+	<InlineCTA
+		eyebrow={ctaEyebrow}
+		title={ctaTitle}
+		text={ctaText}
+		label={ctaLabel}
+		href={ctaHref}
+		variant="bottom"
+	/>
+
+	<slot />
+</div>
