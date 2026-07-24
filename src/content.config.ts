@@ -34,7 +34,7 @@ const ctaSchema = z.object({
 const seoSchema = z.object({
 	title: z.string().optional(),
 	description: z.string().optional(),
-	canonicalUrl: z.string().url().optional(),
+	canonicalUrl: z.url().optional(),
 	image: imageSchema.optional(),
 	noIndex: z.boolean().default(false),
 	noFollow: z.boolean().default(false)
@@ -45,11 +45,11 @@ const heroSchema = z.object({
 	tone: z.enum(["aurora", "navy", "light", "mint"]).default("aurora"),
 	image: imageSchema.optional(),
 	imagePosition: z.string().default("center"),
-	videoUrl: z.string().url().optional()
+	videoUrl: z.url().optional()
 });
 
 const authors = defineCollection({
-	loader: glob({ base: "./src/content/authors", pattern: "**/*.{md,mdx}" }),
+	loader: glob({ base: "./src/content/authors", pattern: "**/*.md" }),
 	schema: z.object({
 		name: z.string().min(1),
 		slug: slugSchema,
@@ -65,7 +65,7 @@ const authors = defineCollection({
 });
 
 const categories = defineCollection({
-	loader: glob({ base: "./src/content/categories", pattern: "**/*.{md,mdx}" }),
+	loader: glob({ base: "./src/content/categories", pattern: "**/*.md" }),
 	schema: z.object({
 		name: z.string().min(1),
 		slug: slugSchema,
@@ -79,7 +79,7 @@ const categories = defineCollection({
 });
 
 const articles = defineCollection({
-	loader: glob({ base: "./src/content/articles", pattern: "**/*.{md,mdx}" }),
+	loader: glob({ base: "./src/content/articles", pattern: "**/*.md" }),
 	schema: z.object({
 		title: z.string().min(1),
 		slug: slugSchema,
@@ -111,7 +111,7 @@ const articles = defineCollection({
 });
 
 const pages = defineCollection({
-	loader: glob({ base: "./src/content/pages", pattern: "**/*.{md,mdx}" }),
+	loader: glob({ base: "./src/content/pages", pattern: "**/*.md" }),
 	schema: z.object({
 		title: z.string().min(1),
 		slug: slugSchema,
