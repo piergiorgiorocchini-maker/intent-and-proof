@@ -17,6 +17,7 @@ import {
 	commercialHeroSchema,
 	commercialSectionSchema
 } from "./content/schemas/commercial";
+import { globalSettingsSchema } from "./content/schemas/settings";
 
 const contentId = ({ entry }: { entry: string }) => entry.replace(/\.(md|mdx)$/, "");
 
@@ -149,10 +150,16 @@ const products = defineCollection({
 	})
 });
 
+const settings = defineCollection({
+	loader: glob({ base: "./src/content/settings", pattern: "**/*.md", generateId: contentId }),
+	schema: globalSettingsSchema
+});
+
 export const collections = {
 	articles,
 	pages,
 	authors,
 	categories,
-	products
+	products,
+	settings
 };
