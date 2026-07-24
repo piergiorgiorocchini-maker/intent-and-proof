@@ -21,9 +21,6 @@ import { globalSettingsSchema } from "./content/schemas/settings";
 
 const contentId = ({ entry }: { entry: string }) => entry.replace(/\.(md|mdx)$/, "");
 
-const optionalReference = (collection: "authors" | "categories") =>
-	z.union([reference(collection), z.literal("")]).optional();
-
 const authors = defineCollection({
 	loader: glob({ base: "./src/content/authors", pattern: "**/*.md", generateId: contentId }),
 	schema: z.object({
@@ -73,7 +70,7 @@ const articles = defineCollection({
 		updatedDate: z.coerce.date().optional(),
 		readTime: z.string().default("8 min read"),
 		author: reference("authors"),
-		editor: optionalReference("authors"),
+		editor: z.union([reference("authors"), z.literal("")]).optional(),
 		category: reference("categories"),
 		tags: z.array(z.string()).default([]),
 		keyTakeaways: z.array(z.string()).default([]),
