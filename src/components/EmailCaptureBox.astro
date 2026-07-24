@@ -1,4 +1,6 @@
 ---
+import { getGlobalSettings, localizedPath, resolveFormHandler } from "../lib/settings";
+
 const {
 	eyebrow = "Free Growth Audit",
 	title = "Find the leaks in your website before buying more traffic.",
@@ -8,14 +10,30 @@ const {
 	note = "No spam. Just a practical next step.",
 	variant = "default",
 	action = "#",
-	method = "post",
+	method = "",
 	formName = "intent-and-proof-email-capture",
+	handlerId = "newsletter",
+	lang = "en",
 	showName = false,
 	includeWebsite = false,
 	namePlaceholder = "Your name",
 	websitePlaceholder = "Website URL",
+	successMessage = "Thank you. Your request has been received.",
+	errorMessage = "This form is not connected yet. Please use the contact option instead.",
 	compact = false
 } = Astro.props;
+
+const locale = lang === "it" ? "it" : "en";
+const settings = await getGlobalSettings();
+const handler = resolveFormHandler(settings, handlerId, "newsletter");
+const handlerEnabled = Boolean(handler?.enabled && handler.provider !== "disabled" && handler.endpoint);
+const resolvedAction = action !== "#" ? action : handler?.endpoint || "#";
+const resolvedMethod = method || handler?.method || "post";
+const successPath = localizedPath(handler, locale);
+const redirectUrl = new URL(successPath, settings.site.baseUrl).toString();
+const fieldLabels = locale === "it"
+	? { name: "Nome", email: "Email", website: "Sito web" }
+	: { name: "Name", email: "Email", website: "Website" };
 
 const captureClass = [
 	"email-capture",
@@ -33,12 +51,29 @@ const titleId = `${formName}-title`;
 		{text && <p class="email-capture__text">{text}</p>}
 	</div>
 
-	<form class="email-capture__form" action={action} method={method}>
+	<form
+		class="email-capture__form"
+		name={formName}
+		action={resolvedAction}
+		method={resolvedMethod}
+		data-managed-form
+		data-handler-id={handler?.id || handlerId}
+		data-handler-enabled={String(handlerEnabled)}
+		data-form-purpose={handler?.purpose || "newsletter"}
+		data-event-name={handler?.eventName || settings.tracking.events.emailSignup}
+		data-submission-mode={handler?.submissionMode || "fetch"}
+		data-success-mode={handler?.successMode || "inline"}
+		data-success-path={successPath}
+	>
 		<input type="hidden" name="form-name" value={formName} />
+		<input type="hidden" name="locale" value={locale} />
+		<input type="hidden" name="page_path" value={Astro.url.pathname} />
+		{handler?.redirectFieldName && <input type="hidden" name={handler.redirectFieldName} value={redirectUrl} />}
+		{handler?.hiddenFields.map((field) => <input type="hidden" name={field.name} value={field.value} />)}
 
 		{showName && (
 			<label class="email-capture__field">
-				<span>Name</span>
+				<span>{fieldLabels.name}</span>
 				<input
 					type="text"
 					name="name"
@@ -49,7 +84,7 @@ const titleId = `${formName}-title`;
 		)}
 
 		<label class="email-capture__field">
-			<span>Email</span>
+			<span>{fieldLabels.email}</span>
 			<input
 				type="email"
 				name="email"
@@ -61,7 +96,7 @@ const titleId = `${formName}-title`;
 
 		{includeWebsite && (
 			<label class="email-capture__field">
-				<span>Website</span>
+				<span>{fieldLabels.website}</span>
 				<input
 					type="url"
 					name="website"
@@ -71,8 +106,10 @@ const titleId = `${formName}-title`;
 			</label>
 		)}
 
-		<button class="email-capture__button" type="submit">{buttonLabel}</button>
+		<button class="email-capture__button" type="submit" data-cta data-tracking-id={handler?.id || handlerId}>{buttonLabel}</button>
 
 		{note && <p class="email-capture__note">{note}</p>}
+		<p class="email-capture__note" data-form-success hidden>{successMessage}</p>
+		<p class="form-configuration-error" data-form-error hidden>{errorMessage}</p>
 	</form>
 </section>
