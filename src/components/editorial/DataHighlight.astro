@@ -1,0 +1,26 @@
+---
+interface Props {
+	value: string;
+	label: string;
+	note?: string;
+	href?: string;
+	linkLabel?: string;
+	variant?: "default" | "positive" | "warning" | "dark";
+}
+
+const {
+	value,
+	label,
+	note = "",
+	href = "",
+	linkLabel = "View source",
+	variant = "default"
+} = Astro.props;
+---
+
+<aside class={`editorial-data editorial-data--${variant}`}>
+	<strong>{value}</strong>
+	<h3>{label}</h3>
+	{note && <p>{note}</p>}
+	{href && <a href={href} rel="nofollow noopener noreferrer">{linkLabel}</a>}
+</aside>
