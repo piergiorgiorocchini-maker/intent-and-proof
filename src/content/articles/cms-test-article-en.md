@@ -26,7 +26,7 @@ hero: null
 showDescription: true
 showToc: false
 showShare: true
-showSidebarCta: true
+showSidebarCta: false
 sidebarCta: null
 footerCta: null
 comments:
