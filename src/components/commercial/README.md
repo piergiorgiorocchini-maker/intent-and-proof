@@ -58,4 +58,4 @@ The current form action and direct-contact values are non-production placeholder
 
 ## Validation
 
-The English and Italian product routes, all commercial blocks, multilingual metadata and product indexes pass the automated Astro production build.
+The English and Italian product routes, all commercial blocks, multilingual metadata and product indexes pass the automated Astro production build. The final validation was repeated after removing unapproved contact details.
