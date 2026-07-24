@@ -45,6 +45,9 @@ if (initializedConfig.backend?.name !== "github") throw new Error("GitHub backen
 if (initializedConfig.backend?.repo !== "piergiorgiorocchini-maker/intent-and-proof") {
 	throw new Error("Unexpected CMS repository.");
 }
+if (initializedConfig.backend?.branch !== "main") {
+	throw new Error("Sveltia CMS must write to main after release.");
+}
 
 const collections = initializedConfig.collections ?? [];
 const expected = ["settings", "authors", "categories", "articles", "pages", "products"];
@@ -92,5 +95,5 @@ for (const page of ["src/pages/thank-you/index.astro", "src/pages/it/grazie/inde
 }
 
 console.log(
-	`Sveltia admin validated: ${collections.length} collections, ${sections.types.length} commercial blocks, centralized tracking and forms.`
+	`Sveltia admin validated: ${collections.length} collections, ${sections.types.length} commercial blocks, centralized tracking and forms, main branch target.`
 );
