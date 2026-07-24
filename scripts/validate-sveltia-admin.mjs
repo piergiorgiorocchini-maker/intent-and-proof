@@ -3,7 +3,7 @@ import vm from "node:vm";
 
 const root = new URL("../", import.meta.url);
 const admin = new URL("public/admin/", root);
-const files = ["cms-model.js", "cms-rules.js", "cms-init.js"];
+const files = ["cms-model.js", "cms-settings.js", "cms-rules.js", "cms-init.js"];
 
 const source = Object.fromEntries(
 	await Promise.all(
@@ -47,7 +47,7 @@ if (initializedConfig.backend?.repo !== "piergiorgiorocchini-maker/intent-and-pr
 }
 
 const collections = initializedConfig.collections ?? [];
-const expected = ["authors", "categories", "articles", "pages", "products"];
+const expected = ["settings", "authors", "categories", "articles", "pages", "products"];
 for (const name of expected) {
 	if (!collections.some((collection) => collection.name === name)) {
 		throw new Error(`Missing CMS collection: ${name}`);
@@ -60,4 +60,37 @@ if (sections?.types?.length !== 16) {
 	throw new Error(`Expected 16 commercial section types, found ${sections?.types?.length ?? 0}.`);
 }
 
-console.log(`Sveltia admin validated: ${collections.length} collections, ${sections.types.length} commercial blocks.`);
+const settings = collections.find((collection) => collection.name === "settings");
+const globalFile = settings?.files?.find((file) => file.name === "global");
+const settingFields = globalFile?.fields?.map((field) => field.name) ?? [];
+for (const name of ["site", "tracking", "trackingNotice", "forms", "thankYou"]) {
+	if (!settingFields.includes(name)) throw new Error(`Missing global setting group: ${name}`);
+}
+
+const globalSettings = await readFile(new URL("src/content/settings/global.md", root), "utf8");
+for (const consentName of [
+	"ad_storage",
+	"ad_user_data",
+	"ad_personalization",
+	"analytics_storage",
+	"functionality_storage",
+	"security_storage",
+]) {
+	if (!globalSettings.includes(`${consentName}: granted`)) {
+		throw new Error(`Tracking default must remain granted for ${consentName}.`);
+	}
+}
+
+for (const handlerId of ["newsletter", "diagnostic", "contact"]) {
+	if (!globalSettings.includes(`- id: ${handlerId}`)) {
+		throw new Error(`Missing centralized form handler: ${handlerId}`);
+	}
+}
+
+for (const page of ["src/pages/thank-you/index.astro", "src/pages/it/grazie/index.astro"]) {
+	await readFile(new URL(page, root), "utf8");
+}
+
+console.log(
+	`Sveltia admin validated: ${collections.length} collections, ${sections.types.length} commercial blocks, centralized tracking and forms.`
+);
