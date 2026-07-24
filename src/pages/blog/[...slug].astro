@@ -80,10 +80,20 @@ const canonicalPath = data.seo?.canonicalUrl || `/blog/${data.slug}/`;
 	heroLayout={hero?.layout ?? "text-only"}
 	heroTone={hero?.tone ?? "aurora"}
 	videoUrl={hero?.videoUrl ?? ""}
-	showDescription={data.showDescription}
-	showToc={data.showToc && toc.length > 0}
-	showShare={data.showShare}
-	showSidebarCta={data.showSidebarCta && Boolean(data.sidebarCta)}
+	showDescription={data.showDescription !== false}
+	showToc={data.showToc !== false && toc.length > 0}
+	showShare={data.showShare !== false}
+	showSidebarCta={data.showSidebarCta !== false}
+	sidebarEyebrow={data.sidebarCta?.eyebrow}
+	sidebarTitle={data.sidebarCta?.title}
+	sidebarText={data.sidebarCta?.text}
+	sidebarLabel={data.sidebarCta?.label}
+	sidebarHref={data.sidebarCta?.href}
+	ctaEyebrow={data.footerCta?.eyebrow}
+	ctaTitle={data.footerCta?.title}
+	ctaText={data.footerCta?.text}
+	ctaLabel={data.footerCta?.label}
+	ctaHref={data.footerCta?.href}
 	showComments={Boolean(comments?.enabled)}
 	commentsRepo={comments?.repo ?? ""}
 	commentsRepoId={comments?.repoId ?? ""}
