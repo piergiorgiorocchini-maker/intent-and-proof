@@ -16,7 +16,7 @@ import RiskReversal from "./RiskReversal.astro";
 import TestimonialBlock from "./TestimonialBlock.astro";
 import TrustStrip from "./TrustStrip.astro";
 
-const { block } = Astro.props;
+const { block, locale = "en" } = Astro.props;
 const components: Record<string, any> = {
 	trust: TrustStrip,
 	problem: ProblemSection,
@@ -38,4 +38,4 @@ const components: Record<string, any> = {
 const Component = components[block.type];
 ---
 
-{block.visible !== false && Component && <Component block={block} />}
+{block.visible !== false && Component && <Component block={block} locale={locale} />}
