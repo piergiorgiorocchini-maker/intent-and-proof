@@ -45,8 +45,8 @@ export const ctaSchema = z.object({
 export const seoSchema = z.object({
 	title: z.string().optional(),
 	description: z.string().optional(),
-	canonicalUrl: z.url().optional(),
-	image: imageSchema.optional(),
+	canonicalUrl: z.union([z.url(), z.literal("")]).optional(),
+	image: imageSchema.nullish(),
 	noIndex: z.boolean().default(false),
 	noFollow: z.boolean().default(false)
 });
@@ -54,9 +54,9 @@ export const seoSchema = z.object({
 export const heroSchema = z.object({
 	layout: z.enum(["split", "background", "text-only"]).default("split"),
 	tone: z.enum(["aurora", "navy", "light", "mint"]).default("aurora"),
-	image: imageSchema.optional(),
+	image: imageSchema.nullish(),
 	imagePosition: z.string().default("center"),
-	videoUrl: z.url().optional()
+	videoUrl: z.union([z.url(), z.literal("")]).optional()
 });
 
 export const commentsSchema = z.object({
