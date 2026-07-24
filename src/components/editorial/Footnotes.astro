@@ -1,0 +1,36 @@
+---
+interface FootnoteItem {
+	id: string;
+	text: string;
+	href?: string;
+	label?: string;
+}
+
+interface Props {
+	items?: FootnoteItem[];
+	title?: string;
+}
+
+const {
+	items = [],
+	title = "Notes and sources"
+} = Astro.props;
+---
+
+{
+	items.length > 0 && (
+		<section class="editorial-footnotes" aria-labelledby="editorial-footnotes-title">
+			<h2 id="editorial-footnotes-title">{title}</h2>
+			<ol>
+				{
+					items.map((item) => (
+						<li id={item.id}>
+							<span>{item.text}</span>
+							{item.href && <a href={item.href} rel="nofollow noopener noreferrer">{item.label || "Source"}</a>}
+						</li>
+					))
+				}
+			</ol>
+		</section>
+	)
+}
