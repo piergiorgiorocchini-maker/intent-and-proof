@@ -14,8 +14,8 @@ export const toneSchema = z.enum(["light", "navy", "mint", "cobalt", "orange", "
 export const imageSchema = z.object({
 	src: z.string().min(1),
 	alt: z.string().min(1),
-	width: z.number().int().positive().optional(),
-	height: z.number().int().positive().optional(),
+	width: z.number().int().positive().nullish(),
+	height: z.number().int().positive().nullish(),
 	caption: z.string().optional(),
 	credit: z.string().optional(),
 	position: z.string().default("center"),
