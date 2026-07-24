@@ -1,0 +1,33 @@
+---
+interface Props {
+	eyebrow?: string;
+	title: string;
+	text: string;
+	label: string;
+	href: string;
+	variant?: "inline" | "bottom" | "dark";
+}
+
+const {
+	eyebrow = "Intent & Proof",
+	title,
+	text,
+	label,
+	href,
+	variant = "inline"
+} = Astro.props;
+
+const classes = [
+	variant === "bottom" ? "article-bottom-cta" : "editorial-inline-cta",
+	variant === "dark" ? "editorial-inline-cta--dark" : ""
+].filter(Boolean).join(" ");
+---
+
+<section class={classes}>
+	<div>
+		{eyebrow && <p>{eyebrow}</p>}
+		<h2>{title}</h2>
+		<span>{text}</span>
+	</div>
+	<a href={href}>{label}</a>
+</section>
