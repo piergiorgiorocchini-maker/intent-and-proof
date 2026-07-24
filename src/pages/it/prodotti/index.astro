@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import "../../../styles/commercial-page.css";
+
+const products = (await getCollection("products", ({ data }) => data.locale === "it" && !data.draft))
+	.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+	title="Prodotti | Intent & Proof"
+	description="Sistemi commerciali di acquisizione costruiti intorno a intento, prova, conversione e misurazione."
+	lang="it"
+	canonicalPath="/it/prodotti/"
+	alternates={[
+		{ locale: "en", href: "/products/", isDefault: true },
+		{ locale: "it", href: "/it/prodotti/" }
+	]}
+	noindex={true}
+>
+	<div class="commercial-page commercial-page--mint">
+		<section class="commercial-section commercial-section--navy">
+			<div class="commercial-shell">
+				<header class="commercial-section-heading">
+					<p class="commercial-eyebrow">Prodotti Intent &amp; Proof</p>
+					<h1>Sistemi commerciali progettati per lavorare insieme.</h1>
+					<p>Ogni prodotto risolve un problema distinto di acquisizione condividendo le stesse fondamenta di prova, pubblicazione e misurazione.</p>
+				</header>
+			</div>
+		</section>
+		<section class="commercial-section commercial-section--neutral">
+			<div class="commercial-shell commercial-card-grid" style="--commercial-columns:3">
+				{products.map(({ data }) => (
+					<article class="commercial-outcome-card">
+						<span class="commercial-card-index">{String(data.order).padStart(2, "0")}</span>
+						<h2>{data.productName}</h2>
+						<p>{data.description}</p>
+						<a class="commercial-button commercial-button--outline" href={`/it/prodotti/${data.slug}/`}><span>Esplora il sistema</span><i aria-hidden="true">↗</i></a>
+					</article>
+				))}
+			</div>
+		</section>
+	</div>
+</BaseLayout>
