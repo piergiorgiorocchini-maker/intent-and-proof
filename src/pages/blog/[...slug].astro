@@ -12,9 +12,8 @@ const referenceId = (value: unknown): string => {
 	return "";
 };
 
-const legacyStaticSlugs = new Set(["local-service-lead-generation"]);
-
 export async function getStaticPaths() {
+	const legacyStaticSlugs = new Set(["local-service-lead-generation"]);
 	const articles = await getCollection(
 		"articles",
 		({ data }) => data.locale === "en" && !data.draft && !legacyStaticSlugs.has(data.slug)
