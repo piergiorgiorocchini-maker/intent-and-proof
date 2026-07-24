@@ -16,6 +16,7 @@ const {
 	hero,
 	sections = [],
 	alternates = [],
+	relatedContent = {},
 	seo = {}
 } = product;
 
@@ -23,6 +24,7 @@ const siteURL = Astro.site ?? new URL("https://www.intentandproof.com");
 const canonicalPath = seo.canonicalUrl || Astro.url.pathname;
 const canonicalURL = new URL(canonicalPath, siteURL);
 const schemaType = productType === "platform" ? "SoftwareApplication" : "Service";
+const contentLocale = locale === "it" ? "it" : "en";
 
 const offerSchema = {
 	"@type": schemaType,
@@ -65,12 +67,25 @@ const structuredData = {
 	title={seo.title || title}
 	description={seo.description || description}
 	image={seo.image?.src || hero?.media?.src || ""}
-	lang={locale}
+	lang={contentLocale}
 	canonicalPath={canonicalPath}
 	alternates={alternates}
 	noindex={seo.noIndex || false}
 	nofollow={seo.noFollow || false}
 	structuredData={structuredData}
+	showRelatedContent={relatedContent.enabled !== false}
+	relatedContent={{
+		eyebrow: relatedContent.eyebrow,
+		title: relatedContent.title || (contentLocale === "it" ? "Approfondimenti collegati al sistema." : "Research connected to this system."),
+		text: relatedContent.text,
+		categoryIds: relatedContent.categoryIds || [],
+		tags: relatedContent.tags || [],
+		manualArticleIds: relatedContent.manualArticleIds || [],
+		limit: relatedContent.limit || 4,
+		fallbackToLatest: relatedContent.fallbackToLatest !== false,
+		allHref: contentLocale === "it" ? "/it/blog/" : "/blog/",
+		allLabel: contentLocale === "it" ? "Vedi tutti gli articoli" : "View all research"
+	}}
 >
 	<div class={`commercial-page commercial-page--${accent}`}>
 		{breadcrumbs.length > 0 && (
