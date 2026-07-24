@@ -4,9 +4,14 @@ import "@fontsource-variable/manrope";
 import FoundationHeader from "../components/FoundationHeader.astro";
 import Footer from "../components/Footer.astro";
 import LatestArticles from "../components/content/LatestArticles.astro";
+import InformationalTrackingNotice from "../components/system/InformationalTrackingNotice.astro";
+import TrackingManager from "../components/system/TrackingManager.astro";
+import TrackingRuntime from "../components/system/TrackingRuntime.astro";
+import { getGlobalSettings } from "../lib/settings";
 import "../styles/global.css";
 import "../styles/foundations.css";
 import "../styles/content-discovery.css";
+import "../styles/system-controls.css";
 
 interface AlternateLocale {
 	locale: string;
@@ -50,11 +55,17 @@ const {
 	relatedContent = {} as RelatedContentOptions
 } = Astro.props;
 
-const siteURL = Astro.site ?? new URL("https://www.intentandproof.com");
+const settings = await getGlobalSettings();
+const siteURL = Astro.site ?? new URL(settings.site.baseUrl);
 const canonicalURL = new URL(canonicalPath || Astro.url.pathname, siteURL);
 const socialImage = image ? new URL(image, siteURL) : null;
 const robotsDirectives = [noindex ? "noindex" : "index", nofollow ? "nofollow" : "follow"].join(", ");
 const contentLocale = lang === "it" ? "it" : "en";
+const gtmId = settings.tracking.enabled
+	&& settings.tracking.delivery === "gtm"
+	&& settings.tracking.googleTagManager.enabled
+	? settings.tracking.googleTagManager.containerId
+	: "";
 ---
 
 <!doctype html>
@@ -65,6 +76,7 @@ const contentLocale = lang === "it" ? "it" : "en";
 		<meta name="description" content={description} />
 		<meta name="theme-color" content="#071c2c" />
 		<meta name="robots" content={robotsDirectives} />
+		<TrackingManager settings={settings} lang={contentLocale} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="canonical" href={canonicalURL} />
@@ -102,6 +114,17 @@ const contentLocale = lang === "it" ? "it" : "en";
 		<title>{title}</title>
 	</head>
 	<body class="fd-body">
+		{gtmId && (
+			<noscript>
+				<iframe
+					src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+					height="0"
+					width="0"
+					style="display:none;visibility:hidden"
+					title="Google Tag Manager"
+				></iframe>
+			</noscript>
+		)}
 		<a class="fd-skip-link" href="#main-content">{skipLinkLabel}</a>
 		<FoundationHeader />
 		<main id="main-content">
@@ -127,6 +150,8 @@ const contentLocale = lang === "it" ? "it" : "en";
 				)
 			}
 		</main>
-		<Footer />
+		<Footer lang={contentLocale} />
+		<InformationalTrackingNotice settings={settings} lang={contentLocale} />
+		<TrackingRuntime settings={settings} />
 	</body>
 </html>
