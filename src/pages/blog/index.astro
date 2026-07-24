@@ -1,37 +1,43 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArchiveHero from "../../components/content/ArchiveHero.astro";
+import ArticleGrid from "../../components/content/ArticleGrid.astro";
+import CategoryNav from "../../components/content/CategoryNav.astro";
+import { getPublishedArticleIndex } from "../../lib/content/interlinking";
+import "../../styles/content-archives.css";
+
+const articles = await getPublishedArticleIndex("en");
+const categoryEntries = (await getCollection("categories"))
+	.filter((entry) => entry.data.locale === "en")
+	.sort((a, b) => a.data.order - b.data.order);
+const categories = categoryEntries.map((entry) => ({
+	name: entry.data.name,
+	slug: entry.data.slug,
+	description: entry.data.description,
+	locale: "en" as const
+}));
 ---
 
 <BaseLayout
-	title="Blog | Intent & Proof"
-	description="Growth guides on SEO, landing pages, paid acquisition and tracking for service businesses."
+	title="Research & Growth Guides | Intent & Proof"
+	description="Research on local SEO, conversion, paid acquisition, proof and measurement for service businesses."
+	lang="en"
+	canonicalPath="/blog/"
+	showRelatedContent={false}
 >
-	<section class="section">
-		<div class="section-head">
-			<div>
-				<h2>Intent &amp; Proof Blog</h2>
-				<p>Guides, systems and practical notes for building better lead generation machines.</p>
-			</div>
-		</div>
-
-		<div class="card-grid">
-			<article class="card">
-				<div class="card-kicker">Local SEO</div>
-				<h3>City pages for premium service businesses</h3>
-				<p>A practical framework for turning location intent into qualified calls and WhatsApp leads.</p>
-			</article>
-
-			<article class="card">
-				<div class="card-kicker">Google Ads</div>
-				<h3>Search campaigns without budget cremation</h3>
-				<p>Intent, landing message, call tracking and conversion quality. Apparently clicks alone do not pay rent.</p>
-			</article>
-
-			<article class="card">
-				<div class="card-kicker">Analytics</div>
-				<h3>The minimum tracking stack before launching ads</h3>
-				<p>Events, consent, call actions, WhatsApp clicks and clean reporting before the budget starts leaking.</p>
-			</article>
-		</div>
-	</section>
+	<ArchiveHero
+		eyebrow="Intent & Proof Research"
+		title="Systems, evidence and practical growth research."
+		description="Structured guides for building customer acquisition assets that connect market intent, credible proof, conversion and measurement."
+		meta={`${articles.length} published ${articles.length === 1 ? "article" : "articles"}`}
+		breadcrumbs={[{ label: "Home", href: "/" }]}
+	/>
+	<CategoryNav categories={categories} locale="en" />
+	<ArticleGrid
+		articles={articles}
+		title="Latest research"
+		description="The newest published articles across every active category."
+		emptyText="The archive is ready. Published research will appear here automatically."
+	/>
 </BaseLayout>
