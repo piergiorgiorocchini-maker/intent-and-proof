@@ -1,0 +1,28 @@
+---
+const { block } = Astro.props;
+---
+
+<section id={block.id} class={`commercial-section commercial-trust commercial-section--${block.tone}`}>
+	<div class="commercial-shell">
+		{(block.eyebrow || block.title || block.text) && (
+			<header class="commercial-section-heading commercial-section-heading--center">
+				{block.eyebrow && <p class="commercial-eyebrow">{block.eyebrow}</p>}
+				{block.title && <h2>{block.title}</h2>}
+				{block.text && <p>{block.text}</p>}
+			</header>
+		)}
+		<div class="commercial-trust__items">
+			{block.items.map((item: any) => (
+				<article class="commercial-trust__item">
+					{item.logo && <img src={item.logo.src} alt={item.logo.alt} loading="lazy" decoding="async" />}
+					<div>
+						<strong>{item.name}</strong>
+						{item.label && <span>{item.label}</span>}
+					</div>
+					{item.metric && <b>{item.metric}</b>}
+				</article>
+			))}
+		</div>
+		{block.note && <p class="commercial-section-note">{block.note}</p>}
+	</div>
+</section>
