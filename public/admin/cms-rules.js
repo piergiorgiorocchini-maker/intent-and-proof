@@ -12,6 +12,24 @@
     provider.default = "giscus";
   }
 
+  const articleHero = field(articles?.fields, "hero");
+  const imagePosition = field(articleHero?.fields, "imagePosition");
+  if (imagePosition) {
+    imagePosition.widget = "select";
+    imagePosition.options = [
+      { label: "Centro", value: "center" },
+      { label: "Alto", value: "top" },
+      { label: "Basso", value: "bottom" },
+      { label: "Sinistra", value: "left" },
+      { label: "Destra", value: "right" },
+      { label: "Alto sinistra", value: "top left" },
+      { label: "Alto destra", value: "top right" },
+      { label: "Basso sinistra", value: "bottom left" },
+      { label: "Basso destra", value: "bottom right" },
+    ];
+    imagePosition.default = "center";
+  }
+
   const removeBooleanFilters = (relationField) => {
     if (!relationField?.filters) return;
     relationField.filters = relationField.filters.filter((filter) => filter.field !== "fields.draft");
