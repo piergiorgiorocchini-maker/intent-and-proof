@@ -1,0 +1,43 @@
+---
+interface BreadcrumbItem {
+	label: string;
+	href: string;
+}
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	description: string;
+	breadcrumbs?: BreadcrumbItem[];
+	meta?: string;
+	tone?: "navy" | "mint" | "cobalt" | "neutral";
+}
+
+const {
+	eyebrow = "Intent & Proof Research",
+	title,
+	description,
+	breadcrumbs = [],
+	meta = "",
+	tone = "navy"
+} = Astro.props;
+---
+
+<header class={`content-archive-hero content-archive-hero--${tone}`}>
+	<div class="content-archive-hero__inner">
+		{breadcrumbs.length > 0 && (
+			<nav class="content-archive-hero__breadcrumbs" aria-label="Breadcrumb">
+				{breadcrumbs.map((item, index) => (
+					<>
+						{index > 0 && <span aria-hidden="true">/</span>}
+						<a href={item.href}>{item.label}</a>
+					</>
+				))}
+			</nav>
+		)}
+		<p class="content-archive-hero__eyebrow">{eyebrow}</p>
+		<h1>{title}</h1>
+		<p class="content-archive-hero__description">{description}</p>
+		{meta && <p class="content-archive-hero__meta">{meta}</p>}
+	</div>
+</header>
