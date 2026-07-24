@@ -1,0 +1,69 @@
+---
+import type { GlobalSettings } from "../../content/schemas/settings";
+import { isTrackingConfigured } from "../../lib/settings";
+
+interface Props {
+	settings: GlobalSettings;
+	lang?: "en" | "it";
+}
+
+const { settings, lang = "en" } = Astro.props;
+const notice = lang === "it" ? settings.trackingNotice.it : settings.trackingNotice.en;
+const visible = settings.trackingNotice.enabled && isTrackingConfigured(settings);
+---
+
+{
+	visible && (
+		<aside
+			class="tracking-notice"
+			data-tracking-notice
+			data-storage-key={settings.trackingNotice.storageKey}
+			data-expiry-days={settings.trackingNotice.expiryDays}
+			hidden
+			aria-labelledby="tracking-notice-title"
+		>
+			<div class="tracking-notice__inner">
+				<div>
+					<p class="tracking-notice__eyebrow">Intent &amp; Proof</p>
+					<h2 id="tracking-notice-title">{notice.title}</h2>
+					<p>{notice.text}</p>
+				</div>
+				<div class="tracking-notice__actions">
+					{notice.privacyHref && notice.privacyLabel && <a href={notice.privacyHref}>{notice.privacyLabel}</a>}
+					<button type="button" data-dismiss-tracking-notice>{notice.dismissLabel}</button>
+				</div>
+			</div>
+		</aside>
+	)
+}
+
+<script is:inline>
+	const notice = document.querySelector("[data-tracking-notice]");
+
+	if (notice instanceof HTMLElement) {
+		const key = notice.dataset.storageKey || "intent-proof-tracking-notice";
+		const expiryDays = Number(notice.dataset.expiryDays || "180");
+		const stored = localStorage.getItem(key);
+		let dismissed = false;
+
+		if (stored) {
+			const timestamp = Number(stored);
+			dismissed = Number.isFinite(timestamp) && Date.now() - timestamp < expiryDays * 86400000;
+		}
+
+		notice.hidden = dismissed;
+
+		notice.querySelector("[data-dismiss-tracking-notice]")?.addEventListener("click", () => {
+			localStorage.setItem(key, String(Date.now()));
+			notice.hidden = true;
+		});
+
+		document.querySelectorAll("[data-open-tracking-notice]").forEach((trigger) => {
+			trigger.addEventListener("click", (event) => {
+				event.preventDefault();
+				notice.hidden = false;
+				notice.scrollIntoView({ behavior: "smooth", block: "end" });
+			});
+		});
+	}
+</script>
