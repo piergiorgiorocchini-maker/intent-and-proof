@@ -18,8 +18,10 @@ import {
 	commercialSectionSchema
 } from "./content/schemas/commercial";
 
+const contentId = ({ entry }: { entry: string }) => entry.replace(/\.(md|mdx)$/, "");
+
 const authors = defineCollection({
-	loader: glob({ base: "./src/content/authors", pattern: "**/*.md" }),
+	loader: glob({ base: "./src/content/authors", pattern: "**/*.md", generateId: contentId }),
 	schema: z.object({
 		locale: localeSchema.default("en"),
 		translationKey: slugSchema,
@@ -37,7 +39,7 @@ const authors = defineCollection({
 });
 
 const categories = defineCollection({
-	loader: glob({ base: "./src/content/categories", pattern: "**/*.md" }),
+	loader: glob({ base: "./src/content/categories", pattern: "**/*.md", generateId: contentId }),
 	schema: z.object({
 		locale: localeSchema.default("en"),
 		translationKey: slugSchema,
@@ -53,7 +55,7 @@ const categories = defineCollection({
 });
 
 const articles = defineCollection({
-	loader: glob({ base: "./src/content/articles", pattern: "**/*.md" }),
+	loader: glob({ base: "./src/content/articles", pattern: "**/*.md", generateId: contentId }),
 	schema: z.object({
 		locale: localeSchema.default("en"),
 		translationKey: slugSchema,
@@ -92,7 +94,7 @@ const articles = defineCollection({
 });
 
 const pages = defineCollection({
-	loader: glob({ base: "./src/content/pages", pattern: "**/*.md" }),
+	loader: glob({ base: "./src/content/pages", pattern: "**/*.md", generateId: contentId }),
 	schema: z.object({
 		locale: localeSchema.default("en"),
 		translationKey: slugSchema,
@@ -119,7 +121,7 @@ const pages = defineCollection({
 });
 
 const products = defineCollection({
-	loader: glob({ base: "./src/content/products", pattern: "**/*.md" }),
+	loader: glob({ base: "./src/content/products", pattern: "**/*.md", generateId: contentId }),
 	schema: z.object({
 		locale: localeSchema,
 		translationKey: slugSchema,
