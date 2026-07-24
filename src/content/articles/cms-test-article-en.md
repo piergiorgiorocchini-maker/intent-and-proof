@@ -22,7 +22,12 @@ keyTakeaways:
 faqs: []
 relatedArticles: []
 layout: editorial-wide
-hero: null
+hero:
+  layout: split
+  tone: aurora
+  image: null
+  imagePosition: center
+  videoUrl: ''
 showDescription: true
 showToc: true
 showShare: true
