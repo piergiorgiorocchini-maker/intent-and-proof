@@ -1,0 +1,46 @@
+---
+interface Props {
+	title: string;
+	url?: string;
+	label?: string;
+}
+
+const {
+	title,
+	url = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString(),
+	label = "Share"
+} = Astro.props;
+
+const linkedInShare = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+const xShare = `https://x.com/intent/post?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
+---
+
+<div class="article-side-card article-share">
+	<p>{label}</p>
+	<div class="article-share-links">
+		<a href={linkedInShare} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
+		<a href={xShare} target="_blank" rel="noopener noreferrer" aria-label="Share on X">x</a>
+		<button type="button" data-copy-article-url={url} aria-label="Copy article link">⧉</button>
+		<a href={url} aria-label="Open canonical article link">↗</a>
+	</div>
+</div>
+
+<script>
+	const copyButtons = document.querySelectorAll("[data-copy-article-url]");
+
+	copyButtons.forEach((button) => {
+		if (!(button instanceof HTMLButtonElement) || button.dataset.copyReady === "true") return;
+		button.dataset.copyReady = "true";
+		button.addEventListener("click", async () => {
+			const url = button.dataset.copyArticleUrl;
+			if (!url) return;
+			try {
+				await navigator.clipboard.writeText(url);
+				button.textContent = "✓";
+				window.setTimeout(() => { button.textContent = "⧉"; }, 1600);
+			} catch {
+				window.location.href = url;
+			}
+		});
+	});
+</script>
