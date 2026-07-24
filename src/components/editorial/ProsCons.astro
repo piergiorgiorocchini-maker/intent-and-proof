@@ -1,0 +1,31 @@
+---
+interface Props {
+	pros?: string[];
+	cons?: string[];
+	title?: string;
+	prosTitle?: string;
+	consTitle?: string;
+}
+
+const {
+	pros = [],
+	cons = [],
+	title = "Advantages and trade-offs",
+	prosTitle = "Advantages",
+	consTitle = "Trade-offs"
+} = Astro.props;
+---
+
+<section class="editorial-pros-cons" aria-labelledby="editorial-pros-cons-title">
+	<h2 id="editorial-pros-cons-title">{title}</h2>
+	<div class="editorial-pros-cons__grid">
+		<div class="editorial-pros-cons__column editorial-pros-cons__column--pros">
+			<h3>{prosTitle}</h3>
+			<ul>{pros.map((item) => <li>{item}</li>)}</ul>
+		</div>
+		<div class="editorial-pros-cons__column editorial-pros-cons__column--cons">
+			<h3>{consTitle}</h3>
+			<ul>{cons.map((item) => <li>{item}</li>)}</ul>
+		</div>
+	</div>
+</section>
