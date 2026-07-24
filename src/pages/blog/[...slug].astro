@@ -1,0 +1,117 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import KeyTakeaways from "../../components/editorial/KeyTakeaways.astro";
+import FAQBlock from "../../components/editorial/FAQBlock.astro";
+
+const referenceId = (value: unknown): string => {
+	if (typeof value === "string") return value;
+	if (value && typeof value === "object" && "id" in value) {
+		return String((value as { id: string }).id);
+	}
+	return "";
+};
+
+export async function getStaticPaths() {
+	const articles = await getCollection("articles", ({ data }) => data.locale === "en" && !data.draft);
+	return articles.map((article) => ({
+		params: { slug: article.data.slug },
+		props: { article }
+	}));
+}
+
+const { article } = Astro.props;
+const { Content, headings } = await render(article);
+const data = article.data;
+
+const authorId = referenceId(data.author);
+const editorId = referenceId(data.editor);
+const categoryId = referenceId(data.category);
+
+const [author, editor, category] = await Promise.all([
+	authorId ? getEntry("authors", authorId) : Promise.resolve(undefined),
+	editorId ? getEntry("authors", editorId) : Promise.resolve(undefined),
+	categoryId ? getEntry("categories", categoryId) : Promise.resolve(undefined)
+]);
+
+const categorySlug = category?.data.slug ?? categoryId.replace(/-(en|it)$/, "");
+const categoryName = category?.data.name ?? data.eyebrow;
+const categoryHref = `/blog/category/${categorySlug}/`;
+const authorSlug = author?.data.slug ?? authorId.replace(/-(en|it)$/, "");
+const authorHref = `/authors/${authorSlug}/`;
+const editorSlug = editor?.data.slug ?? editorId.replace(/-(en|it)$/, "");
+const editorHref = editorSlug ? `/authors/${editorSlug}/` : "";
+const hero = data.hero;
+const heroImage = hero?.image;
+const comments = data.comments;
+const related = data.relatedContent;
+const toc = headings
+	.filter((heading) => heading.depth === 2 || heading.depth === 3)
+	.map((heading) => ({ href: `#${heading.slug}`, label: heading.text }));
+const tags = data.tags.map((label) => ({ href: categoryHref, label }));
+const canonicalPath = data.seo?.canonicalUrl || `/blog/${data.slug}/`;
+---
+
+<ArticleLayout
+	title={data.title}
+	description={data.description}
+	eyebrow={data.eyebrow}
+	categoryHref={categoryHref}
+	author={author?.data.name ?? "Intent & Proof"}
+	authorHref={authorHref}
+	authorRole={author?.data.role ?? "Intent & Proof contributor"}
+	authorBio={author?.data.shortBio ?? "Research and operating systems for measurable customer acquisition."}
+	authorImageSrc={author?.data.image?.src ?? ""}
+	authorImageAlt={author?.data.image?.alt ?? ""}
+	editor={editor?.data.name ?? ""}
+	editorHref={editorHref}
+	editorImageSrc={editor?.data.image?.src ?? ""}
+	editorImageAlt={editor?.data.image?.alt ?? ""}
+	publishedDate={data.publishedDate}
+	updatedDate={data.updatedDate}
+	readTime={data.readTime}
+	heroImageSrc={heroImage?.src ?? ""}
+	heroImageAlt={heroImage?.alt ?? ""}
+	heroImagePosition={hero?.imagePosition ?? "center"}
+	heroLayout={hero?.layout ?? "text-only"}
+	heroTone={hero?.tone ?? "aurora"}
+	videoUrl={hero?.videoUrl ?? ""}
+	showDescription={data.showDescription}
+	showToc={data.showToc && toc.length > 0}
+	showShare={data.showShare}
+	showSidebarCta={data.showSidebarCta && Boolean(data.sidebarCta)}
+	showComments={Boolean(comments?.enabled)}
+	commentsRepo={comments?.repo ?? ""}
+	commentsRepoId={comments?.repoId ?? ""}
+	commentsCategory={comments?.category ?? "General"}
+	commentsCategoryId={comments?.categoryId ?? ""}
+	commentsMapping={comments?.mapping ?? "pathname"}
+	commentsTheme={comments?.theme ?? "preferred_color_scheme"}
+	commentsLang={comments?.lang ?? "en"}
+	layoutVariant={data.layout === "editorial-standard" ? "standard" : "wide"}
+	locale="en"
+	articleId={article.id}
+	showRelatedContent={Boolean(related?.enabled)}
+	relatedCategoryIds={related?.categoryIds ?? [categoryId]}
+	relatedTags={related?.tags ?? data.tags}
+	relatedManualArticleIds={related?.manualArticleIds ?? data.relatedArticles}
+	relatedContentLimit={related?.limit ?? 4}
+	relatedContentTitle={related?.title ?? ""}
+	relatedContentText={related?.text ?? ""}
+	breadcrumbs={[
+		{ href: "/", label: "Home" },
+		{ href: "/blog/", label: "Research" },
+		{ href: categoryHref, label: categoryName }
+	]}
+	tags={tags}
+	toc={toc}
+	seoTitle={data.seo?.title ?? data.title}
+	seoDescription={data.seo?.description ?? data.description}
+	canonicalPath={canonicalPath}
+	noindex={data.seo?.noIndex ?? false}
+	nofollow={data.seo?.noFollow ?? false}
+>
+	{data.keyTakeaways.length > 0 && <KeyTakeaways items={data.keyTakeaways} />}
+	<Content />
+	{data.faqs.length > 0 && <FAQBlock items={data.faqs} />}
+</ArticleLayout>
