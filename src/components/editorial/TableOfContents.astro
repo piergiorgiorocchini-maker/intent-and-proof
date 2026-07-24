@@ -1,0 +1,27 @@
+---
+interface TocItem {
+	href: string;
+	label: string;
+}
+
+interface Props {
+	items?: TocItem[];
+	title?: string;
+}
+
+const {
+	items = [],
+	title = "On this page"
+} = Astro.props;
+---
+
+{
+	items.length > 0 && (
+		<div class="article-side-card article-toc">
+			<p>{title}</p>
+			<nav aria-label={title}>
+				{items.map((item) => <a href={item.href}>{item.label}</a>)}
+			</nav>
+		</div>
+	)
+}
