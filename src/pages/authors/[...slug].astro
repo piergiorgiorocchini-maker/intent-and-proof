@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from "astro:content";
+import AuthorArchiveLayout from "../../layouts/AuthorArchiveLayout.astro";
+import { getPublishedArticleIndex } from "../../lib/content/interlinking";
+
+export async function getStaticPaths() {
+	const authors = (await getCollection("authors"))
+		.filter((entry) => entry.data.locale === "en")
+		.filter((entry) => entry.data.active)
+		.filter((entry) => entry.data.slug !== "piergiorgio-rocchini");
+
+	return authors.map((author) => ({
+		params: { slug: author.data.slug },
+		props: { author }
+	}));
+}
+
+const { author } = Astro.props;
+const { Content } = await render(author);
+const articles = (await getPublishedArticleIndex("en"))
+	.filter((article) => article.authorId === author.id);
+---
+
+<AuthorArchiveLayout author={author.data} articles={articles} locale="en">
+	<Content />
+</AuthorArchiveLayout>
