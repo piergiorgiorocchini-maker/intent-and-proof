@@ -21,6 +21,9 @@ import { globalSettingsSchema } from "./content/schemas/settings";
 
 const contentId = ({ entry }: { entry: string }) => entry.replace(/\.(md|mdx)$/, "");
 
+const optionalReference = (collection: "authors" | "categories") =>
+	z.union([reference(collection), z.literal("")]).optional();
+
 const authors = defineCollection({
 	loader: glob({ base: "./src/content/authors", pattern: "**/*.md", generateId: contentId }),
 	schema: z.object({
@@ -30,12 +33,12 @@ const authors = defineCollection({
 		slug: slugSchema,
 		role: z.string().min(1),
 		shortBio: z.string().min(1),
-		image: imageSchema.optional(),
+		image: imageSchema.nullish(),
 		expertise: z.array(z.string()).default([]),
 		links: z.array(linkSchema).default([]),
 		active: z.boolean().default(true),
 		order: z.number().int().nonnegative().default(0),
-		seo: seoSchema.optional()
+		seo: seoSchema.nullish()
 	})
 });
 
@@ -51,7 +54,7 @@ const categories = defineCollection({
 		tone: z.enum(["navy", "cobalt", "mint", "orange", "neutral"]).default("navy"),
 		featured: z.boolean().default(false),
 		order: z.number().int().nonnegative().default(0),
-		seo: seoSchema.optional()
+		seo: seoSchema.nullish()
 	})
 });
 
@@ -70,15 +73,15 @@ const articles = defineCollection({
 		updatedDate: z.coerce.date().optional(),
 		readTime: z.string().default("8 min read"),
 		author: reference("authors"),
-		editor: reference("authors").optional(),
+		editor: optionalReference("authors"),
 		category: reference("categories"),
 		tags: z.array(z.string()).default([]),
 		keyTakeaways: z.array(z.string()).default([]),
 		faqs: z.array(faqSchema).default([]),
 		relatedArticles: z.array(slugSchema).default([]),
-		relatedContent: relatedContentSchema.optional(),
+		relatedContent: relatedContentSchema.nullish(),
 		layout: z.enum(["editorial-wide", "editorial-standard"]).default("editorial-wide"),
-		hero: heroSchema.default({
+		hero: heroSchema.nullish().default({
 			layout: "split",
 			tone: "aurora",
 			imagePosition: "center"
@@ -87,10 +90,10 @@ const articles = defineCollection({
 		showToc: z.boolean().default(true),
 		showShare: z.boolean().default(true),
 		showSidebarCta: z.boolean().default(true),
-		sidebarCta: ctaSchema.optional(),
-		footerCta: ctaSchema.optional(),
-		comments: commentsSchema.optional(),
-		seo: seoSchema.optional()
+		sidebarCta: ctaSchema.nullish(),
+		footerCta: ctaSchema.nullish(),
+		comments: commentsSchema.nullish(),
+		seo: seoSchema.nullish()
 	})
 });
 
@@ -111,13 +114,13 @@ const pages = defineCollection({
 			eyebrow: z.string().optional(),
 			title: z.string().optional(),
 			text: z.string().optional(),
-			image: imageSchema.optional(),
-			primaryAction: linkSchema.optional(),
-			secondaryAction: linkSchema.optional()
-		}).optional(),
-		cta: ctaSchema.optional(),
-		relatedContent: relatedContentSchema.optional(),
-		seo: seoSchema.optional()
+			image: imageSchema.nullish(),
+			primaryAction: linkSchema.nullish(),
+			secondaryAction: linkSchema.nullish()
+		}).nullish(),
+		cta: ctaSchema.nullish(),
+		relatedContent: relatedContentSchema.nullish(),
+		seo: seoSchema.nullish()
 	})
 });
 
@@ -140,13 +143,13 @@ const products = defineCollection({
 		breadcrumbs: z.array(linkSchema).default([]),
 		hero: commercialHeroSchema,
 		sections: z.array(commercialSectionSchema).default([]),
-		relatedContent: relatedContentSchema.optional(),
+		relatedContent: relatedContentSchema.nullish(),
 		alternates: z.array(z.object({
 			locale: localeSchema,
 			href: z.string().min(1),
 			isDefault: z.boolean().default(false)
 		})).default([]),
-		seo: seoSchema.optional()
+		seo: seoSchema.nullish()
 	})
 });
 
