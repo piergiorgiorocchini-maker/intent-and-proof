@@ -1,0 +1,23 @@
+---
+interface Props {
+	caption?: string;
+	label?: string;
+	compact?: boolean;
+}
+
+const {
+	caption = "",
+	label = caption || "Scrollable data table",
+	compact = false
+} = Astro.props;
+
+const classes = [
+	"editorial-table",
+	compact ? "editorial-table--compact" : ""
+].filter(Boolean).join(" ");
+---
+
+<div class={classes} role="region" aria-label={label} tabindex="0">
+	<slot />
+	{caption && <p class="editorial-table__caption">{caption}</p>}
+</div>
