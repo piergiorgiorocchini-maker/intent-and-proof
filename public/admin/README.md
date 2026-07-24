@@ -1,13 +1,13 @@
 # Intent & Proof CMS
 
-The CMS is available at `/admin/` after the branch is deployed.
+The CMS is available at `/admin/` after deployment.
 
-## Current test workflow
+## Current workflow
 
 - Sveltia CMS is pinned to version `0.172.4`.
 - Authentication currently uses the GitHub backend and a personal access token.
-- Content changes are written to `agent/sveltia-content-system` while the system is under review.
-- Before production release, the backend branch must be changed to `main` and a production authentication method approved.
+- Content changes are written directly to `main` after the content-system PR is merged.
+- A production-friendly OAuth method can replace token authentication later without changing the content model.
 
 ## Managed collections
 
@@ -66,4 +66,4 @@ and published from:
 
 ## Validation
 
-`npm run build` executes `scripts/validate-sveltia-admin.mjs` before the Astro build. The validator loads the generated CMS configuration, verifies all six collections, confirms the complete commercial block registry, checks the centralized form handlers, enforces granted tracking defaults and confirms both thank-you routes exist.
+`npm run build` executes `scripts/validate-sveltia-admin.mjs` before the Astro build. The validator loads the generated CMS configuration, verifies all six collections, confirms the complete commercial block registry, checks the centralized form handlers, enforces granted tracking defaults, confirms both thank-you routes exist and verifies that Sveltia writes to `main`.
