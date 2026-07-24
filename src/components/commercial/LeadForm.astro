@@ -1,0 +1,41 @@
+---
+const { block } = Astro.props;
+---
+
+<section id={block.id} class={`commercial-section commercial-lead-form commercial-section--${block.tone}`}>
+	<div class="commercial-shell commercial-lead-form__card">
+		<header class="commercial-section-heading">
+			{block.eyebrow && <p class="commercial-eyebrow">{block.eyebrow}</p>}
+			{block.title && <h2>{block.title}</h2>}
+			{block.text && <p>{block.text}</p>}
+			{block.note && <p class="commercial-section-note">{block.note}</p>}
+		</header>
+		<form class="commercial-form" name={block.formName} action={block.action} method={block.method}>
+			<input type="hidden" name="form-name" value={block.formName} />
+			{block.fields.map((field: any) => (
+				<label class={field.type === "textarea" ? "commercial-form__field commercial-form__field--wide" : "commercial-form__field"}>
+					<span>{field.label}</span>
+					{field.type === "textarea" ? (
+						<textarea name={field.name} placeholder={field.placeholder || undefined} required={field.required}></textarea>
+					) : field.type === "select" ? (
+						<select name={field.name} required={field.required}>
+							{field.placeholder && <option value="">{field.placeholder}</option>}
+							{field.options.map((option: string) => <option value={option}>{option}</option>)}
+						</select>
+					) : (
+						<input
+							type={field.type}
+							name={field.name}
+							placeholder={field.placeholder || undefined}
+							required={field.required}
+							autocomplete={field.autocomplete || undefined}
+						/>
+					)}
+				</label>
+			))}
+			<button type="submit" class="commercial-form__submit">{block.buttonLabel}<i aria-hidden="true">↗</i></button>
+			{block.privacyText && <p class="commercial-form__privacy">{block.privacyText}</p>}
+			{block.successMessage && <p class="commercial-form__success" data-form-success hidden>{block.successMessage}</p>}
+		</form>
+	</div>
+</section>
