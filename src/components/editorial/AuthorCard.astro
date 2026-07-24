@@ -1,0 +1,45 @@
+---
+interface Props {
+	name: string;
+	href: string;
+	bio: string;
+	imageSrc?: string;
+	imageAlt?: string;
+	label?: string;
+	linkLabel?: string;
+}
+
+const {
+	name,
+	href,
+	bio,
+	imageSrc = "",
+	imageAlt = `${name} portrait`,
+	label = "About the author",
+	linkLabel = "View author profile"
+} = Astro.props;
+
+const initials = name
+	.split(" ")
+	.filter(Boolean)
+	.map((part) => part.charAt(0))
+	.join("")
+	.slice(0, 2)
+	.toUpperCase();
+---
+
+<section class="article-author-card" aria-label={`About ${name}`}>
+	{
+		imageSrc ? (
+			<img class="article-author-card__avatar" src={imageSrc} alt={imageAlt} width="82" height="82" loading="lazy" decoding="async" />
+		) : (
+			<span class="article-author-card__avatar" aria-hidden="true">{initials}</span>
+		)
+	}
+	<div class="article-author-card__copy">
+		<small>{label}</small>
+		<h2>{name}</h2>
+		<p>{bio}</p>
+	</div>
+	<a class="article-author-card__link" href={href}>{linkLabel}</a>
+</section>
