@@ -7,6 +7,7 @@ The CMS is available at `/admin/` after deployment.
 - Sveltia CMS is pinned to version `0.172.4`.
 - Authentication currently uses the GitHub backend and a personal access token.
 - Content changes are written directly to `main` after the content-system PR is merged.
+- The public site is currently the controlled test environment; unpublished experiments must remain `draft` or `noindex`.
 - A production-friendly OAuth method can replace token authentication later without changing the content model.
 
 ## Managed collections
