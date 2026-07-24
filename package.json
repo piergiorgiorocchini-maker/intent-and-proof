@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/validate-sveltia-admin.mjs && bash -o pipefail -c 'astro build 2>&1 | tail -n 100'",
+    "build": "node scripts/validate-sveltia-admin.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
