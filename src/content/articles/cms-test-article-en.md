@@ -24,9 +24,9 @@ relatedArticles: []
 layout: editorial-wide
 hero: null
 showDescription: true
-showToc: false
+showToc: true
 showShare: true
-showSidebarCta: false
+showSidebarCta: true
 sidebarCta: null
 footerCta: null
 comments:
