@@ -27,7 +27,15 @@ layout: editorial-wide
 hero:
   layout: split
   tone: aurora
-  image: null
+  image:
+    src: /images/uploads/ChatGPT Image Jul 24, 2026 at 05_04_58 PM.png
+    alt: chat for intent and proof
+    width: null
+    height: null
+    caption: ''
+    credit: ''
+    position: center
+    loading: lazy
   imagePosition: center
   videoUrl: ''
 showDescription: true
