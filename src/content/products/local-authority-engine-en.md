@@ -441,23 +441,22 @@ sections:
     tone: neutral
     eyebrow: "Prefer a direct route?"
     title: "Choose the contact path that matches the decision."
-    text: "A diagnostic form is best for structured review. Direct contact is available when context already exists."
+    text: "A diagnostic form is best for structured review. Direct contact will be connected after the approved production endpoint is configured."
     items:
-      - type: email
-        label: "Email"
-        value: "Send a structured enquiry"
-        href: "mailto:contact@intentandproof.com"
-        description: "Best for project context, links and internal stakeholders."
-      - type: calendar
-        label: "Diagnostic call"
-        value: "Request scheduling"
-        href: "#diagnostic"
-        description: "Available after an initial fit review."
       - type: form
         label: "Website diagnostic"
-        value: "Use the form above"
+        value: "Use the diagnostic form"
         href: "#diagnostic"
         description: "The fastest route to a useful first assessment."
+      - type: calendar
+        label: "Diagnostic call"
+        value: "Scheduling follows fit review"
+        href: "#diagnostic"
+        description: "A call is arranged after the initial project context is reviewed."
+      - type: email
+        label: "Direct email"
+        value: "Production endpoint pending"
+        description: "The approved address will be connected before indexing is enabled."
 
   - type: final-cta
     id: final-action
