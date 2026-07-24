@@ -60,6 +60,15 @@ const {
 	commentsTheme = "preferred_color_scheme",
 	commentsLang = "en",
 	layoutVariant = "wide",
+	locale = "en",
+	articleId = "",
+	showRelatedContent = true,
+	relatedCategoryIds = [],
+	relatedTags = [],
+	relatedManualArticleIds = [],
+	relatedContentLimit = 4,
+	relatedContentTitle = "",
+	relatedContentText = "",
 	breadcrumbs = [
 		{ href: "/", label: "Home" },
 		{ href: "/blog/", label: "Research" }
@@ -79,6 +88,10 @@ const siteURL = Astro.site ?? new URL("https://www.intentandproof.com");
 const articleURL = new URL(Astro.url.pathname, siteURL);
 const articleImage = heroImageSrc ? new URL(heroImageSrc, siteURL).toString() : undefined;
 const editorialComponentCount = Object.keys(editorialComponents).length;
+const contentLocale = locale === "it" ? "it" : "en";
+const resolvedRelatedTags = relatedTags.length > 0
+	? relatedTags
+	: tags.map((tag) => typeof tag === "string" ? tag : tag.label).filter(Boolean);
 
 const articleSchema = {
 	"@type": "Article",
@@ -139,7 +152,21 @@ const structuredData = {
 	publishedDate={publishedDate}
 	updatedDate={updatedDate}
 	author={author}
+	lang={contentLocale}
 	structuredData={structuredData}
+	showRelatedContent={showRelatedContent}
+	relatedContent={{
+		currentId: articleId,
+		currentHref: Astro.url.pathname,
+		categoryIds: relatedCategoryIds,
+		tags: resolvedRelatedTags,
+		manualArticleIds: relatedManualArticleIds,
+		limit: relatedContentLimit,
+		title: relatedContentTitle || (contentLocale === "it" ? "Altri approfondimenti sul tema." : "More research on this topic."),
+		text: relatedContentText || (contentLocale === "it" ? "Una selezione automatica degli articoli più recenti e pertinenti." : "An automatic selection of the most recent and relevant articles."),
+		allHref: contentLocale === "it" ? "/it/blog/" : "/blog/",
+		allLabel: contentLocale === "it" ? "Vedi tutti gli articoli" : "View all research"
+	}}
 >
 	<article class={`article-shell article-shell--${layoutVariant}`} data-editorial-components={editorialComponentCount}>
 		<ArticleHero
