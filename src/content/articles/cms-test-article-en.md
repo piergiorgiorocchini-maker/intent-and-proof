@@ -5,7 +5,7 @@ title: CMS Test Article
 slug: cms-test-article
 description: Test article created through Sveltia CMS to verify content creation, saving and deployment.
 eyebrow: CMS Testing
-draft: true
+draft: false
 featured: false
 publishedDate: 2026-07-24
 updatedDate: 2026-07-24
