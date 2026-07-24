@@ -55,3 +55,7 @@ Blocks can be repeated, reordered or hidden. The renderer maps each `type` to a 
 `Local Authority Engine` is implemented in English and Italian as the reference persuasive architecture. Both entries remain `noIndex: true` until commercial copy, contact endpoints and final visuals are approved.
 
 The current form action and direct-contact values are non-production placeholders. They must be connected to approved email, CRM, form or calendar endpoints during the Sveltia/integration step before indexing is enabled.
+
+## Validation
+
+The English and Italian product routes, all commercial blocks, multilingual metadata and product indexes pass the automated Astro production build.
