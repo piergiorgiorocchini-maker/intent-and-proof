@@ -1,0 +1,34 @@
+---
+const { block } = Astro.props;
+const icons: Record<string, string> = {
+	email: "@",
+	phone: "☎",
+	whatsapp: "W",
+	calendar: "▦",
+	form: "↗",
+	location: "⌖"
+};
+---
+
+<section id={block.id} class={`commercial-section commercial-contact commercial-section--${block.tone}`}>
+	<div class="commercial-shell">
+		<header class="commercial-section-heading commercial-section-heading--center">
+			{block.eyebrow && <p class="commercial-eyebrow">{block.eyebrow}</p>}
+			{block.title && <h2>{block.title}</h2>}
+			{block.text && <p>{block.text}</p>}
+		</header>
+		<div class="commercial-contact__grid">
+			{block.items.map((item: any) => (
+				<article>
+					<span class="commercial-contact__icon" aria-hidden="true">{icons[item.type] || "↗"}</span>
+					<div>
+						<h3>{item.label}</h3>
+						{item.href ? <a href={item.href}>{item.value}</a> : <strong>{item.value}</strong>}
+						{item.description && <p>{item.description}</p>}
+						{item.availability && <small>{item.availability}</small>}
+					</div>
+				</article>
+			))}
+		</div>
+	</div>
+</section>
