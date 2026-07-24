@@ -19,7 +19,9 @@ tags:
   - Content management
 keyTakeaways:
   - Sveltia CMS can create and manage structured Astro content directly from GitHub.
-faqs: []
+faqs:
+  - question: does this work
+    answer: maybe
 relatedArticles: []
 layout: editorial-wide
 hero:
