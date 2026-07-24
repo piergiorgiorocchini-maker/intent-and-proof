@@ -6,6 +6,7 @@ import GiscusComments from "../components/editorial/GiscusComments.astro";
 import ShareBar from "../components/editorial/ShareBar.astro";
 import SidebarCta from "../components/editorial/SidebarCta.astro";
 import TableOfContents from "../components/editorial/TableOfContents.astro";
+import { editorialComponents } from "../components/editorial/registry";
 import "../styles/article-editorial.css";
 import "../styles/article-hero-split.css";
 import "../styles/editorial-components.css";
@@ -77,6 +78,7 @@ const resolvedEditorImageAlt = editorImageAlt || `${editor} portrait`;
 const siteURL = Astro.site ?? new URL("https://www.intentandproof.com");
 const articleURL = new URL(Astro.url.pathname, siteURL);
 const articleImage = heroImageSrc ? new URL(heroImageSrc, siteURL).toString() : undefined;
+const editorialComponentCount = Object.keys(editorialComponents).length;
 
 const articleSchema = {
 	"@type": "Article",
@@ -139,7 +141,7 @@ const structuredData = {
 	author={author}
 	structuredData={structuredData}
 >
-	<article class={`article-shell article-shell--${layoutVariant}`}>
+	<article class={`article-shell article-shell--${layoutVariant}`} data-editorial-components={editorialComponentCount}>
 		<ArticleHero
 			title={title}
 			description={description}
