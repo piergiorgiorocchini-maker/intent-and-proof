@@ -1,9 +1,11 @@
 ---
+const { lang = "en" } = Astro.props;
 const currentYear = new Date().getFullYear();
 const contactEmail =
 	"mailto:piergiorgio.rocchini@gmail.com?subject=Intent%20%26%20Proof%20Enquiry";
 const researchEmail =
 	"mailto:piergiorgio.rocchini@gmail.com?subject=Intent%20%26%20Proof%20Research%20Notes&body=Please%20add%20me%20to%20Intent%20%26%20Proof%20Research%20Notes.%0A%0AEmail%3A";
+const trackingNoticeLabel = lang === "it" ? "Informativa analytics" : "Analytics notice";
 ---
 
 <footer class="site-footer">
@@ -17,8 +19,8 @@ const researchEmail =
 				We examine how your website captures intent, builds trust, creates action and measures the outcome — then identify what should be fixed first.
 			</p>
 			<div class="footer-cta-actions">
-				<a class="footer-primary-link" href="/diagnostic/">Request a Diagnostic</a>
-				<a class="footer-secondary-link" href="/case-studies/">View Case Studies</a>
+				<a class="footer-primary-link" href="/diagnostic/" data-cta data-tracking-id="footer-diagnostic">Request a Diagnostic</a>
+				<a class="footer-secondary-link" href="/case-studies/" data-cta data-tracking-id="footer-case-studies">View Case Studies</a>
 			</div>
 		</div>
 	</section>
@@ -65,6 +67,7 @@ const researchEmail =
 				<ul class="footer-link-list">
 					<li><a href="/about/">About</a></li>
 					<li><a href={contactEmail}>Contact</a></li>
+					<li><a href="#tracking-notice" data-open-tracking-notice>{trackingNoticeLabel}</a></li>
 				</ul>
 			</div>
 		</nav>
