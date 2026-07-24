@@ -1,0 +1,138 @@
+---
+import type { GlobalSettings } from "../../content/schemas/settings";
+
+interface Props {
+	settings: GlobalSettings;
+	lang?: "en" | "it";
+}
+
+const { settings, lang = "en" } = Astro.props;
+const tracking = settings.tracking;
+const useGtm = tracking.enabled
+	&& tracking.delivery === "gtm"
+	&& tracking.googleTagManager.enabled
+	&& Boolean(tracking.googleTagManager.containerId);
+const directGoogleIds = [
+	tracking.googleAnalytics4.enabled ? tracking.googleAnalytics4.measurementId : "",
+	tracking.googleAds.enabled ? tracking.googleAds.conversionId : ""
+].filter(Boolean);
+const primaryGoogleId = directGoogleIds[0] || "";
+const useDirectGoogle = tracking.enabled && tracking.delivery === "direct" && Boolean(primaryGoogleId);
+const useMeta = tracking.enabled && tracking.metaPixel.enabled && Boolean(tracking.metaPixel.pixelId);
+
+const clientConfig = {
+	enabled: tracking.enabled,
+	debug: tracking.debug,
+	delivery: tracking.delivery,
+	lang,
+	googleAnalyticsId: tracking.googleAnalytics4.enabled ? tracking.googleAnalytics4.measurementId : "",
+	googleAdsId: tracking.googleAds.enabled ? tracking.googleAds.conversionId : "",
+	googleAdsLabel: tracking.googleAds.defaultConversionLabel,
+	metaPixelId: tracking.metaPixel.enabled ? tracking.metaPixel.pixelId : "",
+	events: tracking.events
+};
+---
+
+{
+	tracking.enabled && (
+		<>
+			<script is:inline define:vars={{ consentModeEnabled: tracking.consentModeEnabled, defaultConsent: tracking.defaultConsent, clientConfig }}>
+				window.dataLayer = window.dataLayer || [];
+				window.gtag = window.gtag || function gtag(){ window.dataLayer.push(arguments); };
+
+				if (consentModeEnabled) {
+					window.gtag("consent", "default", defaultConsent);
+				}
+
+				window.IntentProofTracking = {
+					config: clientConfig,
+					track(name, parameters = {}) {
+						const payload = {
+							...parameters,
+							page_path: window.location.pathname,
+							page_location: window.location.href,
+							language: clientConfig.lang,
+							transport_type: "beacon"
+						};
+
+						if (clientConfig.delivery === "gtm") {
+							window.dataLayer.push({ event: name, ...payload });
+						} else if (typeof window.gtag === "function") {
+							window.gtag("event", name, payload);
+						}
+
+						if (
+							name === clientConfig.events.generateLead
+							&& clientConfig.googleAdsId
+							&& clientConfig.googleAdsLabel
+							&& typeof window.gtag === "function"
+						) {
+							window.gtag("event", "conversion", {
+								send_to: `${clientConfig.googleAdsId}/${clientConfig.googleAdsLabel}`,
+								transport_type: "beacon"
+							});
+						}
+
+						if (typeof window.fbq === "function" && clientConfig.metaPixelId) {
+							if (name === clientConfig.events.generateLead) {
+								window.fbq("track", "Lead", payload);
+							} else if (name === clientConfig.events.emailSignup) {
+								window.fbq("track", "CompleteRegistration", payload);
+							} else {
+								window.fbq("trackCustom", name, payload);
+							}
+						}
+
+						if (clientConfig.debug) console.info("[IntentProofTracking]", name, payload);
+					}
+				};
+			</script>
+
+			{useDirectGoogle && <script async src={`https://www.googletagmanager.com/gtag/js?id=${primaryGoogleId}`}></script>}
+			{
+				useDirectGoogle && (
+					<script is:inline define:vars={{ directGoogleIds, debug: tracking.debug }}>
+						window.gtag("js", new Date());
+						directGoogleIds.forEach((id) => {
+							window.gtag("config", id, debug ? { debug_mode: true } : {});
+						});
+					</script>
+				)
+			}
+
+			{
+				useGtm && (
+					<script is:inline define:vars={{ containerId: tracking.googleTagManager.containerId }}>
+						(function(w,d,s,l,i){
+							w[l]=w[l]||[];
+							w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+							const first=d.getElementsByTagName(s)[0];
+							const script=d.createElement(s);
+							const layer=l!=='dataLayer'?'&l='+l:'';
+							script.async=true;
+							script.src='https://www.googletagmanager.com/gtm.js?id='+i+layer;
+							first.parentNode.insertBefore(script,first);
+						})(window,document,'script','dataLayer',containerId);
+					</script>
+				)
+			}
+
+			{
+				useMeta && (
+					<script is:inline define:vars={{ pixelId: tracking.metaPixel.pixelId }}>
+						(function(f,b,e,v,n,t,s){
+							if(f.fbq)return;
+							n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+							if(!f._fbq)f._fbq=n;
+							n.push=n;n.loaded=true;n.version='2.0';n.queue=[];
+							t=b.createElement(e);t.async=true;t.src=v;
+							s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+						})(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+						window.fbq('init', pixelId);
+						window.fbq('track', 'PageView');
+					</script>
+				)
+			}
+		</>
+	)
+}
