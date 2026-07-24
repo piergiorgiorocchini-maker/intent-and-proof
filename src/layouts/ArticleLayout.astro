@@ -1,7 +1,15 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import ArticleFooter from "../components/editorial/ArticleFooter.astro";
+import ArticleHero from "../components/editorial/ArticleHero.astro";
+import GiscusComments from "../components/editorial/GiscusComments.astro";
+import ShareBar from "../components/editorial/ShareBar.astro";
+import SidebarCta from "../components/editorial/SidebarCta.astro";
+import TableOfContents from "../components/editorial/TableOfContents.astro";
+import { editorialComponents } from "../components/editorial/registry";
 import "../styles/article-editorial.css";
 import "../styles/article-hero-split.css";
+import "../styles/editorial-components.css";
 
 const {
 	title = "Intent & Proof Growth Guide",
@@ -30,6 +38,7 @@ const {
 	heroTone = "aurora",
 	showDescription = true,
 	videoUrl = "",
+	ctaEyebrow = "Intent & Proof Audit",
 	ctaTitle = "Want to find the weak points in your website?",
 	ctaText = "Get a practical audit of your SEO, landing page, tracking and lead path before spending more on traffic.",
 	ctaLabel = "Check My Site",
@@ -42,7 +51,24 @@ const {
 	showToc = true,
 	showShare = true,
 	showSidebarCta = true,
+	showComments = false,
+	commentsRepo = "",
+	commentsRepoId = "",
+	commentsCategory = "General",
+	commentsCategoryId = "",
+	commentsMapping = "pathname",
+	commentsTheme = "preferred_color_scheme",
+	commentsLang = "en",
 	layoutVariant = "wide",
+	locale = "en",
+	articleId = "",
+	showRelatedContent = true,
+	relatedCategoryIds = [],
+	relatedTags = [],
+	relatedManualArticleIds = [],
+	relatedContentLimit = 4,
+	relatedContentTitle = "",
+	relatedContentText = "",
 	breadcrumbs = [
 		{ href: "/", label: "Home" },
 		{ href: "/blog/", label: "Research" }
@@ -56,31 +82,16 @@ const {
 	]
 } = Astro.props;
 
-const initialsFor = (name) => name
-	.split(" ")
-	.filter(Boolean)
-	.map((part) => part.charAt(0))
-	.join("")
-	.slice(0, 2)
-	.toUpperCase();
-
 const resolvedAuthorImageAlt = authorImageAlt || `${author} portrait`;
 const resolvedEditorImageAlt = editorImageAlt || `${editor} portrait`;
-const authorInitials = initialsFor(author);
-const editorInitials = editor ? initialsFor(editor) : "";
-
-const formatDate = (value) => {
-	if (!value) return "";
-	return new Intl.DateTimeFormat("en-GB", {
-		day: "numeric",
-		month: "long",
-		year: "numeric"
-	}).format(new Date(`${value}T00:00:00`));
-};
-
 const siteURL = Astro.site ?? new URL("https://www.intentandproof.com");
 const articleURL = new URL(Astro.url.pathname, siteURL);
 const articleImage = heroImageSrc ? new URL(heroImageSrc, siteURL).toString() : undefined;
+const editorialComponentCount = Object.keys(editorialComponents).length;
+const contentLocale = locale === "it" ? "it" : "en";
+const resolvedRelatedTags = relatedTags.length > 0
+	? relatedTags
+	: tags.map((tag) => typeof tag === "string" ? tag : tag.label).filter(Boolean);
 
 const articleSchema = {
 	"@type": "Article",
@@ -131,14 +142,6 @@ const structuredData = {
 	"@context": "https://schema.org",
 	"@graph": [articleSchema, breadcrumbSchema]
 };
-
-const linkedInShare = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleURL.toString())}`;
-const xShare = `https://x.com/intent/post?url=${encodeURIComponent(articleURL.toString())}&text=${encodeURIComponent(title)}`;
-const heroStyle = [
-	`--article-hero-image-position: ${heroImagePosition}`,
-	heroLayout === "background" && heroImageSrc ? `--article-hero-background-image: url('${heroImageSrc}')` : ""
-].filter(Boolean).join("; ");
-const showHeroVisual = heroLayout === "split" && Boolean(videoUrl || heroImageSrc);
 ---
 
 <BaseLayout
@@ -149,164 +152,97 @@ const showHeroVisual = heroLayout === "split" && Boolean(videoUrl || heroImageSr
 	publishedDate={publishedDate}
 	updatedDate={updatedDate}
 	author={author}
+	lang={contentLocale}
 	structuredData={structuredData}
+	showRelatedContent={showRelatedContent}
+	relatedContent={{
+		currentId: articleId,
+		currentHref: Astro.url.pathname,
+		categoryIds: relatedCategoryIds,
+		tags: resolvedRelatedTags,
+		manualArticleIds: relatedManualArticleIds,
+		limit: relatedContentLimit,
+		title: relatedContentTitle || (contentLocale === "it" ? "Altri approfondimenti sul tema." : "More research on this topic."),
+		text: relatedContentText || (contentLocale === "it" ? "Una selezione automatica degli articoli più recenti e pertinenti." : "An automatic selection of the most recent and relevant articles."),
+		allHref: contentLocale === "it" ? "/it/blog/" : "/blog/",
+		allLabel: contentLocale === "it" ? "Vedi tutti gli articoli" : "View all research"
+	}}
 >
-	<article class={`article-shell article-shell--${layoutVariant}`}>
-		<header class={`article-hero article-hero--${heroLayout} article-hero--${heroTone}`} style={heroStyle}>
-			<div class="article-hero-inner">
-				<nav class="article-breadcrumbs" aria-label="Breadcrumb">
-					{
-						breadcrumbs.map((item, index) => (
-							<>
-								{index > 0 && <span aria-hidden="true">/</span>}
-								<a href={item.href}>{item.label}</a>
-							</>
-						))
-					}
-					<span aria-hidden="true">/</span>
-					<span aria-current="page">{title}</span>
-				</nav>
-
-				<div class="article-hero-grid">
-					<div class="article-hero-copy">
-						<div class="article-hero-taxonomy" aria-label="Article topics">
-							<a class="article-eyebrow" href={categoryHref}>{eyebrow}</a>
-							{tags.slice(0, 3).map((tag) => <a href={tag.href}>{tag.label}</a>)}
-						</div>
-
-						<h1>{title}</h1>
-						{showDescription && description && <p class="article-description">{description}</p>}
-
-						<div class="article-meta" aria-label="Publication information">
-							<span><time datetime={publishedDate}>{formatDate(publishedDate)}</time></span>
-							{updatedDate !== publishedDate && <span>Updated <time datetime={updatedDate}>{formatDate(updatedDate)}</time></span>}
-							<span>{readTime}</span>
-						</div>
-
-						<div class="article-contributors">
-							<div class="article-contributor">
-								<a class="article-author-image-link" href={authorHref} aria-label={`View ${author} profile`}>
-									{
-										authorImageSrc ? (
-											<img class="article-author-avatar" src={authorImageSrc} alt={resolvedAuthorImageAlt} width="56" height="56" loading="eager" decoding="async" />
-										) : (
-											<span class="article-author-avatar" aria-hidden="true">{authorInitials}</span>
-										)
-									}
-								</a>
-								<div class="article-contributor-copy">
-									<span>Written by</span>
-									<a href={authorHref}>{author}</a>
-									<small>{authorRole}</small>
-								</div>
-							</div>
-
-							{
-								editor && (
-									<div class="article-contributor article-contributor--editor">
-										{
-											editorHref ? (
-												<a class="article-author-image-link" href={editorHref} aria-label={`View ${editor} profile`}>
-													{editorImageSrc ? <img class="article-author-avatar" src={editorImageSrc} alt={resolvedEditorImageAlt} width="48" height="48" loading="eager" decoding="async" /> : <span class="article-author-avatar" aria-hidden="true">{editorInitials}</span>}
-												</a>
-											) : (
-												<span class="article-author-avatar" aria-hidden="true">{editorInitials}</span>
-											)
-										}
-										<div class="article-contributor-copy">
-											<span>Edited by</span>
-											{editorHref ? <a href={editorHref}>{editor}</a> : <strong>{editor}</strong>}
-										</div>
-									</div>
-								)
-							}
-						</div>
-					</div>
-
-					{
-						showHeroVisual && (
-							<div class="article-hero-visual">
-								{
-									videoUrl ? (
-										<div class="article-hero-video">
-											<iframe
-												src={videoUrl}
-												title={title}
-												allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-												allowfullscreen
-											></iframe>
-										</div>
-									) : (
-										<img src={heroImageSrc} alt={heroImageAlt} loading="eager" decoding="async" />
-									)
-								}
-							</div>
-						)
-					}
-				</div>
-			</div>
-		</header>
+	<article class={`article-shell article-shell--${layoutVariant}`} data-editorial-components={editorialComponentCount}>
+		<ArticleHero
+			title={title}
+			description={description}
+			eyebrow={eyebrow}
+			categoryHref={categoryHref}
+			breadcrumbs={breadcrumbs}
+			tags={tags}
+			publishedDate={publishedDate}
+			updatedDate={updatedDate}
+			readTime={readTime}
+			author={author}
+			authorHref={authorHref}
+			authorRole={authorRole}
+			authorImageSrc={authorImageSrc}
+			authorImageAlt={resolvedAuthorImageAlt}
+			editor={editor}
+			editorHref={editorHref}
+			editorImageSrc={editorImageSrc}
+			editorImageAlt={resolvedEditorImageAlt}
+			heroImageSrc={heroImageSrc}
+			heroImageAlt={heroImageAlt}
+			heroImagePosition={heroImagePosition}
+			heroLayout={heroLayout}
+			heroTone={heroTone}
+			showDescription={showDescription}
+			videoUrl={videoUrl}
+		/>
 
 		<div class="article-editorial-frame">
 			<aside class="article-left-rail" aria-label="Article navigation and sharing">
-				{
-					showToc && toc.length > 0 && (
-						<div class="article-side-card article-toc">
-							<p>On this page</p>
-							<nav>{toc.map((item) => <a href={item.href}>{item.label}</a>)}</nav>
-						</div>
-					)
-				}
-
-				{
-					showShare && (
-						<div class="article-side-card article-share">
-							<p>Share</p>
-							<div class="article-share-links">
-								<a href={linkedInShare} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">in</a>
-								<a href={xShare} target="_blank" rel="noopener noreferrer" aria-label="Share on X">x</a>
-								<a href={articleURL.toString()} aria-label="Open canonical article link">↗</a>
-							</div>
-						</div>
-					)
-				}
+				{showToc && <TableOfContents items={toc} />}
+				{showShare && <ShareBar title={title} url={articleURL.toString()} />}
 			</aside>
 
 			<div class="article-content"><slot /></div>
 
 			{
 				showSidebarCta && (
-					<aside class="article-right-rail" aria-label="Recommended next action">
-						<div class="article-sidebar-cta">
-							<p>{sidebarEyebrow}</p>
-							<h2>{sidebarTitle}</h2>
-							<span>{sidebarText}</span>
-							<a href={sidebarHref}>{sidebarLabel}<i aria-hidden="true">↗</i></a>
-						</div>
-					</aside>
+					<SidebarCta
+						eyebrow={sidebarEyebrow}
+						title={sidebarTitle}
+						text={sidebarText}
+						label={sidebarLabel}
+						href={sidebarHref}
+					/>
 				)
 			}
 		</div>
 
-		<div class="article-after-content">
-			<section class="article-author-card" aria-label={`About ${author}`}>
-				{authorImageSrc ? <img class="article-author-card__avatar" src={authorImageSrc} alt={resolvedAuthorImageAlt} width="82" height="82" loading="lazy" decoding="async" /> : <span class="article-author-card__avatar" aria-hidden="true">{authorInitials}</span>}
-				<div class="article-author-card__copy">
-					<small>About the author</small>
-					<h2>{author}</h2>
-					<p>{authorBio}</p>
-				</div>
-				<a class="article-author-card__link" href={authorHref}>View author profile</a>
-			</section>
-
-			<section class="article-bottom-cta">
-				<div>
-					<p>Intent &amp; Proof Audit</p>
-					<h2>{ctaTitle}</h2>
-					<span>{ctaText}</span>
-				</div>
-				<a href={ctaHref}>{ctaLabel}</a>
-			</section>
-		</div>
+		<ArticleFooter
+			author={author}
+			authorHref={authorHref}
+			authorBio={authorBio}
+			authorImageSrc={authorImageSrc}
+			authorImageAlt={resolvedAuthorImageAlt}
+			ctaEyebrow={ctaEyebrow}
+			ctaTitle={ctaTitle}
+			ctaText={ctaText}
+			ctaLabel={ctaLabel}
+			ctaHref={ctaHref}
+		>
+			{
+				showComments && commentsRepo && commentsRepoId && commentsCategoryId && (
+					<GiscusComments
+						repo={commentsRepo}
+						repoId={commentsRepoId}
+						category={commentsCategory}
+						categoryId={commentsCategoryId}
+						mapping={commentsMapping}
+						theme={commentsTheme}
+						lang={commentsLang}
+					/>
+				)
+			}
+		</ArticleFooter>
 	</article>
 </BaseLayout>

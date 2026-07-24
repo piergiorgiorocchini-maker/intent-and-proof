@@ -1,0 +1,25 @@
+---
+interface Action {
+	label: string;
+	href: string;
+	style?: "primary" | "secondary" | "outline" | "text" | "dark";
+	trackingId?: string;
+	newTab?: boolean;
+}
+
+const { action, className = "" } = Astro.props as { action: Action; className?: string };
+const buttonClass = ["commercial-button", `commercial-button--${action.style || "primary"}`, className]
+	.filter(Boolean)
+	.join(" ");
+---
+
+<a
+	class={buttonClass}
+	href={action.href}
+	target={action.newTab ? "_blank" : undefined}
+	rel={action.newTab ? "noopener noreferrer" : undefined}
+	data-tracking-id={action.trackingId || undefined}
+>
+	<span>{action.label}</span>
+	<i aria-hidden="true">↗</i>
+</a>

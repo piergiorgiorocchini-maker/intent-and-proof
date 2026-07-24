@@ -1,0 +1,61 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ArchiveHero from "../../../components/content/ArchiveHero.astro";
+import ArticleGrid from "../../../components/content/ArticleGrid.astro";
+import CategoryNav from "../../../components/content/CategoryNav.astro";
+import { getPublishedArticleIndex } from "../../../lib/content/interlinking";
+import "../../../styles/content-archives.css";
+
+export async function getStaticPaths() {
+	const categories = (await getCollection("categories"))
+		.filter((entry) => entry.data.locale === "en");
+
+	return categories.map((category) => ({
+		params: { slug: category.data.slug },
+		props: { category }
+	}));
+}
+
+const { category } = Astro.props;
+const articleIndex = await getPublishedArticleIndex("en");
+const articles = articleIndex.filter((article) => article.categoryId === category.id);
+const categoryEntries = (await getCollection("categories"))
+	.filter((entry) => entry.data.locale === "en")
+	.sort((a, b) => a.data.order - b.data.order);
+const categories = categoryEntries.map((entry) => ({
+	name: entry.data.name,
+	slug: entry.data.slug,
+	description: entry.data.description,
+	locale: "en" as const
+}));
+const canonicalPath = `/blog/category/${category.data.slug}/`;
+---
+
+<BaseLayout
+	title={category.data.seo?.title || `${category.data.name} Research | Intent & Proof`}
+	description={category.data.seo?.description || category.data.description}
+	lang="en"
+	canonicalPath={canonicalPath}
+	noindex={category.data.seo?.noIndex || false}
+	nofollow={category.data.seo?.noFollow || false}
+	showRelatedContent={false}
+>
+	<ArchiveHero
+		eyebrow={category.data.eyebrow}
+		title={category.data.name}
+		description={category.data.description}
+		meta={`${articles.length} published ${articles.length === 1 ? "article" : "articles"}`}
+		tone={category.data.tone}
+		breadcrumbs={[
+			{ label: "Home", href: "/" },
+			{ label: "Research", href: "/blog/" }
+		]}
+	/>
+	<CategoryNav categories={categories} locale="en" activeSlug={category.data.slug} />
+	<ArticleGrid
+		articles={articles}
+		title={`Latest ${category.data.name} research`}
+		emptyText="This category is ready. Published articles will appear here automatically."
+	/>
+</BaseLayout>

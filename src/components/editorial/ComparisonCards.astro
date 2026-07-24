@@ -1,0 +1,47 @@
+---
+interface ComparisonItem {
+	title: string;
+	description?: string;
+	features?: string[];
+	badge?: string;
+	href?: string;
+	linkLabel?: string;
+	highlighted?: boolean;
+}
+
+interface Props {
+	items?: ComparisonItem[];
+	title?: string;
+	eyebrow?: string;
+}
+
+const {
+	items = [],
+	title = "Compare options",
+	eyebrow = "Comparison"
+} = Astro.props;
+---
+
+{
+	items.length > 0 && (
+		<section class="editorial-comparison" aria-labelledby="editorial-comparison-title">
+			<div class="editorial-comparison__heading">
+				{eyebrow && <p>{eyebrow}</p>}
+				<h2 id="editorial-comparison-title">{title}</h2>
+			</div>
+			<div class="editorial-comparison__grid">
+				{
+					items.map((item) => (
+						<article class:list={["editorial-comparison-card", { "editorial-comparison-card--highlighted": item.highlighted }]}>
+							{item.badge && <p class="editorial-comparison-card__badge">{item.badge}</p>}
+							<h3>{item.title}</h3>
+							{item.description && <span>{item.description}</span>}
+							{item.features && item.features.length > 0 && <ul>{item.features.map((feature) => <li>{feature}</li>)}</ul>}
+							{item.href && <a href={item.href}>{item.linkLabel || "Learn more"}</a>}
+						</article>
+					))
+				}
+			</div>
+		</section>
+	)
+}

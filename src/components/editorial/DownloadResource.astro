@@ -1,0 +1,30 @@
+---
+interface Props {
+	title: string;
+	text: string;
+	label?: string;
+	href: string;
+	meta?: string;
+	eyebrow?: string;
+}
+
+const {
+	title,
+	text,
+	label = "Download resource",
+	href,
+	meta = "",
+	eyebrow = "Resource"
+} = Astro.props;
+---
+
+<aside class="editorial-download">
+	<div class="editorial-download__icon" aria-hidden="true">↓</div>
+	<div class="editorial-download__copy">
+		{eyebrow && <p>{eyebrow}</p>}
+		<h3>{title}</h3>
+		<span>{text}</span>
+		{meta && <small>{meta}</small>}
+	</div>
+	<a href={href} download>{label}</a>
+</aside>

@@ -1,0 +1,38 @@
+---
+import ArticleCard from "./ArticleCard.astro";
+import type { ArticleIndexItem } from "../../lib/content/interlinking";
+
+interface Props {
+	articles: ArticleIndexItem[];
+	title?: string;
+	description?: string;
+	emptyText?: string;
+}
+
+const {
+	articles,
+	title = "",
+	description = "",
+	emptyText = "No published articles are available yet."
+} = Astro.props;
+---
+
+<section class="content-archive-list" aria-label={title || "Article archive"}>
+	<div class="content-archive-list__inner">
+		{(title || description) && (
+			<header class="content-archive-list__head">
+				{title && <h2>{title}</h2>}
+				{description && <p>{description}</p>}
+			</header>
+		)}
+		{
+			articles.length > 0 ? (
+				<div class="content-archive-list__grid">
+					{articles.map((article) => <ArticleCard article={article} />)}
+				</div>
+			) : (
+				<p class="content-archive-list__empty">{emptyText}</p>
+			)
+		}
+	</div>
+</section>

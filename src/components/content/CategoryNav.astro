@@ -1,0 +1,36 @@
+---
+interface CategoryItem {
+	name: string;
+	slug: string;
+	description?: string;
+	locale: "en" | "it";
+}
+
+interface Props {
+	categories: CategoryItem[];
+	locale?: "en" | "it";
+	activeSlug?: string;
+}
+
+const { categories, locale = "en", activeSlug = "" } = Astro.props;
+const archiveHref = (slug: string) => locale === "it"
+	? `/it/blog/categoria/${slug}/`
+	: `/blog/category/${slug}/`;
+---
+
+{
+	categories.length > 0 && (
+		<nav class="content-category-nav" aria-label={locale === "it" ? "Categorie del blog" : "Blog categories"}>
+			<div class="content-category-nav__inner">
+				<a class:list={[!activeSlug && "is-active"]} href={locale === "it" ? "/it/blog/" : "/blog/"}>
+					{locale === "it" ? "Tutti" : "All research"}
+				</a>
+				{categories.map((category) => (
+					<a class:list={[activeSlug === category.slug && "is-active"]} href={archiveHref(category.slug)}>
+						{category.name}
+					</a>
+				))}
+			</div>
+		</nav>
+	)
+}

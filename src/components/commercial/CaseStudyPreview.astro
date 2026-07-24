@@ -1,0 +1,28 @@
+---
+import CommercialButton from "./CommercialButton.astro";
+const { block } = Astro.props;
+---
+
+<section id={block.id} class={`commercial-section commercial-case-study commercial-section--${block.tone}`}>
+	<div class="commercial-shell commercial-case-study__grid">
+		<div class="commercial-case-study__copy">
+			{block.eyebrow && <p class="commercial-eyebrow">{block.eyebrow}</p>}
+			<span class="commercial-case-study__client">{block.client}</span>
+			{block.title && <h2>{block.title}</h2>}
+			{block.text && <p>{block.text}</p>}
+			{block.challenge && <div><strong>Challenge</strong><p>{block.challenge}</p></div>}
+			{block.approach && <div><strong>Approach</strong><p>{block.approach}</p></div>}
+			{block.action && <CommercialButton action={block.action} />}
+		</div>
+		<div class="commercial-case-study__proof">
+			{block.media && <img src={block.media.src} alt={block.media.alt} loading="lazy" decoding="async" />}
+			{block.results?.length > 0 && (
+				<div class="commercial-case-study__results">
+					{block.results.map((result: any) => (
+						<article><strong>{result.value}</strong><span>{result.label}</span></article>
+					))}
+				</div>
+			)}
+		</div>
+	</div>
+</section>

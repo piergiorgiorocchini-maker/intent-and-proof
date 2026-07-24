@@ -1,0 +1,41 @@
+---
+import AudienceFit from "./AudienceFit.astro";
+import CaseStudyPreview from "./CaseStudyPreview.astro";
+import CommercialFAQ from "./CommercialFAQ.astro";
+import ContactOptions from "./ContactOptions.astro";
+import FeatureShowcase from "./FeatureShowcase.astro";
+import FinalCTA from "./FinalCTA.astro";
+import IntegrationGrid from "./IntegrationGrid.astro";
+import LeadForm from "./LeadForm.astro";
+import MetricsProof from "./MetricsProof.astro";
+import OutcomeGrid from "./OutcomeGrid.astro";
+import PricingCards from "./PricingCards.astro";
+import ProblemSection from "./ProblemSection.astro";
+import ProcessSteps from "./ProcessSteps.astro";
+import RiskReversal from "./RiskReversal.astro";
+import TestimonialBlock from "./TestimonialBlock.astro";
+import TrustStrip from "./TrustStrip.astro";
+
+const { block, locale = "en" } = Astro.props;
+const components: Record<string, any> = {
+	trust: TrustStrip,
+	problem: ProblemSection,
+	outcomes: OutcomeGrid,
+	process: ProcessSteps,
+	feature: FeatureShowcase,
+	metrics: MetricsProof,
+	testimonial: TestimonialBlock,
+	"case-study": CaseStudyPreview,
+	audience: AudienceFit,
+	integrations: IntegrationGrid,
+	pricing: PricingCards,
+	"risk-reversal": RiskReversal,
+	faq: CommercialFAQ,
+	"lead-form": LeadForm,
+	contact: ContactOptions,
+	"final-cta": FinalCTA
+};
+const Component = components[block.type];
+---
+
+{block.visible !== false && Component && <Component block={block} locale={locale} />}

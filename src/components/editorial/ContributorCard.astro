@@ -1,0 +1,61 @@
+---
+interface Props {
+	label?: string;
+	name: string;
+	href?: string;
+	role?: string;
+	imageSrc?: string;
+	imageAlt?: string;
+	size?: number;
+	variant?: "author" | "editor";
+}
+
+const {
+	label = "Written by",
+	name,
+	href = "",
+	role = "",
+	imageSrc = "",
+	imageAlt = `${name} portrait`,
+	size = 56,
+	variant = "author"
+} = Astro.props;
+
+const initials = name
+	.split(" ")
+	.filter(Boolean)
+	.map((part) => part.charAt(0))
+	.join("")
+	.slice(0, 2)
+	.toUpperCase();
+
+const contributorClass = [
+	"article-contributor",
+	variant === "editor" ? "article-contributor--editor" : ""
+].filter(Boolean).join(" ");
+---
+
+<div class={contributorClass}>
+	{
+		href ? (
+			<a class="article-author-image-link" href={href} aria-label={`View ${name} profile`}>
+				{
+					imageSrc ? (
+						<img class="article-author-avatar" src={imageSrc} alt={imageAlt} width={size} height={size} loading="eager" decoding="async" />
+					) : (
+						<span class="article-author-avatar" aria-hidden="true">{initials}</span>
+					)
+				}
+			</a>
+		) : imageSrc ? (
+			<img class="article-author-avatar" src={imageSrc} alt={imageAlt} width={size} height={size} loading="eager" decoding="async" />
+		) : (
+			<span class="article-author-avatar" aria-hidden="true">{initials}</span>
+		)
+	}
+	<div class="article-contributor-copy">
+		<span>{label}</span>
+		{href ? <a href={href}>{name}</a> : <strong>{name}</strong>}
+		{role && <small>{role}</small>}
+	</div>
+</div>

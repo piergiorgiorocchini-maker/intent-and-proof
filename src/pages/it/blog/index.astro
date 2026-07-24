@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ArchiveHero from "../../../components/content/ArchiveHero.astro";
+import ArticleGrid from "../../../components/content/ArticleGrid.astro";
+import CategoryNav from "../../../components/content/CategoryNav.astro";
+import { getPublishedArticleIndex } from "../../../lib/content/interlinking";
+import "../../../styles/content-archives.css";
+
+const articles = await getPublishedArticleIndex("it");
+const categoryEntries = (await getCollection("categories"))
+	.filter((entry) => entry.data.locale === "it")
+	.sort((a, b) => a.data.order - b.data.order);
+const categories = categoryEntries.map((entry) => ({
+	name: entry.data.name,
+	slug: entry.data.slug,
+	description: entry.data.description,
+	locale: "it" as const
+}));
+---
+
+<BaseLayout
+	title="Ricerca e guide di crescita | Intent & Proof"
+	description="Ricerca su SEO locale, conversione, acquisizione, prove e misurazione per imprese di servizi."
+	lang="it"
+	canonicalPath="/it/blog/"
+	showRelatedContent={false}
+>
+	<ArchiveHero
+		eyebrow="Ricerca Intent & Proof"
+		title="Sistemi, prove e ricerca pratica sulla crescita."
+		description="Guide strutturate per costruire sistemi di acquisizione che collegano intenzione di mercato, prove credibili, conversione e misurazione."
+		meta={`${articles.length} ${articles.length === 1 ? "articolo pubblicato" : "articoli pubblicati"}`}
+		breadcrumbs={[{ label: "Home", href: "/it/" }]}
+	/>
+	<CategoryNav categories={categories} locale="it" />
+	<ArticleGrid
+		articles={articles}
+		title="Ultimi approfondimenti"
+		description="Gli articoli pubblicati più recentemente in tutte le categorie attive."
+		emptyText="L'archivio è pronto. Gli articoli in italiano compariranno automaticamente dopo la pubblicazione."
+	/>
+</BaseLayout>

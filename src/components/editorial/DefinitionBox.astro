@@ -1,0 +1,28 @@
+---
+interface Props {
+	term: string;
+	definition: string;
+	source?: string;
+	sourceHref?: string;
+}
+
+const {
+	term,
+	definition,
+	source = "",
+	sourceHref = ""
+} = Astro.props;
+---
+
+<aside class="editorial-definition" aria-labelledby="editorial-definition-term">
+	<p>Definition</p>
+	<h3 id="editorial-definition-term">{term}</h3>
+	<span>{definition}</span>
+	{
+		source && (
+			<small>
+				Source: {sourceHref ? <a href={sourceHref} rel="nofollow noopener noreferrer">{source}</a> : source}
+			</small>
+		)
+	}
+</aside>

@@ -1,0 +1,25 @@
+---
+interface Props {
+	items?: string[];
+	title?: string;
+	eyebrow?: string;
+}
+
+const {
+	items = [],
+	title = "Key takeaways",
+	eyebrow = "Summary"
+} = Astro.props;
+---
+
+<section class="editorial-takeaways" aria-labelledby="editorial-takeaways-title">
+	{eyebrow && <p class="editorial-takeaways__eyebrow">{eyebrow}</p>}
+	<h2 id="editorial-takeaways-title">{title}</h2>
+	{
+		items.length > 0 ? (
+			<ul>{items.map((item) => <li>{item}</li>)}</ul>
+		) : (
+			<div class="editorial-takeaways__slot"><slot /></div>
+		)
+	}
+</section>

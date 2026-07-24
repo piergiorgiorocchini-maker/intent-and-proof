@@ -1,0 +1,21 @@
+---
+import CommercialButton from "./CommercialButton.astro";
+const { block } = Astro.props;
+---
+
+<section id={block.id} class={`commercial-section commercial-risk commercial-section--${block.tone}`}>
+	<div class="commercial-shell commercial-risk__card">
+		<header class="commercial-section-heading">
+			{block.eyebrow && <p class="commercial-eyebrow">{block.eyebrow}</p>}
+			{block.title && <h2>{block.title}</h2>}
+			{block.text && <p>{block.text}</p>}
+			{block.action && <CommercialButton action={block.action} />}
+		</header>
+		<div class="commercial-risk__commitments">
+			{block.commitments.map((item: any, index: number) => (
+				<article><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{item.title}</h3><p>{item.text}</p></div></article>
+			))}
+		</div>
+		{block.microcopy?.length > 0 && <ul class="commercial-microcopy">{block.microcopy.map((item: string) => <li>{item}</li>)}</ul>}
+	</div>
+</section>

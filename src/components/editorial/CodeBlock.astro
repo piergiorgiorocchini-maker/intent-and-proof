@@ -1,0 +1,44 @@
+---
+interface Props {
+	code: string;
+	language?: string;
+	filename?: string;
+	showCopy?: boolean;
+}
+
+const {
+	code,
+	language = "text",
+	filename = "",
+	showCopy = true
+} = Astro.props;
+
+const codeId = `code-${Math.random().toString(36).slice(2, 10)}`;
+---
+
+<figure class="editorial-code">
+	<figcaption>
+		<span>{filename || language}</span>
+		{showCopy && <button type="button" data-copy-code={codeId}>Copy</button>}
+	</figcaption>
+	<pre><code id={codeId} class={`language-${language}`}>{code}</code></pre>
+</figure>
+
+<script>
+	document.querySelectorAll("[data-copy-code]").forEach((button) => {
+		if (!(button instanceof HTMLButtonElement) || button.dataset.copyReady === "true") return;
+		button.dataset.copyReady = "true";
+		button.addEventListener("click", async () => {
+			const targetId = button.dataset.copyCode;
+			const target = targetId ? document.getElementById(targetId) : null;
+			if (!target) return;
+			try {
+				await navigator.clipboard.writeText(target.textContent || "");
+				button.textContent = "Copied";
+				window.setTimeout(() => { button.textContent = "Copy"; }, 1600);
+			} catch {
+				button.textContent = "Select text";
+			}
+		});
+	});
+</script>

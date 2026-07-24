@@ -1,0 +1,40 @@
+---
+import type { ArticleIndexItem } from "../../lib/content/interlinking";
+
+interface Props {
+	article: ArticleIndexItem;
+	compact?: boolean;
+}
+
+const { article, compact = false } = Astro.props;
+const formattedDate = new Intl.DateTimeFormat(article.locale === "it" ? "it-IT" : "en-GB", {
+	day: "numeric",
+	month: "short",
+	year: "numeric"
+}).format(article.publishedDate);
+---
+
+<article class:list={["content-article-card", compact && "content-article-card--compact"]}>
+	<a class="content-article-card__media" href={article.href} aria-label={article.title}>
+		{
+			article.image ? (
+				<img src={article.image.src} alt={article.image.alt} loading="lazy" decoding="async" />
+			) : (
+				<span aria-hidden="true">I&amp;P</span>
+			)
+		}
+	</a>
+	<div class="content-article-card__body">
+		<div class="content-article-card__meta">
+			<a href={article.categoryHref}>{article.categoryName}</a>
+			<span aria-hidden="true">·</span>
+			<time datetime={article.publishedDate.toISOString()}>{formattedDate}</time>
+		</div>
+		<h3><a href={article.href}>{article.title}</a></h3>
+		<p>{article.description}</p>
+		<div class="content-article-card__footer">
+			<a href={article.authorHref}>{article.authorName}</a>
+			<span>{article.readTime}</span>
+		</div>
+	</div>
+</article>

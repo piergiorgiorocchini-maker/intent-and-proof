@@ -1,0 +1,89 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import ArticleGrid from "../components/content/ArticleGrid.astro";
+import type { ArticleIndexItem } from "../lib/content/interlinking";
+import "../styles/content-archives.css";
+
+interface Props {
+	author: any;
+	articles: ArticleIndexItem[];
+	locale?: "en" | "it";
+}
+
+const { author, articles, locale = "en" } = Astro.props;
+const authorPath = locale === "it"
+	? `/it/autori/${author.slug}/`
+	: `/authors/${author.slug}/`;
+const siteURL = Astro.site ?? new URL("https://www.intentandproof.com");
+const initials = author.name
+	.split(" ")
+	.filter(Boolean)
+	.map((part: string) => part.charAt(0))
+	.join("")
+	.slice(0, 2)
+	.toUpperCase();
+
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: author.name,
+	url: new URL(authorPath, siteURL).toString(),
+	jobTitle: author.role,
+	worksFor: {
+		"@type": "Organization",
+		name: "Intent & Proof",
+		url: siteURL.toString()
+	},
+	knowsAbout: author.expertise
+};
+---
+
+<BaseLayout
+	title={author.seo?.title || `${author.name} | Intent & Proof`}
+	description={author.seo?.description || author.shortBio}
+	image={author.seo?.image?.src || author.image?.src || ""}
+	lang={locale}
+	canonicalPath={authorPath}
+	noindex={author.seo?.noIndex || false}
+	nofollow={author.seo?.noFollow || false}
+	structuredData={structuredData}
+	showRelatedContent={false}
+>
+	<article class="author-archive">
+		<header class="author-archive__hero">
+			<div class="author-archive__hero-inner">
+				{
+					author.image ? (
+						<img src={author.image.src} alt={author.image.alt} width="140" height="140" loading="eager" decoding="async" />
+					) : (
+						<span class="author-archive__initials" aria-hidden="true">{initials}</span>
+					)
+				}
+				<div>
+					<p>{locale === "it" ? "Autore · Intent & Proof" : "Author · Intent & Proof"}</p>
+					<h1>{author.name}</h1>
+					<strong>{author.role}</strong>
+					<span>{author.shortBio}</span>
+				</div>
+			</div>
+		</header>
+
+		<div class="author-archive__body">
+			<section class="author-archive__biography">
+				<h2>{locale === "it" ? "Profilo" : "Profile"}</h2>
+				<div class="author-archive__prose"><slot /></div>
+			</section>
+			<aside class="author-archive__expertise" aria-label={locale === "it" ? "Competenze" : "Expertise"}>
+				<h2>{locale === "it" ? "Aree di competenza" : "Focus areas"}</h2>
+				<ul>{author.expertise.map((item: string) => <li>{item}</li>)}</ul>
+			</aside>
+		</div>
+
+		<ArticleGrid
+			articles={articles}
+			title={locale === "it" ? `Articoli di ${author.name}` : `Research by ${author.name}`}
+			description={locale === "it" ? "Gli articoli pubblicati e aggiornati più recentemente." : "The most recently published and updated articles."}
+			emptyText={locale === "it" ? "Nessun articolo pubblicato in questa lingua." : "No published articles are available in this language yet."}
+		/>
+	</article>
+</BaseLayout>

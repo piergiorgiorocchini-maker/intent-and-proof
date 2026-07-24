@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ThankYouPage from "../../../components/system/ThankYouPage.astro";
+import { getGlobalSettings } from "../../../lib/settings";
+
+const settings = await getGlobalSettings();
+const copy = settings.thankYou.it;
+---
+
+<BaseLayout
+	title={`${copy.title} | Intent & Proof`}
+	description={copy.text}
+	lang="it"
+	canonicalPath="/it/grazie/"
+	noindex={true}
+	showRelatedContent={false}
+>
+	<ThankYouPage settings={settings} lang="it" />
+</BaseLayout>

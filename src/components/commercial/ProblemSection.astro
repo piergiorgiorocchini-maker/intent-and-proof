@@ -1,0 +1,27 @@
+---
+import CommercialButton from "./CommercialButton.astro";
+const { block } = Astro.props;
+---
+
+<section id={block.id} class={`commercial-section commercial-problem commercial-section--${block.tone}`}>
+	<div class="commercial-shell commercial-problem__layout">
+		<header class="commercial-section-heading">
+			{block.eyebrow && <p class="commercial-eyebrow">{block.eyebrow}</p>}
+			{block.title && <h2>{block.title}</h2>}
+			{block.text && <p>{block.text}</p>}
+			{block.action && <CommercialButton action={block.action} />}
+		</header>
+		<div class="commercial-problem__costs">
+			{block.costTitle && <h3>{block.costTitle}</h3>}
+			{block.costs.map((cost: any, index: number) => (
+				<article>
+					<span aria-hidden="true">{cost.icon || String(index + 1).padStart(2, "0")}</span>
+					<div>
+						<h4>{cost.title}</h4>
+						<p>{cost.text}</p>
+					</div>
+				</article>
+			))}
+		</div>
+	</div>
+</section>

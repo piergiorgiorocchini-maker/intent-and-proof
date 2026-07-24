@@ -1,0 +1,33 @@
+---
+interface Props {
+	publishedDate: string | Date;
+	updatedDate?: string | Date;
+	readTime?: string;
+	locale?: string;
+}
+
+const {
+	publishedDate,
+	updatedDate,
+	readTime = "",
+	locale = "en-GB"
+} = Astro.props;
+
+const toDate = (value: string | Date) => value instanceof Date ? value : new Date(`${value}T00:00:00`);
+const toISODate = (value: string | Date) => value instanceof Date ? value.toISOString().slice(0, 10) : value;
+const formatDate = (value: string | Date) => new Intl.DateTimeFormat(locale, {
+	day: "numeric",
+	month: "long",
+	year: "numeric"
+}).format(toDate(value));
+
+const publishedISO = toISODate(publishedDate);
+const updatedISO = updatedDate ? toISODate(updatedDate) : "";
+const showUpdated = Boolean(updatedDate && updatedISO !== publishedISO);
+---
+
+<div class="article-meta" aria-label="Publication information">
+	<span><time datetime={publishedISO}>{formatDate(publishedDate)}</time></span>
+	{showUpdated && updatedDate && <span>Updated <time datetime={updatedISO}>{formatDate(updatedDate)}</time></span>}
+	{readTime && <span>{readTime}</span>}
+</div>

@@ -1,0 +1,72 @@
+---
+import { getGlobalSettings, localizedPath, resolveFormHandler } from "../../lib/settings";
+
+const { block, locale = "en" } = Astro.props;
+const contentLocale = locale === "it" ? "it" : "en";
+const settings = await getGlobalSettings();
+const handler = resolveFormHandler(settings, block.formName, block.id === "diagnostic" ? "diagnostic" : "lead");
+const handlerEnabled = Boolean(handler?.enabled && handler.provider !== "disabled" && handler.endpoint);
+const resolvedAction = block.action && block.action !== "#" ? block.action : handler?.endpoint || "#";
+const resolvedMethod = block.method || handler?.method || "post";
+const successPath = localizedPath(handler, contentLocale);
+const redirectUrl = new URL(successPath, settings.site.baseUrl).toString();
+const unavailableMessage = contentLocale === "it"
+	? "Il modulo non è ancora collegato a un endpoint di produzione."
+	: "This form is not connected to a production endpoint yet.";
+---
+
+<section id={block.id} class={`commercial-section commercial-lead-form commercial-section--${block.tone}`}>
+	<div class="commercial-shell commercial-lead-form__card">
+		<header class="commercial-section-heading">
+			{block.eyebrow && <p class="commercial-eyebrow">{block.eyebrow}</p>}
+			{block.title && <h2>{block.title}</h2>}
+			{block.text && <p>{block.text}</p>}
+			{block.note && <p class="commercial-section-note">{block.note}</p>}
+		</header>
+		<form
+			class="commercial-form"
+			name={block.formName}
+			action={resolvedAction}
+			method={resolvedMethod}
+			data-managed-form
+			data-handler-id={handler?.id || block.formName}
+			data-handler-enabled={String(handlerEnabled)}
+			data-form-purpose={handler?.purpose || "lead"}
+			data-event-name={handler?.eventName || settings.tracking.events.generateLead}
+			data-submission-mode={handler?.submissionMode || "native"}
+			data-success-mode={handler?.successMode || "redirect"}
+			data-success-path={successPath}
+		>
+			<input type="hidden" name="form-name" value={block.formName} />
+			<input type="hidden" name="locale" value={contentLocale} />
+			<input type="hidden" name="page_path" value={Astro.url.pathname} />
+			{handler?.redirectFieldName && <input type="hidden" name={handler.redirectFieldName} value={redirectUrl} />}
+			{handler?.hiddenFields.map((field) => <input type="hidden" name={field.name} value={field.value} />)}
+			{block.fields.map((field: any) => (
+				<label class={field.type === "textarea" ? "commercial-form__field commercial-form__field--wide" : "commercial-form__field"}>
+					<span>{field.label}</span>
+					{field.type === "textarea" ? (
+						<textarea name={field.name} placeholder={field.placeholder || undefined} required={field.required}></textarea>
+					) : field.type === "select" ? (
+						<select name={field.name} required={field.required}>
+							{field.placeholder && <option value="">{field.placeholder}</option>}
+							{field.options.map((option: string) => <option value={option}>{option}</option>)}
+						</select>
+					) : (
+						<input
+							type={field.type}
+							name={field.name}
+							placeholder={field.placeholder || undefined}
+							required={field.required}
+							autocomplete={field.autocomplete || undefined}
+						/>
+					)}
+				</label>
+			))}
+			<button type="submit" class="commercial-form__submit" data-cta data-tracking-id={handler?.id || block.formName}>{block.buttonLabel}<i aria-hidden="true">↗</i></button>
+			{block.privacyText && <p class="commercial-form__privacy">{block.privacyText}</p>}
+			{block.successMessage && <p class="commercial-form__success" data-form-success hidden>{block.successMessage}</p>}
+			<p class="form-configuration-error" data-form-error hidden>{unavailableMessage}</p>
+		</form>
+	</div>
+</section>

@@ -1,0 +1,110 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import CommercialHero from "../components/commercial/CommercialHero.astro";
+import CommercialSectionRenderer from "../components/commercial/CommercialSectionRenderer.astro";
+import "../styles/commercial-page.css";
+
+const { product } = Astro.props;
+const {
+	locale = "en",
+	title,
+	productName,
+	description,
+	productType = "system",
+	accent = "mint",
+	breadcrumbs = [],
+	hero,
+	sections = [],
+	alternates = [],
+	relatedContent = {},
+	seo = {}
+} = product;
+
+const siteURL = Astro.site ?? new URL("https://www.intentandproof.com");
+const canonicalPath = seo.canonicalUrl || Astro.url.pathname;
+const canonicalURL = new URL(canonicalPath, siteURL);
+const schemaType = productType === "platform" ? "SoftwareApplication" : "Service";
+const contentLocale = locale === "it" ? "it" : "en";
+
+const offerSchema = {
+	"@type": schemaType,
+	name: productName,
+	description,
+	url: canonicalURL.toString(),
+	provider: {
+		"@type": "Organization",
+		name: "Intent & Proof",
+		url: siteURL.toString()
+	},
+	...(hero?.media?.src ? { image: new URL(hero.media.src, siteURL).toString() } : {})
+};
+
+const breadcrumbSchema = {
+	"@type": "BreadcrumbList",
+	itemListElement: [
+		...breadcrumbs.map((item: any, index: number) => ({
+			"@type": "ListItem",
+			position: index + 1,
+			name: item.label,
+			item: new URL(item.href, siteURL).toString()
+		})),
+		{
+			"@type": "ListItem",
+			position: breadcrumbs.length + 1,
+			name: productName,
+			item: canonicalURL.toString()
+		}
+	]
+};
+
+const structuredData = {
+	"@context": "https://schema.org",
+	"@graph": [offerSchema, breadcrumbSchema]
+};
+---
+
+<BaseLayout
+	title={seo.title || title}
+	description={seo.description || description}
+	image={seo.image?.src || hero?.media?.src || ""}
+	lang={contentLocale}
+	canonicalPath={canonicalPath}
+	alternates={alternates}
+	noindex={seo.noIndex || false}
+	nofollow={seo.noFollow || false}
+	structuredData={structuredData}
+	showRelatedContent={relatedContent.enabled !== false}
+	relatedContent={{
+		eyebrow: relatedContent.eyebrow,
+		title: relatedContent.title || (contentLocale === "it" ? "Approfondimenti collegati al sistema." : "Research connected to this system."),
+		text: relatedContent.text,
+		categoryIds: relatedContent.categoryIds || [],
+		tags: relatedContent.tags || [],
+		manualArticleIds: relatedContent.manualArticleIds || [],
+		limit: relatedContent.limit || 4,
+		fallbackToLatest: relatedContent.fallbackToLatest !== false,
+		allHref: contentLocale === "it" ? "/it/blog/" : "/blog/",
+		allLabel: contentLocale === "it" ? "Vedi tutti gli articoli" : "View all research"
+	}}
+>
+	<div class={`commercial-page commercial-page--${accent}`}>
+		{breadcrumbs.length > 0 && (
+			<div class="commercial-breadcrumbs-wrap">
+				<nav class="commercial-breadcrumbs commercial-shell" aria-label={locale === "it" ? "Percorso" : "Breadcrumb"}>
+					{breadcrumbs.map((item: any, index: number) => (
+						<>
+							{index > 0 && <span aria-hidden="true">/</span>}
+							<a href={item.href}>{item.label}</a>
+						</>
+					))}
+					<span aria-hidden="true">/</span>
+					<span aria-current="page">{productName}</span>
+				</nav>
+			</div>
+		)}
+
+		<CommercialHero hero={hero} productName={productName} />
+
+		{sections.map((block: any) => <CommercialSectionRenderer block={block} locale={contentLocale} />)}
+	</div>
+</BaseLayout>

@@ -1,0 +1,94 @@
+---
+import type { GlobalSettings } from "../../content/schemas/settings";
+
+interface Props {
+	settings: GlobalSettings;
+}
+
+const { settings } = Astro.props;
+const events = settings.tracking.events;
+---
+
+<script is:inline define:vars={{ events }}>
+	const tracker = () => window.IntentProofTracking;
+
+	const track = (name, parameters = {}) => {
+		if (tracker() && typeof tracker().track === "function") {
+			tracker().track(name, parameters);
+		}
+	};
+
+	document.addEventListener("click", (event) => {
+		const target = event.target instanceof Element ? event.target.closest("a, button") : null;
+		if (!target) return;
+
+		const href = target instanceof HTMLAnchorElement ? target.getAttribute("href") || "" : "";
+		const explicitEvent = target.getAttribute("data-track-event");
+		const trackingId = target.getAttribute("data-tracking-id") || target.getAttribute("data-track-id") || "";
+		const label = (target.textContent || "").trim().replace(/\s+/g, " ").slice(0, 160);
+		const common = { link_url: href, link_text: label, tracking_id: trackingId };
+
+		if (explicitEvent) {
+			track(explicitEvent, common);
+			return;
+		}
+
+		if (href.startsWith("tel:")) track(events.phoneClick, common);
+		else if (href.startsWith("mailto:")) track(events.emailClick, common);
+		else if (/wa\.me|api\.whatsapp\.com|whatsapp:\/\//i.test(href)) track(events.whatsappClick, common);
+		else if (target.matches("[data-cta], .commercial-button, .email-capture__button, .footer-primary-link")) {
+			track(events.ctaClick, common);
+		}
+	});
+
+	document.addEventListener("submit", async (event) => {
+		const form = event.target instanceof HTMLFormElement ? event.target : null;
+		if (!form || !form.matches("[data-managed-form]")) return;
+
+		const handlerId = form.dataset.handlerId || form.getAttribute("name") || "form";
+		const purpose = form.dataset.formPurpose || "lead";
+		const eventName = form.dataset.eventName || events.formSubmit;
+		const successMode = form.dataset.successMode || "redirect";
+		const submissionMode = form.dataset.submissionMode || "native";
+		const handlerEnabled = form.dataset.handlerEnabled === "true";
+		const successPath = form.dataset.successPath || "";
+		const successNode = form.querySelector("[data-form-success]");
+		const errorNode = form.querySelector("[data-form-error]");
+
+		track(events.formSubmit, { form_id: handlerId, form_purpose: purpose });
+		if (eventName !== events.formSubmit) track(eventName, { form_id: handlerId, form_purpose: purpose });
+
+		if (!handlerEnabled) {
+			event.preventDefault();
+			if (errorNode instanceof HTMLElement) errorNode.hidden = false;
+			return;
+		}
+
+		if (submissionMode !== "fetch") return;
+
+		event.preventDefault();
+		if (successNode instanceof HTMLElement) successNode.hidden = true;
+		if (errorNode instanceof HTMLElement) errorNode.hidden = true;
+
+		try {
+			const response = await fetch(form.action, {
+				method: form.method || "POST",
+				body: new FormData(form),
+				headers: { Accept: "application/json" }
+			});
+
+			if (!response.ok) throw new Error(`Form endpoint returned ${response.status}`);
+
+			if (successMode === "redirect" && successPath) {
+				window.location.assign(successPath);
+				return;
+			}
+
+			form.reset();
+			if (successNode instanceof HTMLElement) successNode.hidden = false;
+		} catch (error) {
+			if (errorNode instanceof HTMLElement) errorNode.hidden = false;
+			if (tracker()?.config?.debug) console.error("[IntentProofForm]", error);
+		}
+	});
+</script>

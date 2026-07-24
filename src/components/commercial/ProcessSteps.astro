@@ -1,0 +1,37 @@
+---
+import CommercialButton from "./CommercialButton.astro";
+const { block } = Astro.props;
+---
+
+<section id={block.id} class={`commercial-section commercial-process commercial-section--${block.tone}`}>
+	<div class="commercial-shell">
+		<header class="commercial-section-heading">
+			{block.eyebrow && <p class="commercial-eyebrow">{block.eyebrow}</p>}
+			{block.title && <h2>{block.title}</h2>}
+			{block.text && <p>{block.text}</p>}
+		</header>
+		<div class={`commercial-process__layout ${block.media ? "commercial-process__layout--with-media" : ""}`}>
+			<div class="commercial-process__steps">
+				{block.steps.map((step: any, index: number) => (
+					<article>
+						<span>{step.number || String(index + 1).padStart(2, "0")}</span>
+						<div>
+							<h3>{step.title}</h3>
+							<p>{step.text}</p>
+							{step.deliverables?.length > 0 && (
+								<ul>{step.deliverables.map((item: string) => <li>{item}</li>)}</ul>
+							)}
+						</div>
+					</article>
+				))}
+			</div>
+			{block.media && (
+				<figure class="commercial-process__media">
+					<img src={block.media.src} alt={block.media.alt} loading={block.media.loading || "lazy"} decoding="async" />
+					{block.media.caption && <figcaption>{block.media.caption}</figcaption>}
+				</figure>
+			)}
+		</div>
+		{block.action && <div class="commercial-section-action"><CommercialButton action={block.action} /></div>}
+	</div>
+</section>
