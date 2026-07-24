@@ -1,0 +1,75 @@
+---
+import ArticleCard from "./ArticleCard.astro";
+import {
+	getPublishedArticleIndex,
+	selectRelatedArticles
+} from "../../lib/content/interlinking";
+
+interface Props {
+	locale?: "en" | "it";
+	eyebrow?: string;
+	title?: string;
+	text?: string;
+	currentId?: string;
+	currentHref?: string;
+	categoryIds?: string[];
+	tags?: string[];
+	manualArticleIds?: string[];
+	limit?: number;
+	fallbackToLatest?: boolean;
+	allHref?: string;
+	allLabel?: string;
+	compact?: boolean;
+}
+
+const {
+	locale = "en",
+	eyebrow = locale === "it" ? "Approfondimenti correlati" : "Related research",
+	title = locale === "it" ? "Continua da qui." : "Continue from here.",
+	text = locale === "it"
+		? "Gli articoli più recenti e pertinenti vengono selezionati automaticamente durante la build."
+		: "The most recent and relevant articles are selected automatically during the build.",
+	currentId = "",
+	currentHref = "",
+	categoryIds = [],
+	tags = [],
+	manualArticleIds = [],
+	limit = 4,
+	fallbackToLatest = true,
+	allHref = locale === "it" ? "/it/blog/" : "/blog/",
+	allLabel = locale === "it" ? "Vedi tutti gli articoli" : "View all research",
+	compact = false
+} = Astro.props;
+
+const articleIndex = await getPublishedArticleIndex(locale);
+const articles = selectRelatedArticles(articleIndex, {
+	locale,
+	currentId,
+	currentHref,
+	categoryIds,
+	tags,
+	manualArticleIds,
+	limit,
+	fallbackToLatest
+});
+---
+
+{
+	articles.length > 0 && (
+		<section class:list={["content-discovery", compact && "content-discovery--compact"]} aria-labelledby="content-discovery-title">
+			<div class="content-discovery__inner">
+				<header class="content-discovery__head">
+					<div>
+						<p>{eyebrow}</p>
+						<h2 id="content-discovery-title">{title}</h2>
+						{text && <span>{text}</span>}
+					</div>
+					<a href={allHref}>{allLabel}<i aria-hidden="true">↗</i></a>
+				</header>
+				<div class="content-discovery__grid">
+					{articles.map((article) => <ArticleCard article={article} compact={compact} />)}
+				</div>
+			</div>
+		</section>
+	)
+}
