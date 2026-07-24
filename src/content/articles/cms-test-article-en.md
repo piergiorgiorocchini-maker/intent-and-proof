@@ -21,16 +21,34 @@ keyTakeaways:
   - Sveltia CMS can create and manage structured Astro content directly from GitHub.
 faqs: []
 relatedArticles: []
-layout: editorial-standard
+layout: editorial-wide
 hero: null
 showDescription: true
 showToc: false
-showShare: false
-showSidebarCta: false
+showShare: true
+showSidebarCta: true
 sidebarCta: null
 footerCta: null
-comments: null
-relatedContent: null
+comments:
+  enabled: false
+  provider: giscus
+  repo: ''
+  repoId: ''
+  category: General
+  categoryId: ''
+  mapping: pathname
+  theme: preferred_color_scheme
+  lang: en
+relatedContent:
+  enabled: true
+  eyebrow: ''
+  title: ''
+  text: ''
+  categoryIds: []
+  tags: []
+  manualArticleIds: []
+  limit: 4
+  fallbackToLatest: true
 seo:
   title: CMS Test Article | Intent & Proof
   description: Test article created through Sveltia CMS to verify structured content creation, GitHub saving and Astro deployment.
