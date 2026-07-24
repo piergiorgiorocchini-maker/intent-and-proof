@@ -1,0 +1,29 @@
+---
+import CommercialButton from "./CommercialButton.astro";
+const { block } = Astro.props;
+---
+
+<section id={block.id} class={`commercial-section commercial-pricing commercial-section--${block.tone}`}>
+	<div class="commercial-shell">
+		<header class="commercial-section-heading commercial-section-heading--center">
+			{block.eyebrow && <p class="commercial-eyebrow">{block.eyebrow}</p>}
+			{block.title && <h2>{block.title}</h2>}
+			{block.text && <p>{block.text}</p>}
+		</header>
+		<div class="commercial-pricing__grid">
+			{block.plans.map((plan: any) => (
+				<article class={`commercial-pricing__card ${plan.highlighted ? "commercial-pricing__card--highlighted" : ""}`}>
+					{plan.badge && <span class="commercial-badge">{plan.badge}</span>}
+					{plan.eyebrow && <p class="commercial-eyebrow">{plan.eyebrow}</p>}
+					<h3>{plan.name}</h3>
+					<div class="commercial-pricing__price"><strong>{plan.price}</strong>{plan.frequency && <span>{plan.frequency}</span>}</div>
+					<p>{plan.description}</p>
+					{plan.features?.length > 0 && <ul class="commercial-check-list">{plan.features.map((item: string) => <li>{item}</li>)}</ul>}
+					<CommercialButton action={plan.action} />
+				</article>
+			))}
+		</div>
+		{block.currencyNote && <p class="commercial-section-note">{block.currencyNote}</p>}
+		{block.note && <p class="commercial-section-note">{block.note}</p>}
+	</div>
+</section>
