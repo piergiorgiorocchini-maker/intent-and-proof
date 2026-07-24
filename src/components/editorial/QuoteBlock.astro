@@ -1,0 +1,35 @@
+---
+interface Props {
+	quote: string;
+	author?: string;
+	source?: string;
+	sourceHref?: string;
+	variant?: "standard" | "feature";
+}
+
+const {
+	quote,
+	author = "",
+	source = "",
+	sourceHref = "",
+	variant = "standard"
+} = Astro.props;
+---
+
+<figure class={`editorial-quote editorial-quote--${variant}`}>
+	<blockquote>{quote}</blockquote>
+	{
+		(author || source) && (
+			<figcaption>
+				{author && <strong>{author}</strong>}
+				{
+					source && (
+						<span>
+							{sourceHref ? <a href={sourceHref} rel="nofollow noopener noreferrer">{source}</a> : source}
+						</span>
+					)
+				}
+			</figcaption>
+		)
+	}
+</figure>
