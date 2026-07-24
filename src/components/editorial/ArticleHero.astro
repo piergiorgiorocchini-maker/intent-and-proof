@@ -1,0 +1,138 @@
+---
+import ArticleMeta from "./ArticleMeta.astro";
+import Breadcrumbs from "./Breadcrumbs.astro";
+import ContributorCard from "./ContributorCard.astro";
+
+interface LinkItem {
+	href: string;
+	label: string;
+}
+
+interface Props {
+	title: string;
+	description?: string;
+	eyebrow: string;
+	categoryHref: string;
+	breadcrumbs?: LinkItem[];
+	tags?: LinkItem[];
+	publishedDate: string | Date;
+	updatedDate?: string | Date;
+	readTime?: string;
+	author: string;
+	authorHref?: string;
+	authorRole?: string;
+	authorImageSrc?: string;
+	authorImageAlt?: string;
+	editor?: string;
+	editorHref?: string;
+	editorImageSrc?: string;
+	editorImageAlt?: string;
+	heroImageSrc?: string;
+	heroImageAlt?: string;
+	heroImagePosition?: string;
+	heroLayout?: "split" | "background" | "text-only";
+	heroTone?: "aurora" | "navy" | "light" | "mint";
+	showDescription?: boolean;
+	videoUrl?: string;
+}
+
+const {
+	title,
+	description = "",
+	eyebrow,
+	categoryHref,
+	breadcrumbs = [],
+	tags = [],
+	publishedDate,
+	updatedDate,
+	readTime = "",
+	author,
+	authorHref = "",
+	authorRole = "",
+	authorImageSrc = "",
+	authorImageAlt = `${author} portrait`,
+	editor = "",
+	editorHref = "",
+	editorImageSrc = "",
+	editorImageAlt = editor ? `${editor} portrait` : "",
+	heroImageSrc = "",
+	heroImageAlt = "",
+	heroImagePosition = "center",
+	heroLayout = "split",
+	heroTone = "aurora",
+	showDescription = true,
+	videoUrl = ""
+} = Astro.props;
+
+const heroStyle = [
+	`--article-hero-image-position: ${heroImagePosition}`,
+	heroLayout === "background" && heroImageSrc ? `--article-hero-background-image: url('${heroImageSrc}')` : ""
+].filter(Boolean).join("; ");
+
+const showHeroVisual = heroLayout === "split" && Boolean(videoUrl || heroImageSrc);
+---
+
+<header class={`article-hero article-hero--${heroLayout} article-hero--${heroTone}`} style={heroStyle}>
+	<div class="article-hero-inner">
+		<Breadcrumbs items={breadcrumbs} current={title} />
+
+		<div class="article-hero-grid">
+			<div class="article-hero-copy">
+				<div class="article-hero-taxonomy" aria-label="Article topics">
+					<a class="article-eyebrow" href={categoryHref}>{eyebrow}</a>
+					{tags.slice(0, 3).map((tag) => <a href={tag.href}>{tag.label}</a>)}
+				</div>
+
+				<h1>{title}</h1>
+				{showDescription && description && <p class="article-description">{description}</p>}
+
+				<ArticleMeta publishedDate={publishedDate} updatedDate={updatedDate} readTime={readTime} />
+
+				<div class="article-contributors">
+					<ContributorCard
+						name={author}
+						href={authorHref}
+						role={authorRole}
+						imageSrc={authorImageSrc}
+						imageAlt={authorImageAlt}
+					/>
+
+					{
+						editor && (
+							<ContributorCard
+								label="Edited by"
+								name={editor}
+								href={editorHref}
+								imageSrc={editorImageSrc}
+								imageAlt={editorImageAlt}
+								size={48}
+								variant="editor"
+							/>
+						)
+					}
+				</div>
+			</div>
+
+			{
+				showHeroVisual && (
+					<div class="article-hero-visual">
+						{
+							videoUrl ? (
+								<div class="article-hero-video">
+									<iframe
+										src={videoUrl}
+										title={title}
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+										allowfullscreen
+									></iframe>
+								</div>
+							) : (
+								<img src={heroImageSrc} alt={heroImageAlt} loading="eager" decoding="async" />
+							)
+						}
+					</div>
+				)
+			}
+		</div>
+	</div>
+</header>
