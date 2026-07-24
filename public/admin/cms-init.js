@@ -12,7 +12,7 @@
       backend: {
         name: "github",
         repo: "piergiorgiorocchini-maker/intent-and-proof",
-        branch: "agent/sveltia-content-system",
+        branch: "main",
       },
       site_url: "https://www.intentandproof.com",
       display_url: "https://www.intentandproof.com",
