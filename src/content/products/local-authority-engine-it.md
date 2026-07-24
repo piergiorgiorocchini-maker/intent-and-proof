@@ -441,23 +441,22 @@ sections:
     tone: neutral
     eyebrow: "Preferisci un contatto diretto?"
     title: "Scegli il percorso adatto alla decisione."
-    text: "Il modulo diagnostico è ideale per una revisione strutturata. Il contatto diretto è disponibile quando il contesto è già chiaro."
+    text: "Il modulo diagnostico è ideale per una revisione strutturata. Il contatto diretto verrà collegato dopo la configurazione dell'endpoint di produzione approvato."
     items:
-      - type: email
-        label: "Email"
-        value: "Invia una richiesta strutturata"
-        href: "mailto:contact@intentandproof.com"
-        description: "Ideale per contesto, link e interlocutori interni."
-      - type: calendar
-        label: "Chiamata diagnostica"
-        value: "Richiedi la programmazione"
-        href: "#diagnostic"
-        description: "Disponibile dopo una prima valutazione di compatibilità."
       - type: form
         label: "Diagnosi del sito"
-        value: "Usa il modulo precedente"
+        value: "Usa il modulo diagnostico"
         href: "#diagnostic"
         description: "Il percorso più rapido verso una prima analisi utile."
+      - type: calendar
+        label: "Chiamata diagnostica"
+        value: "La programmazione segue la valutazione"
+        href: "#diagnostic"
+        description: "La chiamata viene organizzata dopo la revisione iniziale del contesto."
+      - type: email
+        label: "Email diretta"
+        value: "Endpoint di produzione da configurare"
+        description: "L'indirizzo approvato verrà collegato prima di abilitare l'indicizzazione."
 
   - type: final-cta
     id: final-action
