@@ -37,7 +37,7 @@ seo:
   canonicalUrl: ''
   image: null
   noIndex: true
-  noFollow: true
+  noFollow: false
 ---
 
 ## Purpose
@@ -47,11 +47,8 @@ This test article verifies that Sveltia CMS can create structured content and sa
 ## What we are testing
 
 - Content creation
-
 - Metadata and SEO fields
-
 - GitHub commit
-
 - Astro build
 
 ## Expected result
