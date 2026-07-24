@@ -35,7 +35,7 @@ showSidebarCta: true
 sidebarCta: null
 footerCta: null
 comments:
-  enabled: false
+  enabled: true
   provider: giscus
   repo: ''
   repoId: ''
