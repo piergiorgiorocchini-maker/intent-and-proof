@@ -1,0 +1,31 @@
+---
+interface Props {
+	title?: string;
+	variant?: "info" | "tip" | "warning" | "data" | "success";
+	icon?: string;
+}
+
+const {
+	title = "",
+	variant = "info",
+	icon = ""
+} = Astro.props;
+
+const defaultIcons = {
+	info: "i",
+	tip: "→",
+	warning: "!",
+	data: "%",
+	success: "✓"
+};
+
+const resolvedIcon = icon || defaultIcons[variant];
+---
+
+<aside class={`editorial-callout editorial-callout--${variant}`} aria-label={title || `${variant} note`}>
+	<span class="editorial-callout__icon" aria-hidden="true">{resolvedIcon}</span>
+	<div class="editorial-callout__content">
+		{title && <h3>{title}</h3>}
+		<slot />
+	</div>
+</aside>
