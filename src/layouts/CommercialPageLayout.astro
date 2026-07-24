@@ -7,6 +7,7 @@ import "../styles/commercial-page.css";
 const { product } = Astro.props;
 const {
 	locale = "en",
+	translationKey = "",
 	title,
 	productName,
 	description,
@@ -25,6 +26,12 @@ const canonicalPath = seo.canonicalUrl || Astro.url.pathname;
 const canonicalURL = new URL(canonicalPath, siteURL);
 const schemaType = productType === "platform" ? "SoftwareApplication" : "Service";
 const contentLocale = locale === "it" ? "it" : "en";
+const defaultCategoryIds = translationKey === "local-authority-engine"
+	? [contentLocale === "it" ? "local-seo-it" : "local-seo-en"]
+	: [];
+const resolvedCategoryIds = relatedContent.categoryIds?.length > 0
+	? relatedContent.categoryIds
+	: defaultCategoryIds;
 
 const offerSchema = {
 	"@type": schemaType,
@@ -78,7 +85,7 @@ const structuredData = {
 		eyebrow: relatedContent.eyebrow,
 		title: relatedContent.title || (contentLocale === "it" ? "Approfondimenti collegati al sistema." : "Research connected to this system."),
 		text: relatedContent.text,
-		categoryIds: relatedContent.categoryIds || [],
+		categoryIds: resolvedCategoryIds,
 		tags: relatedContent.tags || [],
 		manualArticleIds: relatedContent.manualArticleIds || [],
 		limit: relatedContent.limit || 4,
