@@ -1,0 +1,25 @@
+---
+import CommercialButton from "./CommercialButton.astro";
+const { block } = Astro.props;
+---
+
+<section id={block.id} class={`commercial-section commercial-outcomes commercial-section--${block.tone}`}>
+	<div class="commercial-shell">
+		<header class="commercial-section-heading commercial-section-heading--center">
+			{block.eyebrow && <p class="commercial-eyebrow">{block.eyebrow}</p>}
+			{block.title && <h2>{block.title}</h2>}
+			{block.text && <p>{block.text}</p>}
+		</header>
+		<div class="commercial-card-grid" style={`--commercial-columns:${block.columns || 3}`}>
+			{block.items.map((item: any, index: number) => (
+				<article class="commercial-outcome-card">
+					<span class="commercial-card-index" aria-hidden="true">{item.icon || String(index + 1).padStart(2, "0")}</span>
+					{item.metric && <strong class="commercial-card-metric">{item.metric}</strong>}
+					<h3>{item.title}</h3>
+					<p>{item.text}</p>
+					{item.action && <CommercialButton action={item.action} className="commercial-button--compact" />}
+				</article>
+			))}
+		</div>
+	</div>
+</section>
