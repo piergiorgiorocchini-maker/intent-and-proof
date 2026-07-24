@@ -127,7 +127,13 @@ const showHeroVisual = heroLayout === "split" && Boolean(videoUrl || heroImageSr
 									></iframe>
 								</div>
 							) : (
-								<img src={heroImageSrc} alt={heroImageAlt} loading="eager" decoding="async" />
+								<img
+									src={heroImageSrc}
+									alt={heroImageAlt}
+									loading="eager"
+									decoding="async"
+									style={`aspect-ratio: 3 / 2; object-fit: cover; object-position: ${heroImagePosition}; border-radius: 24px;`}
+								/>
 							)
 						}
 					</div>
