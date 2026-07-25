@@ -1,259 +1,297 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import EmailCaptureBox from "../components/EmailCaptureBox.astro";
+import "../styles/homepage-v2.css";
 ---
 
 <BaseLayout
 	title="Intent & Proof | Measurable Customer Acquisition Systems"
 	description="Intent & Proof connects demand, conversion, credible proof and measurement into one customer acquisition system for service businesses."
+	showRelatedContent={false}
 >
-	<section class="fd-hero">
-		<div class="fd-shell fd-hero__grid">
-			<div class="fd-hero__copy">
-				<p class="fd-eyebrow">
-					<span></span>
-					Customer acquisition systems
-				</p>
-				<h1>Turn fragmented marketing into a measurable acquisition system.</h1>
-				<p class="fd-hero__intro">
-					Intent &amp; Proof connects demand, conversion, credible proof and measurement, giving service businesses a clearer path from market opportunity to qualified enquiry.
-				</p>
-				<div class="fd-hero__actions">
-					<a class="fd-button fd-button--primary" href="/diagnostic/">
-						Request a diagnostic
-						<span aria-hidden="true">↗</span>
+	<div class="hp-home">
+		<section class="hp-hero">
+			<div class="hp-shell hp-hero__grid">
+				<div class="hp-hero__copy">
+					<p class="hp-eyebrow">Customer acquisition systems</p>
+					<h1>Turn fragmented marketing into a measurable acquisition system.</h1>
+					<p class="hp-hero__intro">
+						Intent &amp; Proof connects demand, conversion, credible proof and measurement, giving service businesses a clearer path from market opportunity to qualified enquiry.
+					</p>
+					<div class="hp-actions">
+						<a class="hp-button hp-button--primary" href="/diagnostic/">Request a diagnostic <span aria-hidden="true">↗</span></a>
+						<a class="hp-button hp-button--secondary" href="#services">Explore the system</a>
+					</div>
+					<ul class="hp-assurances" aria-label="Offer assurances">
+						<li>Evidence before spend</li>
+						<li>Built around your market</li>
+						<li>Measured to real enquiries</li>
+					</ul>
+				</div>
+
+				<div class="fd-console" aria-label="Acquisition diagnostic preview">
+					<div class="fd-console__halo"></div>
+					<div class="fd-console__window">
+						<div class="fd-console__top">
+							<div>
+								<span class="fd-console__mark" aria-hidden="true">I<span>&amp;</span>P</span>
+								<div>
+									<p>Acquisition Diagnostic</p>
+									<small>Aurora Dental Group · Cagliari</small>
+								</div>
+							</div>
+							<span class="fd-console__status"><i></i> Analysis ready</span>
+						</div>
+
+						<div class="fd-console__summary">
+							<div class="fd-score">
+								<div class="fd-score__ring"><span>72</span><small>/100</small></div>
+								<div><p>Foundation score</p><strong>Promising, with two priority leaks</strong></div>
+							</div>
+							<span class="fd-console__updated">Updated today</span>
+						</div>
+
+						<div class="fd-metrics">
+							<div class="fd-metric">
+								<div class="fd-metric__head"><span>Intent capture</span><strong>84</strong></div>
+								<div class="fd-metric__bar"><i style="--metric-width: 84%; --metric-color: var(--fd-mint);"></i></div>
+							</div>
+							<div class="fd-metric">
+								<div class="fd-metric__head"><span>Proof strength</span><strong>61</strong></div>
+								<div class="fd-metric__bar"><i style="--metric-width: 61%; --metric-color: var(--fd-orange);"></i></div>
+							</div>
+							<div class="fd-metric">
+								<div class="fd-metric__head"><span>Conversion path</span><strong>68</strong></div>
+								<div class="fd-metric__bar"><i style="--metric-width: 68%; --metric-color: var(--fd-cobalt);"></i></div>
+							</div>
+							<div class="fd-metric">
+								<div class="fd-metric__head"><span>Demand readiness</span><strong>79</strong></div>
+								<div class="fd-metric__bar"><i style="--metric-width: 79%; --metric-color: var(--fd-mint);"></i></div>
+							</div>
+							<div class="fd-metric">
+								<div class="fd-metric__head"><span>Measurement integrity</span><strong>48</strong></div>
+								<div class="fd-metric__bar"><i style="--metric-width: 48%; --metric-color: var(--fd-orange);"></i></div>
+							</div>
+						</div>
+
+						<div class="fd-next-action">
+							<div class="fd-next-action__icon" aria-hidden="true">01</div>
+							<div><small>Next best action</small><strong>Repair enquiry tracking before increasing campaign spend.</strong></div>
+							<span aria-hidden="true">→</span>
+						</div>
+					</div>
+
+					<div class="fd-signal-card fd-signal-card--top">
+						<span class="fd-signal-card__icon fd-signal-card__icon--blue" aria-hidden="true">↗</span>
+						<div><small>Demand signal</small><strong>High-intent query rising</strong></div>
+					</div>
+					<div class="fd-signal-card fd-signal-card--bottom">
+						<span class="fd-signal-card__icon fd-signal-card__icon--green" aria-hidden="true">✓</span>
+						<div><small>Proof verified</small><strong>Live operating evidence connected</strong></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="hp-evidence" aria-label="Operating evidence">
+			<div class="hp-shell hp-evidence__grid">
+				<div class="hp-evidence__item">
+					<div class="hp-evidence__icon" aria-hidden="true">↗</div>
+					<strong>2/2</strong>
+					<span>first premium yacht enquiries converted</span>
+				</div>
+				<div class="hp-evidence__item">
+					<div class="hp-evidence__icon" aria-hidden="true">◎</div>
+					<strong>#2</strong>
+					<span>priority local query in recent SERP evidence</span>
+				</div>
+				<div class="hp-evidence__item">
+					<div class="hp-evidence__icon" aria-hidden="true">▥</div>
+					<strong>100</strong>
+					<span>mobile PageSpeed achieved on a live system</span>
+				</div>
+				<div class="hp-evidence__item">
+					<div class="hp-evidence__icon" aria-hidden="true">✓</div>
+					<strong>Live</strong>
+					<span>operating evidence across local and premium service markets</span>
+				</div>
+			</div>
+		</section>
+
+		<section class="hp-human-capture" aria-label="Proof and free resource">
+			<div class="hp-shell hp-human-capture__panel">
+				<article class="hp-testimonial">
+					<div>
+						<div class="hp-testimonial__quote-mark" aria-hidden="true">“</div>
+						<blockquote>
+							The new acquisition infrastructure generated our first two premium yacht enquiries. Both converted, without price friction.
+						</blockquote>
+					</div>
+					<div class="hp-testimonial__person">
+						<div class="hp-testimonial__avatar" aria-hidden="true">PR</div>
+						<div>
+							<strong>Piergiorgio Rocchini</strong>
+							<span>Founder · operating case note</span>
+						</div>
+					</div>
+				</article>
+
+				<div class="hp-resource">
+					<div class="hp-guide-cover" aria-hidden="true">
+						<small>Free resource</small>
+						<strong>The Intent &amp; Proof Field Guide</strong>
+						<span>A practical framework for measurable acquisition.</span>
+					</div>
+					<EmailCaptureBox
+						eyebrow="Free resource"
+						title="Intent & Proof Field Guide"
+						text="A practical guide to connecting intent, proof, conversion and measurement into one acquisition system."
+						placeholder="Email address"
+						buttonLabel="Send me the guide"
+						note="No spam. Unsubscribe anytime."
+						formName="homepage-field-guide"
+						handlerId="newsletter"
+						lang="en"
+						compact={true}
+						errorMessage="The guide signup is being connected. Please use the diagnostic for now."
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section id="services" class="hp-section hp-system">
+			<div class="hp-shell">
+				<div class="hp-section-heading">
+					<div>
+						<p class="hp-eyebrow">The operating system</p>
+						<h2>Four disciplines. One commercial outcome.</h2>
+					</div>
+					<p>Each module has one job: identify the weakness, build the foundation, capture demand and measure the result.</p>
+				</div>
+
+				<div class="hp-system-grid">
+					<article class="hp-system-card">
+						<div class="hp-system-card__top"><span class="hp-system-card__number">01</span><span class="hp-system-card__state">Entry point</span></div>
+						<div class="fd-module-icon fd-module-icon--diagnose" aria-hidden="true"><span></span><span></span><span></span></div>
+						<p class="hp-system-card__verb">Diagnose</p>
+						<h3>Find the commercial leaks before prescribing more activity.</h3>
+						<p>Intent, proof, conversion, demand readiness and measurement become one readable decision layer.</p>
+						<a href="/diagnostic/">Acquisition Diagnostic <span aria-hidden="true">→</span></a>
+					</article>
+
+					<article class="hp-system-card">
+						<div class="hp-system-card__top"><span class="hp-system-card__number">02</span><span class="hp-system-card__state">Foundation</span></div>
+						<div class="fd-module-icon fd-module-icon--build" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+						<p class="hp-system-card__verb">Build</p>
+						<h3>Create the conversion foundation.</h3>
+						<p>Positioning, website, landing pages, proof and contact paths built as a coherent system.</p>
+						<a href="/diagnostic/">Conversion Foundation <span aria-hidden="true">→</span></a>
+					</article>
+
+					<article class="hp-system-card">
+						<div class="hp-system-card__top"><span class="hp-system-card__number">03</span><span class="hp-system-card__state">Demand</span></div>
+						<div class="fd-module-icon fd-module-icon--capture" aria-hidden="true"><span></span><span></span><span></span></div>
+						<p class="hp-system-card__verb">Capture</p>
+						<h3>Meet buyers where intent already exists.</h3>
+						<p>Search, local visibility, durable content and paid demand connected to the right destination.</p>
+						<a href="/blog/">Demand Capture <span aria-hidden="true">→</span></a>
+					</article>
+
+					<article class="hp-system-card">
+						<div class="hp-system-card__top"><span class="hp-system-card__number">04</span><span class="hp-system-card__state">Learning</span></div>
+						<div class="fd-module-icon fd-module-icon--measure" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+						<p class="hp-system-card__verb">Measure</p>
+						<h3>Turn outcomes into better decisions.</h3>
+						<p>Track useful actions, qualify leads and improve the components that influence revenue.</p>
+						<a href="/blog/category/case-studies/">Measurement &amp; Growth <span aria-hidden="true">→</span></a>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section id="solutions" class="hp-section hp-b2b">
+			<div class="hp-shell">
+				<div class="hp-b2b__heading">
+					<p class="hp-eyebrow">B2B and professional services</p>
+					<h2>Built for businesses that compete on trust, expertise and proof.</h2>
+					<p>When the sale is considered, the contract is valuable and credibility matters, acquisition cannot be reduced to traffic. The whole path has to reinforce the decision.</p>
+				</div>
+
+				<div class="hp-audience-grid">
+					<article class="hp-audience-card">
+						<div class="hp-audience-card__icon" aria-hidden="true">LOCAL</div>
+						<h3>Local service businesses</h3>
+						<p>Capture high-value demand in the right territory and turn visibility into qualified enquiries.</p>
+					</article>
+					<article class="hp-audience-card">
+						<div class="hp-audience-card__icon" aria-hidden="true">PRO</div>
+						<h3>Professional practices</h3>
+						<p>Build authority and a conversion path around expertise, reputation and considered decisions.</p>
+					</article>
+					<article class="hp-audience-card">
+						<div class="hp-audience-card__icon" aria-hidden="true">B2B</div>
+						<h3>Specialist B2B services</h3>
+						<p>Support longer sales cycles with proof, useful research and measurable commercial intent.</p>
+					</article>
+					<article class="hp-audience-card">
+						<div class="hp-audience-card__icon" aria-hidden="true">HIGH</div>
+						<h3>High-value specialist services</h3>
+						<p>Make specialist competence visible before price becomes the centre of the conversation.</p>
+					</article>
+				</div>
+
+				<div class="hp-b2b-proof">
+					<div class="hp-b2b-proof__mark" aria-hidden="true">B2B</div>
+					<div>
+						<strong>One acquisition system, adapted to the buying decision.</strong>
+						<span>Professional services, industrial specialists, premium operators and complex service offers.</span>
+					</div>
+					<a href="/diagnostic/">Map the opportunity →</a>
+				</div>
+			</div>
+		</section>
+
+		<section id="resources" class="hp-research">
+			<div class="hp-shell">
+				<div class="hp-research__heading">
+					<div>
+						<p class="hp-eyebrow hp-eyebrow--light">Research built for use</p>
+						<h2>Authority attracts demand. Evidence improves the system.</h2>
+					</div>
+					<a href="/blog/">Explore all research →</a>
+				</div>
+
+				<div class="hp-research-grid">
+					<a class="hp-research-card" href="/blog/local-service-lead-generation/">
+						<div class="hp-research-card__graphic" aria-hidden="true"></div>
+						<small>Field guide</small>
+						<h3>A practical system for turning search demand into measurable leads.</h3>
+						<span>Read the field guide →</span>
 					</a>
-					<a class="fd-button fd-button--secondary" href="#services">Explore the system</a>
-				</div>
-				<ul class="fd-hero__assurances" aria-label="Offer assurances">
-					<li>Evidence before spend</li>
-					<li>Built around your market</li>
-					<li>Measured to real enquiries</li>
-				</ul>
-			</div>
-
-			<div class="fd-console" aria-label="Acquisition diagnostic preview">
-				<div class="fd-console__halo"></div>
-				<div class="fd-console__window">
-					<div class="fd-console__top">
-						<div>
-							<span class="fd-console__mark" aria-hidden="true">I<span>&amp;</span>P</span>
-							<div>
-								<p>Acquisition Diagnostic</p>
-								<small>Aurora Dental Group · Cagliari</small>
-							</div>
-						</div>
-						<span class="fd-console__status"><i></i> Analysis ready</span>
-					</div>
-
-					<div class="fd-console__summary">
-						<div class="fd-score">
-							<div class="fd-score__ring">
-								<span>72</span>
-								<small>/100</small>
-							</div>
-							<div>
-								<p>Foundation score</p>
-								<strong>Promising, with two priority leaks</strong>
-							</div>
-						</div>
-						<span class="fd-console__updated">Updated today</span>
-					</div>
-
-					<div class="fd-metrics">
-						<div class="fd-metric">
-							<div class="fd-metric__head"><span>Intent capture</span><strong>84</strong></div>
-							<div class="fd-metric__bar"><i style="--metric-width: 84%; --metric-color: var(--fd-mint);"></i></div>
-						</div>
-						<div class="fd-metric">
-							<div class="fd-metric__head"><span>Proof strength</span><strong>61</strong></div>
-							<div class="fd-metric__bar"><i style="--metric-width: 61%; --metric-color: var(--fd-orange);"></i></div>
-						</div>
-						<div class="fd-metric">
-							<div class="fd-metric__head"><span>Conversion path</span><strong>68</strong></div>
-							<div class="fd-metric__bar"><i style="--metric-width: 68%; --metric-color: var(--fd-cobalt);"></i></div>
-						</div>
-						<div class="fd-metric">
-							<div class="fd-metric__head"><span>Demand readiness</span><strong>79</strong></div>
-							<div class="fd-metric__bar"><i style="--metric-width: 79%; --metric-color: var(--fd-mint);"></i></div>
-						</div>
-						<div class="fd-metric">
-							<div class="fd-metric__head"><span>Measurement integrity</span><strong>48</strong></div>
-							<div class="fd-metric__bar"><i style="--metric-width: 48%; --metric-color: var(--fd-orange);"></i></div>
-						</div>
-					</div>
-
-					<div class="fd-next-action">
-						<div class="fd-next-action__icon" aria-hidden="true">01</div>
-						<div>
-							<small>Next best action</small>
-							<strong>Repair enquiry tracking before increasing campaign spend.</strong>
-						</div>
-						<span aria-hidden="true">→</span>
-					</div>
-				</div>
-
-				<div class="fd-signal-card fd-signal-card--top">
-					<span class="fd-signal-card__icon fd-signal-card__icon--blue" aria-hidden="true">↗</span>
-					<div>
-						<small>Demand signal</small>
-						<strong>High-intent query rising</strong>
-					</div>
-				</div>
-				<div class="fd-signal-card fd-signal-card--bottom">
-					<span class="fd-signal-card__icon fd-signal-card__icon--green" aria-hidden="true">✓</span>
-					<div>
-						<small>Proof verified</small>
-						<strong>Live operating evidence connected</strong>
-					</div>
+					<a class="hp-research-card" href="/blog/category/case-studies/">
+						<div class="hp-research-card__graphic" aria-hidden="true"></div>
+						<small>Operating evidence</small>
+						<h3>What live service markets reveal about intent, proof and conversion.</h3>
+						<span>Explore case studies →</span>
+					</a>
+					<a class="hp-research-card" href="/blog/">
+						<div class="hp-research-card__graphic" aria-hidden="true"></div>
+						<small>Research notes</small>
+						<h3>Frameworks for building acquisition systems that learn from outcomes.</h3>
+						<span>View latest research →</span>
+					</a>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<section id="proof" class="fd-proof-strip" aria-label="Operating evidence">
-		<div class="fd-shell fd-proof-strip__inner">
-			<div class="fd-proof-strip__intro">
-				<span>Built in live markets</span>
-				<p>Operating evidence, not decorative claims.</p>
-			</div>
-			<div class="fd-proof-stat">
-				<strong>2/2</strong>
-				<span>first premium yacht enquiries converted</span>
-			</div>
-			<div class="fd-proof-stat">
-				<strong>#2</strong>
-				<span>priority local query in recent SERP data</span>
-			</div>
-			<div class="fd-proof-stat">
-				<strong>100</strong>
-				<span>mobile PageSpeed achieved on a live system</span>
-			</div>
-		</div>
-	</section>
-
-	<section id="services" class="fd-system">
-		<div class="fd-shell">
-			<div class="fd-section-heading">
+		<section class="hp-final">
+			<div class="hp-shell hp-final__panel">
 				<div>
-					<p class="fd-eyebrow fd-eyebrow--dark"><span></span>The operating system</p>
-					<h2>Four disciplines. One commercial outcome.</h2>
+					<p class="hp-eyebrow">Start with evidence</p>
+					<h2>Find the first commercial leak worth fixing.</h2>
 				</div>
-				<p>Each module has one job: identify the weakness, build the foundation, capture demand and measure the result.</p>
+				<a class="hp-button hp-button--primary" href="/diagnostic/">Request a diagnostic <span aria-hidden="true">↗</span></a>
 			</div>
-
-			<div class="fd-system-grid">
-				<article class="fd-system-card fd-system-card--featured">
-					<div class="fd-system-card__top">
-						<span class="fd-module-number">01</span>
-						<span class="fd-module-state">Entry point</span>
-					</div>
-					<div class="fd-module-icon fd-module-icon--diagnose" aria-hidden="true"><span></span><span></span><span></span></div>
-					<p class="fd-system-card__verb">Diagnose</p>
-					<h3>Find the commercial leaks before prescribing more activity.</h3>
-					<p>Intent, proof, conversion, demand readiness and measurement become one readable decision layer.</p>
-					<a href="/diagnostic/">Acquisition Diagnostic <span aria-hidden="true">→</span></a>
-				</article>
-
-				<article class="fd-system-card">
-					<div class="fd-system-card__top"><span class="fd-module-number">02</span><span class="fd-module-state">Foundation</span></div>
-					<div class="fd-module-icon fd-module-icon--build" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-					<p class="fd-system-card__verb">Build</p>
-					<h3>Create the conversion foundation.</h3>
-					<p>Positioning, website, landing pages, proof and contact paths built as a coherent system.</p>
-					<a href="/diagnostic/">Conversion Foundation <span aria-hidden="true">→</span></a>
-				</article>
-
-				<article class="fd-system-card">
-					<div class="fd-system-card__top"><span class="fd-module-number">03</span><span class="fd-module-state">Demand</span></div>
-					<div class="fd-module-icon fd-module-icon--capture" aria-hidden="true"><span></span><span></span><span></span></div>
-					<p class="fd-system-card__verb">Capture</p>
-					<h3>Meet buyers where intent already exists.</h3>
-					<p>Search, local visibility, durable content and paid demand connected to the right destination.</p>
-					<a href="/blog/">Demand Capture <span aria-hidden="true">→</span></a>
-				</article>
-
-				<article class="fd-system-card">
-					<div class="fd-system-card__top"><span class="fd-module-number">04</span><span class="fd-module-state">Learning</span></div>
-					<div class="fd-module-icon fd-module-icon--measure" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-					<p class="fd-system-card__verb">Measure</p>
-					<h3>Turn outcomes into better decisions.</h3>
-					<p>Track useful actions, qualify leads and improve the components that influence revenue.</p>
-					<a href="/blog/category/case-studies/">Measurement &amp; Growth <span aria-hidden="true">→</span></a>
-				</article>
-			</div>
-		</div>
-	</section>
-
-	<section id="solutions" class="fd-solutions">
-		<div class="fd-shell">
-			<div class="fd-section-heading">
-				<div>
-					<p class="fd-eyebrow fd-eyebrow--dark"><span></span>Who we help</p>
-					<h2>Two markets where focused proof matters.</h2>
-				</div>
-				<p>The evidence, language and conversion path change with the market. The underlying discipline does not.</p>
-			</div>
-
-			<div class="fd-solution-grid">
-				<article class="fd-solution-card fd-solution-card--local">
-					<span class="fd-solution-card__index">01</span>
-					<div class="fd-solution-card__visual" aria-hidden="true"><div class="fd-map-pin"></div><span></span><span></span><span></span></div>
-					<p>Local service businesses</p>
-					<h3>Own the highest-value demand in the right territory.</h3>
-					<a href="/blog/category/case-studies/">Explore the evidence <span aria-hidden="true">→</span></a>
-				</article>
-
-				<article class="fd-solution-card fd-solution-card--premium">
-					<span class="fd-solution-card__index">02</span>
-					<div class="fd-solution-card__visual" aria-hidden="true"><div class="fd-premium-signal"></div></div>
-					<p>High-value specialist services</p>
-					<h3>Make specialist proof visible before price becomes the discussion.</h3>
-					<a href="/blog/category/case-studies/">Explore the evidence <span aria-hidden="true">→</span></a>
-				</article>
-			</div>
-		</div>
-	</section>
-
-	<section id="resources" class="fd-research">
-		<div class="fd-shell fd-research__grid">
-			<div class="fd-research__copy">
-				<p class="fd-eyebrow fd-eyebrow--light"><span></span>Research built for use</p>
-				<h2>Authority attracts demand. Evidence improves the system.</h2>
-				<p>Long-form research, field evidence and practical frameworks support commercial pages and make the underlying decisions visible.</p>
-				<a class="fd-text-link" href="/blog/">Explore research <span aria-hidden="true">→</span></a>
-			</div>
-
-			<a class="fd-research-card" href="/blog/local-service-lead-generation/">
-				<div class="fd-research-card__meta"><span>Field guide 01</span><small>9 min read</small></div>
-				<div class="fd-research-card__graphic" aria-hidden="true"><div class="fd-research-card__path"><span>Intent</span><i></i><span>Proof</span><i></i><span>Action</span></div></div>
-				<p>Local service acquisition</p>
-				<h3>A practical system for turning search demand into measurable leads.</h3>
-				<span class="fd-research-card__link">Read the field guide <i aria-hidden="true">→</i></span>
-			</a>
-		</div>
-	</section>
-
-	<section class="fd-final-cta">
-		<div class="fd-shell fd-final-cta__inner">
-			<div>
-				<p class="fd-eyebrow fd-eyebrow--light"><span></span>Start with evidence</p>
-				<h2>Find the first commercial leak worth fixing.</h2>
-			</div>
-			<a class="fd-button fd-button--orange" href="/diagnostic/">Request a diagnostic <span aria-hidden="true">↗</span></a>
-		</div>
-	</section>
+		</section>
+	</div>
 </BaseLayout>
-
-<style>
-	.fd-solution-grid {
-		max-width: 940px;
-		margin-inline: auto;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-
-	@media (max-width: 760px) {
-		.fd-solution-grid {
-			grid-template-columns: 1fr;
-		}
-	}
-</style>
