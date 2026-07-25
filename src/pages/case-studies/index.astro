@@ -1,90 +1,26 @@
 ---
-import PageLayout from "../../layouts/PageLayout.astro";
-import CaseStudyCard from "../../components/CaseStudyCard.astro";
+const target = "/blog/category/case-studies/";
 ---
 
-<PageLayout
-	title="Case Studies | Intent & Proof"
-	description="Intent & Proof case studies and field notes: local SEO, static websites, tracking, premium positioning and lead generation systems for service businesses."
-	eyebrow="Case Studies"
-	pageTitle="Real systems, not decorative marketing."
-	intro="A collection of Intent & Proof projects, experiments and vertical systems built around search intent, conversion paths, tracking and business-specific execution."
-	ctaLabel="Check My Site"
-	ctaHref="/"
->
-	<section class="page-section">
-		<p class="page-section-kicker">Featured work</p>
-		<h2 class="page-section-title">Case studies we can turn into proof, service pages and vertical offers.</h2>
-		<p class="page-section-copy">
-			These are the core Intent &amp; Proof examples: static sites, premium niche positioning, local SEO systems, tracking foundations and vertical lead-generation models.
-		</p>
-
-		<div class="case-study-grid">
-			<CaseStudyCard
-				eyebrow="Featured Case Study"
-				title="LavaggioDivani: a fast local SEO system for service enquiries."
-				text="A static, high-performance local service website built around search intent, territorial pages, WhatsApp conversion and measurable tracking."
-				href="/case-studies/lavaggio-divani/"
-				label="Read the case"
-				result="Fast static site, local pages, tracking-ready enquiry flow."
-				sector="Cleaning / Local SEO"
-				variant="featured"
-			/>
-
-			<CaseStudyCard
-				eyebrow="Premium Niche"
-				title="Yacht Upholstery Sardinia: positioning a specialist service for high-value buyers."
-				text="A premium English-language yacht upholstery project focused on Sardinia, marina intent, trust, clarity and direct enquiry paths."
-				href="/case-studies/yacht-upholstery-sardinia/"
-				label="Read the case"
-				result="Niche positioning for yacht captains, managers and owners."
-				sector="Yachting / Premium Services"
-				variant="dark"
-			/>
-
-			<CaseStudyCard
-				eyebrow="Vertical System"
-				title="Dentisti Growth System: local trust, service pages and tracked patient enquiries."
-				text="A future vertical model for dental clinics that need stronger local search presence, high-trust landing pages and measurable conversion actions."
-				href="/case-studies/dentisti-growth-system/"
-				label="View the system"
-				result="Dental vertical designed for local SEO, ads and trust-building."
-				sector="Dentists / Clinics"
-				variant="orange"
-			/>
-
-			<CaseStudyCard
-				eyebrow="Product Strategy"
-				title="OptionsCrafted: positioning a finance education and research product."
-				text="A finance-focused product ecosystem where brand authority, educational structure, tools and conversion paths have to work together."
-				href="/case-studies/optionscrafted/"
-				label="Read the case"
-				result="Product positioning, content architecture and founder offer logic."
-				sector="Finance / Education"
-				variant="default"
-			/>
-
-			<CaseStudyCard
-				eyebrow="Creator Template"
-				title="CreatorCrafted: a Git-based website system for creators and self-entrepreneurs."
-				text="A future Astro/Sveltia model for YouTubers, educators and personal brands who need a serious site instead of another fragile Wix brochure."
-				href="/case-studies/creatorcrafted/"
-				label="View the concept"
-				result="Newsletter, video hub, media kit, offers and editor-friendly content."
-				sector="Creators / Personal Brands"
-				variant="default"
-			/>
-
-			<CaseStudyCard
-				eyebrow="Migration Offer"
-				title="WordPress or Wix to Static: migration into a faster Git-based system."
-				text="An Intent & Proof service concept for rebuilding weak WordPress, Wix or legacy sites into fast Astro websites with Sveltia CMS when needed."
-				href="/case-studies/static-site-migration/"
-				label="View the offer"
-				result="Static performance, cleaner SEO, Git workflow and optional CMS."
-				sector="Migration / Static Sites"
-				variant="dark"
-			/>
-		</div>
-	</section>
-</PageLayout>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex, follow" />
+		<meta http-equiv="refresh" content={`0; url=${target}`} />
+		<link rel="canonical" href={`https://www.intentandproof.com${target}`} />
+		<title>Case Studies | Intent &amp; Proof</title>
+		<script is:inline>
+			window.location.replace("/blog/category/case-studies/");
+		</script>
+	</head>
+	<body>
+		<main>
+			<p>
+				Case studies are now published as research articles.
+				<a href={target}>Continue to Case Studies</a>.
+			</p>
+		</main>
+	</body>
+</html>
