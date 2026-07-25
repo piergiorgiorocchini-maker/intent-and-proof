@@ -1,8 +1,12 @@
 <header class="fd-header">
 	<div class="fd-header__inner">
-		<a class="fd-brand" href="/" aria-label="Intent and Proof home">
-			<span class="fd-brand__symbol" aria-hidden="true">I<span>&amp;</span>P</span>
-			<span class="fd-brand__name">INTENT<span>&amp; PROOF</span></span>
+		<a class="fd-brand fd-brand--wordmark" href="/" aria-label="Intent & Proof home">
+			<img
+				src="/brand/intent-proof-wordmark.svg"
+				width="276"
+				height="37"
+				alt="Intent & Proof"
+			/>
 		</a>
 
 		<nav class="fd-nav" aria-label="Main navigation">
@@ -40,23 +44,17 @@
 </header>
 
 <style>
-	.fd-header .fd-brand {
-		gap: 13px;
+	.fd-header .fd-brand--wordmark {
+		display: inline-flex;
+		align-items: center;
+		width: clamp(210px, 19vw, 276px);
+		min-width: 0;
 	}
 
-	.fd-header .fd-brand__symbol {
-		flex: 0 0 46px;
-		width: 46px;
-		height: 46px;
-		border-radius: 12px;
-		font-size: 0.96rem;
-		letter-spacing: -0.065em;
-	}
-
-	.fd-header .fd-brand__name {
-		font-size: 1.14rem;
-		letter-spacing: -0.025em;
-		line-height: 1;
+	.fd-header .fd-brand--wordmark img {
+		display: block;
+		width: 100%;
+		height: auto;
 	}
 
 	.fd-header .fd-mobile-menu__actions {
@@ -64,32 +62,14 @@
 	}
 
 	@media (max-width: 1180px) {
-		.fd-header .fd-brand__symbol {
-			flex-basis: 42px;
-			width: 42px;
-			height: 42px;
-			font-size: 0.88rem;
-		}
-
-		.fd-header .fd-brand__name {
-			font-size: 1.04rem;
+		.fd-header .fd-brand--wordmark {
+			width: 220px;
 		}
 	}
 
 	@media (max-width: 640px) {
-		.fd-header .fd-brand {
-			gap: 10px;
-		}
-
-		.fd-header .fd-brand__symbol {
-			flex-basis: 40px;
-			width: 40px;
-			height: 40px;
-			border-radius: 10px;
-		}
-
-		.fd-header .fd-brand__name {
-			font-size: 1rem;
+		.fd-header .fd-brand--wordmark {
+			width: min(220px, 68vw);
 		}
 	}
 </style>
