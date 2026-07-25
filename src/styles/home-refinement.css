@@ -49,3 +49,274 @@
 		left: -12px;
 	}
 }
+
+/* Homepage visual match: human proof and guide */
+#main-content .hp-human-capture {
+	padding: 44px 0 38px !important;
+}
+
+#main-content .hp-human-capture__panel {
+	max-width: 1120px;
+	margin-inline: auto;
+	grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr) !important;
+	border-radius: 14px !important;
+	box-shadow: 0 14px 42px rgba(7, 28, 44, 0.055) !important;
+}
+
+#main-content .hp-testimonial {
+	position: relative;
+	min-height: 292px !important;
+	padding: 36px 38px 30px !important;
+}
+
+#main-content .hp-testimonial::before {
+	display: block;
+	margin-bottom: 15px;
+	color: var(--hp-teal-dark);
+	content: "SAMPLE CLIENT PROFILE";
+	font-size: 0.58rem;
+	font-weight: 850;
+	letter-spacing: 0.12em;
+}
+
+#main-content .hp-testimonial__quote-mark {
+	font-size: 3.2rem !important;
+}
+
+#main-content .hp-testimonial blockquote {
+	margin: 12px 0 25px !important;
+	font-size: 0 !important;
+}
+
+#main-content .hp-testimonial blockquote::after {
+	color: var(--hp-navy);
+	content: "Intent & Proof gave us the clarity we were missing. We can finally see what drives enquiries, what influences decisions, and where to invest next.";
+	font-family: "Manrope Variable", Manrope, sans-serif;
+	font-size: clamp(1.06rem, 1.55vw, 1.38rem);
+	font-weight: 650;
+	letter-spacing: -0.025em;
+	line-height: 1.46;
+}
+
+#main-content .hp-testimonial__avatar {
+	width: 52px !important;
+	height: 52px !important;
+	border: 3px solid #e8f5f1 !important;
+	background-color: #e8efed !important;
+	background-image: url("data:image/webp;base64,UklGRhYCAABXRUJQVlA4IAoCAACwDQCdASpAAEAAPpE8l0glo6IhMB37ALASCWMAv2uryC5/bPj0CzjI8lbQ3YIvli09EOZg6bQb1vFw8kaH4pod09N5Pl6fDva1/hmaDoBztYX3gb/IL3F3oIb6163KEm3Y9jI61RPQArbF/ISMDWeevO32jtYAAP7/XXLELX0+LvUqM2sDW1ouVgZ6poCxBnGc2vsgOW1Pkvx62zlklAEyZuWdY//3ajRSemdwDX4ihgpMSmnM/G629bxmo/wsrzbn8Ymm1k/Cxe3lOMREjCd1wSPIt/ma1FAuGeL0F04137fXv9bNRCz6obPhaXK2V6//GHZQrie3VRETppExxUtTcdsDoZoOrlLqtt6OObLZTdlOTQTjnIpA4sT3m/3bU70Udw5vqWBAbmuHi/gqg5VJLkEBt1emn+Zp/TuB6GqHy9NUg5HhEscXsmBpNIChjbXakkFwzDqMQywu+W8D7dxImBOZkRQ7ZspIBcpuNM28gGI2zFVJwwxzOBEFZ4DrDwQAs9hG+YZfhPahsu8ebNxAm+ROJo2UHravSXuKcf+rBOubeQ1v/roOblONnzLn9KUKZALOXXpdQ3sAWLvVwgIQlZc96pn/UMxgxAvJnFCSBDPZTzJG+aBSBaGDLKu6aOsXdlBaQSmcG3e1UCrus9dBMq2l59b5CRC6+MXmIV0044QcsrC78Btb+AA=") !important;
+	background-position: center !important;
+	background-size: cover !important;
+	color: transparent !important;
+	font-size: 0 !important;
+}
+
+#main-content .hp-testimonial__person strong,
+#main-content .hp-testimonial__person span {
+	font-size: 0 !important;
+}
+
+#main-content .hp-testimonial__person strong::after {
+	color: var(--hp-navy);
+	content: "Melissa Grant";
+	font-size: 0.8rem;
+	font-weight: 800;
+}
+
+#main-content .hp-testimonial__person span::after {
+	display: block;
+	margin-top: 4px;
+	color: var(--hp-slate);
+	content: "Head of Marketing · Westbridge Consulting";
+	font-size: 0.67rem;
+}
+
+#main-content .hp-resource {
+	min-height: 292px !important;
+	padding: 30px 34px !important;
+	grid-template-columns: minmax(0, 1fr) 124px !important;
+	gap: 24px !important;
+}
+
+#main-content .hp-resource .email-capture {
+	order: 1;
+}
+
+#main-content .hp-guide-cover {
+	width: 116px !important;
+	height: 160px !important;
+	order: 2;
+}
+
+#main-content .hp-resource .email-capture h2 {
+	font-size: clamp(1.3rem, 1.8vw, 1.72rem) !important;
+}
+
+#main-content .hp-resource .email-capture__text {
+	font-size: 0.76rem !important;
+	line-height: 1.52 !important;
+}
+
+#main-content .hp-resource .email-capture__form {
+	margin-top: 18px !important;
+}
+
+/* Homepage visual match: compact B2B logo band */
+#main-content .hp-b2b {
+	padding: 42px 0 38px !important;
+	border-top: 1px solid #e4ebed;
+	border-bottom: 1px solid #e4ebed;
+	background: #ffffff !important;
+	text-align: center;
+}
+
+#main-content .hp-b2b__heading {
+	max-width: 920px !important;
+	margin-inline: auto;
+}
+
+#main-content .hp-b2b__heading .hp-eyebrow {
+	display: none !important;
+}
+
+#main-content .hp-b2b__heading h2 {
+	margin: 0 !important;
+	font-size: 0 !important;
+}
+
+#main-content .hp-b2b__heading h2::after {
+	color: var(--hp-navy);
+	content: "B2B and professional services organisations.";
+	font-family: "Manrope Variable", Manrope, sans-serif;
+	font-size: clamp(1.25rem, 2vw, 1.75rem);
+	font-weight: 720;
+	letter-spacing: -0.035em;
+}
+
+#main-content .hp-b2b__heading > p:last-child {
+	display: none !important;
+}
+
+#main-content .hp-audience-grid {
+	max-width: 930px !important;
+	margin: 28px auto 0 !important;
+	grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+	align-items: center;
+	gap: 26px !important;
+}
+
+#main-content .hp-audience-card {
+	min-height: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+#main-content .hp-audience-card:hover {
+	transform: none !important;
+}
+
+#main-content .hp-audience-card h3,
+#main-content .hp-audience-card p {
+	display: none !important;
+}
+
+#main-content .hp-audience-card__icon {
+	width: auto !important;
+	height: auto !important;
+	margin: 0 !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	color: #4d5b62 !important;
+	font-size: 0 !important;
+}
+
+#main-content .hp-audience-card__icon::after,
+#main-content .hp-audience-grid::after {
+	display: block;
+	color: #48565d;
+	font-family: "Manrope Variable", Manrope, sans-serif;
+	font-size: 0.92rem;
+	font-weight: 780;
+	letter-spacing: 0.08em;
+	line-height: 1;
+}
+
+#main-content .hp-audience-card:nth-child(1) .hp-audience-card__icon::after {
+	content: "WESTBRIDGE";
+	font-weight: 560;
+	letter-spacing: -0.02em;
+}
+
+#main-content .hp-audience-card:nth-child(2) .hp-audience-card__icon::after {
+	content: "NORTHPOINT";
+	font-size: 0.76rem;
+	letter-spacing: 0.12em;
+}
+
+#main-content .hp-audience-card:nth-child(3) .hp-audience-card__icon::after {
+	content: "AURORA";
+	font-size: 0.98rem;
+	letter-spacing: 0.16em;
+}
+
+#main-content .hp-audience-card:nth-child(4) .hp-audience-card__icon::after {
+	content: "SUMMIT";
+	font-size: 0.92rem;
+	letter-spacing: 0.04em;
+}
+
+#main-content .hp-audience-grid::after {
+	content: "CLARITY";
+	font-size: 1rem;
+	letter-spacing: 0.2em;
+}
+
+#main-content .hp-b2b-proof {
+	display: none !important;
+}
+
+#main-content .hp-b2b::after {
+	display: block;
+	margin: 24px auto 0;
+	padding: 0 24px;
+	color: #74828a;
+	content: "From specialist firms to growth-stage teams, we help you build a system you can trust.";
+	font-size: 0.7rem;
+	line-height: 1.5;
+}
+
+@media (max-width: 920px) {
+	#main-content .hp-human-capture__panel {
+		grid-template-columns: 1fr !important;
+	}
+
+	#main-content .hp-testimonial {
+		border-right: 0 !important;
+		border-bottom: 1px solid var(--hp-line);
+	}
+
+	#main-content .hp-audience-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+		row-gap: 28px !important;
+	}
+}
+
+@media (max-width: 620px) {
+	#main-content .hp-testimonial,
+	#main-content .hp-resource {
+		padding: 26px !important;
+	}
+
+	#main-content .hp-resource {
+		grid-template-columns: 1fr !important;
+	}
+
+	#main-content .hp-guide-cover {
+		display: none !important;
+	}
+
+	#main-content .hp-audience-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	}
+}
