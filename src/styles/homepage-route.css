@@ -1,0 +1,7 @@
+body:has(.hp-home) .site-footer {
+	margin-top: 0;
+}
+
+body:has(.hp-home) .footer-cta {
+	display: none;
+}
