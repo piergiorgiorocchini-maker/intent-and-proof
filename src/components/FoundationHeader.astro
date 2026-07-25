@@ -6,15 +6,13 @@
 		</a>
 
 		<nav class="fd-nav" aria-label="Main navigation">
-			<a href="/#platform">Platform</a>
-			<a href="/#solutions">Solutions</a>
 			<a href="/#services">Services</a>
+			<a href="/#solutions">Who we help</a>
 			<a href="/blog/category/case-studies/">Case Studies</a>
-			<a href="/blog/">Resources</a>
+			<a href="/blog/">Research</a>
 		</nav>
 
 		<div class="fd-header__actions" aria-label="Primary actions">
-			<a class="fd-language" href="/" aria-label="English language version">EN</a>
 			<a class="fd-login" href="/about/">About</a>
 			<a class="fd-start" href="/diagnostic/">Request diagnostic</a>
 		</div>
@@ -27,14 +25,12 @@
 			</summary>
 			<div class="fd-mobile-menu__panel">
 				<nav aria-label="Mobile navigation">
-					<a href="/#platform">Platform</a>
-					<a href="/#solutions">Solutions</a>
 					<a href="/#services">Services</a>
+					<a href="/#solutions">Who we help</a>
 					<a href="/blog/category/case-studies/">Case Studies</a>
-					<a href="/blog/">Resources</a>
+					<a href="/blog/">Research</a>
 				</nav>
 				<div class="fd-mobile-menu__actions">
-					<a href="/">EN</a>
 					<a href="/about/">About</a>
 					<a class="fd-start" href="/diagnostic/">Request diagnostic</a>
 				</div>
@@ -61,6 +57,10 @@
 		font-size: 1.14rem;
 		letter-spacing: -0.025em;
 		line-height: 1;
+	}
+
+	.fd-header .fd-mobile-menu__actions {
+		grid-template-columns: 1fr 1.3fr;
 	}
 
 	@media (max-width: 1180px) {
