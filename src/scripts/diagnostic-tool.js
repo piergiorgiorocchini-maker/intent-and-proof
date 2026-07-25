@@ -5,6 +5,7 @@ if (tool) {
 		url: "",
 		psi: null,
 		psiError: false,
+		psiErrorDetail: "",
 		result: null
 	};
 
@@ -82,26 +83,43 @@ if (tool) {
 		return score === null || score === undefined ? null : score >= 0.9;
 	}
 
-	function parsePageSpeed(payload) {
+	function parsePageSpeed(payload, coverage = "full") {
 		const lighthouse = payload?.lighthouseResult;
 		if (!lighthouse) throw new Error("PageSpeed returned no Lighthouse result.");
 
+		const runtimeError = lighthouse.runtimeError;
+		if (runtimeError?.message) throw new Error(runtimeError.message);
+
 		const categories = lighthouse.categories || {};
 		const audits = lighthouse.audits || {};
-		const categoryScore = (id) => Math.round((categories[id]?.score ?? 0) * 100);
+		const categoryScore = (id) => {
+			const value = categories[id]?.score;
+			return value === null || value === undefined ? null : Math.round(value * 100);
+		};
 		const performance = categoryScore("performance");
 		const seo = categoryScore("seo");
 		const accessibility = categoryScore("accessibility");
 		const bestPractices = categoryScore("best-practices");
+		const weightedCategories = [
+			[performance, 0.4],
+			[seo, 0.25],
+			[accessibility, 0.15],
+			[bestPractices, 0.2]
+		].filter(([value]) => value !== null);
+		if (!weightedCategories.length) throw new Error("PageSpeed returned no scored categories.");
+		const availableWeight = weightedCategories.reduce((sum, [, weight]) => sum + weight, 0);
 		const score = clampScore(
-			performance * 0.4 + seo * 0.25 + accessibility * 0.15 + bestPractices * 0.2
+			weightedCategories.reduce((sum, [value, weight]) => sum + value * weight, 0) / availableWeight
 		);
 
 		const signals = [];
-		if (performance < 70) signals.push("Mobile performance is likely suppressing conversion efficiency.");
-		if (seo < 90) signals.push("The technical SEO foundation contains failed or incomplete checks.");
-		if (bestPractices < 85) signals.push("Browser, security or implementation best-practice issues need review.");
-		if (accessibility < 85) signals.push("Accessibility friction may also be creating usability friction.");
+		if (coverage !== "full" || weightedCategories.length < 4) {
+			signals.push("Google returned a partial PageSpeed scan; the technical score uses only the available Lighthouse categories.");
+		}
+		if (performance !== null && performance < 70) signals.push("Mobile performance is likely suppressing conversion efficiency.");
+		if (seo !== null && seo < 90) signals.push("The technical SEO foundation contains failed or incomplete checks.");
+		if (bestPractices !== null && bestPractices < 85) signals.push("Browser, security or implementation best-practice issues need review.");
+		if (accessibility !== null && accessibility < 85) signals.push("Accessibility friction may also be creating usability friction.");
 		if (auditPassed(audits, "document-title") === false) signals.push("The page title is missing or inadequate.");
 		if (auditPassed(audits, "meta-description") === false) signals.push("The meta description is missing or inadequate.");
 		if (auditPassed(audits, "viewport") === false) signals.push("The mobile viewport is not configured correctly.");
@@ -110,6 +128,8 @@ if (tool) {
 
 		const metric = (id, fallback = "n/a") => audits[id]?.displayValue || fallback;
 		return {
+			available: true,
+			coverage,
 			score,
 			performance,
 			seo,
@@ -125,17 +145,72 @@ if (tool) {
 		};
 	}
 
-	async function runPageSpeed(url) {
-		const endpoint = new URL("https://www.googleapis.com/pagespeedonline/v5/runPagespeed");
+	async function requestPageSpeed(endpointBase, url, categories, timeoutMs = 65000) {
+		const endpoint = new URL(endpointBase);
 		endpoint.searchParams.set("url", url);
 		endpoint.searchParams.set("strategy", "mobile");
-		["performance", "seo", "accessibility", "best-practices"].forEach((category) => {
-			endpoint.searchParams.append("category", category);
-		});
+		endpoint.searchParams.set("locale", "en_GB");
+		endpoint.searchParams.set("utm_source", "intentandproof.com");
+		categories.forEach((category) => endpoint.searchParams.append("category", category));
 
-		const response = await fetch(endpoint, { headers: { Accept: "application/json" } });
-		if (!response.ok) throw new Error(`PageSpeed request failed (${response.status}).`);
-		return parsePageSpeed(await response.json());
+		const controller = new AbortController();
+		const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
+		try {
+			const response = await fetch(endpoint, {
+				headers: { Accept: "application/json" },
+				cache: "no-store",
+				signal: controller.signal
+			});
+			const payload = await response.json().catch(() => ({}));
+			if (!response.ok) {
+				const message = payload?.error?.message || `PageSpeed request failed (${response.status}).`;
+				const error = new Error(message);
+				error.status = response.status;
+				throw error;
+			}
+			return payload;
+		} catch (error) {
+			if (error?.name === "AbortError") {
+				const timeoutError = new Error("PageSpeed timed out before completing the scan.");
+				timeoutError.status = 408;
+				throw timeoutError;
+			}
+			throw error;
+		} finally {
+			window.clearTimeout(timeout);
+		}
+	}
+
+	async function runPageSpeed(url) {
+		const fullCategories = ["performance", "seo", "accessibility", "best-practices"];
+		const primary = "https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed";
+		const fallback = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed";
+		const errors = [];
+
+		try {
+			return parsePageSpeed(await requestPageSpeed(primary, url, fullCategories), "full");
+		} catch (error) {
+			errors.push(error);
+		}
+
+		try {
+			return parsePageSpeed(await requestPageSpeed(fallback, url, fullCategories), "full-fallback");
+		} catch (error) {
+			errors.push(error);
+		}
+
+		const quotaBlocked = errors.some((error) => error?.status === 403 || error?.status === 429);
+		if (!quotaBlocked) {
+			try {
+				return parsePageSpeed(await requestPageSpeed(primary, url, ["performance"], 50000), "performance-only");
+			} catch (error) {
+				errors.push(error);
+			}
+		}
+
+		const finalError = errors[errors.length - 1] || new Error("PageSpeed scan failed.");
+		finalError.status = finalError.status || errors.find((error) => error?.status)?.status || 0;
+		throw finalError;
 	}
 
 	function commercialScores() {
@@ -224,7 +299,7 @@ if (tool) {
 			metrics: {
 				CTR: ctr === null ? null : `${ctr.toFixed(1)}%`,
 				CVR: conversionRate === null ? null : `${conversionRate.toFixed(1)}%`,
-				CPL: cpl === null ? null : `€${cpl.toFixed(2)}`,
+				CPL: cpl === null ? null : `${cpl.toFixed(2)}`,
 				"Qualified lead rate": qualifiedRate === null ? null : `${qualifiedRate.toFixed(0)}%`
 			},
 			signals
@@ -234,23 +309,26 @@ if (tool) {
 	function buildResult() {
 		const commercial = commercialScores();
 		const technical = state.psi || {
-			score: 50,
+			available: false,
+			score: null,
 			performance: null,
 			seo: null,
 			accessibility: null,
 			bestPractices: null,
 			metrics: {},
-			signals: ["The live technical scan was unavailable, so the technical score is provisional."]
+			signals: [state.psiErrorDetail || "The live technical scan was unavailable and was excluded from the total score."]
 		};
 		const ads = adsScore();
-		const total = ads
-			? clampScore(technical.score * 0.4 + commercial.score * 0.4 + ads.score * 0.2)
-			: clampScore(technical.score * 0.5 + commercial.score * 0.5);
+		let total;
+		if (technical.available && ads) total = clampScore(technical.score * 0.4 + commercial.score * 0.4 + ads.score * 0.2);
+		else if (technical.available) total = clampScore(technical.score * 0.5 + commercial.score * 0.5);
+		else if (ads) total = clampScore(commercial.score * 0.7 + ads.score * 0.3);
+		else total = commercial.score;
 
 		const diagnosticAreas = {
-			technical: technical.score,
 			...commercial.categories
 		};
+		if (technical.available) diagnosticAreas.technical = technical.score;
 		if (ads) diagnosticAreas.ads = ads.score;
 		const sortedAreas = Object.entries(diagnosticAreas).sort((a, b) => a[1] - b[1]);
 		const [priorityKey, priorityScore] = sortedAreas[0];
@@ -293,7 +371,9 @@ if (tool) {
 		tool.querySelector("[data-result-summary]").textContent =
 			`Your strongest area is ${result.strongestLabel} (${result.strongestScore}/100). `
 			+ `The priority leak is ${result.priorityLabel} (${result.priorityScore}/100).`;
-		tool.querySelector("[data-technical-score]").textContent = `${result.technical.score}/100`;
+		tool.querySelector("[data-technical-score]").textContent = result.technical.available
+			? `${result.technical.score}/100`
+			: "Unavailable";
 		tool.querySelector("[data-commercial-score]").textContent = `${result.commercial.score}/100`;
 		tool.querySelector("[data-ads-score]").textContent = result.ads ? `${result.ads.score}/100` : "Not included";
 		tool.querySelector("[data-priority-label]").textContent = result.priorityLabel;
@@ -316,7 +396,7 @@ if (tool) {
 			`Business type: ${businessType}`,
 			`Primary objective: ${objective}`,
 			`Total score: ${result.total}/100 — ${result.band}`,
-			`Technical score: ${result.technical.score}/100`,
+			`Technical score: ${result.technical.available ? `${result.technical.score}/100` : "Unavailable"}`,
 			`Commercial score: ${result.commercial.score}/100`,
 			`Ads score: ${result.ads ? `${result.ads.score}/100` : "Not included"}`,
 			`Priority leak: ${result.priorityLabel}`,
@@ -338,6 +418,7 @@ if (tool) {
 		urlInput.value = url.href;
 		state.psi = null;
 		state.psiError = false;
+		state.psiErrorDetail = "";
 		assessmentPanel.hidden = false;
 		generateButton.disabled = true;
 		scanButton.disabled = true;
@@ -348,12 +429,23 @@ if (tool) {
 		try {
 			state.psi = await runPageSpeed(url.href);
 			scanStatus.dataset.state = "complete";
-			scanStatus.textContent = `Technical scan complete: ${state.psi.score}/100.`;
+			const coverageLabel = state.psi.coverage === "full" ? "" : " (partial data)";
+			scanStatus.textContent = `Technical scan complete${coverageLabel}: ${state.psi.score}/100.`;
 		} catch (error) {
 			state.psiError = true;
+			const status = error?.status || 0;
+			if (status === 429) {
+				state.psiErrorDetail = "Google's anonymous PageSpeed quota is temporarily exhausted; the technical section was excluded from the score.";
+			} else if (status === 403) {
+				state.psiErrorDetail = "Google rejected the anonymous PageSpeed request; the technical section was excluded from the score.";
+			} else if (status === 408) {
+				state.psiErrorDetail = "Google PageSpeed timed out; the technical section was excluded from the score.";
+			} else {
+				state.psiErrorDetail = "Google PageSpeed did not complete the scan; the technical section was excluded from the score.";
+			}
 			scanStatus.dataset.state = "error";
-			scanStatus.textContent = "The live PageSpeed scan was unavailable. You can still generate a provisional diagnostic.";
-			console.warn(error);
+			scanStatus.textContent = `${state.psiErrorDetail} You can retry the scan or continue.`;
+			console.warn("PageSpeed diagnostic error:", error);
 		} finally {
 			generateButton.disabled = false;
 			scanButton.disabled = false;
