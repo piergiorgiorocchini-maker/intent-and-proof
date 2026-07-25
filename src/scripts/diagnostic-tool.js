@@ -62,9 +62,12 @@ if (tool) {
 	}
 
 	function selectedValue(name) {
-		return tool.querySelector(`[name='${name}']:checked`)?.value
-			|| tool.querySelector(`[name='${name}']`)?.value
-			|| "";
+		const field = tool.querySelector(`[name='${name}']`);
+		if (!field) return "";
+		if (field.matches("input[type='radio'], input[type='checkbox']")) {
+			return tool.querySelector(`[name='${name}']:checked`)?.value || "";
+		}
+		return field.value || "";
 	}
 
 	function scoreBand(score) {
@@ -419,6 +422,8 @@ if (tool) {
 		state.psi = null;
 		state.psiError = false;
 		state.psiErrorDetail = "";
+		state.result = null;
+		resultsPanel.hidden = true;
 		assessmentPanel.hidden = false;
 		generateButton.disabled = true;
 		scanButton.disabled = true;
