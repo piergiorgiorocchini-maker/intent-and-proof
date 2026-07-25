@@ -29,7 +29,9 @@ const socialPlaceholderLabel = lang === "it" ? "profilo in preparazione" : "prof
 
 	<div class="footer-main">
 		<div class="footer-brand">
-			<a class="footer-logo" href="/">INTENT<span>&amp; PROOF</span></a>
+			<a class="footer-logo" href="/" aria-label="Intent & Proof home">
+				<img src="/brand/intent-proof-wordmark-negative.svg" width="276" height="36" alt="Intent & Proof" />
+			</a>
 			<p class="footer-tagline">
 				Measurable customer acquisition systems for service businesses — connecting search, websites, proof, conversion and tracking.
 			</p>
@@ -106,6 +108,18 @@ const socialPlaceholderLabel = lang === "it" ? "profilo in preparazione" : "prof
 </footer>
 
 <style>
+	.footer-logo {
+		display: inline-flex;
+		width: min(276px, 100%);
+		align-items: center;
+	}
+
+	.footer-logo img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
 	.footer-socials {
 		margin-top: 26px;
 	}
