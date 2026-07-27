@@ -13,6 +13,40 @@
   }
 
   const articleHero = field(articles?.fields, "hero");
+  const defaultArticleHero = {
+    layout: "background",
+    tone: "aurora",
+    image: {
+      src: "/images/uploads/intent-proof-medical-leads-hero.webp",
+      alt: "Medical team celebrating new leads through local search",
+      width: 1672,
+      height: 941,
+      caption: "",
+      credit: "",
+      position: "center right",
+      loading: "lazy",
+    },
+    imagePosition: "right",
+    videoUrl: "",
+  };
+
+  if (articleHero) {
+    articleHero.required = true;
+    articleHero.default = defaultArticleHero;
+
+    const layout = field(articleHero.fields, "layout");
+    if (layout) layout.default = "background";
+
+    const tone = field(articleHero.fields, "tone");
+    if (tone) tone.default = "aurora";
+
+    const heroImage = field(articleHero.fields, "image");
+    if (heroImage) {
+      heroImage.required = true;
+      heroImage.default = defaultArticleHero.image;
+    }
+  }
+
   const imagePosition = field(articleHero?.fields, "imagePosition");
   if (imagePosition) {
     imagePosition.widget = "select";
@@ -27,7 +61,7 @@
       { label: "Basso sinistra", value: "bottom left" },
       { label: "Basso destra", value: "bottom right" },
     ];
-    imagePosition.default = "center";
+    imagePosition.default = "right";
   }
 
   const removeBooleanFilters = (relationField) => {
