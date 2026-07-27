@@ -1,7 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import EmailCaptureBox from "../components/EmailCaptureBox.astro";
+import { getPublishedArticleIndex } from "../lib/content/interlinking";
 import "../styles/homepage-v2.css";
+
+const latestArticles = (await getPublishedArticleIndex("en")).slice(0, 3);
 ---
 
 <BaseLayout
@@ -262,24 +265,14 @@ import "../styles/homepage-v2.css";
 				</div>
 
 				<div class="hp-research-grid">
-					<a class="hp-research-card" href="/blog/local-service-lead-generation/">
-						<div class="hp-research-card__graphic" aria-hidden="true"></div>
-						<small>Field guide</small>
-						<h3>A practical system for turning search demand into measurable leads.</h3>
-						<span>Read the field guide →</span>
-					</a>
-					<a class="hp-research-card" href="/blog/category/case-studies/">
-						<div class="hp-research-card__graphic" aria-hidden="true"></div>
-						<small>Operating evidence</small>
-						<h3>What live service markets reveal about intent, proof and conversion.</h3>
-						<span>Explore case studies →</span>
-					</a>
-					<a class="hp-research-card" href="/blog/">
-						<div class="hp-research-card__graphic" aria-hidden="true"></div>
-						<small>Research notes</small>
-						<h3>Frameworks for building acquisition systems that learn from outcomes.</h3>
-						<span>View latest research →</span>
-					</a>
+					{latestArticles.map((article) => (
+						<a class="hp-research-card" href={article.href}>
+							<div class="hp-research-card__graphic" aria-hidden="true"></div>
+							<small>{article.categoryName}</small>
+							<h3>{article.title}</h3>
+							<span>Read the article →</span>
+						</a>
+					))}
 				</div>
 			</div>
 		</section>
