@@ -154,6 +154,7 @@ if (tool) {
 		endpoint.searchParams.set("strategy", "mobile");
 		endpoint.searchParams.set("locale", "en_GB");
 		endpoint.searchParams.set("utm_source", "intentandproof.com");
+		endpoint.searchParams.set("key", "AIzaSyBnrN4ZxjLT92jQfYMhmqM43F5Dtzlm6cY");
 		categories.forEach((category) => endpoint.searchParams.append("category", category));
 
 		const controller = new AbortController();
