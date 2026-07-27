@@ -206,22 +206,26 @@ const structuredData = {
 		/>
 
 		<div class="article-editorial-frame">
-			<aside class="article-left-rail" aria-label="Article navigation and sharing">
+			<aside class="article-left-rail" aria-label="Article navigation">
 				{showToc && <TableOfContents items={toc} />}
-				{showShare && <ShareBar title={title} url={articleURL.toString()} />}
 			</aside>
 
 			<div class="article-content"><slot /></div>
 
 			{
-				showSidebarCta && (
-					<SidebarCta
-						eyebrow={sidebarEyebrow}
-						title={sidebarTitle}
-						text={sidebarText}
-						label={sidebarLabel}
-						href={sidebarHref}
-					/>
+				(showSidebarCta || showShare) && (
+					<aside class="article-right-rail" aria-label="Recommended action and sharing">
+						{showSidebarCta && (
+							<SidebarCta
+								eyebrow={sidebarEyebrow}
+								title={sidebarTitle}
+								text={sidebarText}
+								label={sidebarLabel}
+								href={sidebarHref}
+							/>
+						)}
+						{showShare && <ShareBar title={title} url={articleURL.toString()} />}
+					</aside>
 				)
 			}
 		</div>
@@ -254,3 +258,10 @@ const structuredData = {
 		</ArticleFooter>
 	</article>
 </BaseLayout>
+
+<style>
+	.article-right-rail {
+		display: grid;
+		gap: 18px;
+	}
+</style>

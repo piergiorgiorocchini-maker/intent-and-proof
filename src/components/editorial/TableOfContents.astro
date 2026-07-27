@@ -25,3 +25,24 @@ const {
 		</div>
 	)
 }
+
+<style>
+	@media (min-width: 881px) {
+		.article-toc {
+			display: flex;
+			overflow: hidden;
+			max-height: clamp(300px, calc(100vh - 260px), 620px);
+			min-height: 0;
+			flex-direction: column;
+		}
+
+		.article-toc nav {
+			overflow-y: auto;
+			min-height: 0;
+			padding-right: 8px;
+			overscroll-behavior: contain;
+			scrollbar-gutter: stable;
+			scrollbar-width: thin;
+		}
+	}
+</style>
