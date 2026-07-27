@@ -3,6 +3,7 @@ import "@fontsource-variable/inter";
 import "@fontsource-variable/manrope";
 import FoundationHeader from "../components/FoundationHeader.astro";
 import Footer from "../components/Footer.astro";
+import HomepageResearchCardImages from "../components/content/HomepageResearchCardImages.astro";
 import LatestArticles from "../components/content/LatestArticles.astro";
 import InformationalTrackingNotice from "../components/system/InformationalTrackingNotice.astro";
 import TrackingManager from "../components/system/TrackingManager.astro";
@@ -113,6 +114,7 @@ const gtmId = settings.tracking.enabled
 		{structuredData && (
 			<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 		)}
+		<HomepageResearchCardImages />
 		<slot name="head" />
 		<title>{title}</title>
 	</head>
