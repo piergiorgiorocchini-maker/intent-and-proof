@@ -79,9 +79,20 @@ const articles = defineCollection({
 		relatedContent: relatedContentSchema.nullish(),
 		layout: z.enum(["editorial-wide", "editorial-standard"]).default("editorial-wide"),
 		hero: heroSchema.nullish().default({
-			layout: "split",
+			layout: "background",
 			tone: "aurora",
-			imagePosition: "center"
+			image: {
+				src: "/images/uploads/intent-proof-medical-leads-hero.webp",
+				alt: "Medical team celebrating new leads through local search",
+				width: 1672,
+				height: 941,
+				caption: "",
+				credit: "",
+				position: "center right",
+				loading: "lazy"
+			},
+			imagePosition: "right",
+			videoUrl: ""
 		}),
 		showDescription: z.boolean().default(true),
 		showToc: z.boolean().default(true),
