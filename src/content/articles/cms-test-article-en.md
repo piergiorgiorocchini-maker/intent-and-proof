@@ -25,7 +25,7 @@ faqs:
 relatedArticles: []
 layout: editorial-wide
 hero:
-  layout: split
+  layout: background
   tone: aurora
   image:
     src: /images/uploads/ChatGPT Image Jul 24, 2026 at 05_04_58 PM.png
@@ -36,7 +36,7 @@ hero:
     credit: ''
     position: center
     loading: lazy
-  imagePosition: center
+  imagePosition: right
   videoUrl: ''
 showDescription: true
 showToc: true
