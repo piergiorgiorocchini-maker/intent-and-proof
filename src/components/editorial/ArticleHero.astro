@@ -142,3 +142,135 @@ const showHeroVisual = heroLayout === "split" && Boolean(videoUrl || heroImageSr
 		</div>
 	</div>
 </header>
+
+<style is:global>
+	.article-hero.article-hero--background .article-hero-grid {
+		min-height: 440px;
+		padding: 24px 0 36px;
+	}
+
+	.article-hero--background h1 {
+		font-size: clamp(2.85rem, 4.4vw, 4.65rem);
+		line-height: 1;
+	}
+
+	.article-hero--background .article-description {
+		margin-top: 18px;
+		font-size: clamp(1.02rem, 1.25vw, 1.16rem);
+	}
+
+	.article-hero--background .article-meta {
+		margin-top: 20px;
+		padding: 12px 0;
+	}
+
+	.article-hero--background .article-contributors {
+		margin-top: 16px;
+	}
+
+	@media (max-width: 900px) {
+		.article-hero.article-hero--background .article-hero-grid {
+			min-height: 0;
+			padding: 20px 0 30px;
+		}
+
+		.article-hero--background h1 {
+			font-size: clamp(2.45rem, 9.4vw, 3.55rem);
+		}
+
+		.article-right-rail .article-sidebar-cta {
+			display: none;
+		}
+
+		.article-right-rail {
+			gap: 0;
+		}
+
+		.article-bottom-cta {
+			display: flex;
+			padding: 28px;
+			align-items: stretch;
+			flex-direction: column;
+			gap: 20px;
+			border: 1px solid rgba(7, 28, 44, 0.1);
+			border-radius: 22px;
+			background: linear-gradient(135deg, #f2f8f6 0%, #ffffff 100%);
+			box-shadow: 0 18px 48px rgba(7, 28, 44, 0.07);
+		}
+
+		.article-bottom-cta > div {
+			display: grid;
+			gap: 8px;
+		}
+
+		.article-bottom-cta p,
+		.article-bottom-cta h2,
+		.article-bottom-cta span {
+			margin: 0;
+		}
+
+		.article-bottom-cta p {
+			color: #08795c;
+			font-size: 0.72rem;
+			font-weight: 850;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+		}
+
+		.article-bottom-cta h2 {
+			color: #071c2c;
+			font-size: clamp(1.55rem, 7vw, 2.15rem);
+			letter-spacing: -0.045em;
+			line-height: 1.08;
+		}
+
+		.article-bottom-cta span {
+			color: #516173;
+			line-height: 1.6;
+		}
+
+		.article-bottom-cta a {
+			display: inline-flex;
+			width: 100%;
+			min-height: 48px;
+			padding: 0 18px;
+			align-items: center;
+			justify-content: center;
+			border-radius: 999px;
+			background: #08795c;
+			color: #ffffff;
+			font-size: 0.86rem;
+			font-weight: 820;
+			text-align: center;
+			text-decoration: none;
+			white-space: normal;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.article-hero.article-hero--background .article-hero-grid {
+			padding: 14px 0 24px;
+		}
+
+		.article-hero--background h1 {
+			font-size: clamp(2.2rem, 10.8vw, 3.15rem);
+		}
+
+		.article-hero--background .article-description {
+			margin-top: 14px;
+		}
+
+		.article-hero--background .article-meta {
+			margin-top: 16px;
+			padding: 10px 0;
+		}
+
+		.article-hero--background .article-contributors {
+			margin-top: 14px;
+		}
+
+		.article-bottom-cta {
+			padding: 22px;
+		}
+	}
+</style>
