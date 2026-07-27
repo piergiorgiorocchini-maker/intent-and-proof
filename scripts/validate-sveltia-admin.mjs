@@ -57,6 +57,27 @@ for (const name of expected) {
 	}
 }
 
+const field = (fields, name) => (fields ?? []).find((item) => item.name === name);
+const articles = collections.find((collection) => collection.name === "articles");
+const articleHero = field(articles?.fields, "hero");
+const heroImage = field(articleHero?.fields, "image");
+const imagePosition = field(articleHero?.fields, "imagePosition");
+const defaultHeroPath = "/images/uploads/intent-proof-medical-leads-hero.webp";
+
+if (!articleHero?.required || articleHero.default?.layout !== "background") {
+	throw new Error("Article hero must default to the required background layout.");
+}
+if (articleHero.default?.tone !== "aurora" || articleHero.default?.imagePosition !== "right") {
+	throw new Error("Article hero tone and image position defaults are incorrect.");
+}
+if (!heroImage?.required || heroImage.default?.src !== defaultHeroPath) {
+	throw new Error("Article hero placeholder image default is missing.");
+}
+if (heroImage.default?.position !== "center right" || imagePosition?.default !== "right") {
+	throw new Error("Article hero crop defaults are incorrect.");
+}
+await readFile(new URL(`public${defaultHeroPath}`, root));
+
 const products = collections.find((collection) => collection.name === "products");
 const sections = products?.fields?.find((field) => field.name === "sections");
 if (sections?.types?.length !== 16) {
@@ -112,5 +133,5 @@ for (const route of requiredRoutes) {
 await readFile(new URL("src/layouts/ContentPageLayout.astro", root), "utf8");
 
 console.log(
-	`Sveltia admin validated: ${collections.length} collections, ${sections.types.length} commercial blocks, ${requiredRoutes.length} content routes, centralized tracking and forms, main branch target.`
+	`Sveltia admin validated: ${collections.length} collections, ${sections.types.length} commercial blocks, ${requiredRoutes.length} content routes, default article hero, centralized tracking and forms, main branch target.`
 );
