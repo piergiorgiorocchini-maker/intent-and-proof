@@ -5,8 +5,8 @@ title: 'Measurement Integrity: Fix Your Conversion Tracking Before Increasing Ad
 slug: measurement-integrity-fix-conversion-tracking
 description: A practical conversion-tracking and attribution framework for marketing leaders who need reliable data before reallocating budget, scaling campaigns or defending performance internally.
 eyebrow: Measurement Integrity Guide
-draft: true
-featured: false
+draft: false
+featured: true
 publishedDate: 2026-08-03
 updatedDate: 2026-08-03
 readTime: 24 min read
