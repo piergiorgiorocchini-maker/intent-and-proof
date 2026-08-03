@@ -1,22 +1,31 @@
 ---
-locale: it
 translationKey: piergiorgio-rocchini
-name: "Piergiorgio Rocchini"
+locale: it
+name: Piergiorgio Rocchini
 slug: piergiorgio-rocchini
-role: "Fondatore, analista e operatore di sistemi di acquisizione"
-shortBio: "Piergiorgio Rocchini combina analisi finanziaria, ricerca di mercato e sistemi di acquisizione costruiti direttamente in mercati di servizi reali."
+role: Fondatore, analista e operatore di sistemi di acquisizione
+shortBio: Piergiorgio Rocchini combina analisi finanziaria, ricerca di mercato e sistemi di acquisizione costruiti direttamente in mercati di servizi reali.
+image:
+  src: /images/uploads/Mr.Rocchini.webp
+  alt: Mr.Piergiorgio Rocchini
+  width: null
+  height: null
+  caption: ''
+  credit: ''
+  position: center
+  loading: lazy
 expertise:
-  - "Sistemi di acquisizione clienti"
-  - "SEO locale"
-  - "Strategia di conversione"
-  - "Misurazione e tracciamento"
-  - "Analisi finanziaria"
+  - Sistemi di acquisizione clienti
+  - SEO locale
+  - Strategia di conversione
+  - Misurazione e tracciamento
+  - Analisi finanziaria
 links: []
 active: true
 order: 10
 seo:
-  title: "Piergiorgio Rocchini | Autore di Intent & Proof"
-  description: "Piergiorgio Rocchini è il fondatore di Intent & Proof e combina analisi, ricerca di mercato e sistemi pratici di acquisizione."
+  title: Piergiorgio Rocchini | Autore di Intent & Proof
+  description: Piergiorgio Rocchini è il fondatore di Intent & Proof e combina analisi, ricerca di mercato e sistemi pratici di acquisizione.
   noIndex: false
   noFollow: false
 ---
