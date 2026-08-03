@@ -46,7 +46,7 @@ hero:
   layout: background
   tone: aurora
   image:
-    src: /images/uploads/intent-proof-medical-leads-hero.webp
+    src: /images/uploads/measure-and-track-marketing-data.webp
     alt: Placeholder illustration for the Measurement Integrity guide
     width: 1672
     height: 941
