@@ -42,9 +42,17 @@ relatedArticles:
   - turn-local-searches-into-medical-appointments-en
 layout: editorial-wide
 hero:
-  layout: text-only
+  layout: background
   tone: aurora
-  image: null
+  image:
+    src: /images/uploads/turn-client-work-into-credible-proof.webp
+    alt: Illustration showing how specialist firms turn client work, evidence and case studies into buyer trust and commercial action
+    width: 1672
+    height: 941
+    caption: ''
+    credit: Intent & Proof
+    position: center right
+    loading: lazy
   imagePosition: right
   videoUrl: ''
 showDescription: true
