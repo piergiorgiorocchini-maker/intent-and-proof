@@ -38,7 +38,8 @@ faqs:
     answer: Case studies can support search visibility because they contain original experience, specific entities, useful detail and first-hand evidence. Their primary commercial role, however, is to help relevant buyers evaluate the provider and move toward a decision.
   - question: What is proof architecture?
     answer: Proof architecture is the organised collection, verification, positioning and measurement of evidence across the buying journey. It connects case studies, testimonials, performance data, process evidence, qualifications, references and operational proof to the buyer risks each item is intended to reduce.
-relatedArticles: []
+relatedArticles:
+  - turn-local-searches-into-medical-appointments-en
 layout: editorial-wide
 hero:
   layout: text-only
@@ -81,10 +82,12 @@ relatedContent:
   text: Practical research on buyer intent, proof, conversion and commercial measurement.
   categoryIds:
     - proof-architecture-en
+    - local-seo-en
   tags:
     - Proof architecture
     - Conversion strategy
-  manualArticleIds: []
+  manualArticleIds:
+    - turn-local-searches-into-medical-appointments-en
   limit: 4
   fallbackToLatest: true
 seo:
@@ -118,17 +121,17 @@ Professional and technical services are difficult to evaluate before purchase. T
 
 The weakness becomes obvious when the commercial journey is viewed as a sequence rather than a collection of pages.
 
-```text
-Real capability
-      ↓
-Recorded evidence
-      ↓
-Buyer-relevant proof
-      ↓
-Reduced uncertainty
-      ↓
-Commercial action
-```
+<div style="max-width: 560px; margin: 2rem auto; padding: 1.6rem 1.5rem; border: 1px solid #d8dee8; border-radius: 16px; background: #ffffff; color: #111827; text-align: center; font-weight: 700; line-height: 1.65; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);">
+  <div>Real capability</div>
+  <div aria-hidden="true">↓</div>
+  <div>Recorded evidence</div>
+  <div aria-hidden="true">↓</div>
+  <div>Buyer-relevant proof</div>
+  <div aria-hidden="true">↓</div>
+  <div>Reduced uncertainty</div>
+  <div aria-hidden="true">↓</div>
+  <div>Commercial action</div>
+</div>
 
 Most firms move directly from real capability to a marketing claim. The missing stages are the reason years of work fail to accumulate into a durable acquisition advantage.
 
@@ -140,15 +143,16 @@ Complex purchases rarely depend on one person making an isolated choice. A servi
 
 The first contact may be convinced by expertise. Finance may need cost control. Operations may care about disruption. Senior management may need assurance that the decision can be defended if the engagement fails.
 
-This means proof must do more than attract attention. It must help the original contact explain the provider to people who were not present during the sales conversation.
+This means proof must do more than attract attention. It must help the original contact explain the provider to people who were not present during the sales conversation. [Gartner's research on the B2B buying journey](https://www.gartner.com/en/sales/insights/b2b-buying-journey) describes a nonlinear process in which buyers revisit problem identification, solution exploration, requirements, supplier selection, validation and consensus creation. Useful content must therefore support several decisions, not merely generate a first click.
 
-```text
-Discovery → Evaluation → Internal justification → Selection
-    │            │                 │                   │
-Relevance     Capability       Defensible case      Controlled risk
-```
+<div style="max-width: 760px; margin: 2rem auto; padding: 1.5rem; border: 1px solid #d8dee8; border-radius: 16px; background: #ffffff; color: #111827; text-align: center; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);">
+  <div style="font-weight: 800; line-height: 1.7;">Discovery → Evaluation → Internal justification → Selection</div>
+  <div style="margin-top: .75rem; font-size: .95rem; line-height: 1.7;">Relevance → Capability → Defensible case → Controlled risk</div>
+</div>
 
 A useful case study can travel through this process. It gives the buyer a recognisable situation, a clear account of the work, evidence of the result and language that can be repeated internally. A weak case study merely celebrates the company that published it.
+
+The trust problem is not theoretical. [Forrester's research on trusted B2B information sources](https://www.forrester.com/blogs/b2b-buyers-rate-their-most-trusted-information-sources/) found that buyers place particularly high trust in colleagues, internal management and providers with whom they already have an established relationship. A new supplier must therefore provide evidence strong enough to travel beyond the first contact and survive internal scrutiny.
 
 ## Portfolio, testimonial and case study are different assets
 
@@ -209,11 +213,11 @@ Real projects contain constraints. They also contain decisions. Removing both el
 
 ## The Intent & Proof case-study framework
 
-Intent & Proof uses five connected components to turn completed work into commercially useful evidence:
+Intent & Proof uses five connected components to turn completed work into commercially useful evidence.
 
-```text
-CONTEXT → CONSTRAINT → INTERVENTION → EVIDENCE → RELEVANCE
-```
+<div style="max-width: 860px; margin: 2rem auto; padding: 1.5rem 1.25rem; border: 1px solid #d8dee8; border-radius: 16px; background: #ffffff; color: #111827; text-align: center; font-weight: 800; line-height: 1.8; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);">
+  Context → Constraint → Intervention → Evidence → Relevance
+</div>
 
 The framework is deliberately sequential. Context makes the situation recognisable. Constraint reveals what made it difficult. Intervention demonstrates judgement. Evidence supports the conclusion. Relevance connects the experience to the next buyer.
 
@@ -261,6 +265,8 @@ This distinction does not weaken the result. It prevents the case from claiming 
 
 A modest result that survives scrutiny is more valuable than an impressive number that collapses after one sensible question.
 
+Google's own guidance on [creating helpful, reliable, people-first content](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) asks whether a page contains original information, substantial analysis, clear sourcing and demonstrable first-hand expertise. Detailed case studies can satisfy those qualities particularly well when their evidence and limitations remain explicit.
+
 ## Relevance: connect the case to the next buyer
 
 A case study should not end with the provider congratulating itself. It should explain where the experience applies, which organisations are likely to benefit and which conditions are required for success.
@@ -287,19 +293,14 @@ At the start, record the initial condition, commercial objective, baseline, scop
 
 This does not require a heavy administrative system. A structured form or project record is sufficient. The value comes from consistency.
 
-```text
-Project begins
-    ↓
-Baseline and risks recorded
-    ↓
-Decisions and evidence captured
-    ↓
-Outcome verified
-    ↓
-Permission confirmed
-    ↓
-Proof assets produced
-```
+<div style="max-width: 620px; margin: 2rem auto; padding: 1.6rem 1.5rem; border: 1px solid #d8dee8; border-radius: 16px; background: #ffffff; color: #111827; text-align: center; font-weight: 700; line-height: 1.65; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);">
+  <div>Project begins</div><div aria-hidden="true">↓</div>
+  <div>Baseline and risks recorded</div><div aria-hidden="true">↓</div>
+  <div>Decisions and evidence captured</div><div aria-hidden="true">↓</div>
+  <div>Outcome verified</div><div aria-hidden="true">↓</div>
+  <div>Permission confirmed</div><div aria-hidden="true">↓</div>
+  <div>Proof assets produced</div>
+</div>
 
 A short client interview can strengthen the record. Instead of asking for a general testimonial, ask what was happening before the engagement, why the issue mattered, which concerns existed, what part of the process was valuable and what changed afterward. These questions produce evidence rather than ceremonial praise.
 
@@ -317,9 +318,7 @@ Publishing a full case study is useful, but it is not the final objective. Evide
 
 At the discovery stage, a short case excerpt can show that the firm understands a recognisable problem. During evaluation, the buyer may need the full account, process detail and outcome. During internal justification, the initial contact may need a concise summary that can be forwarded to colleagues. Inside a proposal, one closely matched case may answer a specific objection more effectively than five unrelated success stories.
 
-The same flagship case can therefore produce several assets: a complete website article, a service-page proof block, a proposal excerpt, a one-page PDF, an email follow-up and a concise internal decision summary.
-
-The language and length should change according to the decision point, while the underlying evidence remains consistent.
+The same flagship case can therefore produce several assets: a complete website article, a service-page proof block, a proposal excerpt, a one-page PDF, an email follow-up and a concise internal decision summary. The language and length should change according to the decision point, while the underlying evidence remains consistent.
 
 ## Proof architecture in AI-assisted buying
 
@@ -337,9 +336,9 @@ Case-study page views reveal very little by themselves. The useful question is w
 
 A practical measurement chain is:
 
-```text
-Proof exposure → Service evaluation → Qualified enquiry → Proposal → Decision → Value
-```
+<div style="max-width: 900px; margin: 2rem auto; padding: 1.5rem 1.25rem; border: 1px solid #d8dee8; border-radius: 16px; background: #ffffff; color: #111827; text-align: center; font-weight: 800; line-height: 1.8; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);">
+  Proof exposure → Service evaluation → Qualified enquiry → Proposal → Decision → Value
+</div>
 
 Track which cases are viewed before contact, whether visitors move from the case to a relevant service, which leads mention a specific example and which cases are used during proposals. Over time, compare proposal acceptance, sales-cycle duration, average engagement value and the number of reassurance requests required before a decision.
 
@@ -394,9 +393,11 @@ Intent & Proof treats high-value acquisition as four connected disciplines.
 
 **Measurement integrity** connects proof exposure to service evaluation, qualified enquiries, proposals, decisions and value. The purpose is not to create another dashboard. It is to determine whether better evidence changes commercial behaviour.
 
+The same operating logic appears in our guide to [turning local searches into real medical appointments](/blog/turn-local-searches-into-medical-appointments/), where visibility is treated as only the first stage of a system connecting intent, proof, action and measurable value.
+
 ## Final principle: do not claim more
 
-When a specialist firm struggles to win higher-value clients, the immediate response is often to increase activity. Publish more content. Run more advertising. redesign the website. Add more testimonials. Use stronger adjectives.
+When a specialist firm struggles to win higher-value clients, the immediate response is often to increase activity. Publish more content. Run more advertising. Redesign the website. Add more testimonials. Use stronger adjectives.
 
 These actions can increase exposure while leaving the trust problem untouched.
 
@@ -412,14 +413,16 @@ The firm does not need to sound more confident.
 
 It needs to become easier to believe.
 
-## Sources and methodology
+## Sources, further reading and methodology
 
 This guide combines the Intent & Proof acquisition framework with current first-party research and guidance concerning B2B buying, trust and content quality.
 
-Google Search Central's people-first content guidance recommends material that demonstrates first-hand experience, clear expertise and trustworthy sourcing rather than content created primarily to attract search traffic. Detailed cases based on real work fit this standard when claims and limitations remain explicit.
+[Google Search Central's people-first content guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) recommends original information, substantial analysis, clear sourcing and demonstrable first-hand expertise. Detailed cases based on real work fit this standard when claims and limitations remain explicit.
 
-Gartner's research on the B2B buying journey describes a nonlinear process involving problem identification, solution exploration, requirements building and supplier selection. Its work on buying groups also highlights the role of internal disagreement and consensus in complex decisions.
+[Gartner's B2B buying journey research](https://www.gartner.com/en/sales/insights/b2b-buying-journey) describes a nonlinear process involving problem identification, solution exploration, requirements building, supplier selection, validation and consensus creation. This supports the need for evidence that helps several stakeholders complete different buying tasks.
 
-Forrester's B2B trust research shows the importance buyers place on colleagues, internal management, existing providers and credible expert validation. These findings reinforce the role of proof that can be understood and shared beyond the first contact.
+[Forrester's research on trusted B2B information sources](https://www.forrester.com/blogs/b2b-buyers-rate-their-most-trusted-information-sources/) shows the importance buyers place on colleagues, internal management, existing providers and credible expert validation. Its analysis of [risk and defensive B2B decisions](https://www.forrester.com/blogs/are-b2b-buyers-cowards/) further explains why competence, consistency and dependability matter when buyers evaluate an unfamiliar supplier.
+
+For a practical application of the broader Intent → Proof → Action → Measurement model, read [How Medical Practices Can Turn Local Searches Into Real Appointments Without Discounting Their Brand](/blog/turn-local-searches-into-medical-appointments/).
 
 The search-demand research behind this article covers the semantic cluster around B2B case study strategy, professional-services case studies, demonstrating expertise online, building trust in B2B sales, anonymous client cases and social proof for specialist firms. These concepts are used when they clarify the buyer's problem and the operating method, rather than being repeated as decorative keywords.
