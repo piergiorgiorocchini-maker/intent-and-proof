@@ -1,0 +1,31 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import "../styles/product-page.css";
+
+const {
+	title,
+	description,
+	canonicalPath = "",
+	image = "",
+	lang = "en",
+	noindex = true,
+	nofollow = false,
+	structuredData = null
+} = Astro.props;
+---
+
+<BaseLayout
+	title={title}
+	description={description}
+	canonicalPath={canonicalPath}
+	image={image}
+	lang={lang}
+	noindex={noindex}
+	nofollow={nofollow}
+	structuredData={structuredData}
+	showRelatedContent={false}
+>
+	<div class="pp-page">
+		<slot />
+	</div>
+</BaseLayout>
