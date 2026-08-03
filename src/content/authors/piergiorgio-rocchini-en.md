@@ -6,7 +6,7 @@ slug: piergiorgio-rocchini
 role: Founder, analyst and acquisition-system operator
 shortBio: Piergiorgio Rocchini combines financial analysis, market research and hands-on customer acquisition systems built in live service markets.
 image:
-  src: /images/uploads/ChatGPT Image Jul 30, 2026 at 03_26_07 PM.png
+  src: /images/uploads/Mr.Rocchini.webp
   alt: Dr.Piergiorgio Rocchini
   width: null
   height: null
