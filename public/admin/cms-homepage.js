@@ -121,6 +121,12 @@
         file: "src/data/homepage.json",
         fields: homepageFields,
       },
+      {
+        name: "homepage-it",
+        label: "Homepage · Italiano",
+        file: "src/data/homepage-it.json",
+        fields: homepageFields,
+      },
     ],
   };
 
