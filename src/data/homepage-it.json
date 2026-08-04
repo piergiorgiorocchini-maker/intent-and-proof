@@ -1,0 +1,145 @@
+{
+  "seo": {
+    "title": "Intent & Proof | Siti ad alte prestazioni e sistemi di acquisizione digitale",
+    "description": "Intent & Proof realizza siti ad alte prestazioni, landing page, sistemi di visibilità locale e infrastrutture digitali misurabili per imprese di servizi."
+  },
+  "hero": {
+    "eyebrow": "Sistemi di acquisizione digitale per imprese di servizi",
+    "title": "Siti ad alte prestazioni e sistemi di acquisizione digitale che trasformano la domanda in contatti qualificati.",
+    "text": "Intent & Proof collega siti veloci, landing page orientate alla conversione, visibilità locale, prove credibili e misurazione affidabile in un unico sistema di acquisizione.",
+    "primaryAction": { "label": "Inizia dalla diagnostica", "href": "/diagnostic/" },
+    "secondaryAction": { "label": "Scopri cosa realizziamo", "href": "#services" },
+    "assurances": [
+      "Siti web ad alte prestazioni",
+      "Sistemi local e di generazione contatti",
+      "Misurazione delle richieste reali"
+    ]
+  },
+  "diagnostic": {
+    "title": "Diagnostica di acquisizione",
+    "client": "Aurora Dental Group · Cagliari",
+    "status": "Analisi pronta",
+    "score": "72",
+    "scoreLabel": "Punteggio delle fondamenta",
+    "scoreSummary": "Buon potenziale, con due dispersioni prioritarie",
+    "updatedLabel": "Aggiornato oggi",
+    "metrics": [
+      { "label": "Cattura dell'intento", "value": 84, "color": "var(--fd-mint)" },
+      { "label": "Forza delle prove", "value": 61, "color": "var(--fd-orange)" },
+      { "label": "Percorso di conversione", "value": 68, "color": "var(--fd-cobalt)" },
+      { "label": "Prontezza della domanda", "value": 79, "color": "var(--fd-mint)" },
+      { "label": "Integrità della misurazione", "value": 48, "color": "var(--fd-orange)" }
+    ],
+    "nextLabel": "Prossima azione prioritaria",
+    "nextText": "Correggere il tracciamento delle richieste prima di aumentare la spesa pubblicitaria.",
+    "signalTopLabel": "Segnale di domanda",
+    "signalTopText": "Ricerca ad alto intento in crescita",
+    "signalBottomLabel": "Prova verificata",
+    "signalBottomText": "Evidenza operativa collegata al sistema"
+  },
+  "evidence": [
+    { "icon": "↗", "value": "2/2", "text": "prime richieste premium nel settore yacht trasformate in clienti" },
+    { "icon": "◎", "value": "#2", "text": "posizione raggiunta per una ricerca locale prioritaria" },
+    { "icon": "▥", "value": "100", "text": "PageSpeed mobile ottenuto su un sistema reale" },
+    { "icon": "✓", "value": "Live", "text": "metodi testati in mercati locali e servizi premium" }
+  ],
+  "testimonial": {
+    "quote": "La nuova infrastruttura di acquisizione ha generato le prime due richieste premium nel settore yacht. Entrambe si sono trasformate in clienti, senza attrito sul prezzo.",
+    "initials": "PR",
+    "name": "Piergiorgio Rocchini",
+    "role": "Fondatore · nota operativa"
+  },
+  "resource": {
+    "eyebrow": "Risorsa gratuita",
+    "title": "La guida Intent & Proof",
+    "coverTitle": "La guida Intent & Proof",
+    "coverText": "Siti, domanda locale, prove, conversione e misurazione.",
+    "text": "Una guida pratica per costruire siti veloci, intercettare la domanda, rafforzare le prove e misurare le richieste qualificate.",
+    "placeholder": "Indirizzo email",
+    "buttonLabel": "Inviami la guida",
+    "note": "Niente spam. Puoi annullare l'iscrizione in qualsiasi momento.",
+    "errorMessage": "Il modulo della guida è in fase di collegamento. Per ora utilizza la diagnostica."
+  },
+  "productsSection": {
+    "eyebrow": "Cosa puoi acquistare",
+    "title": "Prodotti di acquisizione digitale definiti, progettati per funzionare come un unico sistema.",
+    "text": "La diagnostica individua il vincolo principale. Ogni prodotto ha un perimetro preciso, deliverable chiari e un ruolo commerciale misurabile.",
+    "items": [
+      {
+        "number": "01",
+        "state": "Sito e conversione",
+        "verb": "Costruire",
+        "title": "High-Performance Website & Lead System",
+        "text": "Un sito veloce e tecnicamente solido, con pagine servizio, landing page, prove e percorsi di contatto progettati per generare richieste qualificate.",
+        "href": "/diagnostic/",
+        "linkLabel": "Valuta il sistema web",
+        "icon": "build",
+        "iconBars": 4
+      },
+      {
+        "number": "02",
+        "state": "Domanda locale",
+        "verb": "Intercettare",
+        "title": "Local Market Capture System",
+        "text": "SEO locale, Google Business Profile, architettura territoriale e destinazioni di campagna costruite per conquistare domanda di valore in aree definite.",
+        "href": "/it/prodotti/local-market-capture-system/",
+        "linkLabel": "Scopri il sistema local",
+        "icon": "capture",
+        "iconBars": 3
+      },
+      {
+        "number": "03",
+        "state": "Fiducia e autorevolezza",
+        "verb": "Dimostrare",
+        "title": "Proof Architecture System",
+        "text": "Casi studio, testimonianze, contenuti autorevoli e blocchi di prova organizzati attorno ai rischi che il cliente deve risolvere prima di decidere.",
+        "href": "/it/blog/",
+        "linkLabel": "Esplora l'architettura delle prove",
+        "icon": "diagnose",
+        "iconBars": 3
+      },
+      {
+        "number": "04",
+        "state": "Misurazione",
+        "verb": "Validare",
+        "title": "Measurement Integrity System",
+        "text": "Tracciamento delle conversioni, riconciliazione con il CRM, attribuzione e controllo della qualità dei lead per capire cosa può essere scalato.",
+        "href": "/it/blog/",
+        "linkLabel": "Esplora l'integrità della misurazione",
+        "icon": "measure",
+        "iconBars": 4
+      }
+    ]
+  },
+  "audienceSection": {
+    "eyebrow": "Costruito per imprese di servizi",
+    "title": "Per aziende che hanno bisogno di più di un sito vetrina o di attività di marketing generiche.",
+    "text": "Lavoriamo con attività locali, studi professionali, servizi B2B e operatori specialistici dove la visibilità deve produrre fiducia, un percorso d'azione chiaro e risultati commerciali misurabili.",
+    "items": [
+      { "code": "LOCAL", "title": "Attività di servizi locali", "text": "Siti ad alte prestazioni, visibilità Google e sistemi territoriali che trasformano la domanda locale in richieste qualificate." },
+      { "code": "PRO", "title": "Studi e attività professionali", "text": "Siti e landing page costruiti attorno a competenza, reputazione, intenzione locale e decisioni ponderate." },
+      { "code": "B2B", "title": "Servizi B2B specialistici", "text": "Prove, ricerca utile e percorsi di conversione misurabili per cicli di vendita più lunghi e contratti di maggior valore." },
+      { "code": "HIGH", "title": "Servizi specialistici ad alto valore", "text": "Infrastrutture digitali che rendono visibile la competenza prima che il prezzo domini la conversazione." }
+    ],
+    "proof": {
+      "mark": "I&P",
+      "title": "Prodotti specifici, collegati in un unico sistema di acquisizione.",
+      "text": "Sito, landing page, domanda locale, prove e misurazione organizzati attorno alla decisione del cliente.",
+      "href": "/diagnostic/",
+      "label": "Trova il punto di partenza corretto"
+    }
+  },
+  "researchSection": {
+    "eyebrow": "La ricerca dietro i prodotti",
+    "title": "I metodi vengono pubblicati. I prodotti li trasformano in sistemi operativi.",
+    "href": "/it/blog/",
+    "label": "Esplora tutti gli approfondimenti",
+    "articleLabel": "Leggi l'articolo"
+  },
+  "finalCta": {
+    "eyebrow": "Parti dal prodotto corretto",
+    "title": "Individua il vincolo di acquisizione che vale la pena correggere per primo.",
+    "href": "/diagnostic/",
+    "label": "Richiedi una diagnostica"
+  }
+}
