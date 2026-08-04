@@ -1,0 +1,59 @@
+> **Principio Intent & Proof:** il prezzo diventa dominante quando competenze, processo diagnostico, materiali, alternative, limiti, continuità assistenziale e valore della prima visita restano invisibili o incomprensibili.
+
+Questo pain point è particolarmente forte nei trattamenti ad alto valore. Implantologia, riabilitazioni complesse, ortodonzia invisibile ed estetica dentale generano ricerche sul costo perché il paziente cerca di ridurre l'incertezza. Una pagina che risponde soltanto “contattaci per un preventivo” non elimina l'incertezza. La sposta sulla segreteria, che si ritrova a gestire una conversazione già impostata come negoziazione economica.
+
+### Perché il marketing attira richieste orientate al ribasso
+
+Una campagna può selezionare involontariamente persone che confrontano soltanto il prezzo quando usa keyword troppo ampie, annunci costruiti intorno a rate o promozioni, landing page che promettono una soluzione prima della valutazione, materiali citati come slogan e moduli ridotti a nome e telefono.
+
+Anche il modello economico del fornitore può peggiorare il problema. Se l'agenzia viene valutata solo sul numero di lead, tenderà a ridurre l'attrito del modulo e ad ampliare il pubblico. Il costo per contatto scende, ma la qualità può deteriorarsi. Il sistema ottiene il risultato per cui è stato incentivato, non quello che lo studio desiderava davvero.
+
+Le ricerche di prezzo non devono essere eliminate in modo indiscriminato. “Quanto costa un impianto dentale?” può rappresentare una persona seria che sta iniziando a informarsi. Il problema è rispondere con una cifra isolata o con una promessa commerciale. Una risposta utile spiega quali fattori influenzano il piano, perché è necessaria una valutazione, quali alternative possono esistere e quali elementi non possono essere determinati online.
+
+### Come attirare persone che non confrontano soltanto il prezzo
+
+La soluzione non consiste nel nascondere i costi, rendere il sito vago o costruire barriere aristocratiche. Consiste nel creare una selezione informativa progressiva.
+
+La prima leva è la precisione delle ricerche intercettate. “Impianto dentale economico” esprime un intento diverso da “impianto a carico immediato valutazione”, “implantologo vicino” o “denti fissi con poco osso”. Le campagne possono separare questi gruppi, utilizzare keyword negative e assegnare pagine differenti. La SEO può trattare le domande sul costo in contenuti informativi, senza trasformare ogni pagina trattamento in una vetrina di prezzi.
+
+La seconda leva è la qualità della spiegazione. La persona deve comprendere che tempi, indicazioni, materiali, complessità e costi dipendono da una valutazione individuale. Questo non è un espediente per evitare il prezzo, ma una rappresentazione corretta del processo.
+
+La terza leva è la prova pertinente. Le qualifiche del professionista devono essere collegate al trattamento; le tecnologie devono essere realmente utilizzate; le recensioni devono descrivere esperienza, chiarezza e organizzazione; i casi, quando pubblicabili, devono essere sobri, contestualizzati e rispettosi della riservatezza.
+
+La quarta leva è il percorso della prima visita. Se il sito spiega chi incontrerà il paziente, che cosa verrà valutato, quali documenti possono essere utili e quale sarà il passo successivo, la prima visita acquista un valore autonomo. Non è più percepita come un ostacolo prima del preventivo, ma come il momento necessario per ricevere un'indicazione responsabile.
+
+La quinta leva è la misurazione. Lo studio dovrebbe registrare non soltanto “lead buono” o “lead cattivo”, ma motivi più precisi: irraggiungibile, fuori area, richiesta non pertinente, orientamento esclusivo al prezzo, appuntamento fissato, no-show, visita svolta. Dopo alcune settimane emergono pattern che permettono di correggere keyword, annunci, pagina e protocollo telefonico.
+
+### Non combattere il prezzo: costruire valore comprensibile
+
+Uno studio premium non deve fingere che il prezzo sia irrilevante. Deve evitare che sia l'unica informazione chiara.
+
+Il valore percepito non nasce da parole come “eccellenza” o “tecnologia avanzata”. Nasce da elementi osservabili: competenza verificabile, diagnosi accurata, tempo dedicato, chiarezza delle alternative, materiali dichiarati, continuità dell'assistenza, organizzazione, accessibilità e gestione delle eventuali complicazioni. Quando questi elementi vengono spiegati bene, il paziente può confrontare gli studi su una base più completa.
+
+Il marketing migliore non convince una persona a spendere di più. Le permette di capire meglio che cosa sta confrontando.
+
+
+## La matrice dell'intento odontoiatrico
+
+La SEO odontoiatrica non dovrebbe essere progettata come una lista di parole chiave ordinate per volume. Deve partire da una struttura che colleghi il modo in cui il paziente esprime il problema al modo in cui lo studio eroga realmente la prestazione.
+
+Intent & Proof utilizza questa matrice:
+
+> **Trattamento × problema × tecnologia o brand × località × fase decisionale**
+
+La matrice serve a evitare due errori opposti. Il primo è costruire un sito composto soltanto da pagine generiche: implantologia, ortodonzia, estetica e poco altro. Il secondo è generare centinaia di URL combinando automaticamente ogni trattamento con ogni comune, marchio e domanda. Nel primo caso il sito non risponde a ricerche specifiche; nel secondo produce pagine sottili, ripetitive e difficili da sostenere con prove reali.
+
+| Dimensione | Esempi | Funzione |
+| --- | --- | --- |
+| Trattamento | implantologia, ortodonzia invisibile, faccette, igiene | Identifica l'area clinica |
+| Problema | denti mancanti, poco osso, denti storti, urgenza | Traduce il bisogno espresso |
+| Tecnologia o brand | carico immediato, All-on-4, Invisalign, sistemi implantari | Intercetta domanda più consapevole |
+| Località | città, quartiere, provincia, “vicino a me” | Collega la domanda al bacino reale |
+| Fase decisionale | informazione, confronto, valutazione, urgenza | Determina contenuto e azione |
+
+Una singola ricerca può contenere più dimensioni. “Impianti dentali a carico immediato Cagliari costi” combina trattamento, tecnologia, località e confronto economico. La pagina corretta non deve ripetere la frase in ogni titolo. Deve rispondere all'intento complessivo: spiegare il percorso, indicare chi effettua la valutazione, chiarire da cosa dipende il costo e rendere semplice il contatto con la sede pertinente.
+
+### Le famiglie di ricerca da presidiare
+
+Le ricerche locali generiche comprendono espressioni come “dentista vicino a me”, “studio dentistico + città”, “dentista aperto sabato” e “urgenza dentistica”. Sono importanti perché intercettano domanda ampia e spesso immediata. Richiedono una presenza locale solida, informazioni operative corrette e un Profilo dell'attività su Google ben gestito.
+
