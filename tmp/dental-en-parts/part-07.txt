@@ -1,0 +1,85 @@
+### The page must continue the advertisement's promise
+
+An advertisement is not a self-contained page. If it promises information about an implant assessment, the landing page should explain the journey and identify the clinician. If it concerns clear aligners for adults, the page should distinguish assessment, technology, timing, limitations and alternatives.
+
+Inconsistency increases cost and weakens trust. A person who searches for a specific solution and reaches a generic homepage must begin searching again inside the website. Many will not.
+
+### Google Ads and Meta Ads do not perform the same function
+
+| Channel | Type of demand | Primary use |
+| --- | --- | --- |
+| Google Search | Expressed and often urgent demand | Capture specific searches |
+| Google Maps | Local and comparative demand | Confirm proximity and reputation |
+| Meta Ads | Latent demand or broader interest | Education, awareness and discovery |
+| Editorial SEO | Informational questions and comparison | Build authority and organic demand |
+| AI search | Detailed and comparative questions | Be cited as a verifiable source |
+
+Meta can be useful for introducing a topic, presenting a clinician or educating latent demand. It should not be evaluated as though the user had entered an explicit search query. Creative content and the conversion journey must respect that difference.
+
+### Personalised-advertising restrictions in healthcare
+
+Google treats health-related content as a sensitive interest category. For these categories, it restricts the use of advertiser-curated audience segments and prohibits targeting based on personal health conditions. Some predefined platform options may remain available, but configuration must be checked against the destination page, creative and treatment type. [Source: Google Ads policy on health in personalised advertising](https://support.google.com/adspolicy/answer/16701855?hl=en)
+
+This makes it dangerous to import remarketing tactics from unrelated industries. A person who has read a page about a condition or treatment should not automatically become a custom healthcare audience.
+
+The fact that a feature appears in the interface does not guarantee that it is permitted for a particular campaign. Policies change, and Google identifies the English version as the reference for enforcement. Every implementation requires periodic review.
+
+### Message, transparency and expectations
+
+The advertisement should be informational and consistent with the page. Phrases such as “guaranteed result”, “perfect smile”, “for a limited time only” or aggressive comparisons are inappropriate in healthcare communication. Even apparently harmless messages can become suggestive when they promise a certain transformation or reduce treatment to an offer.
+
+An effective message can focus on:
+
+- location and availability;
+- treatment or assessment;
+- clinician;
+- process;
+- accessibility;
+- clarity of information;
+- the ability to request an appointment.
+
+The objective is not to make advertising bland. It is to create relevance without crossing the line between information and commercial pressure.
+
+### Cost per lead is not enough
+
+A campaign can reduce cost per form by increasing the volume of poorly matched contacts. Reporting should therefore connect at least:
+
+**spend → enquiries → handled contacts → booked appointments → attended first visits**
+
+Cost per lead remains useful as a technical measure. It should be accompanied by cost per reached contact, cost per booking and cost per qualified first visit.
+
+The best campaign is not necessarily the one with the cheapest lead. It is the one that creates the most efficient path toward the outcome the practice has defined as useful.
+
+### Volume, learning and local reality
+
+Campaigns for specific treatments may have limited volume, especially in smaller markets. That is not automatically a defect to be corrected by broadening keywords indiscriminately. It may simply describe the market.
+
+Before using automated strategies based on target CPA or value, the practice should verify whether enough reliable conversions exist. An algorithm trained on a small number of heterogeneous form submissions learns very little. Healthcare also imposes restrictions on the use of sensitive data, preventing every internal outcome from being treated as a signal that can be uploaded to the platform.
+
+The solution is not to abandon measurement. It is to separate advertising optimisation from internal business intelligence.
+
+## Dental landing pages: inform, qualify and simplify the first visit
+
+A landing page is not merely a place to insert a form. It is where the promise made by the advertisement or organic result is tested.
+
+An effective page should reduce three forms of uncertainty: “Am I in the right place?”, “Can I trust this provider?” and “What happens if I contact the practice?” If it does not answer those questions, the button can remain extremely visible while producing very few relevant enquiries.
+
+### Opening and message match
+
+The first screen should state the treatment, location, clinician or type of assessment clearly. Every detail does not need to be compressed above the fold, but the person should immediately recognise continuity with the search that brought them there.
+
+A headline such as “Rediscover the smile you deserve” may sound emotional, but it does not clarify whether the page concerns implant dentistry, orthodontics or whitening. A more informative headline qualifies the visit and reduces dependence on slogans.
+
+The call to action should describe the real next step: “Request an assessment”, “Book a first visit” or “Speak to the front desk”. “Learn more” is often too vague; “Book the treatment” may be premature and inappropriate.
+
+### Place proof close to the decision
+
+Proof should appear where doubt arises. Clinician qualifications should be shown when the treatment is introduced. Photographs of the practice can accompany operational information. Relevant reviews can support the first-visit journey. Sources can be linked beside clinical explanations.
+
+A page that deposits every testimonial at the bottom forces the patient to overcome uncertainty before encountering evidence. A page filled with logos, awards and numbers without context can appear self-congratulatory rather than reassuring.
+
+### Costs and finance
+
+Financial information should be handled precisely. Where ranges or included elements can be stated, the practice should verify that the communication is accurate, current and compatible with the rules that apply. Where a reliable range cannot be given, the page should explain which factors shape the treatment plan.
+
+Finance should not become the sole point of differentiation. It may be useful information, but it does not replace diagnosis, expertise or appropriateness.
