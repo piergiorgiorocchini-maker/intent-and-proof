@@ -1,0 +1,92 @@
+Il rischio è perdere visibilità anche quando il sito mantiene alcune posizioni tradizionali. Se una risposta AI sintetizza costi, alternative, indicazioni e criteri di scelta senza citare lo studio, la persona può non visitare la pagina. L'opportunità è comparire come fonte in domande molto più specifiche rispetto alle keyword tradizionali, soprattutto quando il contenuto possiede una struttura chiara e informazioni verificabili.
+
+Google dichiara che non sono necessarie ottimizzazioni speciali per apparire nelle funzionalità AI: restano valide le buone pratiche SEO, l'indicizzabilità, la qualità del contenuto, i link interni e i dati strutturati coerenti. Le funzioni AI possono utilizzare una tecnica di *query fan-out*, cioè scomporre una domanda in più ricerche correlate per trovare fonti di supporto. [Fonte: Google, AI features and your website](https://developers.google.com/search/docs/appearance/ai-features?hl=it)
+
+Questo significa che una pagina non deve soltanto ripetere la query principale. Deve coprire le sotto-domande che rendono completa una decisione.
+
+### Dalla keyword alla conversazione
+
+Una persona può iniziare con “impianti dentali costo” e poi chiedere:
+
+- da cosa dipende il prezzo;
+- quali esami servono;
+- se il poco osso esclude il trattamento;
+- che differenza esiste tra carico immediato e percorso tradizionale;
+- quali alternative sono possibili;
+- quanto tempo richiede la prima visita;
+- come scegliere uno studio nella propria città.
+
+Una sola pagina può rispondere a una parte di queste domande; altre richiedono contenuti collegati. L'architettura deve quindi essere tematica, non soltanto lessicale.
+
+Il futuro della SEO odontoiatrica non consiste nel pubblicare una FAQ per ogni frase possibile. Consiste nel costruire un corpus coerente in cui le risposte brevi, le spiegazioni estese, le fonti e le entità professionali si rafforzano a vicenda.
+
+### Come rendere un contenuto citabile
+
+Un motore generativo deve poter estrarre una frase senza deformarne il significato. Per questo le sezioni importanti dovrebbero iniziare con una risposta diretta e continuare con spiegazione, condizioni ed eccezioni.
+
+Una definizione utile può assumere questa forma:
+
+> **La SEO locale per dentisti è il processo con cui uno studio rende coerenti sito, pagine trattamento, professionisti, sede, Profilo dell'attività, recensioni e dati tecnici per comparire nelle ricerche pertinenti del proprio territorio.**
+
+La frase è autosufficiente, attribuibile e verificabile. I paragrafi successivi possono spiegare fattori, limiti e implementazione.
+
+Anche tabelle, confronti e framework originali aumentano la leggibilità. Non perché i modelli “preferiscano” magicamente le tabelle, ma perché una struttura esplicita riduce l'ambiguità e permette di collegare concetti.
+
+### Entità, coerenza e fonti esterne
+
+I sistemi di ricerca cercano di comprendere entità: persone, organizzazioni, sedi, trattamenti e relazioni. Uno studio dovrebbe presentare lo stesso nome, indirizzo, professionisti e servizi nelle proprie pagine, nel Profilo dell'attività e nelle fonti esterne affidabili.
+
+Un professionista citato senza pagina autore, albo, ruolo o relazione con la sede è più difficile da verificare. Un trattamento attribuito genericamente a “il nostro team” offre meno contesto di una pagina che indica chi lo esegue e quali competenze possiede.
+
+Le citazioni esterne non devono essere costruite attraverso directory casuali. Sono più utili menzioni in fonti pertinenti, albi, società scientifiche, pubblicazioni, testate e realtà locali. La coerenza dell'entità conta più della quantità indiscriminata.
+
+### ChatGPT Search e OAI-SearchBot
+
+OpenAI indica che qualsiasi sito pubblico può apparire nei risultati di ricerca di ChatGPT e che, per consentire l'inclusione di contenuti in riepiloghi e snippet, non bisogna bloccare `OAI-SearchBot`. OpenAI distingue questo crawler da `GPTBot`, utilizzato per la potenziale raccolta destinata all'addestramento. È quindi possibile consentire la ricerca e limitare separatamente altri usi. [Fonte: OpenAI, FAQ per publisher e sviluppatori](https://help.openai.com/it-it/articles/12627856-publishers-and-developers-faq)
+
+OpenAI aggiunge il parametro `utm_source=chatgpt.com` ai link di referral, consentendo di misurare il traffico proveniente dalla ricerca. Lo studio dovrebbe quindi configurare analytics e reportistica per distinguere questi accessi.
+
+Consentire il crawler non garantisce una citazione. La pagina deve essere pubblica, indicizzabile, comprensibile e utile. Il file `robots.txt` di Intent & Proof consente attualmente l'accesso generale ai crawler; il controllo deve comunque essere ripetuto dopo ogni modifica infrastrutturale.
+
+### Misurare le citazioni AI
+
+Microsoft ha introdotto in Bing Webmaster Tools un'area AI Performance che mostra citazioni, pagine citate e andamento nel tempo attraverso Copilot e altre superfici supportate. È un segnale importante: la visibilità generativa sta diventando una metrica osservabile, non soltanto una discussione teorica. [Fonte: Bing Webmaster Blog](https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview)
+
+Per uno studio dentistico, la dashboard futura dovrebbe distinguere:
+
+- traffico organico tradizionale;
+- visite da Google AI;
+- referral da ChatGPT;
+- citazioni rilevate da Bing;
+- pagine utilizzate come fonte;
+- richieste e prime visite originate da questi percorsi.
+
+Il numero di citazioni da solo non misura il valore. Una pagina può essere citata molto per una domanda informativa nazionale e produrre poche visite locali. La metrica va collegata a territorio, trattamento e azione.
+
+### Il framework Citation-Ready Content
+
+Intent & Proof definisce un contenuto “citation-ready” quando possiede cinque caratteristiche:
+
+1. una risposta diretta che può essere compresa senza il resto della pagina;
+2. fonti vicine alle affermazioni che richiedono verifica;
+3. autore, revisore e data identificabili;
+4. struttura semantica coerente con titoli, tabelle e collegamenti;
+5. un contributo originale che renda la pagina preferibile a una semplice sintesi di fonti altrui.
+
+L'ultimo punto è il più importante. Un articolo che ricopia definizioni già presenti non offre un motivo per essere citato. Un modello operativo, una matrice, un dataset locale, un confronto o una metodologia proprietaria creano invece informazione nuova.
+
+### Non ottimizzare soltanto gli studi clienti
+
+Un'azienda che vende visibilità AI deve applicare gli stessi standard al proprio sito. Intent & Proof deve quindi mantenere:
+
+- pagine indicizzabili e canonical stabili;
+- autore e organizzazione verificabili;
+- sitemap aggiornata;
+- accesso a OAI-SearchBot;
+- dati strutturati coerenti;
+- fonti primarie;
+- URL permanenti;
+- monitoraggio dei referral AI;
+- aggiornamenti reali e non automatici;
+- framework proprietari nominabili.
+
