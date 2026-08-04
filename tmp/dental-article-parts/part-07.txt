@@ -1,0 +1,73 @@
+Questo non significa sponsorizzare qualsiasi evento per ottenere un backlink. Significa rendere visibile il rapporto reale tra lo studio e il territorio. Una presenza locale credibile produce segnali che Google, i pazienti e i motori AI possono verificare attraverso fonti differenti.
+
+
+## Contenuti sanitari, YMYL ed E-E-A-T
+
+Google utilizza l'espressione YMYL per indicare temi che possono incidere in modo significativo su salute, sicurezza, stabilità finanziaria o benessere. L'odontoiatria rientra chiaramente in questo perimetro. Una pagina che parla di implantologia, parodontite, sedazione o dolore non è equivalente a una guida su un accessorio domestico. Un errore può influenzare decisioni sanitarie e aspettative economiche.
+
+Per questo l'affidabilità deve essere progettata, non dichiarata.
+
+Google spiega che i propri sistemi considerano segnali riconducibili a esperienza, competenza, autorevolezza e affidabilità, attribuendo particolare importanza alla fiducia. Precisa anche che E-E-A-T non è un singolo fattore di ranking e che i valutatori della qualità non modificano direttamente le posizioni. [Fonte: Google Search Central](https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=it)
+
+La conseguenza pratica è semplice: non esiste un campo da compilare per “attivare E-E-A-T”. Occorre rendere verificabili le persone, le fonti, le responsabilità e il processo editoriale.
+
+### Autore, revisore e responsabilità
+
+Ogni contenuto sanitario importante dovrebbe indicare chi lo ha scritto, chi lo ha eventualmente revisionato e quale ruolo possiede. Un articolo di marketing rivolto ai titolari può essere scritto da un analista di acquisizione; una pagina che descrive aspetti clinici dovrebbe essere revisionata da un professionista competente.
+
+La revisione non deve essere un nome decorativo nel footer. Il revisore deve poter controllare accuratezza, limiti e aggiornamenti. La pagina autore dovrebbe contenere qualifiche verificabili, aree di competenza, affiliazioni pertinenti e collegamenti ufficiali quando disponibili.
+
+La data di aggiornamento deve corrispondere a un controllo reale. Cambiare automaticamente la data ogni mese senza rivedere il contenuto produce un segnale cosmetico e rende meno affidabile la cronologia editoriale.
+
+### Fonti scientifiche e fonti operative
+
+Non ogni frase richiede una citazione accademica. Le definizioni cliniche, i dati epidemiologici, le indicazioni e i rischi dovrebbero però essere sostenuti da fonti adeguate: linee guida, documenti istituzionali, società scientifiche, revisioni e letteratura pertinente.
+
+Le informazioni operative possono utilizzare fonti diverse. Orari, tecnologie disponibili, professionisti e sedi devono derivare dallo studio. Le regole Google devono essere citate dalla documentazione Google. La normativa deve essere collegata a fonti ufficiali. Un articolo diventa più credibile quando distingue chiaramente ciò che proviene da una fonte esterna da ciò che rappresenta un modello o una raccomandazione proprietaria.
+
+### Una pagina trattamento non è una brochure
+
+Una pagina utile non deve limitarsi a dire che lo studio offre il trattamento e possiede “tecnologie all'avanguardia”. Deve rispondere alle domande che precedono una richiesta consapevole.
+
+Dovrebbe spiegare che cos'è la prestazione, quali problemi può affrontare, chi può richiedere una valutazione, quali accertamenti possono essere necessari, chi esegue il percorso, quali alternative esistono, da quali fattori dipendono tempi e costi e quali limiti devono essere compresi.
+
+Non deve sostituire la diagnosi. Il contenuto può aiutare la persona a formulare domande migliori e a riconoscere quando è opportuno richiedere una visita. Non può stabilire online che un trattamento sia indicato per il singolo caso.
+
+### La struttura ideale di una pagina trattamento
+
+| Blocco | Obiettivo |
+| --- | --- |
+| Apertura | Confermare trattamento, problema e sede |
+| Risposta diretta | Spiegare in poche righe che cos'è e a cosa serve |
+| Professionista | Rendere verificabili ruolo e competenze |
+| Valutazione | Chiarire perché non esiste una risposta identica per tutti |
+| Processo | Descrivere le fasi senza promettere esiti |
+| Tecnologia e materiali | Indicare solo ciò che viene realmente utilizzato |
+| Benefici e limiti | Favorire una decisione consapevole |
+| Alternative | Evitare una narrazione a soluzione unica |
+| Costi | Spiegare i fattori che determinano il piano |
+| Prove | Recensioni, struttura, metodo e casi conformi |
+| FAQ | Rispondere alle obiezioni informative |
+| Azione | Richiedere una valutazione o un contatto appropriato |
+
+Questa struttura non è un template rigido. Alcuni trattamenti richiederanno maggiore spazio sui rischi, altri sulle alternative o sulla manutenzione. Il principio è che la pagina deve seguire la decisione del paziente, non l'organigramma dello studio.
+
+### Prima e dopo, casi clinici e prova
+
+I casi clinici possono essere informativi, ma sono anche uno dei punti più delicati. Una fotografia può rendere riconoscibile una persona o rivelare dati sanitari. Un risultato individuale non può essere presentato come esito garantito. La selezione dei casi può inoltre creare aspettative distorte se mostra soltanto situazioni eccezionali.
+
+Un caso responsabile dovrebbe indicare contesto, obiettivo, valutazione, percorso, limiti e variabilità. Le immagini devono essere trattate secondo le regole applicabili e con una reale valutazione dell'identificabilità. La prova non deve diventare spettacolarizzazione.
+
+### Chiarezza prima della densità tecnica
+
+Un contenuto può essere accurato e comunque inutilizzabile. Il paziente non deve decifrare una relazione specialistica per capire il prossimo passo. La soluzione non è semplificare fino a perdere precisione, ma organizzare l'informazione su livelli: risposta diretta, spiegazione accessibile, dettagli, fonti e domande frequenti.
+
+Questo formato è utile anche per la ricerca tradizionale e per i sistemi generativi. Una risposta chiara può essere estratta senza perdere il contesto, mentre i dettagli permettono al lettore di verificare e approfondire.
+
+
+## SEO per dentisti nell'epoca delle risposte AI
+
+La ricerca non è più composta soltanto da una query breve e da una lista di link. Sempre più persone formulano domande articolate, chiedono confronti, aggiungono dettagli e proseguono la conversazione. Google AI Overviews e AI Mode, ChatGPT Search, Microsoft Copilot e altri sistemi generativi possono sintetizzare informazioni provenienti da più fonti e mostrare collegamenti a supporto.
+
+Per uno studio dentistico questo cambiamento crea un rischio e un'opportunità.
+
