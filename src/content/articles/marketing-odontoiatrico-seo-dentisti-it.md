@@ -24,7 +24,7 @@ tags:
   - Misurazione
   - Ricerca AI
 keyTakeaways:
-  - Un lead non è un paziente: il sistema deve misurare richieste, appuntamenti fissati, prime visite svolte e risultati economici interni.
+  - "Un lead non è un paziente: il sistema deve misurare richieste, appuntamenti fissati, prime visite svolte e risultati economici interni."
   - Per attirare persone che non confrontano lo studio soltanto sul prezzo servono query precise, pagine trattamento, prove credibili e un percorso di prima visita comprensibile.
   - La SEO odontoiatrica deve essere costruita per trattamento, problema, tecnologia, località e fase decisionale, non come una raccolta di pagine generiche.
   - Segreteria, CRM e gestionale fanno parte dell'acquisizione perché determinano quante richieste diventano appuntamenti reali.
