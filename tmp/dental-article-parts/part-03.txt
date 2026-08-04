@@ -1,0 +1,58 @@
+| Contatti interessati soltanto al prezzo | Nessun criterio di scelta oltre al costo | Prove, processo, valutazione e posizionamento comprensibili |
+| Molti lead, poche prime visite | Follow-up non misurato | Protocollo di presa in carico e stati nel CRM |
+| Risultati non attribuiti | Report fermo al modulo | Collegamento interno tra fonte, prima visita ed esito |
+| Timore di sanzioni | Copy commerciale importato da altri settori | Comunicazione informativa, approvazione e controllo |
+| Dati frammentati | Sito, Ads e gestionale isolati | Identificativo comune e dashboard con dati minimizzati |
+| Perdita di visibilità nelle risposte AI | Contenuti vaghi e non citabili | Risposte dirette, fonti, entità, struttura e aggiornamento |
+
+La qualità di un sistema non dipende dal numero di strumenti collegati, ma dalla precisione con cui ogni passaggio conserva il significato della richiesta. Una persona che cerca un consulto per un trattamento complesso non dovrebbe essere inviata a una homepage generica, registrata come “lead” senza contesto e richiamata da una segreteria che vede soltanto nome e telefono. L'architettura deve mantenere coerenza tra ciò che la persona ha cercato, ciò che ha letto e ciò che lo studio le propone come passo successivo.
+
+
+## Che cos'è realmente il marketing odontoiatrico
+
+Il marketing odontoiatrico è una disciplina verticale perché deve coordinare elementi che in molte attività ordinarie possono essere gestiti separatamente. Deve comprendere la domanda locale, la specificità dei trattamenti, l'autorevolezza dei professionisti, i limiti della comunicazione sanitaria, il valore della prima visita, il lavoro della segreteria, i tempi decisionali del paziente, il gestionale clinico e amministrativo, la protezione dei dati e la misurazione economica.
+
+Un'agenzia generalista può acquistare traffico e costruire una landing page. Il problema nasce quando tratta un impianto, un allineatore o una valutazione specialistica come se fossero un prodotto di consumo standard. La decisione sanitaria non è un acquisto impulsivo. Il paziente deve comprendere abbastanza da poter scegliere liberamente di chiedere una valutazione, ma non deve ricevere una diagnosi implicita attraverso un annuncio o una promessa di risultato.
+
+Lo studio, d'altra parte, non può valutare il marketing sulla base della sensazione che “il nome giri”. Deve sapere quali domande sta intercettando, come vengono gestite e quali producono appuntamenti coerenti. Per questo il marketing odontoiatrico non è soltanto comunicazione. È progettazione di un processo informativo e operativo.
+
+La parola “acquisizione” può risultare sgradevole quando viene applicata ai pazienti, perché sembra ridurre una persona a un'unità economica. In questa guida la utilizziamo in senso aziendale: descrive il percorso attraverso cui uno studio rende accessibili informazioni corrette, riceve una richiesta e organizza una prima visita. La relazione clinica inizia solo dopo, secondo responsabilità e regole proprie. Il marketing non deve oltrepassare quel confine.
+
+### Lead, appuntamento e paziente non sono sinonimi
+
+La parola *lead* descrive un contatto, non un risultato. È utile per indicare che una persona ha manifestato interesse, ma diventa pericolosa quando sostituisce tutte le fasi successive. Quaranta moduli compilati non equivalgono a quaranta pazienti, così come quaranta appuntamenti fissati non equivalgono a quaranta visite svolte.
+
+| Stato | Che cosa significa | Responsabilità prevalente |
+| --- | --- | --- |
+| Visita o clic | Una persona ha raggiunto il sito | Acquisizione e messaggio |
+| Richiesta | Ha inviato un modulo, una chat o una chiamata | Pagina e percorso di azione |
+| Contatto gestito | Lo studio ha risposto e registrato l'esito | Segreteria e processo |
+| Appuntamento fissato | È stata concordata una prima visita | Segreteria e disponibilità |
+| Prima visita svolta | La persona si è presentata | Conferma, aspettative e organizzazione |
+| Idoneità clinica | Il professionista ha effettuato la valutazione | Esclusivamente area clinica |
+| Piano presentato | È stata formulata una proposta appropriata | Area clinica e amministrativa |
+| Esito economico | Il piano è stato accettato, rifiutato o rinviato | Studio e paziente |
+
+Un sistema serio misura le transizioni tra questi stati. Se quaranta richieste diventano dieci contatti gestiti, il collo di bottiglia non è necessariamente la campagna. Se trenta appuntamenti diventano dodici prime visite, bisogna indagare conferme, aspettative, tempi e qualità della domanda. Se molte visite pertinenti non arrivano a una decisione, l'analisi si sposta sul percorso interno, non su un'altra inserzione.
+
+Questa distinzione è essenziale anche per evitare conflitti tra studio e fornitore. L'agenzia sostiene di aver generato lead; lo studio sostiene che “non erano buoni”. Entrambe le affermazioni possono essere vere e, senza stati intermedi, nessuna è verificabile. Una pipeline condivisa trasforma l'accusa reciproca in diagnosi operativa.
+
+### La prima visita qualificata come unità di misura
+
+La prima visita qualificata è un indicatore più utile del lead perché incorpora tre condizioni: la persona è stata raggiunta, ha accettato il passo proposto e si è presentata. “Qualificata” non significa che il marketing abbia stabilito l'idoneità clinica. Significa che la richiesta era coerente con una prestazione effettivamente offerta, con il territorio servito e con il tipo di valutazione previsto dallo studio.
+
+Il costo per prima visita qualificata non sostituisce tutti gli altri KPI. Serve però a evitare che una campagna venga premiata per aver prodotto molti moduli irraggiungibili o richieste estranee. La formula è semplice:
+
+> **Costo per prima visita qualificata = costo attribuito alla fonte ÷ prime visite svolte e coerenti**
+
+La semplicità della formula non deve nascondere la qualità dei dati necessari. Lo studio deve registrare la fonte, l'esito del contatto, la prenotazione e la presenza. Se uno di questi stati manca, il risultato torna a essere una stima.
+
+
+## Il pain point centrale: persone che confrontano soltanto il prezzo
+
+Il problema non è che un paziente chieda il costo. È una domanda legittima, soprattutto quando una prestazione può incidere in modo importante sul bilancio familiare. Trattare la domanda sul prezzo come un difetto del paziente sarebbe miope e, oltre tutto, poco utile.
+
+Il problema nasce quando **il sistema non offre criteri migliori per scegliere**.
+
+Se due siti mostrano le stesse fotografie stock, le stesse frasi sulla professionalità e lo stesso pulsante “Richiedi preventivo”, la persona può confrontare soltanto ciò che riesce a distinguere: distanza, disponibilità e prezzo. Non è il paziente a essere “sbagliato”. È la comunicazione a non aver reso visibile alcuna differenza sostanziale.
+
