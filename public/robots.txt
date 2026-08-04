@@ -1,4 +1,5 @@
 # Search and AI search crawlers are allowed on published multilingual research.
+# English dental pillar review build: 2026-08-04
 User-agent: OAI-SearchBot
 Allow: /
 
