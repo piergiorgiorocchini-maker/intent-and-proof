@@ -1,0 +1,249 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EmailCaptureBox from "../EmailCaptureBox.astro";
+import { getPublishedArticleIndex } from "../../lib/content/interlinking";
+import "../../styles/homepage-v2.css";
+
+const {
+	home,
+	locale = "en"
+} = Astro.props;
+
+const contentLocale = locale === "it" ? "it" : "en";
+const latestArticles = (await getPublishedArticleIndex(contentLocale)).slice(0, 3);
+const canonicalPath = contentLocale === "it" ? "/it/" : "/";
+const alternates = [
+	{ locale: "en", href: "/" },
+	{ locale: "it", href: "/it/" },
+	{ locale: "en", href: "/", isDefault: true }
+];
+const labels = contentLocale === "it"
+	? {
+		assurances: "Caratteristiche dell'offerta",
+		diagnostic: "Anteprima della diagnostica di acquisizione",
+		evidence: "Prove operative",
+		proofResource: "Prova e risorsa gratuita"
+	}
+	: {
+		assurances: "Offer assurances",
+		diagnostic: "Acquisition diagnostic preview",
+		evidence: "Operating evidence",
+		proofResource: "Proof and free resource"
+	};
+---
+
+<BaseLayout
+	title={home.seo.title}
+	description={home.seo.description}
+	lang={contentLocale}
+	canonicalPath={canonicalPath}
+	alternates={alternates}
+	showRelatedContent={false}
+>
+	<div class="hp-home">
+		<section class="hp-hero">
+			<div class="hp-shell hp-hero__grid">
+				<div class="hp-hero__copy">
+					<p class="hp-eyebrow">{home.hero.eyebrow}</p>
+					<h1 style="font-size: clamp(2.55rem, 3.55vw, 3.85rem); line-height: 1.08; max-width: 700px;">{home.hero.title}</h1>
+					<p class="hp-hero__intro">{home.hero.text}</p>
+					<div class="hp-actions">
+						<a class="hp-button hp-button--primary" href={home.hero.primaryAction.href}>{home.hero.primaryAction.label} <span aria-hidden="true">↗</span></a>
+						<a class="hp-button hp-button--secondary" href={home.hero.secondaryAction.href}>{home.hero.secondaryAction.label}</a>
+					</div>
+					<ul class="hp-assurances" aria-label={labels.assurances}>
+						{home.hero.assurances.map((item: string) => <li>{item}</li>)}
+					</ul>
+				</div>
+
+				<div class="fd-console" aria-label={labels.diagnostic}>
+					<div class="fd-console__halo"></div>
+					<div class="fd-console__window">
+						<div class="fd-console__top">
+							<div>
+								<span class="fd-console__mark" aria-hidden="true">I<span>&amp;</span>P</span>
+								<div>
+									<p>{home.diagnostic.title}</p>
+									<small>{home.diagnostic.client}</small>
+								</div>
+							</div>
+							<span class="fd-console__status"><i></i> {home.diagnostic.status}</span>
+						</div>
+
+						<div class="fd-console__summary">
+							<div class="fd-score">
+								<div class="fd-score__ring"><span>{home.diagnostic.score}</span><small>/100</small></div>
+								<div><p>{home.diagnostic.scoreLabel}</p><strong>{home.diagnostic.scoreSummary}</strong></div>
+							</div>
+							<span class="fd-console__updated">{home.diagnostic.updatedLabel}</span>
+						</div>
+
+						<div class="fd-metrics">
+							{home.diagnostic.metrics.map((metric: any) => (
+								<div class="fd-metric">
+									<div class="fd-metric__head"><span>{metric.label}</span><strong>{metric.value}</strong></div>
+									<div class="fd-metric__bar"><i style={`--metric-width: ${metric.value}%; --metric-color: ${metric.color};`}></i></div>
+								</div>
+							))}
+						</div>
+
+						<div class="fd-next-action">
+							<div class="fd-next-action__icon" aria-hidden="true">01</div>
+							<div><small>{home.diagnostic.nextLabel}</small><strong>{home.diagnostic.nextText}</strong></div>
+							<span aria-hidden="true">→</span>
+						</div>
+					</div>
+
+					<div class="fd-signal-card fd-signal-card--top">
+						<span class="fd-signal-card__icon fd-signal-card__icon--blue" aria-hidden="true">↗</span>
+						<div><small>{home.diagnostic.signalTopLabel}</small><strong>{home.diagnostic.signalTopText}</strong></div>
+					</div>
+					<div class="fd-signal-card fd-signal-card--bottom">
+						<span class="fd-signal-card__icon fd-signal-card__icon--green" aria-hidden="true">✓</span>
+						<div><small>{home.diagnostic.signalBottomLabel}</small><strong>{home.diagnostic.signalBottomText}</strong></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="hp-evidence" aria-label={labels.evidence}>
+			<div class="hp-shell hp-evidence__grid">
+				{home.evidence.map((item: any) => (
+					<div class="hp-evidence__item">
+						<div class="hp-evidence__icon" aria-hidden="true">{item.icon}</div>
+						<strong>{item.value}</strong>
+						<span>{item.text}</span>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<section class="hp-human-capture" aria-label={labels.proofResource}>
+			<div class="hp-shell hp-human-capture__panel">
+				<article class="hp-testimonial">
+					<div>
+						<div class="hp-testimonial__quote-mark" aria-hidden="true">“</div>
+						<blockquote>{home.testimonial.quote}</blockquote>
+					</div>
+					<div class="hp-testimonial__person">
+						<div class="hp-testimonial__avatar" aria-hidden="true">{home.testimonial.initials}</div>
+						<div>
+							<strong>{home.testimonial.name}</strong>
+							<span>{home.testimonial.role}</span>
+						</div>
+					</div>
+				</article>
+
+				<div class="hp-resource">
+					<div class="hp-guide-cover" aria-hidden="true">
+						<small>{home.resource.eyebrow}</small>
+						<strong>{home.resource.coverTitle}</strong>
+						<span>{home.resource.coverText}</span>
+					</div>
+					<EmailCaptureBox
+						eyebrow={home.resource.eyebrow}
+						title={home.resource.title}
+						text={home.resource.text}
+						placeholder={home.resource.placeholder}
+						buttonLabel={home.resource.buttonLabel}
+						note={home.resource.note}
+						formName={`homepage-field-guide-${contentLocale}`}
+						handlerId="newsletter"
+						lang={contentLocale}
+						compact={true}
+						errorMessage={home.resource.errorMessage}
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section id="services" class="hp-section hp-system">
+			<div class="hp-shell">
+				<div class="hp-section-heading">
+					<div>
+						<p class="hp-eyebrow">{home.productsSection.eyebrow}</p>
+						<h2>{home.productsSection.title}</h2>
+					</div>
+					<p>{home.productsSection.text}</p>
+				</div>
+
+				<div class="hp-system-grid">
+					{home.productsSection.items.map((product: any) => (
+						<article class="hp-system-card">
+							<div class="hp-system-card__top"><span class="hp-system-card__number">{product.number}</span><span class="hp-system-card__state">{product.state}</span></div>
+							<div class={`fd-module-icon fd-module-icon--${product.icon}`} aria-hidden="true">
+								{Array.from({ length: product.iconBars }).map(() => <span></span>)}
+							</div>
+							<p class="hp-system-card__verb">{product.verb}</p>
+							<h3>{product.title}</h3>
+							<p>{product.text}</p>
+							<a href={product.href}>{product.linkLabel} <span aria-hidden="true">→</span></a>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section id="solutions" class="hp-section hp-b2b">
+			<div class="hp-shell">
+				<div class="hp-b2b__heading">
+					<p class="hp-eyebrow">{home.audienceSection.eyebrow}</p>
+					<h2>{home.audienceSection.title}</h2>
+					<p>{home.audienceSection.text}</p>
+				</div>
+
+				<div class="hp-audience-grid">
+					{home.audienceSection.items.map((audience: any) => (
+						<article class="hp-audience-card">
+							<div class="hp-audience-card__icon" aria-hidden="true">{audience.code}</div>
+							<h3>{audience.title}</h3>
+							<p>{audience.text}</p>
+						</article>
+					))}
+				</div>
+
+				<div class="hp-b2b-proof">
+					<div class="hp-b2b-proof__mark" aria-hidden="true">{home.audienceSection.proof.mark}</div>
+					<div>
+						<strong>{home.audienceSection.proof.title}</strong>
+						<span>{home.audienceSection.proof.text}</span>
+					</div>
+					<a href={home.audienceSection.proof.href}>{home.audienceSection.proof.label} →</a>
+				</div>
+			</div>
+		</section>
+
+		<section id="resources" class="hp-research">
+			<div class="hp-shell">
+				<div class="hp-research__heading">
+					<div>
+						<p class="hp-eyebrow hp-eyebrow--light">{home.researchSection.eyebrow}</p>
+						<h2>{home.researchSection.title}</h2>
+					</div>
+					<a href={home.researchSection.href}>{home.researchSection.label} →</a>
+				</div>
+
+				<div class="hp-research-grid">
+					{latestArticles.map((article) => (
+						<a class="hp-research-card" href={article.href}>
+							<div class="hp-research-card__graphic" aria-hidden="true"></div>
+							<small>{article.categoryName}</small>
+							<h3>{article.title}</h3>
+							<span>{home.researchSection.articleLabel} →</span>
+						</a>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="hp-final">
+			<div class="hp-shell hp-final__panel">
+				<div>
+					<p class="hp-eyebrow">{home.finalCta.eyebrow}</p>
+					<h2>{home.finalCta.title}</h2>
+				</div>
+				<a class="hp-button hp-button--primary" href={home.finalCta.href}>{home.finalCta.label} <span aria-hidden="true">↗</span></a>
+			</div>
+		</section>
+	</div>
+</BaseLayout>
