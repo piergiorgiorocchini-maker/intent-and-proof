@@ -1,0 +1,99 @@
+2. **Internal measurement** records contact handling, first visits, operational outcomes and internal value inside systems controlled by the practice.
+3. **Advertising optimisation** uses only signals that have been verified as permitted for the relevant account, market, event and treatment.
+
+A conversion name should never become a covert method of sending information such as “implant case accepted”, “patient with bone loss” or another health-related inference.
+
+The same principle applies beyond Google. Meta, analytics products, call-tracking systems, session-recording tools and CRM integrations must be assessed according to the data they receive, not according to the convenience of their interface.
+
+### Why the internal dashboard remains transformative
+
+Keeping sensitive outcomes inside the practice does not reduce the value of attribution. It makes the architecture more credible.
+
+The owner can discover that one campaign generates expensive enquiries but a high number of attended first visits, while another produces cheap forms and almost no reached contacts. The practice can compare locations, landing pages, search terms, time-to-contact and no-show patterns without handing the entire decision system to an advertising platform.
+
+Optimisation can then occur through controlled human decisions: move budget between campaigns, revise negative keywords, separate price-led searches, improve the treatment page, change appointment availability, improve the intake script, shorten response times or create missing educational content.
+
+Not every useful outcome has to become a Smart Bidding signal. The insistence that every business fact must be uploaded to a platform is usually a symptom of tool-centred thinking.
+
+### Deterministic and imperfect attribution
+
+Click identifiers and UTM parameters can connect an enquiry to a campaign when they are collected and preserved correctly. Not every patient journey will be deterministic. A person may search several times, switch devices, call from another number, ask a friend, return through a branded search or book weeks later.
+
+The dashboard should distinguish direct attribution, assisted attribution, declared source, unknown source, existing patient and referral. It should also show the proportion of records for which source coverage is reliable.
+
+Demanding absolute precision often produces falsely precise data. A trustworthy system reports uncertainty instead of hiding it.
+
+### Events, identifiers and deduplication
+
+Each enquiry receives a `lead_id`; each operational update receives an `event_id`. The practice system preserves the link, while the dashboard uses the identifiers to avoid duplication.
+
+An event should include time, source, version and status. Corrections should create a visible update rather than silently rewriting history. This discipline makes monthly reporting defensible. No dataset is beyond challenge, but a number becomes verifiable when it can be traced to documented events and rules.
+
+### The report that changes the conversation
+
+A useful report might state:
+
+> During the month, 40 attributed enquiries were received. The practice recorded 28 contact attempts, reached 18 people, booked 9 appointments and completed 6 first visits. Eleven enquiries were classified as primarily price-led. Median time to first response was 3 hours and 20 minutes.
+
+That summary does not search for a culprit. It shows where action is needed. If only 28 enquiries received an attempt, the priority is operational. If reached contacts rarely book, relevance, availability and the conversation must be reviewed. If bookings do not attend, timing, reminders and expectations require attention.
+
+Marketing becomes analytical when numbers change a decision, not when they merely decorate a dashboard.
+
+## Health data, privacy and privacy by design
+
+A simple dental enquiry can reveal health information. A message such as “I would like an assessment for upper-jaw implants” connects an identifiable person with a healthcare need. Photographs, radiographs, medical history, clinical notes and treatment details are more sensitive still.
+
+The exact legal classification varies by jurisdiction. Under the GDPR, data concerning health are a special category of personal data and Article 9 establishes a general prohibition on processing unless a specific condition applies. In the United States, HIPAA protects individually identifiable health information held or transmitted by covered entities and their business associates, while state privacy and health laws may apply more broadly or impose additional duties. [GDPR](https://eur-lex.europa.eu/eli/reg/2016/679/oj) · [HHS Privacy Rule](https://www.hhs.gov/hipaa/for-professionals/privacy/index.html)
+
+This does not mean that a dental practice cannot process patient information. It means that purpose, legal basis, roles, safeguards and disclosures must match the jurisdiction and the activity. Processing required to provide healthcare is not the same as processing for advertising, analytics or audience creation.
+
+### Separate purposes before separating databases
+
+The system should distinguish at least enquiry handling, appointment administration, healthcare delivery, billing, analytics, marketing and internal attribution.
+
+Data collected to organise an appointment cannot automatically be repurposed to create advertising audiences. Consent to be contacted is not the same as consent to profiling. In jurisdictions where consent is not the relevant basis for a particular healthcare activity, that does not create a universal permission for unrelated marketing.
+
+Privacy notices should explain who processes the data, for what purposes, with which categories of provider, for how long and with which rights. A single checkbox that supposedly authorises every imaginable activity is poor design even before a lawyer examines it.
+
+### Data minimisation
+
+The first marketing form should not collect information that can be obtained during the clinical process or through a secure healthcare channel.
+
+A marketing system rarely needs diagnoses, medical history, tooth numbers, photographs, radiographs, medication lists, conditions or detailed treatment plans. It may need a name, contact route, location, preferred time and a broad area of interest. Even those data require protection.
+
+The form should be designed around the operational question: what is the minimum information needed to respond and organise the next appropriate step?
+
+### Pseudonymisation is not anonymisation
+
+Replacing a name with a `lead_id` reduces exposure but does not make the information anonymous when the practice can reconnect the identifier to a person. Under European data-protection law, pseudonymised data remain personal data. Under HIPAA, de-identification also has defined methods and should not be assumed merely because direct identifiers have been removed. [HHS de-identification guidance](https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html)
+
+The key connecting the `lead_id` with the patient should be held separately with restricted access. A marketing dashboard should not display names when aggregate or pseudonymous information is sufficient.
+
+### Roles, vendors and contracts
+
+The practice, agency, hosting provider, CRM, chatbot, call-tracking provider and connector may occupy different legal roles depending on the jurisdiction and data flow. The label printed on the software website does not determine those roles.
+
+A claim such as “GDPR compliant” or “HIPAA compliant” is not enough. The practice needs to understand where data are stored, which subprocessors are involved, who can access them, how backups and deletion work, what happens after an incident and what contractual terms apply.
+
+Under HIPAA, a vendor that handles PHI on behalf of a covered entity may be a business associate and require an appropriate agreement. In the EU and UK, controller, joint-controller and processor relationships require their own analysis and documentation. International transfers may require additional mechanisms and safeguards.
+
+The product should prefer an architecture that reduces unnecessary transfers and makes the chain of responsibility visible.
+
+### Privacy by design
+
+Protection must be incorporated before development, not added as a banner after the tracking system has already collected everything.
+
+| Design choice | Effect |
+| --- | --- |
+| Minimum initial form | Reduces health information entering marketing tools |
+| Separate clinical channel | Keeps photographs and records out of the commercial CRM |
+| Pseudonymous identifiers | Limits exposure in reporting |
+| Role-based access | Prevents indiscriminate visibility |
+| Event logs | Makes operations and changes auditable |
+| Defined retention | Prevents indefinite lead archives |
+| Encryption | Protects data in transit and at rest |
+| Export and deletion processes | Supports rights and lifecycle management |
+
+The principle is not specific to one regulation. It is simply good system design: collect less, separate purposes, restrict access, document movement and remove data when they are no longer needed.
+
+### Analytics, consent and revealing URLs
