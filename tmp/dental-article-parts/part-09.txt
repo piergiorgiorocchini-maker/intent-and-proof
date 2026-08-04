@@ -1,0 +1,94 @@
+Parlare di citazioni AI senza rendere citabile il proprio sito sarebbe una contraddizione particolarmente istruttiva.
+
+
+## Google Ads per dentisti: intercettare domanda, non comprare moduli
+
+Google Ads può intercettare persone che stanno già cercando una prestazione o una soluzione locale. Questa caratteristica rende la rete di ricerca adatta alla domanda consapevole, ma non elimina la necessità di segmentare e controllare il significato delle conversioni.
+
+Una campagna generica costruita attorno a “dentista”, “impianti” e “apparecchio invisibile” può generare traffico. Non necessariamente genera richieste coerenti con lo studio. La qualità dipende dalla relazione tra query, annuncio, pagina, territorio, disponibilità e gestione successiva.
+
+### Strutturare le campagne per intenzione
+
+Una struttura sensata separa almeno il brand dello studio, la domanda locale generica, le prestazioni prioritarie, le urgenze e le ricerche esplicitamente centrate sul costo. Implantologia, carico immediato, ortodonzia invisibile ed estetica non dovrebbero condividere lo stesso gruppo di annunci e la stessa landing page.
+
+La separazione permette di adattare:
+
+- testo dell'annuncio;
+- keyword e corrispondenze;
+- keyword negative;
+- località e orari;
+- pagina di destinazione;
+- azione principale;
+- metriche di qualità.
+
+Le keyword negative sono particolarmente importanti per il pain point del prezzo. Non devono essere utilizzate in modo meccanico. Escludere ogni ricerca contenente “costo” può eliminare persone serie; lasciare senza controllo “gratis”, “economico”, “low cost” e termini estranei può consumare budget. Occorre analizzare i termini reali di ricerca e decidere in base all'intento.
+
+### La pagina deve continuare la promessa dell'annuncio
+
+L'annuncio non è una pagina autonoma. Se promette informazioni su una valutazione implantologica, la landing deve spiegare il percorso e mostrare il professionista. Se parla di ortodonzia invisibile per adulti, la pagina deve distinguere valutazione, tecnologia, tempi, limiti e alternative.
+
+L'incoerenza aumenta il costo e riduce la fiducia. Un utente che cerca una soluzione specifica e arriva su una homepage generica deve ricominciare la ricerca all'interno del sito. Molti non lo faranno.
+
+### Google Ads e Meta Ads non svolgono la stessa funzione
+
+| Canale | Tipo di domanda | Utilizzo principale |
+| --- | --- | --- |
+| Google Search | Domanda espressa e spesso urgente | Intercettare ricerche specifiche |
+| Google Maps | Domanda locale e comparativa | Confermare prossimità e reputazione |
+| Meta Ads | Domanda latente o interesse più ampio | Educazione, notorietà e scoperta |
+| SEO editoriale | Domande informative e confronto | Costruire autorevolezza e domanda organica |
+| Ricerca AI | Domande articolate e comparative | Essere citati come fonte verificabile |
+
+Meta può essere utile per far conoscere un tema, raccontare il professionista o educare una domanda latente. Non dovrebbe essere valutata come se l'utente avesse digitato una query esplicita. Il contenuto creativo e il percorso di conversione devono rispettare questa differenza.
+
+### Limitazioni della pubblicità personalizzata in ambito salute
+
+Google considera i contenuti relativi alla salute una categoria di interesse sensibile. Per queste categorie limita l'uso di segmenti di pubblico creati dall'inserzionista e vieta il targeting basato su condizioni sanitarie personali. Sono possibili alcune opzioni predefinite della piattaforma, ma la configurazione deve essere verificata rispetto alla pagina, alla creatività e al tipo di trattamento. [Fonte: Norme Google Ads sulla salute nella pubblicità personalizzata](https://support.google.com/adspolicy/answer/16701855?hl=it)
+
+Questo rende pericoloso importare tattiche di remarketing da altri settori. Una persona che ha letto una pagina su una condizione o un trattamento non deve essere trasformata automaticamente in un segmento sanitario personalizzato.
+
+Il fatto che una funzione sia disponibile nell'interfaccia non garantisce che sia consentita per quella campagna. Le policy cambiano e la versione inglese viene indicata da Google come riferimento ufficiale per l'applicazione. Ogni implementazione deve prevedere una verifica periodica.
+
+### Messaggio, trasparenza e aspettative
+
+L'annuncio deve essere informativo e coerente con la pagina. Espressioni come “risultato garantito”, “sorriso perfetto”, “solo per pochi giorni” o confronti aggressivi non sono appropriate alla comunicazione sanitaria. Anche messaggi apparentemente innocui possono diventare suggestivi se promettono una trasformazione certa o riducono il trattamento a un'offerta.
+
+Un messaggio efficace può concentrarsi su:
+
+- sede e disponibilità;
+- trattamento o valutazione;
+- professionista;
+- processo;
+- accessibilità;
+- chiarezza delle informazioni;
+- possibilità di richiedere un appuntamento.
+
+L'obiettivo non è rendere l'annuncio insipido. È costruire rilevanza senza oltrepassare il confine tra informazione e pressione commerciale.
+
+### Il costo per lead non basta
+
+Una campagna può ridurre il costo per modulo aumentando il volume di persone poco pertinenti. Per questo il report deve collegare almeno:
+
+**spesa → richieste → contatti gestiti → appuntamenti fissati → prime visite svolte**
+
+Il costo per lead resta utile come misura tecnica. Deve però essere affiancato da costo per contatto raggiunto, costo per appuntamento fissato e costo per prima visita qualificata.
+
+La campagna migliore non è necessariamente quella con il lead più economico. È quella che produce il percorso più efficiente verso l'esito che lo studio ha definito come utile.
+
+### Volume, apprendimento e realtà locale
+
+Le campagne per trattamenti specifici possono avere volumi limitati, soprattutto in territori piccoli. Questo non è un difetto da correggere ampliando indiscriminatamente le keyword. Può essere una caratteristica del mercato.
+
+Prima di utilizzare strategie automatiche orientate a target CPA o valore, occorre verificare se esistono abbastanza conversioni affidabili. Un algoritmo addestrato su pochi moduli eterogenei impara poco. In sanità, inoltre, le limitazioni sull'uso dei dati sensibili impediscono di trattare ogni esito interno come un segnale da inviare alla piattaforma.
+
+La soluzione non è rinunciare alla misurazione, ma separare l'ottimizzazione pubblicitaria dalla business intelligence interna.
+
+
+## Landing page odontoiatrica: informare, qualificare e rendere semplice la prima visita
+
+La landing page non è soltanto il luogo in cui inserire un modulo. È il punto in cui la promessa dell'annuncio o del risultato organico viene verificata.
+
+Una pagina efficace deve ridurre tre tipi di incertezza: “sono nel posto giusto?”, “posso fidarmi?” e “che cosa accade se contatto lo studio?”. Se non risponde a queste domande, il pulsante può essere molto visibile e continuare a produrre poche richieste pertinenti.
+
+### Apertura e corrispondenza
+
