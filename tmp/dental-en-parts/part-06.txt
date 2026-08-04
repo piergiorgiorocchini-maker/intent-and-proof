@@ -1,0 +1,85 @@
+
+Tables, comparisons and original frameworks also improve readability. Not because models possess a magical preference for tables, but because explicit structure reduces ambiguity and connects concepts more clearly.
+
+### Entities, consistency and external sources
+
+Search systems attempt to understand entities: people, organisations, locations, treatments and relationships. A practice should present the same name, address, clinicians and services on its own pages, in Google Business Profile and across trustworthy external sources.
+
+A clinician mentioned without an author or profile page, professional registration, role or connection to a location is harder to verify. A treatment attributed vaguely to “our team” provides less context than a page that states who delivers it and what relevant expertise that person holds.
+
+External citations should not be manufactured through random directories. Mentions in relevant sources, professional registers, scientific societies, publications, news outlets and local organisations are more useful. Entity consistency matters more than indiscriminate quantity.
+
+### ChatGPT Search and OAI-SearchBot
+
+OpenAI states that public websites may appear in ChatGPT search results and that sites should not block `OAI-SearchBot` if they want their content to be included in summaries and snippets. OpenAI distinguishes that crawler from `GPTBot`, which is associated with potential collection for model training. A publisher can therefore allow search access while setting separate controls for other uses. [Source: OpenAI, Publishers and Developers FAQ](https://help.openai.com/en/articles/12627856-publishers-and-developers-faq)
+
+OpenAI adds the parameter `utm_source=chatgpt.com` to referral links, making traffic from ChatGPT search measurable. Practices should configure analytics and reporting so that these visits can be distinguished.
+
+Allowing the crawler does not guarantee a citation. The page still needs to be public, indexable, understandable and useful. Intent & Proof currently allows general crawler access in its `robots.txt`; that setting should be checked again after every infrastructure change.
+
+### Measuring AI citations
+
+Microsoft has introduced an AI Performance area in Bing Webmaster Tools that reports citations, cited pages and change over time across Copilot and other supported surfaces. The development matters because generative visibility is becoming observable rather than remaining a purely theoretical discussion. [Source: Bing Webmaster Blog](https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview)
+
+A future dental-practice dashboard should distinguish:
+
+- traditional organic search traffic;
+- visits associated with Google's AI search experiences where identifiable;
+- referrals from ChatGPT;
+- citations reported by Bing;
+- pages used as sources;
+- enquiries and first visits originating from these journeys.
+
+Citation count alone does not measure value. A page may be cited frequently for a national informational query while producing few local visits. The metric must be connected to territory, treatment and action.
+
+### The Citation-Ready Content framework
+
+Intent & Proof defines content as “citation-ready” when it has five characteristics:
+
+1. a direct answer that can be understood without the rest of the page;
+2. sources placed close to claims that require verification;
+3. an identifiable author, reviewer and date;
+4. semantic structure supported by headings, tables and links;
+5. an original contribution that makes the page preferable to a simple summary of other sources.
+
+The final characteristic is the most important. An article that merely repeats existing definitions gives answer engines no particular reason to cite it. An operating model, matrix, local dataset, comparison or proprietary method creates genuinely new information.
+
+### Do not optimise only the client's practice
+
+A company selling AI visibility must apply the same standards to its own website. Intent & Proof should therefore maintain:
+
+- indexable pages and stable canonicals;
+- verifiable authors and organisation details;
+- an updated sitemap;
+- access for OAI-SearchBot;
+- consistent structured data;
+- primary sources;
+- permanent URLs;
+- monitoring of AI referrals;
+- real rather than automatic updates;
+- proprietary frameworks that can be named and attributed.
+
+Discussing AI citations while leaving one's own website difficult to cite would be an especially instructive contradiction.
+
+## Google Ads for dentists: capture demand instead of buying forms
+
+Google Ads can reach people who are already searching for a treatment or a local solution. That makes search advertising suitable for expressed demand, but it does not remove the need to segment campaigns and control what conversions actually mean.
+
+A generic campaign built around “dentist”, “implants” and “invisible braces” may generate traffic. It does not necessarily generate enquiries that fit the practice. Quality depends on the relationship between query, advertisement, page, territory, availability and subsequent handling.
+
+### Structure campaigns around intent
+
+A sensible structure separates at least practice-brand searches, broad local demand, priority treatments, emergencies and searches explicitly centred on cost. Implant dentistry, immediate loading, clear aligners and cosmetic dentistry should not share the same ad group and landing page.
+
+Separation allows the practice to adapt:
+
+- advertisement copy;
+- keywords and match types;
+- negative keywords;
+- locations and hours;
+- destination page;
+- primary action;
+- quality metrics.
+
+Negative keywords are especially important when addressing price-only demand. They should not be applied mechanically. Excluding every search containing “cost” may remove serious prospective patients; leaving “free”, “cheap”, “low cost” and irrelevant terms uncontrolled can waste budget. Real search terms must be analysed and decisions made according to intent.
+
