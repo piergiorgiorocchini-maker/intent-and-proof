@@ -47,6 +47,23 @@ function findCanonicalUrl(html) {
   return readAttribute(canonicalTag ?? "", "href");
 }
 
+function findAlternateUrls(html) {
+  const linkTags = html.match(/<link\b[^>]*>/gi) ?? [];
+
+  return linkTags
+    .filter((tag) => readAttribute(tag, "rel").toLowerCase() === "alternate")
+    .map((tag) => ({
+      hreflang: readAttribute(tag, "hreflang").toLowerCase(),
+      href: readAttribute(tag, "href")
+    }))
+    .filter((alternate) => alternate.hreflang && alternate.href)
+    .map((alternate) => ({
+      hreflang: alternate.hreflang,
+      href: new URL(alternate.href, SITE_ORIGIN).toString()
+    }))
+    .filter((alternate) => new URL(alternate.href).origin === SITE_ORIGIN);
+}
+
 function fallbackUrl(filePath) {
   const outputPath = relative(DIST_DIR, filePath).split(sep).join("/");
 
@@ -71,7 +88,7 @@ function escapeXml(value) {
 }
 
 const htmlFiles = await collectHtmlFiles(DIST_DIR);
-const urls = new Set();
+const pages = new Map();
 
 for (const filePath of htmlFiles) {
   const html = await readFile(filePath, "utf8");
@@ -83,17 +100,27 @@ for (const filePath of htmlFiles) {
   const canonicalUrl = findCanonicalUrl(html) || fallbackUrl(filePath);
   const parsedUrl = new URL(canonicalUrl, SITE_ORIGIN);
 
-  if (parsedUrl.origin === SITE_ORIGIN) {
-    urls.add(parsedUrl.toString());
+  if (parsedUrl.origin !== SITE_ORIGIN) {
+    continue;
   }
+
+  const alternates = findAlternateUrls(html);
+  pages.set(parsedUrl.toString(), alternates);
 }
 
-const sitemapEntries = [...urls]
-  .sort((a, b) => a.localeCompare(b))
-  .map((url) => `  <url>\n    <loc>${escapeXml(url)}</loc>\n  </url>`)
+const sitemapEntries = [...pages.entries()]
+  .sort(([first], [second]) => first.localeCompare(second))
+  .map(([url, alternates]) => {
+    const alternateLinks = alternates
+      .map((alternate) => `    <xhtml:link rel="alternate" hreflang="${escapeXml(alternate.hreflang)}" href="${escapeXml(alternate.href)}" />`)
+      .join("\n");
+    const linksBlock = alternateLinks ? `\n${alternateLinks}` : "";
+
+    return `  <url>\n    <loc>${escapeXml(url)}</loc>${linksBlock}\n  </url>`;
+  })
   .join("\n");
 
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries}\n</urlset>\n`;
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sitemapEntries}\n</urlset>\n`;
 
 await writeFile(SITEMAP_PATH, sitemap, "utf8");
-console.log(`Generated sitemap.xml with ${urls.size} indexable URLs.`);
+console.log(`Generated multilingual sitemap.xml with ${pages.size} indexable URLs.`);
