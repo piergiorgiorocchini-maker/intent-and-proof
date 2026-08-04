@@ -1,0 +1,85 @@
+This is one of the few places where a list is genuinely useful. The value, however, lies not in the formal existence of the pages, but in the relationships between them.
+
+### The internal linking system
+
+Internal links should follow the patient's informational journey. An article about bleeding gums can link to the periodontics page and to the clinician responsible for assessment. The treatment page can link to more specific questions, the relevant location and the first-visit page. The location page can state which services are actually available there.
+
+This network distributes authority and reduces page isolation. It also helps automated systems understand relationships between entities without forcing them to infer those relationships from a confused navigation structure.
+
+Internal linking should not become mechanical keyword repetition. Anchor text should describe the destination naturally. “Learn what happens during your first implant consultation” is more useful than “click here” and more readable than a sentence built solely to contain “dental implants Cagliari prices”.
+
+### Local pages: a real location, not an imaginary city presence
+
+Local pages are useful when they represent genuine operational differences. A group with multiple locations can specify clinicians, treatments, hours, access, parking, contact details and availability for each site. A single-location practice can publish content about its real catchment area, but should not pretend to operate clinics in dozens of towns.
+
+Producing nearly identical pages with only the city name changed is a fragile strategy. It provides little value, creates duplication and makes accurate maintenance difficult. A local page should have an editorial and operational reason to exist.
+
+### Technical SEO that supports the strategy
+
+Content quality does not compensate for a website that blocks indexing, loads slowly or creates inconsistent URLs. The technical foundations include correct canonicals, an updated sitemap, HTTPS, a sound mobile structure, accessible navigation, optimised images, consistent structured data and error monitoring.
+
+Core Web Vitals are not a measure of revenue, but they help identify slow or unstable experiences. For a dental practice, the most useful test remains operational: open the treatment page on an ordinary smartphone, find an answer, verify the clinician and attempt to request an appointment.
+
+Speed must be assessed on the pages that receive traffic, not only on the homepage. A visual theme may achieve an acceptable score at the entrance and become unusable once forms, videos, maps, pop-ups, chat and tracking scripts are added.
+
+### Structured data: clarify, do not invent
+
+Structured data helps search engines classify information on a page. It can describe the organisation, clinician, article, breadcrumbs, FAQs and other supported elements. It must correspond with visible content and must not assign nonexistent certifications, reviews, procedures or locations to the practice. [Source: Google Search Central](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)
+
+Schema is not a shortcut into AI-generated answers. Google states that AI Overviews and AI Mode require no special markup beyond the existing SEO practices that already apply. Structured data remains useful for reducing ambiguity, not for purchasing an algorithmic citation. [Source: Google, AI features and your website](https://developers.google.com/search/docs/appearance/ai-features)
+
+## Local SEO for dentists and Google Maps
+
+For many dental searches, the first page a patient truly sees is not the homepage. It is the local result containing the practice name, reviews, distance, opening hours, photographs and contact buttons. Google Business Profile is therefore not an accessory to the website. It is one of the principal entrances into the acquisition system.
+
+Profile optimisation must begin with accuracy. The name should match the practice's real identity, without artificial additions of services or city names. The primary category should represent the principal activity, while secondary categories should reflect genuine services. Standard and special hours, telephone number, address and links must remain current.
+
+The page connected to the profile should not be chosen by habit. In many cases, the homepage is correct because it represents the whole practice. In others, it may be useful to link to a booking action or a specific page, provided that the route is permitted, coherent and measurable. Google allows eligible businesses to add appointment and service links, but the existence of a link does not guarantee that the page after it will perform well.
+
+### Relevance between profile, website and demand
+
+The profile should promise only what the website can confirm. If the profile lists implant dentistry, clear aligners and emergency care, the website should contain pages that explain those services. If a location does not provide a particular service, it should not inherit the claim automatically from group-wide communication.
+
+Consistency also applies to clinicians and locations. A specialist named on a page should genuinely be associated with the practice and service described. A local page should represent the location the patient will actually visit. Every mismatch increases uncertainty and can weaken trust before contact takes place.
+
+### Reviews: local proof and responsibility
+
+Reviews matter because they influence patient decisions and contribute to local prominence. Google states that a greater number of positive reviews and ratings can help local ranking. That does not justify selective requests, incentives, false reviews or instructions designed to force keywords into the text.
+
+A responsible process invites patients to describe their experience freely without prompting them to disclose health information. Practice responses must be cautious: they should not publicly confirm that the reviewer is a patient, describe treatment or reveal information the person did not knowingly choose to make public.
+
+The value of a review does not come only from the rating. Comments about clarity, organisation, welcome, punctuality and the patient journey help other people understand the experience. A wall of indistinguishable phrases such as “excellent practice, highly recommended” creates limited confidence.
+
+### Photography and visual identity
+
+Photography should reduce uncertainty. Showing the entrance, reception area, rooms, team and technologies genuinely present helps patients recognise the practice. Stock imagery can support layout, but it cannot replace real identity.
+
+Clinical photography requires a different level of care. Images and videos of patients can reveal health information, and removing a name or partially obscuring a face does not automatically make a person anonymous. Case publication must therefore be designed around applicable privacy law, valid permission where required and a realistic assessment of whether the individual could still be identified.
+
+### Measuring the contribution of Google Maps
+
+Profile metrics report views and interactions, but they do not automatically describe commercial outcomes. The practice should distinguish calls, website clicks, direction requests, bookings and attended appointments. Where possible, links and telephone routes should be measured without compromising accuracy or privacy.
+
+An increase in views is valuable only when it relates to the correct services and territories. A profile can attract attention for a marginal category or from users too far away to become patients. The operational question remains the same: how many relevant interactions become first visits?
+
+### Local strategy beyond Google
+
+Local authority is not built solely through directory listings. It can come from participation in local initiatives, professional collaborations, educational activity, mentions in publications and consistent information across trustworthy sources.
+
+This does not mean sponsoring every event in exchange for a backlink. It means making the practice's real relationship with its territory visible. A credible local presence creates signals that Google, patients and AI search systems can verify through different sources.
+
+## Healthcare content, YMYL and E-E-A-T
+
+Google uses the expression YMYL for topics that can have a significant effect on health, safety, financial stability or wellbeing. Dentistry clearly belongs in that area. A page about implant treatment, periodontitis, sedation or pain is not equivalent to a guide about a household accessory. An error can influence healthcare decisions and financial expectations.
+
+Reliability must therefore be designed rather than merely declared.
+
+Google explains that its systems consider signals related to experience, expertise, authoritativeness and trustworthiness, with trust being the most important element. It also makes clear that E-E-A-T is not a single ranking factor and that quality raters do not directly alter rankings. [Source: Google Search Central](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)
+
+The practical consequence is simple: there is no field that can be completed to “activate E-E-A-T”. People, sources, responsibilities and the editorial process must be made verifiable.
+
+### Author, reviewer and responsibility
+
+Every important healthcare page should state who wrote it, who reviewed it where relevant and what role each person holds. A marketing article for practice owners may be written by an acquisition analyst; a page that explains clinical matters should be reviewed by a competent healthcare professional.
+
+Review should not be a decorative name in the footer. The reviewer should be able to check accuracy, limitations and updates. The author page should contain verifiable qualifications, areas of expertise, relevant affiliations and official links where available.
