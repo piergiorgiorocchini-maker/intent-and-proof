@@ -3,8 +3,8 @@ translationKey: piergiorgio-rocchini
 locale: it
 name: Piergiorgio Rocchini
 slug: piergiorgio-rocchini
-role: Fondatore, analista e operatore di sistemi di acquisizione
-shortBio: Piergiorgio Rocchini combina analisi finanziaria, ricerca di mercato e sistemi di acquisizione costruiti direttamente in mercati di servizi reali.
+role: Fondatore, analista ed esperto di sistemi di acquisizione
+shortBio: Piergiorgio Rocchini combina analisi finanziaria, ricerca di mercato e sistemi di acquisizione costruiti direttamente in mercati di servizi reali dal SEO alla generazione di sistemi di conversione web per professionisti e aziende locali.
 image:
   src: /images/uploads/Mr.Rocchini.webp
   alt: Mr.Piergiorgio Rocchini
