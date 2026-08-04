@@ -1,4 +1,4 @@
-# Search and AI search crawlers are allowed.
+# Search and AI search crawlers are allowed on published multilingual research.
 User-agent: OAI-SearchBot
 Allow: /
 
