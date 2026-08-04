@@ -1,0 +1,100 @@
+Analytics, advertising tags and session-recording tools must be configured according to applicable law and platform policy. A healthcare page can reveal a sensitive interest through its URL alone. Sending a path such as `/implants-with-bone-loss/` to multiple third parties may communicate more than the form itself.
+
+The design must therefore examine event names, URL structures, query parameters, referrers and the tools loaded on each page. Masking form fields is not sufficient when the page title and event labels disclose the likely treatment interest.
+
+Consent-management tools can help control tag behaviour, but they do not replace a lawful purpose, clear information, valid choices and minimisation.
+
+### Retention and access
+
+Enquiries should not remain indefinitely in every connected system. The practice should define different retention periods for unsuccessful enquiries, administrative records and clinical documentation according to local requirements.
+
+Access should follow role. Front-desk staff need information required to organise the appointment. Clinicians need the authorised clinical record. Marketing staff should generally work with aggregate or pseudonymous data. Employment or supplier status is not a justification for unlimited access.
+
+### Incident response
+
+Integration increases the surface area for error. The product should anticipate failed deliveries, unusual access, duplicate events, exposed payloads and security incidents.
+
+Logging must be sufficient to reconstruct an event without creating a second archive of sensitive information. Logs themselves require minimisation, access controls and retention rules.
+
+### Privacy as part of value
+
+Privacy is not only a cost. A practice that explains how it protects messages, images and records provides evidence of organisational quality. The communication should remain precise and avoid absolute slogans such as “100% secure”.
+
+A mature dental infrastructure does not seek the maximum possible amount of data. It seeks the minimum information required to make sound decisions.
+
+## A 90-day operating plan
+
+A vertical acquisition system becomes credible when it can be implemented in a sequence that respects operational capacity. Ninety days is not a promise of rankings or patient volume. It is a useful planning horizon for establishing the foundations, launching controlled acquisition and producing the first complete data.
+
+### Days 1 to 30: define the model
+
+The first month should establish the treatment priorities, service area, clinicians, locations, market-specific compliance process, patient-intent map and current operational baseline. The practice should define what counts as an enquiry, reached contact, booking, attended first visit and internal outcome.
+
+Existing pages, Google Business Profile, campaigns, analytics, forms, telephone handling and practice software should be audited as one system. The output is not merely a list of technical defects. It is a map of where demand loses meaning or stops being recorded.
+
+### Days 31 to 60: build the acquisition path
+
+The second phase creates or improves priority treatment pages, local architecture, clinician evidence, conversion routes and front-desk context. The Lead Gateway and pipeline are configured at the simplest level that can be operated reliably.
+
+Paid campaigns should begin only when the destination page, follow-up process and measurement states are ready. Otherwise the practice pays to accelerate an unobserved leak.
+
+### Days 61 to 90: launch, observe and correct
+
+The third phase launches controlled campaigns and begins collecting search-term, contact, booking and attendance data. The practice reviews front-desk feedback, page questions, irrelevant searches, response times and no-shows.
+
+The objective is not to declare the system complete on day ninety. It is to finish the first full learning cycle with enough evidence to decide which pages, treatments, territories and operational changes deserve further investment.
+
+## From this guide to the first vertical product
+
+The article already defines the core of a future dental product. It should not be sold as a loose bundle of website, SEO and advertising. It is a **Dental Acquisition Infrastructure** connecting online demand with attended first visits and internal measurement.
+
+The product should include a demand map for priority treatments, informational page architecture, a local layer connected to Google Business Profile, a proof system, Lead Gateway, front-desk pipeline, practice-software connector and minimised dashboard. Its editorial component should produce verifiable material prepared for traditional search and AI citation.
+
+The first version does not need an API integration with every dental system. It can begin with manually updated stages or controlled imports. The objective is to validate the operating model before automating it. The most frequently requested connectors can later become reusable modules.
+
+The correct commercial promise is:
+
+> **We build the infrastructure that connects online searches with attended first visits for your practice, without relying on discounts, generic leads or reports that stop at the form.**
+
+The product does not diagnose, replace clinical software, guarantee patient volume or send health data to advertising platforms. Those limits increase its credibility rather than weakening it.
+
+## Intent & Proof proprietary frameworks
+
+The **Dental Acquisition Loop** describes the journey from demand to page, enquiry, contact, appointment, first visit, internal outcome and decision.
+
+The **Dental Intent Matrix** connects treatment, problem, technology or brand, location and decision stage.
+
+The **Price-Only Prevention Model** combines query precision, clarity of assessment, relevant proof, a comprehensible journey and measurement of demand quality.
+
+The **Clinical-Marketing Data Separation** model keeps clinical and health information in the authorised practice system while the attribution layer uses only the identifiers, sources, operational states and aggregate information required for decisions.
+
+The **Citation-Ready Content** framework requires a direct answer, evidence, identifiable authorship, semantic structure and an original contribution.
+
+These models should become diagrams, checklists, components and procedures. Only then can Intent & Proof be cited as the source of a method rather than another agency that has renamed a funnel.
+
+## How to evaluate a dental marketing consultant or system
+
+A practice should not choose a provider solely through case-study screenshots or a promised number of leads. The evaluation should reveal whether the supplier understands the entire operating system.
+
+Ask how priority treatments are selected, how search intent is mapped, how clinicians and claims are verified, how local pages differ from advertising landing pages, how the front desk receives context, how bookings and attendance are recorded, how the practice-management system is connected, which data remain internal and how jurisdictional review is handled.
+
+The provider should be able to explain what happens when results are poor. A mature answer separates traffic, page, contact, booking, attendance and internal outcome. An immature answer asks for more budget before establishing which stage is failing.
+
+The contract should also make ownership clear. The practice should retain access to its domain, website, content, profiles, advertising accounts, analytics and first-party data. Dependence created through withheld credentials is not a growth strategy. It is administrative captivity wearing a dashboard.
+
+## Conclusion: the advantage is not the channel but the system
+
+SEO, Google Ads, Meta, chatbots and automation are broadly available tools. Competitive advantage comes from connecting them with the real operation of the practice.
+
+An effective dental system captures relevant demand, informs without pressuring, makes expertise and process visible, attracts people who do not compare on price alone, simplifies the first visit, supports the front desk, connects source with operational stages, keeps health data out of marketing platforms and produces content that can be cited by AI search systems.
+
+The result is not a guaranteed flow of patients. It is infrastructure that reduces uncertainty, reveals leakage and allows the practice to improve using more reliable evidence.
+
+> **Dental marketing becomes serious when it stops selling leads and starts designing the complete journey between a search and an attended first visit.**
+
+## Sources and methodology
+
+This guide combines analysis of patient and practice-owner search intent, review of vertical dental-marketing offers, official documentation and an operating model developed by Intent & Proof.
+
+Primary sources include Google documentation on local ranking, helpful content, structured data, AI search features, sensitive healthcare advertising and customer-data restrictions; OpenAI guidance for publishers and OAI-SearchBot; Bing Webmaster guidance on AI citations; the GDPR and official HHS material on HIPAA; FTC guidance on health-related advertising; ASA and CAP healthcare guidance; and UAE Ministry of Health and Dubai Health Authority material on health-advertisement controls.
+
