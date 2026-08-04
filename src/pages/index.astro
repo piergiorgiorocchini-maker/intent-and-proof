@@ -2,33 +2,30 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import EmailCaptureBox from "../components/EmailCaptureBox.astro";
 import { getPublishedArticleIndex } from "../lib/content/interlinking";
+import home from "../data/homepage.json";
 import "../styles/homepage-v2.css";
 
 const latestArticles = (await getPublishedArticleIndex("en")).slice(0, 3);
 ---
 
 <BaseLayout
-	title="Intent & Proof | High-Performance Websites & Digital Acquisition Systems"
-	description="Intent & Proof builds high-performance websites, landing pages, local search systems and measurable digital acquisition infrastructure for service businesses."
+	title={home.seo.title}
+	description={home.seo.description}
 	showRelatedContent={false}
 >
 	<div class="hp-home">
 		<section class="hp-hero">
 			<div class="hp-shell hp-hero__grid">
 				<div class="hp-hero__copy">
-					<p class="hp-eyebrow">Digital acquisition systems for service businesses</p>
-					<h1 style="font-size: clamp(2.55rem, 3.55vw, 3.85rem); line-height: 1.08; max-width: 700px;">High-performance websites and digital acquisition systems that turn search demand into qualified leads.</h1>
-					<p class="hp-hero__intro">
-						Intent &amp; Proof combines fast websites, conversion-focused landing pages, local search visibility, credible proof and reliable measurement into one connected acquisition system.
-					</p>
+					<p class="hp-eyebrow">{home.hero.eyebrow}</p>
+					<h1 style="font-size: clamp(2.55rem, 3.55vw, 3.85rem); line-height: 1.08; max-width: 700px;">{home.hero.title}</h1>
+					<p class="hp-hero__intro">{home.hero.text}</p>
 					<div class="hp-actions">
-						<a class="hp-button hp-button--primary" href="/diagnostic/">Start with the diagnostic <span aria-hidden="true">↗</span></a>
-						<a class="hp-button hp-button--secondary" href="#services">Explore what we build</a>
+						<a class="hp-button hp-button--primary" href={home.hero.primaryAction.href}>{home.hero.primaryAction.label} <span aria-hidden="true">↗</span></a>
+						<a class="hp-button hp-button--secondary" href={home.hero.secondaryAction.href}>{home.hero.secondaryAction.label}</a>
 					</div>
 					<ul class="hp-assurances" aria-label="Offer assurances">
-						<li>High-performance websites</li>
-						<li>Local search and lead systems</li>
-						<li>Measured to real enquiries</li>
+						{home.hero.assurances.map((item) => <li>{item}</li>)}
 					</ul>
 				</div>
 
@@ -39,58 +36,44 @@ const latestArticles = (await getPublishedArticleIndex("en")).slice(0, 3);
 							<div>
 								<span class="fd-console__mark" aria-hidden="true">I<span>&amp;</span>P</span>
 								<div>
-									<p>Acquisition Diagnostic</p>
-									<small>Aurora Dental Group · Cagliari</small>
+									<p>{home.diagnostic.title}</p>
+									<small>{home.diagnostic.client}</small>
 								</div>
 							</div>
-							<span class="fd-console__status"><i></i> Analysis ready</span>
+							<span class="fd-console__status"><i></i> {home.diagnostic.status}</span>
 						</div>
 
 						<div class="fd-console__summary">
 							<div class="fd-score">
-								<div class="fd-score__ring"><span>72</span><small>/100</small></div>
-								<div><p>Foundation score</p><strong>Promising, with two priority leaks</strong></div>
+								<div class="fd-score__ring"><span>{home.diagnostic.score}</span><small>/100</small></div>
+								<div><p>{home.diagnostic.scoreLabel}</p><strong>{home.diagnostic.scoreSummary}</strong></div>
 							</div>
-							<span class="fd-console__updated">Updated today</span>
+							<span class="fd-console__updated">{home.diagnostic.updatedLabel}</span>
 						</div>
 
 						<div class="fd-metrics">
-							<div class="fd-metric">
-								<div class="fd-metric__head"><span>Intent capture</span><strong>84</strong></div>
-								<div class="fd-metric__bar"><i style="--metric-width: 84%; --metric-color: var(--fd-mint);"></i></div>
-							</div>
-							<div class="fd-metric">
-								<div class="fd-metric__head"><span>Proof strength</span><strong>61</strong></div>
-								<div class="fd-metric__bar"><i style="--metric-width: 61%; --metric-color: var(--fd-orange);"></i></div>
-							</div>
-							<div class="fd-metric">
-								<div class="fd-metric__head"><span>Conversion path</span><strong>68</strong></div>
-								<div class="fd-metric__bar"><i style="--metric-width: 68%; --metric-color: var(--fd-cobalt);"></i></div>
-							</div>
-							<div class="fd-metric">
-								<div class="fd-metric__head"><span>Demand readiness</span><strong>79</strong></div>
-								<div class="fd-metric__bar"><i style="--metric-width: 79%; --metric-color: var(--fd-mint);"></i></div>
-							</div>
-							<div class="fd-metric">
-								<div class="fd-metric__head"><span>Measurement integrity</span><strong>48</strong></div>
-								<div class="fd-metric__bar"><i style="--metric-width: 48%; --metric-color: var(--fd-orange);"></i></div>
-							</div>
+							{home.diagnostic.metrics.map((metric) => (
+								<div class="fd-metric">
+									<div class="fd-metric__head"><span>{metric.label}</span><strong>{metric.value}</strong></div>
+									<div class="fd-metric__bar"><i style={`--metric-width: ${metric.value}%; --metric-color: ${metric.color};`}></i></div>
+								</div>
+							))}
 						</div>
 
 						<div class="fd-next-action">
 							<div class="fd-next-action__icon" aria-hidden="true">01</div>
-							<div><small>Next best action</small><strong>Repair enquiry tracking before increasing campaign spend.</strong></div>
+							<div><small>{home.diagnostic.nextLabel}</small><strong>{home.diagnostic.nextText}</strong></div>
 							<span aria-hidden="true">→</span>
 						</div>
 					</div>
 
 					<div class="fd-signal-card fd-signal-card--top">
 						<span class="fd-signal-card__icon fd-signal-card__icon--blue" aria-hidden="true">↗</span>
-						<div><small>Demand signal</small><strong>High-intent query rising</strong></div>
+						<div><small>{home.diagnostic.signalTopLabel}</small><strong>{home.diagnostic.signalTopText}</strong></div>
 					</div>
 					<div class="fd-signal-card fd-signal-card--bottom">
 						<span class="fd-signal-card__icon fd-signal-card__icon--green" aria-hidden="true">✓</span>
-						<div><small>Proof verified</small><strong>Live operating evidence connected</strong></div>
+						<div><small>{home.diagnostic.signalBottomLabel}</small><strong>{home.diagnostic.signalBottomText}</strong></div>
 					</div>
 				</div>
 			</div>
@@ -98,26 +81,13 @@ const latestArticles = (await getPublishedArticleIndex("en")).slice(0, 3);
 
 		<section class="hp-evidence" aria-label="Operating evidence">
 			<div class="hp-shell hp-evidence__grid">
-				<div class="hp-evidence__item">
-					<div class="hp-evidence__icon" aria-hidden="true">↗</div>
-					<strong>2/2</strong>
-					<span>first premium yacht enquiries converted</span>
-				</div>
-				<div class="hp-evidence__item">
-					<div class="hp-evidence__icon" aria-hidden="true">◎</div>
-					<strong>#2</strong>
-					<span>priority local query in recent SERP evidence</span>
-				</div>
-				<div class="hp-evidence__item">
-					<div class="hp-evidence__icon" aria-hidden="true">▥</div>
-					<strong>100</strong>
-					<span>mobile PageSpeed achieved on a live system</span>
-				</div>
-				<div class="hp-evidence__item">
-					<div class="hp-evidence__icon" aria-hidden="true">✓</div>
-					<strong>Live</strong>
-					<span>operating evidence across local and premium service markets</span>
-				</div>
+				{home.evidence.map((item) => (
+					<div class="hp-evidence__item">
+						<div class="hp-evidence__icon" aria-hidden="true">{item.icon}</div>
+						<strong>{item.value}</strong>
+						<span>{item.text}</span>
+					</div>
+				))}
 			</div>
 		</section>
 
@@ -126,37 +96,35 @@ const latestArticles = (await getPublishedArticleIndex("en")).slice(0, 3);
 				<article class="hp-testimonial">
 					<div>
 						<div class="hp-testimonial__quote-mark" aria-hidden="true">“</div>
-						<blockquote>
-							The new acquisition infrastructure generated our first two premium yacht enquiries. Both converted, without price friction.
-						</blockquote>
+						<blockquote>{home.testimonial.quote}</blockquote>
 					</div>
 					<div class="hp-testimonial__person">
-						<div class="hp-testimonial__avatar" aria-hidden="true">PR</div>
+						<div class="hp-testimonial__avatar" aria-hidden="true">{home.testimonial.initials}</div>
 						<div>
-							<strong>Piergiorgio Rocchini</strong>
-							<span>Founder · operating case note</span>
+							<strong>{home.testimonial.name}</strong>
+							<span>{home.testimonial.role}</span>
 						</div>
 					</div>
 				</article>
 
 				<div class="hp-resource">
 					<div class="hp-guide-cover" aria-hidden="true">
-						<small>Free resource</small>
-						<strong>The Intent &amp; Proof Field Guide</strong>
-						<span>Websites, local demand, proof, conversion and measurement.</span>
+						<small>{home.resource.eyebrow}</small>
+						<strong>{home.resource.coverTitle}</strong>
+						<span>{home.resource.coverText}</span>
 					</div>
 					<EmailCaptureBox
-						eyebrow="Free resource"
-						title="Intent & Proof Field Guide"
-						text="A practical guide to building fast websites, capturing search demand, strengthening proof and measuring qualified enquiries."
-						placeholder="Email address"
-						buttonLabel="Send me the guide"
-						note="No spam. Unsubscribe anytime."
+						eyebrow={home.resource.eyebrow}
+						title={home.resource.title}
+						text={home.resource.text}
+						placeholder={home.resource.placeholder}
+						buttonLabel={home.resource.buttonLabel}
+						note={home.resource.note}
 						formName="homepage-field-guide"
 						handlerId="newsletter"
 						lang="en"
 						compact={true}
-						errorMessage="The guide signup is being connected. Please use the diagnostic for now."
+						errorMessage={home.resource.errorMessage}
 					/>
 				</div>
 			</div>
@@ -166,48 +134,25 @@ const latestArticles = (await getPublishedArticleIndex("en")).slice(0, 3);
 			<div class="hp-shell">
 				<div class="hp-section-heading">
 					<div>
-						<p class="hp-eyebrow">What you can buy</p>
-						<h2>Specific digital acquisition products, built to work as one system.</h2>
+						<p class="hp-eyebrow">{home.productsSection.eyebrow}</p>
+						<h2>{home.productsSection.title}</h2>
 					</div>
-					<p>The Acquisition Diagnostic identifies the constraint. Each product below has a defined scope, clear deliverables and a measurable commercial role.</p>
+					<p>{home.productsSection.text}</p>
 				</div>
 
 				<div class="hp-system-grid">
-					<article class="hp-system-card">
-						<div class="hp-system-card__top"><span class="hp-system-card__number">01</span><span class="hp-system-card__state">Website &amp; conversion</span></div>
-						<div class="fd-module-icon fd-module-icon--build" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-						<p class="hp-system-card__verb">Build</p>
-						<h3>High-Performance Website &amp; Lead System</h3>
-						<p>A fast, technically sound website with service pages, landing pages, proof and contact paths designed to turn relevant visits into qualified enquiries.</p>
-						<a href="/diagnostic/">Assess the website system <span aria-hidden="true">→</span></a>
-					</article>
-
-					<article class="hp-system-card">
-						<div class="hp-system-card__top"><span class="hp-system-card__number">02</span><span class="hp-system-card__state">Local demand</span></div>
-						<div class="fd-module-icon fd-module-icon--capture" aria-hidden="true"><span></span><span></span><span></span></div>
-						<p class="hp-system-card__verb">Capture</p>
-						<h3>Local Demand System</h3>
-						<p>Local SEO, Google Business Profile, location architecture and campaign destinations built to win valuable demand in defined territories.</p>
-						<a href="/blog/turn-local-searches-into-medical-appointments/">Explore local demand <span aria-hidden="true">→</span></a>
-					</article>
-
-					<article class="hp-system-card">
-						<div class="hp-system-card__top"><span class="hp-system-card__number">03</span><span class="hp-system-card__state">Trust &amp; authority</span></div>
-						<div class="fd-module-icon fd-module-icon--diagnose" aria-hidden="true"><span></span><span></span><span></span></div>
-						<p class="hp-system-card__verb">Prove</p>
-						<h3>Proof Architecture System</h3>
-						<p>Case studies, testimonials, authority content and proof blocks organised around the risks buyers need resolved before they act.</p>
-						<a href="/blog/turn-client-work-into-credible-proof/">Explore proof architecture <span aria-hidden="true">→</span></a>
-					</article>
-
-					<article class="hp-system-card">
-						<div class="hp-system-card__top"><span class="hp-system-card__number">04</span><span class="hp-system-card__state">Measurement</span></div>
-						<div class="fd-module-icon fd-module-icon--measure" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-						<p class="hp-system-card__verb">Validate</p>
-						<h3>Measurement Integrity Audit</h3>
-						<p>Conversion tracking, CRM reconciliation, attribution and lead-quality checks that show which acquisition activity is safe to scale.</p>
-						<a href="/blog/measurement-integrity-fix-conversion-tracking/">Explore measurement integrity <span aria-hidden="true">→</span></a>
-					</article>
+					{home.productsSection.items.map((product) => (
+						<article class="hp-system-card">
+							<div class="hp-system-card__top"><span class="hp-system-card__number">{product.number}</span><span class="hp-system-card__state">{product.state}</span></div>
+							<div class={`fd-module-icon fd-module-icon--${product.icon}`} aria-hidden="true">
+								{Array.from({ length: product.iconBars }).map(() => <span></span>)}
+							</div>
+							<p class="hp-system-card__verb">{product.verb}</p>
+							<h3>{product.title}</h3>
+							<p>{product.text}</p>
+							<a href={product.href}>{product.linkLabel} <span aria-hidden="true">→</span></a>
+						</article>
+					))}
 				</div>
 			</div>
 		</section>
@@ -215,41 +160,28 @@ const latestArticles = (await getPublishedArticleIndex("en")).slice(0, 3);
 		<section id="solutions" class="hp-section hp-b2b">
 			<div class="hp-shell">
 				<div class="hp-b2b__heading">
-					<p class="hp-eyebrow">Built for service businesses</p>
-					<h2>For businesses that need more than a brochure website or generic marketing activity.</h2>
-					<p>We work with local, professional, B2B and high-value service businesses where visibility must lead to trust, a clear action path and measurable commercial outcomes.</p>
+					<p class="hp-eyebrow">{home.audienceSection.eyebrow}</p>
+					<h2>{home.audienceSection.title}</h2>
+					<p>{home.audienceSection.text}</p>
 				</div>
 
 				<div class="hp-audience-grid">
-					<article class="hp-audience-card">
-						<div class="hp-audience-card__icon" aria-hidden="true">LOCAL</div>
-						<h3>Local service businesses</h3>
-						<p>High-performance websites, Google visibility and location systems that turn territorial demand into qualified enquiries.</p>
-					</article>
-					<article class="hp-audience-card">
-						<div class="hp-audience-card__icon" aria-hidden="true">PRO</div>
-						<h3>Professional practices</h3>
-						<p>Websites and landing paths built around expertise, reputation, local intent and considered client decisions.</p>
-					</article>
-					<article class="hp-audience-card">
-						<div class="hp-audience-card__icon" aria-hidden="true">B2B</div>
-						<h3>Specialist B2B services</h3>
-						<p>Proof, useful research and measurable conversion paths for longer sales cycles and higher-value contracts.</p>
-					</article>
-					<article class="hp-audience-card">
-						<div class="hp-audience-card__icon" aria-hidden="true">HIGH</div>
-						<h3>High-value specialist services</h3>
-						<p>Digital acquisition infrastructure that makes specialist competence visible before price dominates the conversation.</p>
-					</article>
+					{home.audienceSection.items.map((audience) => (
+						<article class="hp-audience-card">
+							<div class="hp-audience-card__icon" aria-hidden="true">{audience.code}</div>
+							<h3>{audience.title}</h3>
+							<p>{audience.text}</p>
+						</article>
+					))}
 				</div>
 
 				<div class="hp-b2b-proof">
-					<div class="hp-b2b-proof__mark" aria-hidden="true">I&amp;P</div>
+					<div class="hp-b2b-proof__mark" aria-hidden="true">{home.audienceSection.proof.mark}</div>
 					<div>
-						<strong>Specific products, connected as one acquisition system.</strong>
-						<span>Website, landing pages, local demand, proof and measurement assembled around the buying decision.</span>
+						<strong>{home.audienceSection.proof.title}</strong>
+						<span>{home.audienceSection.proof.text}</span>
 					</div>
-					<a href="/diagnostic/">Find the right starting point →</a>
+					<a href={home.audienceSection.proof.href}>{home.audienceSection.proof.label} →</a>
 				</div>
 			</div>
 		</section>
@@ -258,10 +190,10 @@ const latestArticles = (await getPublishedArticleIndex("en")).slice(0, 3);
 			<div class="hp-shell">
 				<div class="hp-research__heading">
 					<div>
-						<p class="hp-eyebrow hp-eyebrow--light">Research behind the products</p>
-						<h2>The methods are published. The products put them to work.</h2>
+						<p class="hp-eyebrow hp-eyebrow--light">{home.researchSection.eyebrow}</p>
+						<h2>{home.researchSection.title}</h2>
 					</div>
-					<a href="/blog/">Explore all research →</a>
+					<a href={home.researchSection.href}>{home.researchSection.label} →</a>
 				</div>
 
 				<div class="hp-research-grid">
@@ -270,7 +202,7 @@ const latestArticles = (await getPublishedArticleIndex("en")).slice(0, 3);
 							<div class="hp-research-card__graphic" aria-hidden="true"></div>
 							<small>{article.categoryName}</small>
 							<h3>{article.title}</h3>
-							<span>Read the article →</span>
+							<span>{home.researchSection.articleLabel} →</span>
 						</a>
 					))}
 				</div>
@@ -280,10 +212,10 @@ const latestArticles = (await getPublishedArticleIndex("en")).slice(0, 3);
 		<section class="hp-final">
 			<div class="hp-shell hp-final__panel">
 				<div>
-					<p class="hp-eyebrow">Start with the right product</p>
-					<h2>Find the acquisition constraint worth fixing first.</h2>
+					<p class="hp-eyebrow">{home.finalCta.eyebrow}</p>
+					<h2>{home.finalCta.title}</h2>
 				</div>
-				<a class="hp-button hp-button--primary" href="/diagnostic/">Request a diagnostic <span aria-hidden="true">↗</span></a>
+				<a class="hp-button hp-button--primary" href={home.finalCta.href}>{home.finalCta.label} <span aria-hidden="true">↗</span></a>
 			</div>
 		</section>
 	</div>
