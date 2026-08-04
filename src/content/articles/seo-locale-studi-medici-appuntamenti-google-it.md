@@ -102,7 +102,7 @@ seo:
   description: "Guida alla SEO locale per studi medici, cliniche e dentisti: Google Maps, pagine trattamento, prove, prenotazioni e misurazione dei pazienti."
   canonicalUrl: ''
   image: null
-  noIndex: true
+  noIndex: false
   noFollow: false
 ---
 
