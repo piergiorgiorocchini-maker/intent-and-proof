@@ -3,7 +3,7 @@ translationKey: piergiorgio-rocchini
 locale: en
 name: Piergiorgio Rocchini
 slug: piergiorgio-rocchini
-role: Founder, analyst and acquisition-system operator
+role: Founder, SEO and Growth Manager
 shortBio: Piergiorgio Rocchini combines financial analysis, market research and hands-on customer acquisition systems built in live service markets.
 image:
   src: /images/uploads/Mr.Rocchini.webp
