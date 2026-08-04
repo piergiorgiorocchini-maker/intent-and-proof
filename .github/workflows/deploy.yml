@@ -75,6 +75,7 @@ jobs:
           DEPLOY_RESULT: ${{ needs.deploy.result }}
           PAGE_URL: ${{ needs.deploy.outputs.page_url }}
           COMMIT_SHA: ${{ github.sha }}
+          RUN_ID: ${{ github.run_id }}
         with:
           script: |
             const marker = '<!-- pages-deployment-report -->';
@@ -82,8 +83,9 @@ jobs:
             const deploy = process.env.DEPLOY_RESULT;
             const pageUrl = process.env.PAGE_URL || 'not available';
             const commit = process.env.COMMIT_SHA;
+            const runId = process.env.RUN_ID;
             const ok = build === 'success' && deploy === 'success';
-            const body = `${marker}\n## GitHub Pages deployment ${ok ? 'succeeded' : 'failed'}\n\n- Build: **${build}**\n- Deploy: **${deploy}**\n- Commit: \`${commit}\`\n- Published URL: ${pageUrl}`;
+            const body = `${marker}\n## GitHub Pages deployment ${ok ? 'succeeded' : 'failed'}\n\n- Build: **${build}**\n- Deploy: **${deploy}**\n- Commit: \`${commit}\`\n- Run ID: \`${runId}\`\n- Published URL: ${pageUrl}`;
             const comments = await github.paginate(github.rest.issues.listComments, {
               owner: context.repo.owner,
               repo: context.repo.repo,
