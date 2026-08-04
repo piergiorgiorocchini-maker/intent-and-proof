@@ -65,6 +65,8 @@ const canonicalURL = new URL(canonicalPath || Astro.url.pathname, siteURL);
 const socialImage = image ? new URL(image, siteURL) : null;
 const robotsDirectives = [noindex ? "noindex" : "index", nofollow ? "nofollow" : "follow"].join(", ");
 const contentLocale = lang === "it" ? "it" : "en";
+const languageAlternate = alternates.find((alternate: AlternateLocale) => !alternate.isDefault && alternate.locale !== contentLocale);
+const alternateLanguageHref = languageAlternate?.href || (contentLocale === "it" ? "/" : "/it/");
 const gtmId = settings.tracking.enabled
 	&& settings.tracking.delivery === "gtm"
 	&& settings.tracking.googleTagManager.enabled
@@ -131,7 +133,7 @@ const gtmId = settings.tracking.enabled
 			</noscript>
 		)}
 		<a class="fd-skip-link" href="#main-content">{skipLinkLabel}</a>
-		<FoundationHeader />
+		<FoundationHeader lang={contentLocale} alternateHref={alternateLanguageHref} />
 		<main id="main-content">
 			<slot />
 			{
