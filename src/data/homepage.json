@@ -1,0 +1,145 @@
+{
+  "seo": {
+    "title": "Intent & Proof | High-Performance Websites & Digital Acquisition Systems",
+    "description": "Intent & Proof builds high-performance websites, landing pages, local search systems and measurable digital acquisition infrastructure for service businesses."
+  },
+  "hero": {
+    "eyebrow": "Digital acquisition systems for service businesses",
+    "title": "High-performance websites and digital acquisition systems that turn search demand into qualified leads.",
+    "text": "Intent & Proof combines fast websites, conversion-focused landing pages, local search visibility, credible proof and reliable measurement into one connected acquisition system.",
+    "primaryAction": { "label": "Start with the diagnostic", "href": "/diagnostic/" },
+    "secondaryAction": { "label": "Explore what we build", "href": "#services" },
+    "assurances": [
+      "High-performance websites",
+      "Local search and lead systems",
+      "Measured to real enquiries"
+    ]
+  },
+  "diagnostic": {
+    "title": "Acquisition Diagnostic",
+    "client": "Aurora Dental Group · Cagliari",
+    "status": "Analysis ready",
+    "score": "72",
+    "scoreLabel": "Foundation score",
+    "scoreSummary": "Promising, with two priority leaks",
+    "updatedLabel": "Updated today",
+    "metrics": [
+      { "label": "Intent capture", "value": 84, "color": "var(--fd-mint)" },
+      { "label": "Proof strength", "value": 61, "color": "var(--fd-orange)" },
+      { "label": "Conversion path", "value": 68, "color": "var(--fd-cobalt)" },
+      { "label": "Demand readiness", "value": 79, "color": "var(--fd-mint)" },
+      { "label": "Measurement integrity", "value": 48, "color": "var(--fd-orange)" }
+    ],
+    "nextLabel": "Next best action",
+    "nextText": "Repair enquiry tracking before increasing campaign spend.",
+    "signalTopLabel": "Demand signal",
+    "signalTopText": "High-intent query rising",
+    "signalBottomLabel": "Proof verified",
+    "signalBottomText": "Live operating evidence connected"
+  },
+  "evidence": [
+    { "icon": "↗", "value": "2/2", "text": "first premium yacht enquiries converted" },
+    { "icon": "◎", "value": "#2", "text": "priority local query in recent SERP evidence" },
+    { "icon": "▥", "value": "100", "text": "mobile PageSpeed achieved on a live system" },
+    { "icon": "✓", "value": "Live", "text": "operating evidence across local and premium service markets" }
+  ],
+  "testimonial": {
+    "quote": "The new acquisition infrastructure generated our first two premium yacht enquiries. Both converted, without price friction.",
+    "initials": "PR",
+    "name": "Piergiorgio Rocchini",
+    "role": "Founder · operating case note"
+  },
+  "resource": {
+    "eyebrow": "Free resource",
+    "title": "Intent & Proof Field Guide",
+    "coverTitle": "The Intent & Proof Field Guide",
+    "coverText": "Websites, local demand, proof, conversion and measurement.",
+    "text": "A practical guide to building fast websites, capturing search demand, strengthening proof and measuring qualified enquiries.",
+    "placeholder": "Email address",
+    "buttonLabel": "Send me the guide",
+    "note": "No spam. Unsubscribe anytime.",
+    "errorMessage": "The guide signup is being connected. Please use the diagnostic for now."
+  },
+  "productsSection": {
+    "eyebrow": "What you can buy",
+    "title": "Specific digital acquisition products, built to work as one system.",
+    "text": "The Acquisition Diagnostic identifies the constraint. Each product below has a defined scope, clear deliverables and a measurable commercial role.",
+    "items": [
+      {
+        "number": "01",
+        "state": "Website & conversion",
+        "verb": "Build",
+        "title": "High-Performance Website & Lead System",
+        "text": "A fast, technically sound website with service pages, landing pages, proof and contact paths designed to turn relevant visits into qualified enquiries.",
+        "href": "/diagnostic/",
+        "linkLabel": "Assess the website system",
+        "icon": "build",
+        "iconBars": 4
+      },
+      {
+        "number": "02",
+        "state": "Local demand",
+        "verb": "Capture",
+        "title": "Local Market Capture System",
+        "text": "Local SEO, Google Business Profile, location architecture and campaign destinations built to win valuable demand in defined territories.",
+        "href": "/products/local-market-capture-system/",
+        "linkLabel": "Explore local market capture",
+        "icon": "capture",
+        "iconBars": 3
+      },
+      {
+        "number": "03",
+        "state": "Trust & authority",
+        "verb": "Prove",
+        "title": "Proof Architecture System",
+        "text": "Case studies, testimonials, authority content and proof blocks organised around the risks buyers need resolved before they act.",
+        "href": "/blog/turn-client-work-into-credible-proof/",
+        "linkLabel": "Explore proof architecture",
+        "icon": "diagnose",
+        "iconBars": 3
+      },
+      {
+        "number": "04",
+        "state": "Measurement",
+        "verb": "Validate",
+        "title": "Measurement Integrity System",
+        "text": "Conversion tracking, CRM reconciliation, attribution and lead-quality checks that show which acquisition activity is safe to scale.",
+        "href": "/blog/measurement-integrity-fix-conversion-tracking/",
+        "linkLabel": "Explore measurement integrity",
+        "icon": "measure",
+        "iconBars": 4
+      }
+    ]
+  },
+  "audienceSection": {
+    "eyebrow": "Built for service businesses",
+    "title": "For businesses that need more than a brochure website or generic marketing activity.",
+    "text": "We work with local, professional, B2B and high-value service businesses where visibility must lead to trust, a clear action path and measurable commercial outcomes.",
+    "items": [
+      { "code": "LOCAL", "title": "Local service businesses", "text": "High-performance websites, Google visibility and location systems that turn territorial demand into qualified enquiries." },
+      { "code": "PRO", "title": "Professional practices", "text": "Websites and landing paths built around expertise, reputation, local intent and considered client decisions." },
+      { "code": "B2B", "title": "Specialist B2B services", "text": "Proof, useful research and measurable conversion paths for longer sales cycles and higher-value contracts." },
+      { "code": "HIGH", "title": "High-value specialist services", "text": "Digital acquisition infrastructure that makes specialist competence visible before price dominates the conversation." }
+    ],
+    "proof": {
+      "mark": "I&P",
+      "title": "Specific products, connected as one acquisition system.",
+      "text": "Website, landing pages, local demand, proof and measurement assembled around the buying decision.",
+      "href": "/diagnostic/",
+      "label": "Find the right starting point"
+    }
+  },
+  "researchSection": {
+    "eyebrow": "Research behind the products",
+    "title": "The methods are published. The products put them to work.",
+    "href": "/blog/",
+    "label": "Explore all research",
+    "articleLabel": "Read the article"
+  },
+  "finalCta": {
+    "eyebrow": "Start with the right product",
+    "title": "Find the acquisition constraint worth fixing first.",
+    "href": "/diagnostic/",
+    "label": "Request a diagnostic"
+  }
+}
