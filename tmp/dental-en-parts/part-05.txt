@@ -1,0 +1,85 @@
+
+The updated date should correspond to a real review. Automatically changing the date each month without examining the content creates a cosmetic signal and makes the editorial history less trustworthy.
+
+### Scientific sources and operational sources
+
+Not every sentence needs an academic citation. Clinical definitions, epidemiological data, indications and risks should, however, be supported by appropriate sources: guidelines, institutional documents, professional or scientific societies, reviews and relevant literature.
+
+Operational information can use different sources. Opening hours, available technologies, clinicians and locations should come from the practice. Google rules should be cited from Google documentation. Legal requirements should link to official sources. An article becomes more credible when it clearly separates information derived from an external source from a proprietary model or recommendation.
+
+### A treatment page is not a brochure
+
+A useful page should do more than announce that the practice provides the treatment and possesses “state-of-the-art technology”. It should answer the questions that precede an informed enquiry.
+
+It should explain what the service is, which problems it may address, who may benefit from an assessment, which investigations may be required, who delivers the care, what alternatives exist, which factors affect time and cost, and which limitations must be understood.
+
+It should not replace diagnosis. Content can help a person ask better questions and recognise when a consultation is appropriate. It cannot determine online that a treatment is suitable for an individual case.
+
+### The ideal structure of a treatment page
+
+| Section | Objective |
+| --- | --- |
+| Opening | Confirm treatment, problem and location |
+| Direct answer | Explain briefly what the treatment is and what it addresses |
+| Clinician | Make role and expertise verifiable |
+| Assessment | Explain why there is no identical answer for everyone |
+| Process | Describe the stages without promising outcomes |
+| Technology and materials | State only what is genuinely used |
+| Benefits and limitations | Support an informed decision |
+| Alternatives | Avoid a single-solution narrative |
+| Costs | Explain the factors that shape the plan |
+| Proof | Reviews, environment, method and compliant cases |
+| FAQs | Answer informational objections |
+| Action | Request an appropriate assessment or contact route |
+
+This is not a rigid template. Some treatments require more space for risks, others for alternatives or maintenance. The principle is that the page should follow the patient's decision journey rather than the practice's organisational chart.
+
+### Before-and-after content, clinical cases and proof
+
+Clinical cases can be informative, but they are also among the most sensitive forms of content. A photograph can identify a person or reveal health information. An individual outcome cannot be presented as a guaranteed result. Case selection can also create distorted expectations when only exceptional outcomes are shown.
+
+A responsible case should explain context, objective, assessment, process, limitations and variability. Images must be handled under the applicable rules and with a real assessment of identifiability. Proof should not become spectacle.
+
+### Clarity before technical density
+
+Content can be accurate and still be unusable. Patients should not have to decode a specialist report to understand the next step. The solution is not to simplify until accuracy disappears, but to organise information in layers: direct answer, accessible explanation, detail, sources and frequently asked questions.
+
+The format also supports traditional search and generative systems. A clear answer can be extracted without losing its meaning, while the detail allows readers to verify and explore further.
+
+## SEO for dentists in the age of AI-generated answers
+
+Search is no longer composed only of a short query followed by a list of links. More people are asking detailed questions, requesting comparisons, adding context and continuing the conversation. Google AI Overviews and AI Mode, ChatGPT Search, Microsoft Copilot and other generative systems can synthesise information from several sources and display supporting links.
+
+For a dental practice, the change creates both a risk and an opportunity.
+
+The risk is losing visibility even when the website retains some traditional rankings. If an AI-generated answer summarises costs, alternatives, indications and selection criteria without citing the practice, the user may never visit the page. The opportunity is to appear as a source for questions far more specific than traditional keywords, particularly when the content has a clear structure and verifiable information.
+
+Google states that no special optimisation is required for inclusion in its AI features: established SEO practices, indexability, content quality, internal links and consistent structured data continue to apply. AI features may use *query fan-out*, breaking one question into several related searches to identify supporting sources. [Source: Google, AI features and your website](https://developers.google.com/search/docs/appearance/ai-features)
+
+A page therefore needs to do more than repeat the primary query. It should cover the sub-questions that make a decision complete.
+
+### From keyword to conversation
+
+A person may begin with “dental implant cost” and then ask:
+
+- what determines the price;
+- which investigations are required;
+- whether bone loss rules out treatment;
+- how immediate loading differs from a conventional route;
+- which alternatives may be available;
+- how long the first visit takes;
+- how to choose a practice in their city.
+
+One page may answer some of these questions, while others require connected content. The architecture must therefore be thematic rather than merely lexical.
+
+The future of dental SEO is not the publication of one FAQ for every possible sentence. It is the construction of a coherent body of knowledge in which concise answers, extended explanations, sources and professional entities reinforce one another.
+
+### How to make content citable
+
+A generative system must be able to extract a sentence without distorting its meaning. Important sections should therefore begin with a direct answer and continue with explanation, conditions and exceptions.
+
+A useful definition might take this form:
+
+> **Local SEO for dentists is the process of aligning a practice's website, treatment pages, clinicians, location, Google Business Profile, reviews and technical data so that it can appear for relevant searches in its real service area.**
+
+The sentence is self-contained, attributable and verifiable. The paragraphs that follow can explain factors, limitations and implementation.
