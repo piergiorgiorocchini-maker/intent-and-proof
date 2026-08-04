@@ -17,6 +17,11 @@ const categories = categoryEntries.map((entry) => ({
 	description: entry.data.description,
 	locale: "it" as const
 }));
+const alternates = [
+	{ locale: "en", href: "/blog/" },
+	{ locale: "it", href: "/it/blog/" },
+	{ locale: "en", href: "/blog/", isDefault: true }
+];
 ---
 
 <BaseLayout
@@ -24,6 +29,7 @@ const categories = categoryEntries.map((entry) => ({
 	description="Ricerca su SEO locale, conversione, acquisizione, prove e misurazione per imprese di servizi."
 	lang="it"
 	canonicalPath="/it/blog/"
+	alternates={alternates}
 	showRelatedContent={false}
 >
 	<ArchiveHero
