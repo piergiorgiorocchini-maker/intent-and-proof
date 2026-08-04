@@ -125,7 +125,7 @@ seo:
   title: "Marketing odontoiatrico e SEO per dentisti | Guida completa"
   description: "Guida completa per studi dentistici: SEO locale, Google Ads, pagine trattamento, prime visite, gestionali, privacy, dati e visibilità nelle risposte AI."
   canonicalUrl: ''
-  image: /images/uploads/intent-proof-medical-leads-hero.webp
+  image: null
   noIndex: false
   noFollow: false
 ---
