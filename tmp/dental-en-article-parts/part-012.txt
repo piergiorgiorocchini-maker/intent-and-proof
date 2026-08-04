@@ -1,3 +1,0 @@
-Public pages from OpenStudio, MedicHub, FELG Dent and CAES are used to understand categories of dental-practice software. Vendor claims are not treated as independent proof of performance, security or API compatibility. Every integration must be verified directly with the vendor and the responsible people within the practice.
-
-Legal, professional and privacy sections are provided for informational and product-design purposes. They do not replace advice from qualified legal counsel, professional regulators, privacy specialists or the licensed healthcare provider responsible in the relevant jurisdiction.
