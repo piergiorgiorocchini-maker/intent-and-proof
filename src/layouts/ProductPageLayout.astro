@@ -16,19 +16,38 @@ const {
 
 const contentLocale = lang === "it" ? "it" : "en";
 const currentPath = canonicalPath || Astro.url.pathname;
-const inferredAlternates = currentPath.startsWith("/products/")
-	? [
-		{ locale: "en", href: currentPath },
-		{ locale: "it", href: currentPath.replace(/^\/products\//, "/it/prodotti/") },
-		{ locale: "en", href: currentPath, isDefault: true }
-	]
-	: currentPath.startsWith("/it/prodotti/")
+
+const pairedProductPaths: Record<string, string> = {
+	"/products/local-market-capture-system/": "/it/prodotti/seo-locale-attivita/",
+	"/it/prodotti/seo-locale-attivita/": "/products/local-market-capture-system/"
+};
+
+const pairedPath = pairedProductPaths[currentPath];
+const inferredAlternates = pairedPath
+	? currentPath.startsWith("/it/")
 		? [
-			{ locale: "en", href: currentPath.replace(/^\/it\/prodotti\//, "/products/") },
+			{ locale: "en", href: pairedPath },
 			{ locale: "it", href: currentPath },
-			{ locale: "en", href: currentPath.replace(/^\/it\/prodotti\//, "/products/"), isDefault: true }
+			{ locale: "en", href: pairedPath, isDefault: true }
 		]
-		: [];
+		: [
+			{ locale: "en", href: currentPath },
+			{ locale: "it", href: pairedPath },
+			{ locale: "en", href: currentPath, isDefault: true }
+		]
+	: currentPath.startsWith("/products/")
+		? [
+			{ locale: "en", href: currentPath },
+			{ locale: "it", href: currentPath.replace(/^\/products\//, "/it/prodotti/") },
+			{ locale: "en", href: currentPath, isDefault: true }
+		]
+		: currentPath.startsWith("/it/prodotti/")
+			? [
+				{ locale: "en", href: currentPath.replace(/^\/it\/prodotti\//, "/products/") },
+				{ locale: "it", href: currentPath },
+				{ locale: "en", href: currentPath.replace(/^\/it\/prodotti\//, "/products/"), isDefault: true }
+			]
+			: [];
 ---
 
 <BaseLayout
