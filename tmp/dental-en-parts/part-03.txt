@@ -1,0 +1,85 @@
+Perceived value does not come from words such as “excellence” or “advanced technology”. It comes from observable elements: verifiable expertise, careful diagnosis, time allocated, clarity about alternatives, stated materials, continuity of care, organisation, accessibility and management of possible complications. When these elements are explained properly, patients can compare practices on a more complete basis.
+
+The best marketing does not persuade someone to spend more. It helps them understand more clearly what they are comparing.
+
+## The dental intent matrix
+
+Dental SEO should not be designed as a list of keywords sorted by search volume. It should begin with a structure that connects the way a patient expresses a problem with the way the practice actually delivers the service.
+
+Intent & Proof uses this matrix:
+
+> **Treatment × problem × technology or brand × location × decision stage**
+
+The matrix prevents two opposite mistakes. The first is building a website composed only of broad pages: implant dentistry, orthodontics, cosmetic dentistry and little else. The second is generating hundreds of URLs by automatically combining every treatment with every town, brand and question. In the first case, the website does not answer specific searches. In the second, it produces thin, repetitive pages that are difficult to support with genuine proof.
+
+| Dimension | Examples | Function |
+| --- | --- | --- |
+| Treatment | implant dentistry, clear aligners, veneers, hygiene | Identifies the clinical area |
+| Problem | missing teeth, bone loss, crooked teeth, emergency | Translates the expressed need |
+| Technology or brand | immediate loading, All-on-4, Invisalign, implant systems | Captures more informed demand |
+| Location | city, neighbourhood, county, “near me” | Connects demand to the real catchment area |
+| Decision stage | information, comparison, assessment, urgency | Determines content and action |
+
+A single search can contain several dimensions. “Same-day dental implants in Cagliari cost” combines treatment, technology, location and financial comparison. The correct page should not repeat the phrase in every heading. It should answer the complete intent: explain the journey, identify who performs the assessment, clarify what influences cost and make it easy to contact the relevant location.
+
+### Search families a practice should cover
+
+Broad local searches include phrases such as “dentist near me”, “dental practice + city”, “dentist open Saturday” and “emergency dentist”. They matter because they capture broad and often immediate demand. They require a strong local presence, accurate operational information and a properly managed Google Business Profile.
+
+Treatment searches are more precise: “implant dentist + city”, “same-day dental implants”, “clear aligners”, “dental veneers” and “professional teeth whitening”. The destination page must demonstrate that the practice genuinely provides the service and has relevant expertise.
+
+Problem-based searches translate the patient's language: “dental implant with bone loss”, “fixed teeth quickly”, “aligners for crooked teeth”, “broken tooth emergency” and “bleeding gums”. Not every query should become a commercial page. Many require informational content that helps the reader understand when to see a professional and which alternatives may be assessed.
+
+Comparison and cost searches indicate a different decision stage: “dental implant cost”, “Invisalign price”, “All-on-4 cost”, “dental veneers reviews” and “alternatives to treatment”. These queries should not be rejected. They should be handled transparently, explaining influencing factors, limitations and the need for assessment.
+
+Technology or brand searches can express strong intent. A person looking for a specific implant system or aligner has often completed part of the research already. A dedicated page makes sense only when the practice genuinely uses the technology, can describe its role without inappropriate promises and has the right to use the brand, materials and images under the applicable terms.
+
+### From keyword to demand map
+
+A useful keyword map contains more than term, volume and difficulty. At minimum, it should include:
+
+| Field | Question |
+| --- | --- |
+| Intent | What does the person want to understand or do? |
+| Service | Which real practice service can answer the need? |
+| Page | What is the most coherent destination? |
+| Proof | What must be demonstrated? |
+| Action | Call, enquiry, booking or further reading? |
+| Value | How strategically important is the demand to the practice? |
+| Risk | Are there clinical, regulatory or privacy constraints? |
+
+This structure makes prioritisation possible. A practice does not need to publish everything at once. It can begin with three or four high-value journeys, build strong pages, measure performance and then expand.
+
+### A high-value keyword does not guarantee a patient
+
+A highly specific query does not guarantee that the person is ready, clinically suitable or willing to choose the practice. “Immediate loading” may be searched out of curiosity, for comparison or after receiving a diagnosis elsewhere. The page must therefore avoid treating the keyword as a diagnosis. It should explain that suitability depends on clinical assessment and that alternatives may exist.
+
+The same applies to brands and technologies. A person may arrive believing that a brand alone determines the quality of the outcome. The content should acknowledge the search while returning the decision to a broader professional context: diagnosis, planning, experience, materials, maintenance and individual conditions.
+
+Responsible SEO captures the language of demand without allowing that language to govern the clinical message completely.
+
+## SEO for dentists: architecture, not isolated rankings
+
+**SEO for dentists** must connect content, professional entities, location and conversion. Moving one page higher for one keyword is not enough. The practice needs a system in which Google, patients and answer engines can understand who the practice is, where it operates, which services it provides, who delivers them and which page answers each need.
+
+Google states that local results are based mainly on **relevance, distance and prominence**. Complete information, reviews and links from other websites help the search engine understand and evaluate a business, but nobody can purchase a better position in the Local Pack directly. Distance cannot be controlled; relevance and prominence can be developed over time through consistent data, useful content, reputation and authority. [Source: Google Business Profile](https://support.google.com/business/answer/7091?hl=en)
+
+### The minimum architecture for a dental practice
+
+A robust structure does not necessarily need to be enormous. It needs to be legible.
+
+The homepage introduces the practice, locations, positioning and principal journeys. Treatment pages explain specific services. Clinician pages make roles and expertise verifiable. Location pages contain genuine operational information. Articles answer problems, comparisons and questions that cannot be handled responsibly on a commercial page. A first-visit page explains what happens after the enquiry.
+
+A homepage cannot answer implant dentistry, orthodontics, cosmetic dentistry, hygiene, periodontics, paediatric dentistry and emergencies at the same time with sufficient precision. Attempting to do so produces the familiar wall of icons that appears to explain everything while clarifying nothing.
+
+An initial structure may include:
+
+- an authoritative homepage;
+- one page for each real location;
+- one page for each priority treatment;
+- complete clinician profiles;
+- a dedicated first-visit page;
+- informational content for patient problems and questions;
+- practical information about access, hours, emergencies and contact routes;
+- an editorial archive with named authors, sources and updates.
+
