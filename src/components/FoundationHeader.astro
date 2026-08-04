@@ -21,8 +21,8 @@ const navigation = isItalian
 	];
 const aboutLabel = isItalian ? "Chi siamo" : "About";
 const diagnosticLabel = isItalian ? "Richiedi diagnosi" : "Request diagnostic";
-const languageLabel = isItalian ? "EN" : "IT";
-const languageName = isItalian ? "View this page in English" : "Visualizza questa pagina in italiano";
+const languageMenuLabel = isItalian ? "Cambia lingua" : "Change language";
+const languageGroupLabel = isItalian ? "Selezione lingua" : "Language selection";
 ---
 
 <header class="fd-header">
@@ -41,7 +41,28 @@ const languageName = isItalian ? "View this page in English" : "Visualizza quest
 		</nav>
 
 		<div class="fd-header__actions" aria-label={isItalian ? "Azioni principali" : "Primary actions"}>
-			<a class="fd-language" href={alternateHref} hreflang={isItalian ? "en" : "it"} aria-label={languageName}>{languageLabel}</a>
+			<details class="fd-language-picker">
+				<summary aria-label={languageMenuLabel} title={languageMenuLabel}>
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<circle cx="12" cy="12" r="9"></circle>
+						<path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12s1.2 6.5 3.6 9"></path>
+					</svg>
+					<svg class="fd-language-picker__chevron" viewBox="0 0 12 8" aria-hidden="true"><path d="m1 1.5 5 5 5-5"></path></svg>
+				</summary>
+				<div class="fd-language-picker__menu" aria-label={languageGroupLabel}>
+					{isItalian ? (
+						<>
+							<a href={alternateHref} hreflang="en"><span>English</span></a>
+							<span class="fd-language-picker__current" aria-current="page"><span>Italiano</span><b aria-hidden="true">✓</b></span>
+						</>
+					) : (
+						<>
+							<span class="fd-language-picker__current" aria-current="page"><span>English</span><b aria-hidden="true">✓</b></span>
+							<a href={alternateHref} hreflang="it"><span>Italiano</span></a>
+						</>
+					)}
+				</div>
+			</details>
 			<a class="fd-login" href="/about/">{aboutLabel}</a>
 			<a class="fd-start" href="/diagnostic/">{diagnosticLabel}</a>
 		</div>
@@ -57,7 +78,22 @@ const languageName = isItalian ? "View this page in English" : "Visualizza quest
 					{navigation.map((item) => <a href={item.href}>{item.label}</a>)}
 				</nav>
 				<div class="fd-mobile-menu__actions">
-					<a class="fd-language" href={alternateHref} hreflang={isItalian ? "en" : "it"} aria-label={languageName}>{languageLabel}</a>
+					<div class="fd-mobile-language" aria-label={languageGroupLabel}>
+						<div class="fd-mobile-language__label">
+							<svg viewBox="0 0 24 24" aria-hidden="true">
+								<circle cx="12" cy="12" r="9"></circle>
+								<path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12s1.2 6.5 3.6 9"></path>
+							</svg>
+							<span>{isItalian ? "Lingua" : "Language"}</span>
+						</div>
+						<div class="fd-mobile-language__links">
+							{isItalian ? (
+								<><a href={alternateHref} hreflang="en">English</a><span aria-current="page">Italiano ✓</span></>
+							) : (
+								<><span aria-current="page">English ✓</span><a href={alternateHref} hreflang="it">Italiano</a></>
+							)}
+						</div>
+					</div>
 					<a href="/about/">{aboutLabel}</a>
 					<a class="fd-start" href="/diagnostic/">{diagnosticLabel}</a>
 				</div>
@@ -80,29 +116,160 @@ const languageName = isItalian ? "View this page in English" : "Visualizza quest
 		height: auto;
 	}
 
-	.fd-header .fd-language {
-		display: inline-grid;
-		min-width: 34px;
-		height: 34px;
-		padding: 0 8px;
-		border: 1px solid rgba(7, 28, 44, 0.16);
+	.fd-header .fd-language-picker {
+		position: relative;
+		z-index: 30;
+	}
+
+	.fd-header .fd-language-picker > summary {
+		display: inline-flex;
+		height: 36px;
+		padding: 0 9px;
+		align-items: center;
+		gap: 4px;
+		border: 1px solid rgba(7, 28, 44, 0.14);
 		border-radius: 999px;
-		place-items: center;
+		background: #fff;
 		color: #0b6c59;
-		font-size: 0.68rem;
-		font-weight: 850;
-		letter-spacing: 0.08em;
+		cursor: pointer;
+		list-style: none;
+		transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+	}
+
+	.fd-header .fd-language-picker > summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.fd-header .fd-language-picker > summary:hover,
+	.fd-header .fd-language-picker > summary:focus-visible,
+	.fd-header .fd-language-picker[open] > summary {
+		border-color: rgba(22, 133, 109, 0.42);
+		background: #eef9f6;
+		box-shadow: 0 5px 16px rgba(7, 28, 44, 0.08);
+		outline: none;
+	}
+
+	.fd-header .fd-language-picker > summary svg:first-child {
+		width: 18px;
+		height: 18px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.65;
+	}
+
+	.fd-header .fd-language-picker__chevron {
+		width: 9px;
+		height: 6px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.5;
+		transition: transform 160ms ease;
+	}
+
+	.fd-header .fd-language-picker[open] .fd-language-picker__chevron {
+		transform: rotate(180deg);
+	}
+
+	.fd-header .fd-language-picker__menu {
+		position: absolute;
+		top: calc(100% + 10px);
+		right: 0;
+		display: grid;
+		width: 172px;
+		padding: 7px;
+		border: 1px solid rgba(7, 28, 44, 0.1);
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.98);
+		box-shadow: 0 18px 48px rgba(7, 28, 44, 0.16);
+		backdrop-filter: blur(14px);
+	}
+
+	.fd-header .fd-language-picker__menu > a,
+	.fd-header .fd-language-picker__current {
+		display: flex;
+		min-height: 40px;
+		padding: 0 11px;
+		align-items: center;
+		justify-content: space-between;
+		border-radius: 9px;
+		color: #183246;
+		font-size: 0.78rem;
+		font-weight: 700;
 		text-decoration: none;
 	}
 
-	.fd-header .fd-language:hover,
-	.fd-header .fd-language:focus-visible {
-		border-color: rgba(22, 133, 109, 0.42);
-		background: #eaf7f3;
+	.fd-header .fd-language-picker__menu > a:hover,
+	.fd-header .fd-language-picker__menu > a:focus-visible {
+		background: #eef9f6;
+		color: #0b6c59;
+		outline: none;
+	}
+
+	.fd-header .fd-language-picker__current {
+		background: #f3f7f6;
+		color: #0b6c59;
+	}
+
+	.fd-header .fd-language-picker__current b {
+		font-size: 0.72rem;
 	}
 
 	.fd-header .fd-mobile-menu__actions {
-		grid-template-columns: auto 1fr 1.3fr;
+		grid-template-columns: 1fr 1.3fr;
+	}
+
+	.fd-header .fd-mobile-language {
+		display: flex;
+		grid-column: 1 / -1;
+		padding: 12px 14px;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		border: 1px solid rgba(7, 28, 44, 0.1);
+		border-radius: 12px;
+		background: #f7fbfa;
+	}
+
+	.fd-header .fd-mobile-language__label,
+	.fd-header .fd-mobile-language__links {
+		display: flex;
+		align-items: center;
+		gap: 9px;
+	}
+
+	.fd-header .fd-mobile-language__label {
+		color: #183246;
+		font-size: 0.76rem;
+		font-weight: 750;
+	}
+
+	.fd-header .fd-mobile-language__label svg {
+		width: 18px;
+		height: 18px;
+		fill: none;
+		stroke: #0b6c59;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.65;
+	}
+
+	.fd-header .fd-mobile-language__links a,
+	.fd-header .fd-mobile-language__links span {
+		padding: 6px 8px;
+		border-radius: 8px;
+		color: #315064;
+		font-size: 0.7rem;
+		font-weight: 760;
+		text-decoration: none;
+	}
+
+	.fd-header .fd-mobile-language__links span {
+		background: #e7f5f1;
+		color: #0b6c59;
 	}
 
 	@media (max-width: 1180px) {
@@ -120,8 +287,10 @@ const languageName = isItalian ? "View this page in English" : "Visualizza quest
 			grid-template-columns: 1fr;
 		}
 
-		.fd-header .fd-mobile-menu__actions .fd-language {
-			width: 100%;
+		.fd-header .fd-mobile-language {
+			grid-column: auto;
+			align-items: flex-start;
+			flex-direction: column;
 		}
 	}
 </style>
