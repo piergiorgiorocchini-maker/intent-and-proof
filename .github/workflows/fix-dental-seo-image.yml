@@ -1,0 +1,38 @@
+name: Fix dental SEO image
+
+on:
+  push:
+    paths:
+      - ".github/workflows/fix-dental-seo-image.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fix article frontmatter
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('src/content/articles/marketing-odontoiatrico-seo-dentisti-it.md')
+          text = path.read_text()
+          old = '  image: /images/uploads/intent-proof-medical-leads-hero.webp\n  noIndex: false'
+          new = '  image: null\n  noIndex: false'
+          if old not in text:
+              raise SystemExit('Expected SEO image line not found')
+          path.write_text(text.replace(old, new, 1))
+          PY
+          git rm .github/workflows/fix-dental-seo-image.yml
+          git add src/content/articles/marketing-odontoiatrico-seo-dentisti-it.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Fix dental article SEO image schema"
+          git push
