@@ -1,6 +1,33 @@
+---
+const {
+	lang = "en",
+	alternateHref = lang === "it" ? "/" : "/it/"
+} = Astro.props;
+
+const isItalian = lang === "it";
+const homeHref = isItalian ? "/it/" : "/";
+const navigation = isItalian
+	? [
+		{ label: "Servizi", href: "/it/#services" },
+		{ label: "Per chi lavoriamo", href: "/it/#solutions" },
+		{ label: "Casi studio", href: "/it/blog/" },
+		{ label: "Approfondimenti", href: "/it/blog/" }
+	]
+	: [
+		{ label: "Services", href: "/#services" },
+		{ label: "Who we help", href: "/#solutions" },
+		{ label: "Case Studies", href: "/blog/category/case-studies/" },
+		{ label: "Research", href: "/blog/" }
+	];
+const aboutLabel = isItalian ? "Chi siamo" : "About";
+const diagnosticLabel = isItalian ? "Richiedi diagnosi" : "Request diagnostic";
+const languageLabel = isItalian ? "EN" : "IT";
+const languageName = isItalian ? "View this page in English" : "Visualizza questa pagina in italiano";
+---
+
 <header class="fd-header">
 	<div class="fd-header__inner">
-		<a class="fd-brand fd-brand--wordmark" href="/" aria-label="Intent & Proof home">
+		<a class="fd-brand fd-brand--wordmark" href={homeHref} aria-label="Intent & Proof home">
 			<img
 				src="/brand/intent-proof-wordmark.svg?v=2"
 				width="276"
@@ -9,34 +36,30 @@
 			/>
 		</a>
 
-		<nav class="fd-nav" aria-label="Main navigation">
-			<a href="/#services">Services</a>
-			<a href="/#solutions">Who we help</a>
-			<a href="/blog/category/case-studies/">Case Studies</a>
-			<a href="/blog/">Research</a>
+		<nav class="fd-nav" aria-label={isItalian ? "Navigazione principale" : "Main navigation"}>
+			{navigation.map((item) => <a href={item.href}>{item.label}</a>)}
 		</nav>
 
-		<div class="fd-header__actions" aria-label="Primary actions">
-			<a class="fd-login" href="/about/">About</a>
-			<a class="fd-start" href="/diagnostic/">Request diagnostic</a>
+		<div class="fd-header__actions" aria-label={isItalian ? "Azioni principali" : "Primary actions"}>
+			<a class="fd-language" href={alternateHref} hreflang={isItalian ? "en" : "it"} aria-label={languageName}>{languageLabel}</a>
+			<a class="fd-login" href="/about/">{aboutLabel}</a>
+			<a class="fd-start" href="/diagnostic/">{diagnosticLabel}</a>
 		</div>
 
 		<details class="fd-mobile-menu">
-			<summary aria-label="Open navigation">
+			<summary aria-label={isItalian ? "Apri la navigazione" : "Open navigation"}>
 				<span></span>
 				<span></span>
 				<span></span>
 			</summary>
 			<div class="fd-mobile-menu__panel">
-				<nav aria-label="Mobile navigation">
-					<a href="/#services">Services</a>
-					<a href="/#solutions">Who we help</a>
-					<a href="/blog/category/case-studies/">Case Studies</a>
-					<a href="/blog/">Research</a>
+				<nav aria-label={isItalian ? "Navigazione mobile" : "Mobile navigation"}>
+					{navigation.map((item) => <a href={item.href}>{item.label}</a>)}
 				</nav>
 				<div class="fd-mobile-menu__actions">
-					<a href="/about/">About</a>
-					<a class="fd-start" href="/diagnostic/">Request diagnostic</a>
+					<a class="fd-language" href={alternateHref} hreflang={isItalian ? "en" : "it"} aria-label={languageName}>{languageLabel}</a>
+					<a href="/about/">{aboutLabel}</a>
+					<a class="fd-start" href="/diagnostic/">{diagnosticLabel}</a>
 				</div>
 			</div>
 		</details>
@@ -57,8 +80,29 @@
 		height: auto;
 	}
 
+	.fd-header .fd-language {
+		display: inline-grid;
+		min-width: 34px;
+		height: 34px;
+		padding: 0 8px;
+		border: 1px solid rgba(7, 28, 44, 0.16);
+		border-radius: 999px;
+		place-items: center;
+		color: #0b6c59;
+		font-size: 0.68rem;
+		font-weight: 850;
+		letter-spacing: 0.08em;
+		text-decoration: none;
+	}
+
+	.fd-header .fd-language:hover,
+	.fd-header .fd-language:focus-visible {
+		border-color: rgba(22, 133, 109, 0.42);
+		background: #eaf7f3;
+	}
+
 	.fd-header .fd-mobile-menu__actions {
-		grid-template-columns: 1fr 1.3fr;
+		grid-template-columns: auto 1fr 1.3fr;
 	}
 
 	@media (max-width: 1180px) {
@@ -70,6 +114,14 @@
 	@media (max-width: 640px) {
 		.fd-header .fd-brand--wordmark {
 			width: min(220px, 68vw);
+		}
+
+		.fd-header .fd-mobile-menu__actions {
+			grid-template-columns: 1fr;
+		}
+
+		.fd-header .fd-mobile-menu__actions .fd-language {
+			width: 100%;
 		}
 	}
 </style>
