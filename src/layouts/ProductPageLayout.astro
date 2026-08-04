@@ -10,8 +10,25 @@ const {
 	lang = "en",
 	noindex = true,
 	nofollow = false,
-	structuredData = null
+	structuredData = null,
+	alternates = []
 } = Astro.props;
+
+const contentLocale = lang === "it" ? "it" : "en";
+const currentPath = canonicalPath || Astro.url.pathname;
+const inferredAlternates = currentPath.startsWith("/products/")
+	? [
+		{ locale: "en", href: currentPath },
+		{ locale: "it", href: currentPath.replace(/^\/products\//, "/it/prodotti/") },
+		{ locale: "en", href: currentPath, isDefault: true }
+	]
+	: currentPath.startsWith("/it/prodotti/")
+		? [
+			{ locale: "en", href: currentPath.replace(/^\/it\/prodotti\//, "/products/") },
+			{ locale: "it", href: currentPath },
+			{ locale: "en", href: currentPath.replace(/^\/it\/prodotti\//, "/products/"), isDefault: true }
+		]
+		: [];
 ---
 
 <BaseLayout
@@ -19,7 +36,8 @@ const {
 	description={description}
 	canonicalPath={canonicalPath}
 	image={image}
-	lang={lang}
+	lang={contentLocale}
+	alternates={alternates.length > 0 ? alternates : inferredAlternates}
 	noindex={noindex}
 	nofollow={nofollow}
 	structuredData={structuredData}
