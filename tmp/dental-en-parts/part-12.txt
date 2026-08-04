@@ -1,0 +1,85 @@
+It is not prudent to assume that anything not expressly prohibited on one documentation page is automatically permitted. Advertising policy, privacy, consent and the nature of the event must be analysed together.
+
+A conservative configuration separates three layers:
+
+1. **Website measurement:** call clicks, form submissions and booking actions, configured under the relevant consent and platform rules.
+2. **Internal measurement:** contact, first visit, outcome and value, retained within the practice's systems.
+3. **Advertising optimisation:** use of permitted, non-health signals after policy review.
+
+A conversion name must never become a hidden channel for transmitting information such as “implant treatment accepted”, “patient with bone loss” or another health indication.
+
+### Why the internal dashboard remains transformative
+
+The inability to send every outcome to Google does not reduce the value of the architecture. It makes the architecture more serious.
+
+The dashboard allows campaigns and pages to be evaluated using real data without handing the entire decision logic to the advertising platform. An owner can discover that one campaign produces expensive leads but many attended visits, while another generates cheap forms and few reached contacts. Territories, pages and response times can be compared.
+
+Optimisation can proceed through human decisions and controlled tests:
+
+- move budget between campaigns;
+- modify negative keywords;
+- rewrite the landing page;
+- change operating hours;
+- improve the front-desk script;
+- reduce response time;
+- separate price-focused searches;
+- create a missing informational resource.
+
+Not every outcome needs to become a Smart Bidding signal.
+
+### Deterministic and imperfect attribution
+
+GCLID and UTM parameters can connect an enquiry to a campaign when the path is preserved correctly. Not every conversion will be deterministic. A person may search several times, call from another device, speak to an existing patient or return weeks later.
+
+The dashboard should therefore distinguish:
+
+- direct attribution;
+- assisted attribution;
+- self-reported source;
+- unknown source;
+- existing patient;
+- referral.
+
+Demanding absolute precision often produces falsely precise data. A reliable system shows its coverage and uncertainty as well.
+
+### Events, identifiers and deduplication
+
+Every enquiry receives a `lead_id`. Every event receives an `event_id`. The practice system preserves the relationship. The dashboard uses these identifiers to prevent duplication.
+
+An event should include date and time, origin, version and status. If it is corrected, the system should record the change rather than silently overwrite the history.
+
+That discipline makes the data defensible in a monthly meeting. The report is not beyond challenge, because no dataset is. It is verifiable because every number can be traced to documented events and rules.
+
+### The report that changes the conversation
+
+A useful report may state:
+
+> During the month, 40 attributed enquiries were received. The practice recorded 28 contact attempts, reached 18 people, booked 9 appointments and completed 6 first visits. Eleven enquiries were classified as exclusively price-focused. Median first-response time was 3 hours and 20 minutes.
+
+This reading does not search for someone to blame. It shows where intervention is required. If only 28 enquiries received an attempt, the priority is operational. If many reached contacts do not book, relevance and conversation need investigation. If people book but fail to attend, timing, confirmation and expectations become the focus.
+
+Marketing becomes a science when numbers change a decision, not when they merely fill a dashboard.
+
+## Health data, privacy and privacy by design
+
+In a dental journey, even a simple enquiry can reveal health information. The sentence “I would like an assessment for implants in my upper jaw” connects an identifiable person with a healthcare need. Photographs, radiographs, notes, medical history and treatment details are more sensitive still.
+
+In the European Union, the GDPR defines health data as personal data related to physical or mental health, including the provision of healthcare services, that reveal information about health status. Article 9 establishes a general prohibition on processing special categories of data unless a specific condition applies. [Source: Regulation (EU) 2016/679](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679)
+
+That does not mean a practice cannot process health data. It means the purpose, legal basis, roles and safeguards must be appropriate. Processing required for healthcare is not the same as processing for marketing, analytics or advertising optimisation. Other jurisdictions use different legal concepts, but the architectural principle remains useful: clinical data should not flow into marketing systems merely because the systems can be connected.
+
+### Separate the purposes
+
+The system should distinguish at least:
+
+- handling an enquiry;
+- booking;
+- healthcare delivery;
+- administration and billing;
+- analytics;
+- marketing;
+- internal attribution.
+
+Collecting information to organise an appointment does not automatically permit its use for advertising audiences. Permission to be contacted is not the same as permission to be profiled.
+
+The privacy notice should explain who processes the data, for which purposes, with which recipients, for how long and under which rights. Forms should not use one universal box to accept every conceivable form of processing.
