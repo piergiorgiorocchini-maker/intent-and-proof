@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/manrope";
 import FoundationHeader from "../components/FoundationHeader.astro";
@@ -8,6 +9,7 @@ import LatestArticles from "../components/content/LatestArticles.astro";
 import InformationalTrackingNotice from "../components/system/InformationalTrackingNotice.astro";
 import TrackingManager from "../components/system/TrackingManager.astro";
 import TrackingRuntime from "../components/system/TrackingRuntime.astro";
+import { buildContentAlternates } from "../lib/i18n/alternates";
 import { getGlobalSettings } from "../lib/settings";
 import "../styles/global.css";
 import "../styles/foundations.css";
@@ -65,7 +67,31 @@ const canonicalURL = new URL(canonicalPath || Astro.url.pathname, siteURL);
 const socialImage = image ? new URL(image, siteURL) : null;
 const robotsDirectives = [noindex ? "noindex" : "index", nofollow ? "nofollow" : "follow"].join(", ");
 const contentLocale = lang === "it" ? "it" : "en";
-const languageAlternate = alternates.find((alternate: AlternateLocale) => !alternate.isDefault && alternate.locale !== contentLocale);
+
+let resolvedAlternates = alternates as AlternateLocale[];
+const articleRoute = Astro.url.pathname.match(/^\/(?:it\/)?blog\/([^/]+)\/?$/);
+
+if (resolvedAlternates.length === 0 && articleRoute) {
+	const articleSlug = articleRoute[1];
+	const articles = await getCollection("articles");
+	const currentArticle = articles.find(
+		(article) => article.data.locale === contentLocale
+			&& article.data.slug === articleSlug
+			&& article.data.draft !== true
+	);
+
+	if (currentArticle) {
+		resolvedAlternates = buildContentAlternates(
+			articles,
+			currentArticle.data.translationKey,
+			"article"
+		);
+	}
+}
+
+const languageAlternate = resolvedAlternates.find(
+	(alternate: AlternateLocale) => !alternate.isDefault && alternate.locale !== contentLocale
+);
 const alternateLanguageHref = languageAlternate?.href || (contentLocale === "it" ? "/" : "/it/");
 const gtmId = settings.tracking.enabled
 	&& settings.tracking.delivery === "gtm"
@@ -87,7 +113,7 @@ const gtmId = settings.tracking.enabled
 		<link rel="mask-icon" href="/favicon.svg?v=2" color="#16856D" />
 		<link rel="canonical" href={canonicalURL} />
 		{
-			alternates.map((alternate: AlternateLocale) => (
+			resolvedAlternates.map((alternate: AlternateLocale) => (
 				<link
 					rel="alternate"
 					hreflang={alternate.isDefault ? "x-default" : alternate.locale}
