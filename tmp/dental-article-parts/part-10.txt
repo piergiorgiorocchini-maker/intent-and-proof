@@ -1,0 +1,82 @@
+Il primo schermo dovrebbe indicare chiaramente trattamento, sede, professionista o tipo di valutazione. Non serve comprimere ogni dettaglio sopra la piega, ma la persona deve riconoscere immediatamente la continuità con la ricerca.
+
+Un titolo come “Ritrova il sorriso che meriti” può essere emotivo, ma non chiarisce se la pagina parla di implantologia, ortodonzia o sbiancamento. Un titolo più informativo permette di qualificare la visita e riduce la dipendenza da slogan.
+
+La call to action dovrebbe descrivere il passo reale: “Richiedi una valutazione”, “Prenota una prima visita” o “Parla con la segreteria”. “Scopri di più” è spesso troppo vago; “Prenota il trattamento” può essere prematuro e improprio.
+
+### Prove vicino alle decisioni
+
+La prova deve comparire nel punto in cui nasce il dubbio. Le qualifiche del professionista vanno mostrate quando si presenta il trattamento. Le fotografie della sede possono accompagnare le informazioni operative. Le recensioni pertinenti possono sostenere il percorso di prima visita. Le fonti possono essere collegate alle spiegazioni cliniche.
+
+Una pagina che deposita tutte le testimonianze in fondo obbliga il paziente a superare l'incertezza prima di incontrare la prova. Una pagina che mostra loghi, premi e numeri senza contesto può apparire autoreferenziale.
+
+### Costi e finanziamenti
+
+Il tema economico deve essere trattato con precisione. Quando è possibile indicare fasce o elementi inclusi, lo studio deve verificare che la comunicazione sia corretta, aggiornata e compatibile con le regole applicabili. Quando non è possibile, la pagina dovrebbe spiegare quali fattori determinano il piano.
+
+Il finanziamento non deve diventare l'unico elemento distintivo. Può essere un'informazione utile, ma non sostituisce diagnosi, competenza e appropriatezza.
+
+Una sezione equilibrata può dire che il costo dipende da condizioni individuali, accertamenti, complessità, materiali e percorso; che una cifra affidabile richiede una valutazione; e che lo studio spiegherà alternative e modalità di pagamento prima di qualsiasi decisione.
+
+### Form di contatto: meno campi non è sempre meglio
+
+La regola “più corto converte di più” è incompleta. Un modulo con nome e telefono può aumentare il numero di invii e ridurre la qualità delle informazioni disponibili alla segreteria.
+
+Il form dovrebbe raccogliere soltanto ciò che serve per gestire il contatto, evitando anamnesi o dettagli clinici. Può includere:
+
+- nome;
+- recapito;
+- sede preferita;
+- fascia oraria;
+- area di interesse espressa in modo generale;
+- preferenza di contatto;
+- consenso e informativa corretti.
+
+Non dovrebbe chiedere diagnosi, fotografie, radiografie o descrizioni dettagliate in un sistema marketing generico. Se lo studio offre un canale sicuro per documenti clinici, deve essere separato e gestito secondo responsabilità sanitarie.
+
+### Chatbot e WhatsApp
+
+Un chatbot può rispondere a domande operative, raccogliere preferenze e trasferire il contatto. Non deve effettuare diagnosi, promettere idoneità o simulare un professionista.
+
+WhatsApp può ridurre l'attrito, ma introduce questioni di gestione, privacy e continuità. Lo studio deve decidere chi risponde, in quali orari, come viene registrato l'esito e come le informazioni rilevanti vengono trasferite al sistema autorizzato.
+
+Un pulsante WhatsApp che apre una conversazione senza alcun protocollo può generare molte chat e poca conoscenza. Il valore nasce quando la conversazione entra in una pipeline.
+
+### Velocità, accessibilità e mobile
+
+La maggior parte delle azioni locali avviene da smartphone. La pagina deve essere leggibile, i pulsanti devono essere raggiungibili, il modulo deve funzionare con tastiere mobile e il numero di telefono deve essere cliccabile.
+
+L'accessibilità non è soltanto conformità tecnica. Testi leggibili, contrasto, etichette dei campi, navigazione da tastiera e alternative testuali rendono il sito utilizzabile da più persone e aiutano anche gli agenti automatici a interpretare l'interfaccia.
+
+OpenAI indica che ChatGPT Atlas utilizza etichette e ruoli ARIA per comprendere elementi interattivi. Migliorare accessibilità e semantica può quindi sostenere sia gli utenti sia i nuovi agenti. [Fonte: OpenAI, FAQ per publisher e sviluppatori](https://help.openai.com/it-it/articles/12627856-publishers-and-developers-faq)
+
+### Il test della landing page
+
+Una revisione seria non si limita al tasso di conversione. Deve verificare:
+
+1. la query corrisponde alla pagina;
+2. il trattamento è spiegato senza diagnosi implicita;
+3. professionista e sede sono verificabili;
+4. prove e fonti sono pertinenti;
+5. costi e limiti sono trattati correttamente;
+6. il passo successivo è chiaro;
+7. il form raccoglie soltanto dati necessari;
+8. la segreteria riceve il contesto;
+9. l'esito può essere registrato;
+10. la pagina funziona realmente su mobile.
+
+Una landing page può convertire molto e produrre richieste inutili. Può convertire meno e generare prime visite migliori. Il giudizio richiede dati successivi al modulo.
+
+
+## Comunicazione sanitaria e Legge 145/2018: il vincolo deve entrare nel progetto
+
+Nel settore odontoiatrico la conformità non può essere aggiunta alla fine, quando annunci e pagine sono già stati scritti. Deve influenzare struttura, tono, prove, call to action e processo di approvazione.
+
+La normativa comunemente indicata nel settore come “Legge Boldi” è la legge 30 dicembre 2018, n. 145, articolo 1, in particolare i commi 525 e 536. Il comma 525 stabilisce che le comunicazioni informative delle strutture sanitarie e degli iscritti agli albi possono contenere le informazioni consentite, funzionali alla sicurezza dei trattamenti, escludendo elementi promozionali o suggestivi e rispettando la libera e consapevole determinazione del paziente. Il comma 536 attribuisce agli Ordini il potere disciplinare e prevede la segnalazione delle violazioni all'Autorità per le garanzie nelle comunicazioni. [Fonte: Ministero della Salute](https://www.salute.gov.it/new/it/tema/professioni-sanitarie/pubblicita-delle-professioni-sanitarie/)
+
+La formula “Legge Boldi” è utile nel linguaggio del settore, ma non deve diventare una scorciatoia per affermazioni allarmistiche. Non ogni errore produce automaticamente la sospensione dello studio o la radiazione del professionista. Le conseguenze dipendono dalla violazione, dal soggetto, dal procedimento e dalle norme applicabili. Un articolo serio descrive il rischio senza inventare sanzioni automatiche.
+
+### Informazione e promozione non sono la stessa cosa
+
+Una comunicazione informativa spiega chi eroga la prestazione, dove, con quali qualifiche, secondo quale processo e con quali limiti. Una comunicazione promozionale cerca di spingere la scelta attraverso urgenza artificiale, sconto, promessa o suggestione.
+
