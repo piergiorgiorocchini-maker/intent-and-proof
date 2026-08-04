@@ -1,0 +1,50 @@
+Un'infrastruttura odontoiatrica matura non cerca il massimo numero di dati. Cerca il minimo numero di dati necessari per prendere buone decisioni.
+
+
+## Dalla guida al primo prodotto verticale
+
+L'articolo definisce già il nucleo del futuro prodotto odontoiatrico. Non sarà un pacchetto composto da sito, SEO e campagne, ma una **Dental Acquisition Infrastructure** che collega la domanda online alla prima visita e alla misurazione interna.
+
+Il prodotto dovrà contenere una mappa della domanda per trattamenti prioritari, una struttura di pagine informative, un livello locale collegato al Profilo dell'attività, un sistema di prove, un Lead Gateway, una pipeline di gestione per la segreteria, un connettore verso il gestionale e una dashboard minimizzata. La componente editoriale dovrà produrre contenuti verificabili e pronti per la ricerca tradizionale e le citazioni AI.
+
+La prima versione non deve integrare ogni gestionale tramite API. Può iniziare con stati aggiornati manualmente o con importazioni controllate. L'obiettivo è validare il modello operativo prima di automatizzarlo. In seguito, i connettori più richiesti diventeranno moduli riutilizzabili.
+
+La promessa commerciale corretta è:
+
+> **Costruiamo l'infrastruttura che collega le ricerche online alle prime visite effettive del tuo studio, senza dipendere da sconti, lead generici o report fermati al modulo.**
+
+Il prodotto non effettua diagnosi, non sostituisce il gestionale clinico, non garantisce un numero di pazienti e non invia dati sanitari alle piattaforme pubblicitarie. Questi limiti ne aumentano la credibilità.
+
+## I framework proprietari di Intent & Proof
+
+Il **Dental Acquisition Loop** descrive il percorso: domanda, pagina, richiesta, contatto, appuntamento, prima visita, esito interno e decisione.
+
+La **Dental Intent Matrix** collega trattamento, problema, tecnologia o brand, località e fase decisionale.
+
+Il **Price-Only Prevention Model** unisce precisione della query, chiarezza della valutazione, prove pertinenti, percorso comprensibile e misurazione della qualità.
+
+Il modello **Clinical-Marketing Data Separation** stabilisce che il gestionale conserva i dati sanitari e clinici, mentre il livello di attribuzione utilizza soltanto identificativi, fonte, stati operativi e dati aggregati necessari.
+
+Il framework **Citation-Ready Content** richiede risposta diretta, fonti, autore, struttura e contributo originale.
+
+Questi modelli dovranno diventare diagrammi, checklist, componenti e procedure. Solo così Intent & Proof potrà essere citata come fonte di un metodo, non come l'ennesima agenzia che rinomina un funnel.
+
+## Conclusione: il vantaggio non è il canale, è il sistema
+
+SEO, Google Ads, Meta, chatbot e automazioni sono strumenti accessibili. Il vantaggio competitivo nasce dal collegamento con il funzionamento reale dello studio.
+
+Un sistema odontoiatrico efficace intercetta domanda pertinente, informa senza spingere, rende visibili competenza e processo, attira persone che non confrontano soltanto il prezzo, rende semplice la prima visita, sostiene la segreteria, collega fonte e stati operativi, mantiene i dati sanitari fuori dal marketing e costruisce contenuti citabili nei motori AI.
+
+Il risultato non è un flusso garantito di pazienti. È un'infrastruttura che riduce l'incertezza, rende visibili le dispersioni e permette allo studio di migliorare con dati più affidabili.
+
+> **Il marketing odontoiatrico diventa serio quando smette di vendere lead e comincia a progettare il percorso completo tra una ricerca e una prima visita.**
+
+## Fonti e metodologia
+
+La guida combina analisi delle ricerche italiane, studio delle offerte verticali presenti sul mercato, documentazione ufficiale e un modello operativo sviluppato da Intent & Proof.
+
+Le fonti principali comprendono la documentazione di Google su ranking locale, contenuti utili, dati strutturati, funzionalità AI, pubblicità sanitaria sensibile e conversioni; il Ministero della Salute sulla comunicazione sanitaria; il GDPR e i provvedimenti del Garante; le indicazioni OpenAI per OAI-SearchBot; Bing Webmaster Tools per le citazioni AI; le pagine pubbliche di OpenStudio, MedicHub, FELG Dent e CAES per comprendere le categorie funzionali dei gestionali.
+
+Le affermazioni dei fornitori di software sono utilizzate per comprendere il mercato, non come verifica indipendente di prestazioni, sicurezza o compatibilità API. Ogni integrazione deve essere analizzata direttamente con il fornitore e con i responsabili dello studio.
+
+La parte normativa e privacy ha finalità informativa e progettuale. Non sostituisce consulenza legale, deontologica o del responsabile della protezione dei dati.
