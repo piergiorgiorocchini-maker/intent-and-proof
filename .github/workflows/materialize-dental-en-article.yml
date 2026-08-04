@@ -1,0 +1,48 @@
+name: Materialize English dental article
+
+on:
+  push:
+    paths:
+      - ".github/workflows/materialize-dental-en-article.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Assemble and validate article
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p src/content/articles
+          cat tmp/dental-en-article-parts/part-*.txt > src/content/articles/dental-marketing-seo-for-dentists-en.md
+          test -s src/content/articles/dental-marketing-seo-for-dentists-en.md
+          grep -q "translationKey: marketing-odontoiatrico-seo-dentisti" src/content/articles/dental-marketing-seo-for-dentists-en.md
+          grep -q "locale: en" src/content/articles/dental-marketing-seo-for-dentists-en.md
+          grep -q "slug: dental-marketing-seo-for-dentists" src/content/articles/dental-marketing-seo-for-dentists-en.md
+          grep -q "noIndex: true" src/content/articles/dental-marketing-seo-for-dentists-en.md
+          test "$(wc -w < src/content/articles/dental-marketing-seo-for-dentists-en.md)" -ge 15000
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site with article
+        run: npm run build
+
+      - name: Commit validated article
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm -r tmp/dental-en-article-parts
+          git rm .github/workflows/materialize-dental-en-article.yml
+          git add src/content/articles/dental-marketing-seo-for-dentists-en.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Add English dental marketing pillar article"
+          git push
