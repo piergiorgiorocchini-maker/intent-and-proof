@@ -36,6 +36,17 @@ export function buildContentAlternates(
 	const variants = entries.filter(
 		(entry) => entry.data.translationKey === translationKey && entry.data.draft !== true
 	);
+	const seenLocales = new Set<ContentLocale>();
+
+	for (const entry of variants) {
+		if (seenLocales.has(entry.data.locale)) {
+			throw new Error(
+				`[i18n] Duplicate ${kind} translation for key "${translationKey}" and locale "${entry.data.locale}".`
+			);
+		}
+		seenLocales.add(entry.data.locale);
+	}
+
 	const alternates: AlternateLocale[] = variants.map((entry) => ({
 		locale: entry.data.locale,
 		href: localizedContentPath(kind, entry.data.locale, entry.data.slug)
