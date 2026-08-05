@@ -1,9 +1,9 @@
 ---
 translationKey: turn-local-searches-into-medical-appointments
 locale: it
-title: "SEO locale per studi medici e dentistici: come ottenere più appuntamenti da Google"
+title: 'SEO locale per studi medici e dentistici: come ottenere più appuntamenti da Google'
 slug: seo-locale-studi-medici-appuntamenti-google
-description: "Una guida pratica alla SEO locale per studi medici, cliniche e dentisti: Google Maps, pagine trattamento, prove, prenotazioni e misurazione dei nuovi pazienti."
+description: 'Una guida pratica alla SEO locale per studi medici, cliniche e dentisti: Google Maps, pagine trattamento, prove, prenotazioni e misurazione dei nuovi pazienti.'
 eyebrow: Guida alla crescita locale
 draft: false
 featured: true
@@ -27,19 +27,19 @@ keyTakeaways:
   - Intento, prove, percorso di azione e misurazione devono funzionare come un unico sistema di acquisizione.
 faqs:
   - question: Perché il Profilo dell'attività su Google riceve visualizzazioni ma poche chiamate?
-    answer: "Le visualizzazioni indicano che il profilo è comparso, non che abbia generato abbastanza rilevanza, fiducia o urgenza per produrre un'azione. Le cause più comuni sono categorie o servizi poco precisi, recensioni generiche, informazioni incomplete, fotografie poco utili, un link verso una homepage non pertinente, un percorso di prenotazione debole o una pagina mobile lenta. Occorre confrontare visualizzazioni, chiamate, clic al sito, prenotazioni e appuntamenti effettivamente svolti."
+    answer: Le visualizzazioni indicano che il profilo è comparso, non che abbia generato abbastanza rilevanza, fiducia o urgenza per produrre un'azione. Le cause più comuni sono categorie o servizi poco precisi, recensioni generiche, informazioni incomplete, fotografie poco utili, un link verso una homepage non pertinente, un percorso di prenotazione debole o una pagina mobile lenta. Occorre confrontare visualizzazioni, chiamate, clic al sito, prenotazioni e appuntamenti effettivamente svolti.
   - question: Come può uno studio medico ottenere più pazienti da Google Maps?
     answer: "Il profilo deve corrispondere alle ricerche reali dei pazienti: categoria corretta, servizi completi, orari aggiornati, fotografie pertinenti, recensioni utili e un link preferito verso la pagina più adatta. Ogni ricerca importante dovrebbe portare a una pagina che spiega prestazione, professionista, sede, prove e prossimo passo. L'obiettivo non è soltanto apparire su Maps, ma trasformare una quota maggiore delle ricerche qualificate in appuntamenti."
   - question: Qual è un buon tasso di conversione per il sito di uno studio medico?
-    answer: "Non esiste un valore universale valido per ogni specialità, località, fonte di traffico e valore della prestazione. È più utile misurare il tasso visita-richiesta, richiesta-prenotazione, prenotazione-presenza e la quota di appuntamenti realmente qualificati. Il riferimento corretto è il proprio dato di partenza, segmentato per servizio, pagina, dispositivo e fonte."
+    answer: Non esiste un valore universale valido per ogni specialità, località, fonte di traffico e valore della prestazione. È più utile misurare il tasso visita-richiesta, richiesta-prenotazione, prenotazione-presenza e la quota di appuntamenti realmente qualificati. Il riferimento corretto è il proprio dato di partenza, segmentato per servizio, pagina, dispositivo e fonte.
   - question: Come trasformare i visitatori del sito in nuovi pazienti?
     answer: "Servono tre elementi in sequenza: una corrispondenza chiara tra bisogno e pagina, prove credibili che riducano il rischio percepito e un percorso di contatto semplice. Le pagine dedicate a prestazioni e trattamenti, i profili dei professionisti, le recensioni pertinenti, le aspettative realistiche e le azioni visibili su mobile devono essere collegati a una misurazione che arrivi fino all'appuntamento qualificato."
   - question: La velocità del sito influenza le prenotazioni?
-    answer: "La velocità non è l'unico fattore, ma una pagina mobile lenta o instabile aumenta l'attrito mentre il paziente confronta alternative o prova a prenotare. Immagini eccessive, script pesanti, pulsanti che compaiono in ritardo e moduli difficili possono ridurre le azioni completate. Occorre testare le vere pagine di prestazione e il percorso di contatto, non soltanto la homepage."
+    answer: La velocità non è l'unico fattore, ma una pagina mobile lenta o instabile aumenta l'attrito mentre il paziente confronta alternative o prova a prenotare. Immagini eccessive, script pesanti, pulsanti che compaiono in ritardo e moduli difficili possono ridurre le azioni completate. Occorre testare le vere pagine di prestazione e il percorso di contatto, non soltanto la homepage.
   - question: Perché il sito di uno studio dentistico non genera nuovi pazienti?
     answer: "Un sito può apparire professionale e fallire commercialmente quando le pagine sono generiche, i trattamenti sono difficili da trovare, le prove sono vaghe, le call to action cambiano continuamente o il tracciamento si ferma al primo modulo. Per ogni trattamento prioritario bisogna verificare l'intero percorso: ricerca, risultato Google, pagina, prove, richiesta, gestione del contatto e appuntamento svolto."
   - question: Uno studio dovrebbe usare sconti per aumentare le prenotazioni?
-    answer: "Gli sconti possono aumentare le risposte, ma possono anche attirare richieste sensibili soltanto al prezzo, indebolire il posizionamento e nascondere il vero problema. Prima di ridurre il prezzo conviene migliorare chiarezza della prestazione, prove, comodità, rapidità di risposta e percorso di prenotazione."
+    answer: Gli sconti possono aumentare le risposte, ma possono anche attirare richieste sensibili soltanto al prezzo, indebolire il posizionamento e nascondere il vero problema. Prima di ridurre il prezzo conviene migliorare chiarezza della prestazione, prove, comodità, rapidità di risposta e percorso di prenotazione.
 relatedArticles: []
 layout: editorial-wide
 hero:
@@ -98,8 +98,8 @@ relatedContent:
   limit: 4
   fallbackToLatest: true
 seo:
-  title: "SEO locale per studi medici: più appuntamenti da Google | Intent & Proof"
-  description: "Guida alla SEO locale per studi medici, cliniche e dentisti: Google Maps, pagine trattamento, prove, prenotazioni e misurazione dei pazienti."
+  title: 'SEO locale per studi medici: più appuntamenti da Google | Intent & Proof'
+  description: 'Guida alla SEO locale per studi medici, cliniche e dentisti: Google Maps, pagine trattamento, prove, prenotazioni e misurazione dei pazienti.'
   canonicalUrl: ''
   image: null
   noIndex: false
@@ -452,6 +452,8 @@ Prima di scontare:
 6. ripetere il ciclo utilizzando ciò che i dati mostrano.
 
 È così che la SEO locale per studi medici diventa un sistema commerciale e non soltanto un report di visibilità.
+
+Per Approfondimenti leggi anche [Marketing Odontoiatrico e SEO per dentisti](https://www.intentandproof.com/it/blog/marketing-odontoiatrico-seo-dentisti/) .
 
 ## Fonti e metodologia
 
