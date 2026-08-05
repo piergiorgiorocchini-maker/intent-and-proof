@@ -62,12 +62,50 @@ const categoryHref = (locale: "en" | "it", slug: string) =>
 const authorHref = (locale: "en" | "it", slug: string) =>
 	locale === "it" ? `/it/autori/${slug}/` : `/authors/${slug}/`;
 
+function assertUniquePublishedArticles(articles: ArticleEntry[]): void {
+	const routes = new Map<string, string>();
+	const translations = new Map<string, string>();
+	const conflicts: string[] = [];
+
+	for (const entry of articles) {
+		if (entry.data.draft) continue;
+
+		const locale = (entry.data.locale ?? "en") as "en" | "it";
+		const routeKey = `${locale}:${normalized(entry.data.slug)}`;
+		const translationKey = `${locale}:${normalized(entry.data.translationKey)}`;
+		const existingRoute = routes.get(routeKey);
+		const existingTranslation = translations.get(translationKey);
+
+		if (existingRoute && existingRoute !== entry.id) {
+			conflicts.push(`duplicate route ${routeKey}: ${existingRoute}, ${entry.id}`);
+		} else {
+			routes.set(routeKey, entry.id);
+		}
+
+		if (existingTranslation && existingTranslation !== entry.id) {
+			conflicts.push(
+				`duplicate translation variant ${translationKey}: ${existingTranslation}, ${entry.id}`
+			);
+		} else {
+			translations.set(translationKey, entry.id);
+		}
+	}
+
+	if (conflicts.length > 0) {
+		throw new Error(
+			`[content] Duplicate published articles detected. Keep one file per locale, slug and translation key:\n- ${conflicts.join("\n- ")}`
+		);
+	}
+}
+
 export async function getPublishedArticleIndex(locale?: "en" | "it"): Promise<ArticleIndexItem[]> {
 	const [articles, categories, authors] = await Promise.all([
 		getCollection("articles"),
 		getCollection("categories"),
 		getCollection("authors")
 	]);
+
+	assertUniquePublishedArticles(articles);
 
 	const categoryMap = new Map<string, CategoryEntry>(categories.map((entry) => [entry.id, entry]));
 	const authorMap = new Map<string, AuthorEntry>(authors.map((entry) => [entry.id, entry]));
