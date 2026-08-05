@@ -9,24 +9,81 @@ interface Props {
 	title?: string;
 }
 
+const locale = Astro.url.pathname.startsWith("/it/") ? "it" : "en";
 const {
 	items = [],
-	title = "On this page"
+	title = locale === "it" ? "In questa pagina" : "On this page"
 } = Astro.props;
+const hasMoreItems = items.length > 4;
+const showLabel = locale === "it" ? "Mostra indice completo" : "Show full contents";
+const hideLabel = locale === "it" ? "Riduci indice" : "Collapse contents";
+const navId = "article-table-of-contents";
 ---
 
 {
 	items.length > 0 && (
-		<div class="article-side-card article-toc">
-			<p>{title}</p>
-			<nav aria-label={title}>
+		<div
+			class="article-side-card article-toc"
+			data-mobile-toc
+			data-expanded="false"
+		>
+			<div class="article-toc__header">
+				<p>{title}</p>
+				{
+					hasMoreItems && (
+						<button
+							type="button"
+							class="article-toc__toggle"
+							aria-expanded="false"
+							aria-controls={navId}
+							data-toc-toggle
+							data-show-label={showLabel}
+							data-hide-label={hideLabel}
+						>
+							<span data-toc-toggle-label>{showLabel}</span>
+							<i class="article-toc__toggle-icon" aria-hidden="true">⌄</i>
+						</button>
+					)
+				}
+			</div>
+			<nav id={navId} aria-label={title}>
 				{items.map((item) => <a href={item.href}>{item.label}</a>)}
 			</nav>
 		</div>
 	)
 }
 
+<script>
+	const initialiseMobileToc = () => {
+		document.querySelectorAll<HTMLElement>("[data-mobile-toc]").forEach((toc) => {
+			if (toc.dataset.initialised === "true") return;
+
+			const toggle = toc.querySelector<HTMLButtonElement>("[data-toc-toggle]");
+			const label = toc.querySelector<HTMLElement>("[data-toc-toggle-label]");
+			if (!toggle || !label) return;
+
+			toc.dataset.initialised = "true";
+			toggle.addEventListener("click", () => {
+				const expanded = toc.dataset.expanded === "true";
+				const nextExpanded = !expanded;
+				toc.dataset.expanded = String(nextExpanded);
+				toggle.setAttribute("aria-expanded", String(nextExpanded));
+				label.textContent = nextExpanded
+					? toggle.dataset.hideLabel || "Collapse contents"
+					: toggle.dataset.showLabel || "Show full contents";
+			});
+		});
+	};
+
+	initialiseMobileToc();
+	document.addEventListener("astro:page-load", initialiseMobileToc);
+</script>
+
 <style>
+	.article-toc__toggle {
+		display: none;
+	}
+
 	@media (min-width: 881px) {
 		.article-toc {
 			display: flex;
@@ -43,6 +100,80 @@ const {
 			overscroll-behavior: contain;
 			scrollbar-gutter: stable;
 			scrollbar-width: thin;
+		}
+	}
+
+	@media (max-width: 880px) {
+		.article-toc__header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 14px;
+			margin-bottom: 15px;
+		}
+
+		.article-toc__header p {
+			margin: 0;
+		}
+
+		.article-toc__toggle {
+			display: inline-flex;
+			min-height: 36px;
+			padding: 0 12px;
+			align-items: center;
+			justify-content: center;
+			gap: 7px;
+			border: 1px solid rgba(7, 28, 44, 0.12);
+			border-radius: 999px;
+			background: #f6f8fb;
+			color: #071c2c;
+			font: inherit;
+			font-size: 0.76rem;
+			font-weight: 800;
+			line-height: 1;
+			cursor: pointer;
+		}
+
+		.article-toc__toggle:hover,
+		.article-toc__toggle:focus-visible {
+			border-color: rgba(8, 121, 92, 0.38);
+			background: #eef8f5;
+			color: #08795c;
+		}
+
+		.article-toc__toggle-icon {
+			display: inline-block;
+			font-size: 1rem;
+			font-style: normal;
+			transition: transform 180ms ease;
+		}
+
+		.article-toc[data-expanded="true"] .article-toc__toggle-icon {
+			transform: rotate(180deg);
+		}
+
+		.article-toc:not([data-expanded="true"]) nav a:nth-child(n + 5) {
+			display: none;
+		}
+
+		.article-toc[data-expanded="true"] nav {
+			overflow-y: auto;
+			max-height: min(52vh, 420px);
+			padding-right: 7px;
+			overscroll-behavior: contain;
+			scrollbar-gutter: stable;
+			scrollbar-width: thin;
+		}
+	}
+
+	@media (max-width: 420px) {
+		.article-toc__header {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+
+		.article-toc__toggle {
+			width: 100%;
 		}
 	}
 </style>
