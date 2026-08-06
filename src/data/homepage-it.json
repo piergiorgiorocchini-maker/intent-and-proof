@@ -7,7 +7,7 @@
     "eyebrow": "Sistemi di acquisizione digitale per imprese di servizi",
     "title": "Siti ad alte prestazioni e sistemi di acquisizione digitale che trasformano la domanda in contatti qualificati.",
     "text": "Intent & Proof collega siti veloci, landing page orientate alla conversione, visibilità locale, prove credibili e misurazione affidabile in un unico sistema di acquisizione.",
-    "primaryAction": { "label": "Inizia dalla diagnostica", "href": "/diagnostic/" },
+    "primaryAction": { "label": "Inizia dalla diagnostica", "href": "/it/diagnostic/" },
     "secondaryAction": { "label": "Scopri cosa realizziamo", "href": "#services" },
     "assurances": [
       "Siti web ad alte prestazioni",
@@ -71,7 +71,7 @@
         "verb": "Costruire",
         "title": "High-Performance Website & Lead System",
         "text": "Un sito veloce e tecnicamente solido, con pagine servizio, landing page, prove e percorsi di contatto progettati per generare richieste qualificate.",
-        "href": "/diagnostic/",
+        "href": "/it/diagnostic/",
         "linkLabel": "Valuta il sistema web",
         "icon": "build",
         "iconBars": 4
@@ -125,7 +125,7 @@
       "mark": "I&P",
       "title": "Prodotti specifici, collegati in un unico sistema di acquisizione.",
       "text": "Sito, landing page, domanda locale, prove e misurazione organizzati attorno alla decisione del cliente.",
-      "href": "/diagnostic/",
+      "href": "/it/diagnostic/",
       "label": "Trova il punto di partenza corretto"
     }
   },
@@ -139,7 +139,7 @@
   "finalCta": {
     "eyebrow": "Parti dal prodotto corretto",
     "title": "Individua il vincolo di acquisizione che vale la pena correggere per primo.",
-    "href": "/diagnostic/",
+    "href": "/it/diagnostic/",
     "label": "Richiedi una diagnostica"
   }
 }

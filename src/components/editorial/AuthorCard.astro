@@ -9,14 +9,18 @@ interface Props {
 	linkLabel?: string;
 }
 
+const locale = Astro.url.pathname.startsWith("/it/") ? "it" : "en";
+const copy = locale === "it"
+	? { label: "L'autore", link: "Vedi il profilo dell'autore", aria: "Informazioni su" }
+	: { label: "About the author", link: "View author profile", aria: "About" };
 const {
 	name,
 	href,
 	bio,
 	imageSrc = "",
-	imageAlt = `${name} portrait`,
-	label = "About the author",
-	linkLabel = "View author profile"
+	imageAlt = locale === "it" ? `Ritratto di ${name}` : `${name} portrait`,
+	label = copy.label,
+	linkLabel = copy.link
 } = Astro.props;
 
 const initials = name
@@ -28,7 +32,7 @@ const initials = name
 	.toUpperCase();
 ---
 
-<section class="article-author-card" aria-label={`About ${name}`}>
+<section class="article-author-card" aria-label={`${copy.aria} ${name}`}>
 	{
 		imageSrc ? (
 			<img class="article-author-card__avatar" src={imageSrc} alt={imageAlt} width="82" height="82" loading="lazy" decoding="async" />

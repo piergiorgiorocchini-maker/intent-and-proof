@@ -4,9 +4,10 @@ import {
 	getPublishedArticleIndex,
 	selectRelatedArticles
 } from "../../lib/content/interlinking";
+import { resolvePublishedLocale, uiCopy, type PublishedLocale } from "../../lib/i18n/ui";
 
 interface Props {
-	locale?: "en" | "it";
+	locale?: PublishedLocale;
 	eyebrow?: string;
 	title?: string;
 	text?: string;
@@ -22,13 +23,13 @@ interface Props {
 	compact?: boolean;
 }
 
+const contentLocale = resolvePublishedLocale(Astro.props.locale);
+const copy = uiCopy[contentLocale];
+const articleCopy = copy.article;
 const {
-	locale = "en",
-	eyebrow = locale === "it" ? "Approfondimenti correlati" : "Related research",
-	title = locale === "it" ? "Continua da qui." : "Continue from here.",
-	text = locale === "it"
-		? "Gli articoli più recenti e pertinenti vengono selezionati automaticamente durante la build."
-		: "The most recent and relevant articles are selected automatically during the build.",
+	eyebrow = articleCopy.relatedEyebrow,
+	title = articleCopy.relatedTitle,
+	text = articleCopy.relatedText,
 	currentId = "",
 	currentHref = "",
 	categoryIds = [],
@@ -36,14 +37,14 @@ const {
 	manualArticleIds = [],
 	limit = 4,
 	fallbackToLatest = true,
-	allHref = locale === "it" ? "/it/blog/" : "/blog/",
-	allLabel = locale === "it" ? "Vedi tutti gli articoli" : "View all research",
+	allHref = copy.routes.blog,
+	allLabel = articleCopy.relatedAll,
 	compact = false
 } = Astro.props;
 
-const articleIndex = await getPublishedArticleIndex(locale);
+const articleIndex = await getPublishedArticleIndex(contentLocale);
 const articles = selectRelatedArticles(articleIndex, {
-	locale,
+	locale: contentLocale,
 	currentId,
 	currentHref,
 	categoryIds,

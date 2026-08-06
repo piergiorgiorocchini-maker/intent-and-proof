@@ -1,5 +1,6 @@
 ---
 import type { ArticleIndexItem } from "../../lib/content/interlinking";
+import { localeMetadata, resolvePublishedLocale } from "../../lib/i18n/ui";
 
 interface Props {
 	article: ArticleIndexItem;
@@ -7,7 +8,8 @@ interface Props {
 }
 
 const { article, compact = false } = Astro.props;
-const formattedDate = new Intl.DateTimeFormat(article.locale === "it" ? "it-IT" : "en-GB", {
+const contentLocale = resolvePublishedLocale(article.locale);
+const formattedDate = new Intl.DateTimeFormat(localeMetadata[contentLocale].intl, {
 	day: "numeric",
 	month: "short",
 	year: "numeric"

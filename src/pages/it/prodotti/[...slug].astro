@@ -2,6 +2,15 @@
 import { getCollection } from "astro:content";
 import CommercialPageLayout from "../../../layouts/CommercialPageLayout.astro";
 
+const localizeLinks = (value: unknown): unknown => {
+	if (typeof value === "string") return value === "/diagnostic/" ? "/it/diagnostic/" : value;
+	if (Array.isArray(value)) return value.map(localizeLinks);
+	if (value && typeof value === "object") {
+		return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, localizeLinks(item)]));
+	}
+	return value;
+};
+
 export async function getStaticPaths() {
 	const products = await getCollection("products", ({ data }) => data.locale === "it" && !data.draft);
 	return products.map((entry) => ({
@@ -11,6 +20,7 @@ export async function getStaticPaths() {
 }
 
 const { product } = Astro.props;
+const localizedProduct = localizeLinks(product);
 ---
 
-<CommercialPageLayout product={product} />
+<CommercialPageLayout product={localizedProduct} />

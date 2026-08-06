@@ -8,16 +8,18 @@ interface Props {
 	items?: BreadcrumbItem[];
 	current: string;
 	className?: string;
+	ariaLabel?: string;
 }
 
 const {
 	items = [],
 	current,
-	className = "article-breadcrumbs"
+	className = "article-breadcrumbs",
+	ariaLabel = "Breadcrumb"
 } = Astro.props;
 ---
 
-<nav class={className} aria-label="Breadcrumb">
+<nav class={className} aria-label={ariaLabel}>
 	{
 		items.map((item, index) => (
 			<>

@@ -10,13 +10,17 @@ interface Props {
 	variant?: "author" | "editor";
 }
 
+const locale = Astro.url.pathname.startsWith("/it/") ? "it" : "en";
+const copy = locale === "it"
+	? { writtenBy: "Scritto da", viewProfile: "Vedi il profilo di" }
+	: { writtenBy: "Written by", viewProfile: "View profile for" };
 const {
-	label = "Written by",
+	label = copy.writtenBy,
 	name,
 	href = "",
 	role = "",
 	imageSrc = "",
-	imageAlt = `${name} portrait`,
+	imageAlt = locale === "it" ? `Ritratto di ${name}` : `${name} portrait`,
 	size = 56,
 	variant = "author"
 } = Astro.props;
@@ -38,7 +42,7 @@ const contributorClass = [
 <div class={contributorClass}>
 	{
 		href ? (
-			<a class="article-author-image-link" href={href} aria-label={`View ${name} profile`}>
+			<a class="article-author-image-link" href={href} aria-label={`${copy.viewProfile} ${name}`}>
 				{
 					imageSrc ? (
 						<img class="article-author-avatar" src={imageSrc} alt={imageAlt} width={size} height={size} loading="eager" decoding="async" />

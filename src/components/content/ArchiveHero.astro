@@ -11,10 +11,16 @@ interface Props {
 	breadcrumbs?: BreadcrumbItem[];
 	meta?: string;
 	tone?: "navy" | "mint" | "cobalt" | "orange" | "neutral";
+	locale?: "en" | "it";
 }
 
+const locale = Astro.props.locale
+	|| (Astro.url.pathname.startsWith("/it/") ? "it" : "en");
+const copy = locale === "it"
+	? { eyebrow: "Approfondimenti Intent & Proof", breadcrumb: "Percorso di navigazione" }
+	: { eyebrow: "Intent & Proof Research", breadcrumb: "Breadcrumb" };
 const {
-	eyebrow = "Intent & Proof Research",
+	eyebrow = copy.eyebrow,
 	title,
 	description,
 	breadcrumbs = [],
@@ -26,7 +32,7 @@ const {
 <header class={`content-archive-hero content-archive-hero--${tone}`}>
 	<div class="content-archive-hero__inner">
 		{breadcrumbs.length > 0 && (
-			<nav class="content-archive-hero__breadcrumbs" aria-label="Breadcrumb">
+			<nav class="content-archive-hero__breadcrumbs" aria-label={copy.breadcrumb}>
 				{breadcrumbs.map((item, index) => (
 					<>
 						{index > 0 && <span aria-hidden="true">/</span>}
