@@ -1,29 +1,53 @@
 ---
 import { getGlobalSettings, localizedPath, resolveFormHandler } from "../lib/settings";
 
+const locale = Astro.props.lang === "it" ? "it" : "en";
+const localizedDefaults = locale === "it"
+	? {
+		eyebrow: "Analisi gratuita",
+		title: "Individua le dispersioni del sito prima di acquistare altro traffico.",
+		text: "Ottieni una verifica pratica di struttura SEO, chiarezza della landing page, tracciamento, inviti all'azione e visibilità nelle ricerche AI.",
+		placeholder: "Indirizzo email",
+		buttonLabel: "Analizza il mio sito",
+		note: "Niente spam. Soltanto un prossimo passo concreto.",
+		namePlaceholder: "Il tuo nome",
+		websitePlaceholder: "Indirizzo del sito",
+		successMessage: "Grazie. La richiesta è stata ricevuta.",
+		errorMessage: "Il modulo non è ancora collegato. Utilizza invece l'opzione di contatto."
+	}
+	: {
+		eyebrow: "Free Growth Audit",
+		title: "Find the leaks in your website before buying more traffic.",
+		text: "Get a practical Intent & Proof check covering SEO structure, landing page clarity, tracking, calls to action and AI-search visibility.",
+		placeholder: "Email address",
+		buttonLabel: "Check My Site",
+		note: "No spam. Just a practical next step.",
+		namePlaceholder: "Your name",
+		websitePlaceholder: "Website URL",
+		successMessage: "Thank you. Your request has been received.",
+		errorMessage: "This form is not connected yet. Please use the contact option instead."
+	};
 const {
-	eyebrow = "Free Growth Audit",
-	title = "Find the leaks in your website before buying more traffic.",
-	text = "Get a practical Intent & Proof check covering SEO structure, landing page clarity, tracking, calls to action and AI-search visibility.",
-	placeholder = "Email address",
-	buttonLabel = "Check My Site",
-	note = "No spam. Just a practical next step.",
+	eyebrow = localizedDefaults.eyebrow,
+	title = localizedDefaults.title,
+	text = localizedDefaults.text,
+	placeholder = localizedDefaults.placeholder,
+	buttonLabel = localizedDefaults.buttonLabel,
+	note = localizedDefaults.note,
 	variant = "default",
 	action = "#",
 	method = "",
 	formName = "intent-and-proof-email-capture",
 	handlerId = "newsletter",
-	lang = "en",
 	showName = false,
 	includeWebsite = false,
-	namePlaceholder = "Your name",
-	websitePlaceholder = "Website URL",
-	successMessage = "Thank you. Your request has been received.",
-	errorMessage = "This form is not connected yet. Please use the contact option instead.",
+	namePlaceholder = localizedDefaults.namePlaceholder,
+	websitePlaceholder = localizedDefaults.websitePlaceholder,
+	successMessage = localizedDefaults.successMessage,
+	errorMessage = localizedDefaults.errorMessage,
 	compact = false
 } = Astro.props;
 
-const locale = lang === "it" ? "it" : "en";
 const settings = await getGlobalSettings();
 const handler = resolveFormHandler(settings, handlerId, "newsletter");
 const handlerEnabled = Boolean(handler?.enabled && handler.provider !== "disabled" && handler.endpoint);
