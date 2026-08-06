@@ -6,6 +6,23 @@ import "../../styles/diagnostic-tool.css";
 
 const contentLocale = resolvePublishedLocale(Astro.props.locale);
 const copy = diagnosticCopy[contentLocale];
+const runtimeLabels = {
+	en: { qualifiedLeadRate: "Qualified lead rate" },
+	it: { qualifiedLeadRate: "Quota di contatti qualificati" }
+} as const;
+const clientCopy = {
+	...copy.client,
+	labels: {
+		...copy.client.labels,
+		...runtimeLabels[contentLocale]
+	}
+};
+const adsAnswers = [
+	copy.assessment.answers[3],
+	copy.assessment.answers[0],
+	copy.assessment.answers[1],
+	copy.assessment.answers[2]
+];
 const alternates = [
 	{ locale: "en", href: "/diagnostic/" },
 	{ locale: "it", href: "/it/diagnostic/" },
@@ -22,7 +39,7 @@ const alternates = [
 	showRelatedContent={false}
 >
 	<div class="diagnostic-page" data-diagnostic-tool data-locale={contentLocale}>
-		<script type="application/json" data-diagnostic-copy set:html={JSON.stringify(copy.client)} />
+		<script type="application/json" data-diagnostic-copy set:html={JSON.stringify(clientCopy)} />
 
 		<section class="diagnostic-hero">
 			<div class="diagnostic-shell diagnostic-hero__grid">
@@ -133,19 +150,19 @@ const alternates = [
 						<div class="diagnostic-form-grid">
 							<div class="diagnostic-field">
 								<label for="ads-tracking">{copy.assessment.adsFields.tracking}</label>
-								<select id="ads-tracking" name="adsTracking">{copy.assessment.answers.slice().reverse().map((answer) => <option value={answer.value}>{answer.label}</option>)}</select>
+								<select id="ads-tracking" name="adsTracking">{adsAnswers.map((answer) => <option value={answer.value}>{answer.label}</option>)}</select>
 							</div>
 							<div class="diagnostic-field">
 								<label for="ads-terms">{copy.assessment.adsFields.terms}</label>
-								<select id="ads-terms" name="adsTerms">{copy.assessment.answers.slice().reverse().map((answer) => <option value={answer.value}>{answer.label}</option>)}</select>
+								<select id="ads-terms" name="adsTerms">{adsAnswers.map((answer) => <option value={answer.value}>{answer.label}</option>)}</select>
 							</div>
 							<div class="diagnostic-field">
 								<label for="ads-negatives">{copy.assessment.adsFields.negatives}</label>
-								<select id="ads-negatives" name="adsNegatives">{copy.assessment.answers.slice().reverse().map((answer) => <option value={answer.value}>{answer.label}</option>)}</select>
+								<select id="ads-negatives" name="adsNegatives">{adsAnswers.map((answer) => <option value={answer.value}>{answer.label}</option>)}</select>
 							</div>
 							<div class="diagnostic-field">
 								<label for="ads-landing">{copy.assessment.adsFields.landing}</label>
-								<select id="ads-landing" name="adsLanding">{copy.assessment.answers.slice().reverse().map((answer) => <option value={answer.value}>{answer.label}</option>)}</select>
+								<select id="ads-landing" name="adsLanding">{adsAnswers.map((answer) => <option value={answer.value}>{answer.label}</option>)}</select>
 							</div>
 						</div>
 					</div>
