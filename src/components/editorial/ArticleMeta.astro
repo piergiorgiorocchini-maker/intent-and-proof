@@ -1,4 +1,7 @@
 ---
+import { localeMetadata, resolvePublishedLocale } from "../../lib/i18n/ui";
+import { uiCopy } from "../../lib/i18n/ui";
+
 interface Props {
 	publishedDate: string | Date;
 	updatedDate?: string | Date;
@@ -10,12 +13,15 @@ const {
 	publishedDate,
 	updatedDate,
 	readTime = "",
-	locale = "en-GB"
+	locale = "en"
 } = Astro.props;
 
+const contentLocale = resolvePublishedLocale(locale);
+const copy = uiCopy[contentLocale].article;
+const intlLocale = localeMetadata[contentLocale].intl;
 const toDate = (value: string | Date) => value instanceof Date ? value : new Date(`${value}T00:00:00`);
 const toISODate = (value: string | Date) => value instanceof Date ? value.toISOString().slice(0, 10) : value;
-const formatDate = (value: string | Date) => new Intl.DateTimeFormat(locale, {
+const formatDate = (value: string | Date) => new Intl.DateTimeFormat(intlLocale, {
 	day: "numeric",
 	month: "long",
 	year: "numeric"
@@ -26,8 +32,8 @@ const updatedISO = updatedDate ? toISODate(updatedDate) : "";
 const showUpdated = Boolean(updatedDate && updatedISO !== publishedISO);
 ---
 
-<div class="article-meta" aria-label="Publication information">
+<div class="article-meta" aria-label={copy.publicationInformation}>
 	<span><time datetime={publishedISO}>{formatDate(publishedDate)}</time></span>
-	{showUpdated && updatedDate && <span>Updated <time datetime={updatedISO}>{formatDate(updatedDate)}</time></span>}
+	{showUpdated && updatedDate && <span>{copy.updated} <time datetime={updatedISO}>{formatDate(updatedDate)}</time></span>}
 	{readTime && <span>{readTime}</span>}
 </div>
