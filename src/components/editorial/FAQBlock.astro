@@ -8,11 +8,15 @@ interface Props {
 	items?: FAQItem[];
 	title?: string;
 	showSchema?: boolean;
+	locale?: "en" | "it";
 }
 
+const locale = Astro.props.locale
+	|| (Astro.url.pathname.startsWith("/it/") ? "it" : "en");
+const defaultTitle = locale === "it" ? "Domande frequenti" : "Frequently asked questions";
 const {
 	items = [],
-	title = "Frequently asked questions",
+	title = defaultTitle,
 	showSchema = true
 } = Astro.props;
 
