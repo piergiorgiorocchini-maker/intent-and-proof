@@ -1,6 +1,17 @@
 const tool = document.querySelector("[data-diagnostic-tool]");
 
 if (tool) {
+	const copyNode = tool.querySelector("[data-diagnostic-copy]");
+	let copy = null;
+
+	try {
+		copy = JSON.parse(copyNode?.textContent || "null");
+	} catch (error) {
+		console.error("Diagnostic translation data could not be parsed.", error);
+	}
+
+	if (!copy) throw new Error("Missing diagnostic translation data.");
+
 	const state = {
 		url: "",
 		psi: null,
@@ -25,25 +36,8 @@ if (tool) {
 		unsure: 35
 	};
 
-	const labels = {
-		technical: "Technical foundation",
-		intent: "Intent alignment",
-		proof: "Proof strength",
-		conversion: "Conversion path",
-		search: "Search & Ads readiness",
-		measurement: "Measurement integrity",
-		ads: "Google Ads efficiency"
-	};
-
-	const actions = {
-		technical: "Fix the slowest mobile experience and the failed SEO audits before buying more traffic.",
-		intent: "Build one priority page around a specific buyer, problem and desired outcome instead of a broad list of services.",
-		proof: "Place quantified evidence, cases or credible reviews beside the main decision and conversion points.",
-		conversion: "Reduce the primary path to one obvious action and remove unnecessary friction from the contact step.",
-		search: "Align each high-intent query or campaign with a dedicated landing page and a precise offer.",
-		measurement: "Track meaningful enquiries and connect them to their source before optimising spend or content.",
-		ads: "Review search terms, query intent, conversion quality and landing-page relevance before changing bids or budgets."
-	};
+	const format = (template, values = {}) => Object.entries(values)
+		.reduce((output, [key, value]) => output.replaceAll(`{${key}}`, String(value)), template);
 
 	function normaliseUrl(value) {
 		const trimmed = value.trim();
@@ -70,11 +64,16 @@ if (tool) {
 		return field.value || "";
 	}
 
+	function selectedLabel(name) {
+		const field = tool.querySelector(`[name='${name}']`);
+		if (field instanceof HTMLSelectElement) {
+			return field.selectedOptions[0]?.textContent?.trim() || field.value;
+		}
+		return selectedValue(name);
+	}
+
 	function scoreBand(score) {
-		if (score >= 80) return "Strong foundation";
-		if (score >= 65) return "Promising, but leaking";
-		if (score >= 45) return "Fragile acquisition system";
-		return "High-priority leaks";
+		return copy.bands.find((band) => score >= band.minimum)?.label || copy.bands.at(-1)?.label || "";
 	}
 
 	function clampScore(value) {
@@ -88,7 +87,7 @@ if (tool) {
 
 	function parsePageSpeed(payload, coverage = "full") {
 		const lighthouse = payload?.lighthouseResult;
-		if (!lighthouse) throw new Error("PageSpeed returned no Lighthouse result.");
+		if (!lighthouse) throw new Error(copy.messages.noLighthouse);
 
 		const runtimeError = lighthouse.runtimeError;
 		if (runtimeError?.message) throw new Error(runtimeError.message);
@@ -109,25 +108,23 @@ if (tool) {
 			[accessibility, 0.15],
 			[bestPractices, 0.2]
 		].filter(([value]) => value !== null);
-		if (!weightedCategories.length) throw new Error("PageSpeed returned no scored categories.");
+		if (!weightedCategories.length) throw new Error(copy.messages.noCategories);
 		const availableWeight = weightedCategories.reduce((sum, [, weight]) => sum + weight, 0);
 		const score = clampScore(
 			weightedCategories.reduce((sum, [value, weight]) => sum + value * weight, 0) / availableWeight
 		);
 
 		const signals = [];
-		if (coverage !== "full" || weightedCategories.length < 4) {
-			signals.push("Google returned a partial PageSpeed scan; the technical score uses only the available Lighthouse categories.");
-		}
-		if (performance !== null && performance < 70) signals.push("Mobile performance is likely suppressing conversion efficiency.");
-		if (seo !== null && seo < 90) signals.push("The technical SEO foundation contains failed or incomplete checks.");
-		if (bestPractices !== null && bestPractices < 85) signals.push("Browser, security or implementation best-practice issues need review.");
-		if (accessibility !== null && accessibility < 85) signals.push("Accessibility friction may also be creating usability friction.");
-		if (auditPassed(audits, "document-title") === false) signals.push("The page title is missing or inadequate.");
-		if (auditPassed(audits, "meta-description") === false) signals.push("The meta description is missing or inadequate.");
-		if (auditPassed(audits, "viewport") === false) signals.push("The mobile viewport is not configured correctly.");
-		if (auditPassed(audits, "robots-txt") === false) signals.push("robots.txt contains a crawlability problem.");
-		if (auditPassed(audits, "canonical") === false) signals.push("The page has a canonicalisation problem.");
+		if (coverage !== "full" || weightedCategories.length < 4) signals.push(copy.messages.partialScan);
+		if (performance !== null && performance < 70) signals.push(copy.messages.lowPerformance);
+		if (seo !== null && seo < 90) signals.push(copy.messages.seoIssues);
+		if (bestPractices !== null && bestPractices < 85) signals.push(copy.messages.bestPracticeIssues);
+		if (accessibility !== null && accessibility < 85) signals.push(copy.messages.accessibilityIssues);
+		if (auditPassed(audits, "document-title") === false) signals.push(copy.messages.missingTitle);
+		if (auditPassed(audits, "meta-description") === false) signals.push(copy.messages.missingDescription);
+		if (auditPassed(audits, "viewport") === false) signals.push(copy.messages.viewportIssue);
+		if (auditPassed(audits, "robots-txt") === false) signals.push(copy.messages.robotsIssue);
+		if (auditPassed(audits, "canonical") === false) signals.push(copy.messages.canonicalIssue);
 
 		const metric = (id, fallback = "n/a") => audits[id]?.displayValue || fallback;
 		return {
@@ -152,7 +149,7 @@ if (tool) {
 		const endpoint = new URL(endpointBase);
 		endpoint.searchParams.set("url", url);
 		endpoint.searchParams.set("strategy", "mobile");
-		endpoint.searchParams.set("locale", "en_GB");
+		endpoint.searchParams.set("locale", copy.pageSpeedLocale);
 		endpoint.searchParams.set("utm_source", "intentandproof.com");
 		endpoint.searchParams.set("key", "AIzaSyBnrN4ZxjLT92jQfYMhmqM43F5Dtzlm6cY");
 		categories.forEach((category) => endpoint.searchParams.append("category", category));
@@ -167,7 +164,7 @@ if (tool) {
 			});
 			const payload = await response.json().catch(() => ({}));
 			if (!response.ok) {
-				const message = payload?.error?.message || `PageSpeed request failed (${response.status}).`;
+				const message = payload?.error?.message || format(copy.messages.requestFailed, { status: response.status });
 				const error = new Error(message);
 				error.status = response.status;
 				throw error;
@@ -175,7 +172,7 @@ if (tool) {
 			return payload;
 		} catch (error) {
 			if (error?.name === "AbortError") {
-				const timeoutError = new Error("PageSpeed timed out before completing the scan.");
+				const timeoutError = new Error(copy.messages.timedOut);
 				timeoutError.status = 408;
 				throw timeoutError;
 			}
@@ -212,7 +209,7 @@ if (tool) {
 			}
 		}
 
-		const finalError = errors[errors.length - 1] || new Error("PageSpeed scan failed.");
+		const finalError = errors[errors.length - 1] || new Error(copy.messages.scanFailed);
 		finalError.status = finalError.status || errors.find((error) => error?.status)?.status || 0;
 		throw finalError;
 	}
@@ -273,30 +270,30 @@ if (tool) {
 		const signals = [];
 		if (ctr !== null) {
 			scores.push(metricScore(ctr, [[6, 100], [3, 72], [1.5, 45]]));
-			if (ctr < 3) signals.push("Low CTR suggests weak query-to-ad relevance, targeting or offer clarity.");
+			if (ctr < 3) signals.push(copy.messages.lowCtr);
 		}
 		if (conversionRate !== null) {
 			scores.push(metricScore(conversionRate, [[10, 100], [5, 75], [2, 45]]));
-			if (conversionRate < 5) signals.push("Low click-to-lead conversion points toward landing-page, proof or form friction.");
+			if (conversionRate < 5) signals.push(copy.messages.lowConversion);
 		}
 		const cplScore = inverseRatioScore(cpl, targetCpl);
 		if (cplScore !== null) {
 			scores.push(cplScore);
-			if (cpl > targetCpl * 1.25) signals.push("Cost per lead is materially above the stated target.");
+			if (cpl > targetCpl * 1.25) signals.push(copy.messages.highCpl);
 		}
 		if (qualifiedRate !== null) {
 			scores.push(metricScore(qualifiedRate, [[70, 100], [40, 65], [20, 35]]));
-			if (qualifiedRate < 40) signals.push("Lead quality indicates weak search-intent control or insufficient qualification.");
+			if (qualifiedRate < 40) signals.push(copy.messages.lowLeadQuality);
 		}
 
 		["adsTracking", "adsTerms", "adsNegatives", "adsLanding"].forEach((name) => {
 			const value = selectedValue(name);
 			scores.push(answerValues[value] ?? 35);
 		});
-		if (selectedValue("adsTracking") !== "yes") signals.push("Conversion tracking is not strong enough to guide automated bidding or budget decisions.");
-		if (selectedValue("adsTerms") !== "yes") signals.push("Search-term review is too weak to identify wasted or irrelevant demand.");
-		if (selectedValue("adsNegatives") !== "yes") signals.push("Negative-keyword control is likely allowing avoidable spend.");
-		if (selectedValue("adsLanding") !== "yes") signals.push("Traffic is not consistently sent to a dedicated, query-relevant landing page.");
+		if (selectedValue("adsTracking") !== "yes") signals.push(copy.messages.trackingWeak);
+		if (selectedValue("adsTerms") !== "yes") signals.push(copy.messages.termsWeak);
+		if (selectedValue("adsNegatives") !== "yes") signals.push(copy.messages.negativesWeak);
+		if (selectedValue("adsLanding") !== "yes") signals.push(copy.messages.landingWeak);
 
 		return {
 			score: clampScore(scores.reduce((sum, value) => sum + value, 0) / scores.length),
@@ -304,7 +301,7 @@ if (tool) {
 				CTR: ctr === null ? null : `${ctr.toFixed(1)}%`,
 				CVR: conversionRate === null ? null : `${conversionRate.toFixed(1)}%`,
 				CPL: cpl === null ? null : `${cpl.toFixed(2)}`,
-				"Qualified lead rate": qualifiedRate === null ? null : `${qualifiedRate.toFixed(0)}%`
+				[copy.labels.qualifiedLeadRate || "Qualified lead rate"]: qualifiedRate === null ? null : `${qualifiedRate.toFixed(0)}%`
 			},
 			signals
 		};
@@ -320,7 +317,7 @@ if (tool) {
 			accessibility: null,
 			bestPractices: null,
 			metrics: {},
-			signals: [state.psiErrorDetail || "The live technical scan was unavailable and was excluded from the total score."]
+			signals: [state.psiErrorDetail || copy.messages.technicalExcluded]
 		};
 		const ads = adsScore();
 		let total;
@@ -329,9 +326,7 @@ if (tool) {
 		else if (ads) total = clampScore(commercial.score * 0.7 + ads.score * 0.3);
 		else total = commercial.score;
 
-		const diagnosticAreas = {
-			...commercial.categories
-		};
+		const diagnosticAreas = { ...commercial.categories };
 		if (technical.available) diagnosticAreas.technical = technical.score;
 		if (ads) diagnosticAreas.ads = ads.score;
 		const sortedAreas = Object.entries(diagnosticAreas).sort((a, b) => a[1] - b[1]);
@@ -349,9 +344,9 @@ if (tool) {
 			priorityScore,
 			strongestKey,
 			strongestScore,
-			priorityLabel: labels[priorityKey],
-			strongestLabel: labels[strongestKey],
-			action: actions[priorityKey],
+			priorityLabel: copy.labels[priorityKey],
+			strongestLabel: copy.labels[strongestKey],
+			action: copy.actions[priorityKey],
 			signals
 		};
 	}
@@ -364,49 +359,64 @@ if (tool) {
 		Object.entries(result.ads?.metrics || {}).forEach(([label, value]) => {
 			if (value) metrics.push(`${label}: ${value}`);
 		});
-		tool.querySelector("[data-result-metrics]").innerHTML = metrics
-			.map((metric) => `<span class="results-metric">${metric}</span>`)
-			.join("");
+		const container = tool.querySelector("[data-result-metrics]");
+		container.replaceChildren(...metrics.map((metric) => {
+			const span = document.createElement("span");
+			span.className = "results-metric";
+			span.textContent = metric;
+			return span;
+		}));
+	}
+
+	function renderSignals(signals) {
+		const list = tool.querySelector("[data-result-signals]");
+		const values = signals.length ? signals : [copy.messages.noSignals];
+		list.replaceChildren(...values.map((signal) => {
+			const item = document.createElement("li");
+			item.textContent = signal;
+			return item;
+		}));
 	}
 
 	function renderResult(result) {
 		tool.querySelector("[data-total-score]").textContent = result.total;
 		tool.querySelector("[data-result-band]").textContent = result.band;
-		tool.querySelector("[data-result-summary]").textContent =
-			`Your strongest area is ${result.strongestLabel} (${result.strongestScore}/100). `
-			+ `The priority leak is ${result.priorityLabel} (${result.priorityScore}/100).`;
+		tool.querySelector("[data-result-summary]").textContent = format(copy.messages.strongestSummary, {
+			strongest: result.strongestLabel,
+			strongestScore: result.strongestScore,
+			priority: result.priorityLabel,
+			priorityScore: result.priorityScore
+		});
 		tool.querySelector("[data-technical-score]").textContent = result.technical.available
 			? `${result.technical.score}/100`
-			: "Unavailable";
+			: copy.messages.unavailable;
 		tool.querySelector("[data-commercial-score]").textContent = `${result.commercial.score}/100`;
-		tool.querySelector("[data-ads-score]").textContent = result.ads ? `${result.ads.score}/100` : "Not included";
+		tool.querySelector("[data-ads-score]").textContent = result.ads ? `${result.ads.score}/100` : copy.messages.notIncluded;
 		tool.querySelector("[data-priority-label]").textContent = result.priorityLabel;
 		tool.querySelector("[data-priority-action]").textContent = result.action;
-		tool.querySelector("[data-result-signals]").innerHTML = result.signals.length
-			? result.signals.map((signal) => `<li>${signal}</li>`).join("")
-			: "<li>No critical technical or Ads signal was detected in this first-pass scan.</li>";
+		renderSignals(result.signals);
 		renderMetrics(result);
 		resultsPanel.hidden = false;
 		resultsPanel.scrollIntoView({ behavior: "smooth", block: "start" });
 	}
 
 	function buildEmailBody(result) {
-		const businessType = tool.querySelector("[name='businessType']")?.value || "";
-		const objective = tool.querySelector("[name='objective']")?.value || "";
+		const businessType = selectedLabel("businessType");
+		const objective = selectedLabel("objective");
 		return [
-			"Intent & Proof Diagnostic",
+			copy.email.title,
 			"",
-			`Website: ${state.url}`,
-			`Business type: ${businessType}`,
-			`Primary objective: ${objective}`,
-			`Total score: ${result.total}/100 — ${result.band}`,
-			`Technical score: ${result.technical.available ? `${result.technical.score}/100` : "Unavailable"}`,
-			`Commercial score: ${result.commercial.score}/100`,
-			`Ads score: ${result.ads ? `${result.ads.score}/100` : "Not included"}`,
-			`Priority leak: ${result.priorityLabel}`,
-			`Recommended first action: ${result.action}`,
+			`${copy.email.website}: ${state.url}`,
+			`${copy.email.businessType}: ${businessType}`,
+			`${copy.email.objective}: ${objective}`,
+			`${copy.email.total}: ${result.total}/100 — ${result.band}`,
+			`${copy.email.technical}: ${result.technical.available ? `${result.technical.score}/100` : copy.messages.unavailable}`,
+			`${copy.email.commercial}: ${result.commercial.score}/100`,
+			`${copy.email.ads}: ${result.ads ? `${result.ads.score}/100` : copy.messages.notIncluded}`,
+			`${copy.email.priority}: ${result.priorityLabel}`,
+			`${copy.email.action}: ${result.action}`,
 			"",
-			"I would like a professional review of this result."
+			copy.email.request
 		].join("\n");
 	}
 
@@ -429,28 +439,23 @@ if (tool) {
 		generateButton.disabled = true;
 		scanButton.disabled = true;
 		scanStatus.dataset.state = "running";
-		scanStatus.textContent = "Running the mobile technical scan. Complete the commercial checks while it works.";
+		scanStatus.textContent = copy.messages.running;
 		assessmentPanel.scrollIntoView({ behavior: "smooth", block: "start" });
 
 		try {
 			state.psi = await runPageSpeed(url.href);
 			scanStatus.dataset.state = "complete";
-			const coverageLabel = state.psi.coverage === "full" ? "" : " (partial data)";
-			scanStatus.textContent = `Technical scan complete${coverageLabel}: ${state.psi.score}/100.`;
+			const partial = state.psi.coverage === "full" ? "" : copy.messages.partial;
+			scanStatus.textContent = format(copy.messages.complete, { partial, score: state.psi.score });
 		} catch (error) {
 			state.psiError = true;
 			const status = error?.status || 0;
-			if (status === 429) {
-				state.psiErrorDetail = "Google's anonymous PageSpeed quota is temporarily exhausted; the technical section was excluded from the score.";
-			} else if (status === 403) {
-				state.psiErrorDetail = "Google rejected the anonymous PageSpeed request; the technical section was excluded from the score.";
-			} else if (status === 408) {
-				state.psiErrorDetail = "Google PageSpeed timed out; the technical section was excluded from the score.";
-			} else {
-				state.psiErrorDetail = "Google PageSpeed did not complete the scan; the technical section was excluded from the score.";
-			}
+			if (status === 429) state.psiErrorDetail = copy.messages.quota;
+			else if (status === 403) state.psiErrorDetail = copy.messages.rejected;
+			else if (status === 408) state.psiErrorDetail = copy.messages.timeout;
+			else state.psiErrorDetail = copy.messages.genericError;
 			scanStatus.dataset.state = "error";
-			scanStatus.textContent = `${state.psiErrorDetail} You can retry the scan or continue.`;
+			scanStatus.textContent = `${state.psiErrorDetail} ${copy.messages.continue}`;
 			console.warn("PageSpeed diagnostic error:", error);
 		} finally {
 			generateButton.disabled = false;
@@ -478,8 +483,8 @@ if (tool) {
 		if (!state.result) return;
 		const name = tool.querySelector("[name='contactName']")?.value.trim() || "";
 		const email = tool.querySelector("[name='contactEmail']")?.value.trim() || "";
-		const body = `${buildEmailBody(state.result)}\n\nName: ${name}\nEmail: ${email}`;
-		window.location.href = `mailto:piergiorgio.rocchini@gmail.com?subject=${encodeURIComponent("Intent & Proof diagnostic review")}&body=${encodeURIComponent(body)}`;
+		const body = `${buildEmailBody(state.result)}\n\n${copy.email.name}: ${name}\n${copy.email.email}: ${email}`;
+		window.location.href = `mailto:piergiorgio.rocchini@gmail.com?subject=${encodeURIComponent(copy.email.subject)}&body=${encodeURIComponent(body)}`;
 	});
 
 	tool.querySelector("[data-copy-result]").addEventListener("click", async () => {
@@ -487,10 +492,10 @@ if (tool) {
 		const button = tool.querySelector("[data-copy-result]");
 		try {
 			await navigator.clipboard.writeText(buildEmailBody(state.result));
-			button.textContent = "Result copied";
-			setTimeout(() => { button.textContent = "Copy result"; }, 1800);
+			button.textContent = copy.messages.copied;
+			setTimeout(() => { button.textContent = copy.messages.copy; }, 1800);
 		} catch {
-			button.textContent = "Copy unavailable";
+			button.textContent = copy.messages.copyUnavailable;
 		}
 	});
 }
