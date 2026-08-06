@@ -12,6 +12,10 @@ const referenceId = (value: unknown): string => {
 	return "";
 };
 
+const localizeDiagnosticHref = (href?: string): string | undefined => {
+	return href === "/diagnostic/" ? "/it/diagnostic/" : href;
+};
+
 export async function getStaticPaths() {
 	const articles = await getCollection("articles", ({ data }) => data.locale === "it" && !data.draft);
 	return articles.map((article) => ({
@@ -84,12 +88,12 @@ const canonicalPath = data.seo?.canonicalUrl || `/it/blog/${data.slug}/`;
 	sidebarTitle={data.sidebarCta?.title}
 	sidebarText={data.sidebarCta?.text}
 	sidebarLabel={data.sidebarCta?.label}
-	sidebarHref={data.sidebarCta?.href}
+	sidebarHref={localizeDiagnosticHref(data.sidebarCta?.href)}
 	ctaEyebrow={data.footerCta?.eyebrow}
 	ctaTitle={data.footerCta?.title}
 	ctaText={data.footerCta?.text}
 	ctaLabel={data.footerCta?.label}
-	ctaHref={data.footerCta?.href}
+	ctaHref={localizeDiagnosticHref(data.footerCta?.href)}
 	showComments={Boolean(comments?.enabled)}
 	commentsRepo={comments?.repo ?? ""}
 	commentsRepoId={comments?.repoId ?? ""}
