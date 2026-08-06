@@ -7,32 +7,37 @@ import ShareBar from "../components/editorial/ShareBar.astro";
 import SidebarCta from "../components/editorial/SidebarCta.astro";
 import TableOfContents from "../components/editorial/TableOfContents.astro";
 import { editorialComponents } from "../components/editorial/registry";
+import { resolvePublishedLocale, uiCopy } from "../lib/i18n/ui";
 import "../styles/article-editorial.css";
 import "../styles/article-hero-split.css";
 import "../styles/editorial-components.css";
 
+const contentLocale = resolvePublishedLocale(Astro.props.locale);
+const copy = uiCopy[contentLocale];
+const articleCopy = copy.article;
+
 const {
-	title = "Intent & Proof Growth Guide",
-	description = "Practical growth systems for service businesses.",
+	title = articleCopy.defaultTitle,
+	description = articleCopy.defaultDescription,
 	seoTitle = title,
 	seoDescription = description,
-	eyebrow = "Growth Guide",
-	categoryHref = "/blog/",
+	eyebrow = articleCopy.defaultEyebrow,
+	categoryHref = copy.routes.blog,
 	author = "Piergiorgio Rocchini",
-	authorHref = "/authors/piergiorgio-rocchini/",
+	authorHref = contentLocale === "it" ? "/it/autori/piergiorgio-rocchini/" : "/authors/piergiorgio-rocchini/",
 	authorImageSrc = "",
 	authorImageAlt = "",
-	authorRole = "Founder, analyst and acquisition-system operator",
-	authorBio = "Piergiorgio Rocchini combines financial analysis, market research and hands-on customer acquisition systems built in live service markets.",
+	authorRole = articleCopy.defaultAuthorRole,
+	authorBio = articleCopy.defaultAuthorBio,
 	editor = "",
 	editorHref = "",
 	editorImageSrc = "",
 	editorImageAlt = "",
 	publishedDate = "2026-07-01",
 	updatedDate = "2026-07-01",
-	readTime = "8 min read",
+	readTime = contentLocale === "it" ? "8 min di lettura" : "8 min read",
 	imageSrc = "",
-	imageAlt = "Intent & Proof editorial guide visual",
+	imageAlt = articleCopy.defaultImageAlt,
 	heroImageSrc = imageSrc,
 	heroImageAlt = imageAlt,
 	heroImagePosition = "center",
@@ -40,16 +45,16 @@ const {
 	heroTone = "aurora",
 	showDescription = true,
 	videoUrl = "",
-	ctaEyebrow = "Intent & Proof Audit",
-	ctaTitle = "Want to find the weak points in your website?",
-	ctaText = "Get a practical audit of your SEO, landing page, tracking and lead path before spending more on traffic.",
-	ctaLabel = "Check My Site",
-	ctaHref = "/diagnostic/",
-	sidebarEyebrow = "Free diagnostic",
-	sidebarTitle = "Find the first commercial leak worth fixing.",
-	sidebarText = "A focused review of intent, proof, conversion and measurement before more budget is committed.",
-	sidebarLabel = "Request diagnostic",
-	sidebarHref = "/diagnostic/",
+	ctaEyebrow = articleCopy.ctaEyebrow,
+	ctaTitle = articleCopy.ctaTitle,
+	ctaText = articleCopy.ctaText,
+	ctaLabel = articleCopy.ctaLabel,
+	ctaHref = copy.routes.diagnostic,
+	sidebarEyebrow = articleCopy.sidebarEyebrow,
+	sidebarTitle = articleCopy.sidebarTitle,
+	sidebarText = articleCopy.sidebarText,
+	sidebarLabel = articleCopy.sidebarLabel,
+	sidebarHref = copy.routes.diagnostic,
 	showToc = true,
 	showShare = true,
 	showSidebarCta = true,
@@ -60,9 +65,8 @@ const {
 	commentsCategoryId = "",
 	commentsMapping = "pathname",
 	commentsTheme = "preferred_color_scheme",
-	commentsLang = "en",
+	commentsLang = contentLocale,
 	layoutVariant = "wide",
-	locale = "en",
 	canonicalPath = "",
 	noindex = false,
 	nofollow = false,
@@ -74,26 +78,17 @@ const {
 	relatedContentLimit = 4,
 	relatedContentTitle = "",
 	relatedContentText = "",
-	breadcrumbs = [
-		{ href: "/", label: "Home" },
-		{ href: "/blog/", label: "Research" }
-	],
+	breadcrumbs = articleCopy.breadcrumbs,
 	tags = [],
-	toc = [
-		{ href: "#overview", label: "Overview" },
-		{ href: "#system", label: "The system" },
-		{ href: "#checklist", label: "Checklist" },
-		{ href: "#faq", label: "FAQ" }
-	]
+	toc = articleCopy.toc
 } = Astro.props;
 
-const resolvedAuthorImageAlt = authorImageAlt || `${author} portrait`;
-const resolvedEditorImageAlt = editorImageAlt || `${editor} portrait`;
+const resolvedAuthorImageAlt = authorImageAlt || `${author} ${articleCopy.portraitSuffix}`;
+const resolvedEditorImageAlt = editorImageAlt || `${editor} ${articleCopy.portraitSuffix}`;
 const siteURL = Astro.site ?? new URL("https://www.intentandproof.com");
 const articleURL = new URL(Astro.url.pathname, siteURL);
 const articleImage = heroImageSrc ? new URL(heroImageSrc, siteURL).toString() : undefined;
 const editorialComponentCount = Object.keys(editorialComponents).length;
-const contentLocale = locale === "it" ? "it" : "en";
 const resolvedRelatedTags = relatedTags.length > 0
 	? relatedTags
 	: tags.map((tag) => typeof tag === "string" ? tag : tag.label).filter(Boolean);
@@ -170,10 +165,10 @@ const structuredData = {
 		tags: resolvedRelatedTags,
 		manualArticleIds: relatedManualArticleIds,
 		limit: relatedContentLimit,
-		title: relatedContentTitle || (contentLocale === "it" ? "Altri approfondimenti sul tema." : "More research on this topic."),
-		text: relatedContentText || (contentLocale === "it" ? "Una selezione automatica degli articoli più recenti e pertinenti." : "An automatic selection of the most recent and relevant articles."),
-		allHref: contentLocale === "it" ? "/it/blog/" : "/blog/",
-		allLabel: contentLocale === "it" ? "Vedi tutti gli articoli" : "View all research"
+		title: relatedContentTitle || articleCopy.relatedTopicTitle,
+		text: relatedContentText || articleCopy.relatedTopicText,
+		allHref: copy.routes.blog,
+		allLabel: articleCopy.relatedAll
 	}}
 >
 	<article class={`article-shell article-shell--${layoutVariant}${showSidebarCta ? " article-shell--has-mobile-cta" : ""}`} data-editorial-components={editorialComponentCount}>
@@ -203,11 +198,12 @@ const structuredData = {
 			heroTone={heroTone}
 			showDescription={showDescription}
 			videoUrl={videoUrl}
+			locale={contentLocale}
 		/>
 
 		{
 			showSidebarCta && (
-				<aside class="article-mobile-cta" data-mobile-article-cta aria-label="Recommended action">
+				<aside class="article-mobile-cta" data-mobile-article-cta aria-label={articleCopy.mobileAction}>
 					<div>
 						{sidebarEyebrow && <span>{sidebarEyebrow}</span>}
 						<strong>{sidebarTitle}</strong>
@@ -218,7 +214,7 @@ const structuredData = {
 		}
 
 		<div class="article-editorial-frame">
-			<aside class="article-left-rail" aria-label="Article navigation">
+			<aside class="article-left-rail" aria-label={articleCopy.navigation}>
 				{showToc && <TableOfContents items={toc} />}
 			</aside>
 
@@ -226,7 +222,7 @@ const structuredData = {
 
 			{
 				(showSidebarCta || showShare) && (
-					<aside class="article-right-rail" aria-label="Recommended action and sharing">
+					<aside class="article-right-rail" aria-label={articleCopy.actionAndSharing}>
 						{showSidebarCta && (
 							<SidebarCta
 								eyebrow={sidebarEyebrow}
@@ -236,7 +232,7 @@ const structuredData = {
 								href={sidebarHref}
 							/>
 						)}
-						{showShare && <ShareBar title={title} url={articleURL.toString()} />}
+						{showShare && <ShareBar title={title} url={articleURL.toString()} locale={contentLocale} />}
 					</aside>
 				)
 			}
