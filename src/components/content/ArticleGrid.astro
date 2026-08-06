@@ -7,17 +7,25 @@ interface Props {
 	title?: string;
 	description?: string;
 	emptyText?: string;
+	locale?: "en" | "it";
 }
 
+const inferredLocale = Astro.props.locale
+	|| Astro.props.articles?.[0]?.locale
+	|| (Astro.url.pathname.startsWith("/it/") ? "it" : "en");
+const locale = inferredLocale === "it" ? "it" : "en";
+const copy = locale === "it"
+	? { empty: "Non sono ancora disponibili articoli pubblicati.", archive: "Archivio degli articoli" }
+	: { empty: "No published articles are available yet.", archive: "Article archive" };
 const {
 	articles,
 	title = "",
 	description = "",
-	emptyText = "No published articles are available yet."
+	emptyText = copy.empty
 } = Astro.props;
 ---
 
-<section class="content-archive-list" aria-label={title || "Article archive"}>
+<section class="content-archive-list" aria-label={title || copy.archive}>
 	<div class="content-archive-list__inner">
 		{(title || description) && (
 			<header class="content-archive-list__head">
