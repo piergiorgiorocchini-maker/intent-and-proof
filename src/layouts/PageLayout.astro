@@ -1,19 +1,34 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import { resolvePublishedLocale, uiCopy } from "../lib/i18n/ui";
 
+const contentLocale = resolvePublishedLocale(Astro.props.lang);
+const copy = uiCopy[contentLocale];
 const {
 	title = "Intent & Proof",
-	description = "Performance marketing systems for service businesses.",
-eyebrow = "Intent & Proof",
+	description = contentLocale === "it"
+		? "Sistemi di acquisizione misurabili per imprese di servizi."
+		: "Performance marketing systems for service businesses.",
+	eyebrow = "Intent & Proof",
 	pageTitle = title,
 	intro = "",
-	ctaLabel = "Check My Site",
-	ctaHref = "/",
-	showCta = true
+	ctaLabel = copy.article.ctaLabel,
+	ctaHref = copy.routes.diagnostic,
+	showCta = true,
+	canonicalPath = "",
+	alternates = [],
+	showRelatedContent = false
 } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+	title={title}
+	description={description}
+	lang={contentLocale}
+	canonicalPath={canonicalPath}
+	alternates={alternates}
+	showRelatedContent={showRelatedContent}
+>
 	<section class="page-hero">
 		<div class="page-hero-inner">
 			<p class="page-eyebrow">{eyebrow}</p>
