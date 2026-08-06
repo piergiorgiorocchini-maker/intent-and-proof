@@ -127,5 +127,5 @@ thankYou:
     primaryLabel: "Leggi gli ultimi articoli"
     primaryHref: "/it/blog/"
     secondaryLabel: "Torna alla home"
-    secondaryHref: "/"
+    secondaryHref: "/it/"
 ---
