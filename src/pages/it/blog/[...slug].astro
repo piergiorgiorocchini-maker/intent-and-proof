@@ -16,6 +16,19 @@ const localizeDiagnosticHref = (href?: string): string | undefined => {
 	return href === "/diagnostic/" ? "/it/diagnostic/" : href;
 };
 
+const localizeDiagnosticCopy = (value?: string): string | undefined => {
+	if (!value) return value;
+
+	const replacements: Record<string, string> = {
+		"Diagnosi gratuita": "Diagnostica gratuita",
+		"Avvia il Diagnostic": "Avvia la diagnostica",
+		"Il Diagnostic combina controlli tecnici e commerciali per individuare la priorità più utile da approfondire.":
+			"La diagnostica combina controlli tecnici e commerciali per individuare la priorità più utile da approfondire."
+	};
+
+	return replacements[value] ?? value;
+};
+
 export async function getStaticPaths() {
 	const articles = await getCollection("articles", ({ data }) => data.locale === "it" && !data.draft);
 	return articles.map((article) => ({
@@ -84,15 +97,15 @@ const canonicalPath = data.seo?.canonicalUrl || `/it/blog/${data.slug}/`;
 	showToc={data.showToc !== false && toc.length > 0}
 	showShare={data.showShare !== false}
 	showSidebarCta={data.showSidebarCta !== false}
-	sidebarEyebrow={data.sidebarCta?.eyebrow}
+	sidebarEyebrow={localizeDiagnosticCopy(data.sidebarCta?.eyebrow)}
 	sidebarTitle={data.sidebarCta?.title}
-	sidebarText={data.sidebarCta?.text}
-	sidebarLabel={data.sidebarCta?.label}
+	sidebarText={localizeDiagnosticCopy(data.sidebarCta?.text)}
+	sidebarLabel={localizeDiagnosticCopy(data.sidebarCta?.label)}
 	sidebarHref={localizeDiagnosticHref(data.sidebarCta?.href)}
-	ctaEyebrow={data.footerCta?.eyebrow}
+	ctaEyebrow={localizeDiagnosticCopy(data.footerCta?.eyebrow)}
 	ctaTitle={data.footerCta?.title}
-	ctaText={data.footerCta?.text}
-	ctaLabel={data.footerCta?.label}
+	ctaText={localizeDiagnosticCopy(data.footerCta?.text)}
+	ctaLabel={localizeDiagnosticCopy(data.footerCta?.label)}
 	ctaHref={localizeDiagnosticHref(data.footerCta?.href)}
 	showComments={Boolean(comments?.enabled)}
 	commentsRepo={comments?.repo ?? ""}
