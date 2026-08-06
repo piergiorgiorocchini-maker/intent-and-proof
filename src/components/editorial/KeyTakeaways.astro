@@ -3,12 +3,18 @@ interface Props {
 	items?: string[];
 	title?: string;
 	eyebrow?: string;
+	locale?: "en" | "it";
 }
 
+const locale = Astro.props.locale
+	|| (Astro.url.pathname.startsWith("/it/") ? "it" : "en");
+const copy = locale === "it"
+	? { title: "Punti chiave", eyebrow: "Sintesi" }
+	: { title: "Key takeaways", eyebrow: "Summary" };
 const {
 	items = [],
-	title = "Key takeaways",
-	eyebrow = "Summary"
+	title = copy.title,
+	eyebrow = copy.eyebrow
 } = Astro.props;
 ---
 
