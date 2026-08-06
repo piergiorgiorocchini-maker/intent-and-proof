@@ -1,0 +1,106 @@
+---
+import PageLayout from "../../../layouts/PageLayout.astro";
+import ResourceCard from "../../../components/ResourceCard.astro";
+import ProofStrip from "../../../components/ProofStrip.astro";
+
+const proofItems = [
+	{
+		value: "100",
+		label: "PageSpeed mobile",
+		text: "Prestazione ottenuta su un sistema locale reale, non su una pagina dimostrativa isolata."
+	},
+	{
+		value: "2/2",
+		label: "richieste premium convertite",
+		text: "Le prime due richieste generate dall'infrastruttura yacht si sono trasformate in clienti."
+	},
+	{
+		value: "#2",
+		label: "posizione locale raggiunta",
+		text: "Risultato ottenuto per una ricerca prioritaria nel mercato dei servizi a domicilio."
+	}
+];
+
+const alternates = [
+	{ locale: "en", href: "/about/" },
+	{ locale: "it", href: "/it/chi-siamo/" },
+	{ locale: "en", href: "/about/", isDefault: true }
+];
+---
+
+<PageLayout
+	title="Chi siamo | Intent & Proof"
+	description="Intent & Proof progetta siti ad alte prestazioni e sistemi misurabili di acquisizione per imprese di servizi."
+	lang="it"
+	canonicalPath="/it/chi-siamo/"
+	alternates={alternates}
+	eyebrow="Chi siamo"
+	pageTitle="Sistemi di acquisizione costruiti per produrre risultati misurabili."
+	intro="Intent & Proof collega ricerca di mercato, siti ad alte prestazioni, SEO, landing page, prove credibili e tracciamento in un unico percorso dalla domanda al cliente."
+	ctaLabel="Inizia dalla diagnostica"
+	ctaHref="/it/diagnostic/"
+>
+	<section class="page-section">
+		<p class="page-section-kicker">Cosa realizziamo</p>
+		<h2 class="page-section-title">Non semplici siti. Sistemi che collegano visibilità, fiducia, azione e misurazione.</h2>
+		<p class="page-section-copy">
+			Un'impresa di servizi non ha bisogno soltanto di una presenza online gradevole. Ha bisogno di pagine costruite attorno alla domanda reale, prove collocate nei punti decisivi, percorsi di contatto chiari e dati sufficienti per capire quali attività generano richieste qualificate.
+		</p>
+	</section>
+
+	<ProofStrip
+		eyebrow="Validazione operativa"
+		title="Il metodo viene verificato su attività e mercati reali."
+		text="Intent & Proof nasce dall'applicazione diretta di sistemi SEO, pagine territoriali, acquisizione premium e misurazione delle conversioni. I risultati vengono usati per migliorare il metodo, non come decorazione commerciale."
+		items={proofItems}
+		variant="dark"
+	/>
+
+	<section class="page-section">
+		<p class="page-section-kicker">Aree operative</p>
+		<h2 class="page-section-title">Tre livelli che devono funzionare insieme.</h2>
+
+		<div class="resource-grid">
+			<ResourceCard
+				eyebrow="Siti e conversione"
+				title="Costruire un percorso chiaro dalla visita alla richiesta."
+				text="Architettura, velocità, pagine servizio, landing page, prove e azioni di contatto progettate come un unico sistema."
+				href="/it/#services"
+				label="Scopri i sistemi"
+				meta="Infrastruttura web"
+				icon="01"
+				variant="default"
+			/>
+
+			<ResourceCard
+				eyebrow="Domanda locale"
+				title="Intercettare ricerche con intenzione commerciale reale."
+				text="SEO locale, Google Business Profile, pagine territoriali e destinazioni di campagna costruite per mercati definiti."
+				href="/it/prodotti/seo-locale-attivita/"
+				label="Esplora il sistema locale"
+				meta="Acquisizione locale"
+				icon="02"
+				variant="orange"
+			/>
+
+			<ResourceCard
+				eyebrow="Ricerca e misurazione"
+				title="Capire cosa produce contatti prima di aumentare il budget."
+				text="Contenuti di ricerca, eventi di conversione e controllo della qualità dei lead per distinguere attività utili da semplice traffico."
+				href="/it/blog/"
+				label="Leggi gli approfondimenti"
+				meta="Metodo e dati"
+				icon="03"
+				variant="dark"
+			/>
+		</div>
+	</section>
+
+	<section class="page-section">
+		<p class="page-section-kicker">Perché esiste</p>
+		<h2 class="page-section-title">Molte attività acquistano traffico prima di correggere il percorso.</h2>
+		<p class="page-section-copy">
+			Intent &amp; Proof parte da una domanda più semplice: il sistema attuale riesce a intercettare la domanda giusta, dimostrare credibilità, rendere facile il contatto e attribuire il risultato alla sua origine? La diagnostica serve a individuare il primo vincolo reale, evitando di aggiungere strumenti a un percorso che non è ancora coerente.
+		</p>
+	</section>
+</PageLayout>
