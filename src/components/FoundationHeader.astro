@@ -1,33 +1,36 @@
 ---
+import {
+	localeMetadata,
+	publishedLocales,
+	resolvePublishedLocale,
+	uiCopy,
+	type PublishedLocale
+} from "../lib/i18n/ui";
+
+interface LanguageLink {
+	locale: PublishedLocale;
+	label: string;
+	href: string;
+	current: boolean;
+}
+
+const contentLocale = resolvePublishedLocale(Astro.props.lang);
+const copy = uiCopy[contentLocale];
 const {
-	lang = "en",
-	alternateHref = lang === "it" ? "/" : "/it/"
+	languageLinks = publishedLocales.map((locale) => ({
+		locale,
+		label: localeMetadata[locale].name,
+		href: uiCopy[locale].routes.home,
+		current: locale === contentLocale
+	})) as LanguageLink[]
 } = Astro.props;
 
-const isItalian = lang === "it";
-const homeHref = isItalian ? "/it/" : "/";
-const navigation = isItalian
-	? [
-		{ label: "Servizi", href: "/it/#services" },
-		{ label: "Per chi lavoriamo", href: "/it/#solutions" },
-		{ label: "Casi studio", href: "/it/blog/" },
-		{ label: "Approfondimenti", href: "/it/blog/" }
-	]
-	: [
-		{ label: "Services", href: "/#services" },
-		{ label: "Who we help", href: "/#solutions" },
-		{ label: "Case Studies", href: "/blog/category/case-studies/" },
-		{ label: "Research", href: "/blog/" }
-	];
-const aboutLabel = isItalian ? "Chi siamo" : "About";
-const diagnosticLabel = isItalian ? "Richiedi diagnosi" : "Request diagnostic";
-const languageMenuLabel = isItalian ? "Cambia lingua" : "Change language";
-const languageGroupLabel = isItalian ? "Selezione lingua" : "Language selection";
+const routeHref = (route: string) => copy.routes[route as keyof typeof copy.routes] || copy.routes.home;
 ---
 
 <header class="fd-header">
 	<div class="fd-header__inner">
-		<a class="fd-brand fd-brand--wordmark" href={homeHref} aria-label="Intent & Proof home">
+		<a class="fd-brand fd-brand--wordmark" href={copy.routes.home} aria-label={copy.header.brandHome}>
 			<img
 				src="/brand/intent-proof-wordmark.svg?v=2"
 				width="276"
@@ -36,66 +39,60 @@ const languageGroupLabel = isItalian ? "Selezione lingua" : "Language selection"
 			/>
 		</a>
 
-		<nav class="fd-nav" aria-label={isItalian ? "Navigazione principale" : "Main navigation"}>
-			{navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+		<nav class="fd-nav" aria-label={copy.header.mainNavigation}>
+			{copy.header.navigation.map((item) => <a href={routeHref(item.route)}>{item.label}</a>)}
 		</nav>
 
-		<div class="fd-header__actions" aria-label={isItalian ? "Azioni principali" : "Primary actions"}>
+		<div class="fd-header__actions" aria-label={copy.header.primaryActions}>
 			<details class="fd-language-picker">
-				<summary aria-label={languageMenuLabel} title={languageMenuLabel}>
+				<summary aria-label={copy.header.changeLanguage} title={copy.header.changeLanguage}>
 					<svg viewBox="0 0 24 24" aria-hidden="true">
 						<circle cx="12" cy="12" r="9"></circle>
 						<path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12s1.2 6.5 3.6 9"></path>
 					</svg>
 					<svg class="fd-language-picker__chevron" viewBox="0 0 12 8" aria-hidden="true"><path d="m1 1.5 5 5 5-5"></path></svg>
 				</summary>
-				<div class="fd-language-picker__menu" aria-label={languageGroupLabel}>
-					{isItalian ? (
-						<>
-							<a href={alternateHref} hreflang="en"><span>English</span></a>
-							<span class="fd-language-picker__current" aria-current="page"><span>Italiano</span><b aria-hidden="true">✓</b></span>
-						</>
+				<div class="fd-language-picker__menu" aria-label={copy.header.languageSelection}>
+					{languageLinks.map((link: LanguageLink) => link.current ? (
+						<span class="fd-language-picker__current" aria-current="page"><span>{link.label}</span><b aria-hidden="true">✓</b></span>
 					) : (
-						<>
-							<span class="fd-language-picker__current" aria-current="page"><span>English</span><b aria-hidden="true">✓</b></span>
-							<a href={alternateHref} hreflang="it"><span>Italiano</span></a>
-						</>
-					)}
+						<a href={link.href} hreflang={link.locale}><span>{link.label}</span></a>
+					))}
 				</div>
 			</details>
-			<a class="fd-login" href="/about/">{aboutLabel}</a>
-			<a class="fd-start" href="/diagnostic/">{diagnosticLabel}</a>
+			<a class="fd-login" href={copy.routes.about}>{copy.header.about}</a>
+			<a class="fd-start" href={copy.routes.diagnostic}>{copy.header.diagnostic}</a>
 		</div>
 
 		<details class="fd-mobile-menu">
-			<summary aria-label={isItalian ? "Apri la navigazione" : "Open navigation"}>
+			<summary aria-label={copy.header.openNavigation}>
 				<span></span>
 				<span></span>
 				<span></span>
 			</summary>
 			<div class="fd-mobile-menu__panel">
-				<nav aria-label={isItalian ? "Navigazione mobile" : "Mobile navigation"}>
-					{navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+				<nav aria-label={copy.header.mobileNavigation}>
+					{copy.header.navigation.map((item) => <a href={routeHref(item.route)}>{item.label}</a>)}
 				</nav>
 				<div class="fd-mobile-menu__actions">
-					<div class="fd-mobile-language" aria-label={languageGroupLabel}>
+					<div class="fd-mobile-language" aria-label={copy.header.languageSelection}>
 						<div class="fd-mobile-language__label">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<circle cx="12" cy="12" r="9"></circle>
 								<path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12s1.2 6.5 3.6 9"></path>
 							</svg>
-							<span>{isItalian ? "Lingua" : "Language"}</span>
+							<span>{copy.header.language}</span>
 						</div>
 						<div class="fd-mobile-language__links">
-							{isItalian ? (
-								<><a href={alternateHref} hreflang="en">English</a><span aria-current="page">Italiano ✓</span></>
+							{languageLinks.map((link: LanguageLink) => link.current ? (
+								<span aria-current="page">{link.label} ✓</span>
 							) : (
-								<><span aria-current="page">English ✓</span><a href={alternateHref} hreflang="it">Italiano</a></>
-							)}
+								<a href={link.href} hreflang={link.locale}>{link.label}</a>
+							))}
 						</div>
 					</div>
-					<a href="/about/">{aboutLabel}</a>
-					<a class="fd-start" href="/diagnostic/">{diagnosticLabel}</a>
+					<a href={copy.routes.about}>{copy.header.about}</a>
+					<a class="fd-start" href={copy.routes.diagnostic}>{copy.header.diagnostic}</a>
 				</div>
 			</div>
 		</details>
