@@ -102,7 +102,7 @@ seo:
   description: Learn how medical practices, dentists and clinics can turn Google Maps and local search visibility into qualified appointments without competing on discounts.
   canonicalUrl: ''
   image: null
-  noIndex: true
+  noIndex: false
   noFollow: false
 ---
 
