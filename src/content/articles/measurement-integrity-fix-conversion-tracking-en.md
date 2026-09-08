@@ -115,7 +115,7 @@ seo:
     credit: ''
     position: center right
     loading: lazy
-  noIndex: true
+  noIndex: false
   noFollow: false
 ---
 
