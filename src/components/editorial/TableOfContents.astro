@@ -17,39 +17,55 @@ const {
 const hasMoreItems = items.length > 4;
 const showLabel = locale === "it" ? "Mostra indice completo" : "Show full contents";
 const hideLabel = locale === "it" ? "Riduci indice" : "Collapse contents";
+const returnLabel = locale === "it" ? "Indice" : "Contents";
+const returnAriaLabel = locale === "it" ? "Torna all’indice dell’articolo" : "Return to article contents";
 const navId = "article-table-of-contents";
+const tocAnchorId = "article-toc-anchor";
 ---
 
 {
 	items.length > 0 && (
-		<div
-			class="article-side-card article-toc"
-			data-mobile-toc
-			data-expanded="false"
-		>
-			<div class="article-toc__header">
-				<p>{title}</p>
-				{
-					hasMoreItems && (
-						<button
-							type="button"
-							class="article-toc__toggle"
-							aria-expanded="false"
-							aria-controls={navId}
-							data-toc-toggle
-							data-show-label={showLabel}
-							data-hide-label={hideLabel}
-						>
-							<span data-toc-toggle-label>{showLabel}</span>
-							<i class="article-toc__toggle-icon" aria-hidden="true">⌄</i>
-						</button>
-					)
-				}
+		<>
+			<div
+				id={tocAnchorId}
+				class="article-side-card article-toc"
+				data-mobile-toc
+				data-expanded="false"
+			>
+				<div class="article-toc__header">
+					<p>{title}</p>
+					{
+						hasMoreItems && (
+							<button
+								type="button"
+								class="article-toc__toggle"
+								aria-expanded="false"
+								aria-controls={navId}
+								data-toc-toggle
+								data-show-label={showLabel}
+								data-hide-label={hideLabel}
+							>
+								<span data-toc-toggle-label>{showLabel}</span>
+								<i class="article-toc__toggle-icon" aria-hidden="true">⌄</i>
+							</button>
+						)
+					}
+				</div>
+				<nav id={navId} aria-label={title}>
+					{items.map((item) => <a href={item.href}>{item.label}</a>)}
+				</nav>
 			</div>
-			<nav id={navId} aria-label={title}>
-				{items.map((item) => <a href={item.href}>{item.label}</a>)}
-			</nav>
-		</div>
+
+			<button
+				type="button"
+				class="article-toc-return"
+				aria-label={returnAriaLabel}
+				data-toc-return
+			>
+				<span aria-hidden="true">↑</span>
+				{returnLabel}
+			</button>
+		</>
 	)
 }
 
@@ -57,21 +73,40 @@ const navId = "article-table-of-contents";
 	const initialiseMobileToc = () => {
 		document.querySelectorAll<HTMLElement>("[data-mobile-toc]").forEach((toc) => {
 			if (toc.dataset.initialised === "true") return;
+			toc.dataset.initialised = "true";
 
 			const toggle = toc.querySelector<HTMLButtonElement>("[data-toc-toggle]");
 			const label = toc.querySelector<HTMLElement>("[data-toc-toggle-label]");
-			if (!toggle || !label) return;
+			if (toggle && label) {
+				toggle.addEventListener("click", () => {
+					const expanded = toc.dataset.expanded === "true";
+					const nextExpanded = !expanded;
+					toc.dataset.expanded = String(nextExpanded);
+					toggle.setAttribute("aria-expanded", String(nextExpanded));
+					label.textContent = nextExpanded
+						? toggle.dataset.hideLabel || "Collapse contents"
+						: toggle.dataset.showLabel || "Show full contents";
+				});
+			}
 
-			toc.dataset.initialised = "true";
-			toggle.addEventListener("click", () => {
-				const expanded = toc.dataset.expanded === "true";
-				const nextExpanded = !expanded;
-				toc.dataset.expanded = String(nextExpanded);
-				toggle.setAttribute("aria-expanded", String(nextExpanded));
-				label.textContent = nextExpanded
-					? toggle.dataset.hideLabel || "Collapse contents"
-					: toggle.dataset.showLabel || "Show full contents";
+			const returnButton = document.querySelector<HTMLButtonElement>("[data-toc-return]");
+			if (!returnButton) return;
+
+			returnButton.addEventListener("click", () => {
+				toc.scrollIntoView({ behavior: "smooth", block: "start" });
 			});
+
+			if ("IntersectionObserver" in window) {
+				const observer = new IntersectionObserver(
+					([entry]) => {
+						const tocIsAboveViewport = !entry.isIntersecting && entry.boundingClientRect.bottom < 0;
+						returnButton.classList.toggle("is-visible", tocIsAboveViewport);
+					},
+					{ threshold: 0 }
+				);
+
+				observer.observe(toc);
+			}
 		});
 	};
 
@@ -80,8 +115,13 @@ const navId = "article-table-of-contents";
 </script>
 
 <style>
-	.article-toc__toggle {
+	.article-toc__toggle,
+	.article-toc-return {
 		display: none;
+	}
+
+	.article-toc {
+		scroll-margin-top: 108px;
 	}
 
 	@media (min-width: 881px) {
@@ -164,6 +204,46 @@ const navId = "article-table-of-contents";
 			scrollbar-gutter: stable;
 			scrollbar-width: thin;
 		}
+
+		.article-toc-return {
+			position: fixed;
+			z-index: 79;
+			right: 16px;
+			bottom: calc(max(12px, env(safe-area-inset-bottom)) + 82px);
+			min-height: 42px;
+			padding: 0 14px;
+			align-items: center;
+			justify-content: center;
+			gap: 7px;
+			border: 1px solid rgba(7, 28, 44, 0.12);
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.96);
+			box-shadow: 0 10px 30px rgba(7, 28, 44, 0.14);
+			color: #071c2c;
+			font: inherit;
+			font-size: 0.78rem;
+			font-weight: 850;
+			line-height: 1;
+			cursor: pointer;
+			opacity: 0;
+			pointer-events: none;
+			transform: translateY(8px);
+			transition: opacity 160ms ease, transform 160ms ease, border-color 160ms ease, color 160ms ease;
+			backdrop-filter: blur(12px);
+		}
+
+		.article-toc-return.is-visible {
+			display: inline-flex;
+			opacity: 1;
+			pointer-events: auto;
+			transform: translateY(0);
+		}
+
+		.article-toc-return:hover,
+		.article-toc-return:focus-visible {
+			border-color: rgba(8, 121, 92, 0.38);
+			color: #08795c;
+		}
 	}
 
 	@media (max-width: 420px) {
@@ -174,6 +254,11 @@ const navId = "article-table-of-contents";
 
 		.article-toc__toggle {
 			width: 100%;
+		}
+
+		.article-toc-return {
+			right: 12px;
+			bottom: calc(max(10px, env(safe-area-inset-bottom)) + 78px);
 		}
 	}
 </style>
