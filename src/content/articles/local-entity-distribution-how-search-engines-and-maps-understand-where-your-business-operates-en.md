@@ -114,7 +114,7 @@ seo:
   description: Learn how local businesses build a coherent geographic identity across Google Maps, Apple Maps, Bing, HERE, OpenStreetMap and their own local pages.
   canonicalUrl: ''
   image: null
-  noIndex: true
+  noIndex: false
   noFollow: false
 ---
 
